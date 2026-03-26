@@ -3,7 +3,8 @@ import StudentLayout from '../StudentLayout';
 import { Plus } from 'lucide-react';
 
 const CalendarMonthly = () => {
-  const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const daysOfWeek = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+  const daysOfWeekFull = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   
   const colors = {
     red: 'bg-red-100 text-red-700 border-red-200',
@@ -48,21 +49,22 @@ const CalendarMonthly = () => {
   return (
     <StudentLayout activeTab="Calendar">
       <div className="max-w-6xl">
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900">September</h1>
-            <p className="text-sm text-gray-400 mt-1">Monthly calendar</p>
+        <div className="flex items-center justify-between mb-5 sm:mb-8 gap-3">
+          <div className="min-w-0">
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">September</h1>
+            <p className="text-xs sm:text-sm text-gray-400 mt-1">Monthly calendar</p>
           </div>
-          <button className="flex items-center gap-2 px-5 py-2.5 bg-black text-white text-sm font-semibold hover:bg-[#0e445b] transition-colors shadow-sm cursor-pointer">
-            <Plus size={16} /> Add Event
+          <button className="flex-shrink-0 flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-2.5 bg-black text-white text-xs sm:text-sm font-semibold hover:bg-[#0e445b] transition-colors shadow-sm cursor-pointer">
+            <Plus size={14} className="sm:w-4 sm:h-4" /> <span className="hidden sm:inline">Add Event</span><span className="sm:hidden">Add</span>
           </button>
         </div>
 
         <div className="bg-white border border-gray-100 shadow-sm overflow-hidden">
           <div className="grid grid-cols-7 bg-gray-50 border-b border-gray-100">
             {daysOfWeek.map((day, idx) => (
-              <div key={idx} className="py-3 text-center text-xs font-semibold text-gray-400 uppercase tracking-wider">
-                {day}
+              <div key={idx} className="py-2 sm:py-3 text-center text-[10px] sm:text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                <span className="sm:hidden">{day}</span>
+                <span className="hidden sm:inline">{daysOfWeekFull[idx]}</span>
               </div>
             ))}
           </div>
@@ -71,10 +73,10 @@ const CalendarMonthly = () => {
               {[0, 1, 2, 3, 4, 5, 6].map((colIdx) => {
                 const cell = calendarCells[rowIdx * 7 + colIdx];
                 return (
-                  <div key={colIdx} className="min-h-[90px] p-2 border-r border-gray-50 last:border-r-0 hover:bg-gray-50/50 transition-colors">
-                    <span className="text-xs font-semibold text-gray-400 block mb-1">{cell.date}</span>
+                  <div key={colIdx} className="min-h-[50px] sm:min-h-[90px] p-1 sm:p-2 border-r border-gray-50 last:border-r-0 hover:bg-gray-50/50 transition-colors">
+                    <span className="text-[10px] sm:text-xs font-semibold text-gray-400 block mb-0.5 sm:mb-1">{cell.date}</span>
                     {cell.event && (
-                      <div className={`text-[11px] font-semibold px-2 py-1 border ${cell.event.style}`}>
+                      <div className={`text-[8px] sm:text-[11px] font-semibold px-1 sm:px-2 py-0.5 sm:py-1 border ${cell.event.style} truncate`}>
                         {cell.event.title}
                       </div>
                     )}

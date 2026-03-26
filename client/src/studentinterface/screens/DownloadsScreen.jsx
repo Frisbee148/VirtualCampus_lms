@@ -12,10 +12,11 @@ const DownloadsScreen = () => {
   return (
     <StudentLayout activeTab="Downloads">
       <div className="max-w-5xl">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Downloads</h1>
-        <p className="text-sm text-gray-400 mb-8">Course materials and documents</p>
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Downloads</h1>
+        <p className="text-xs sm:text-sm text-gray-400 mb-5 sm:mb-8">Course materials and documents</p>
 
-        <div className="bg-white border border-gray-200 overflow-hidden">
+        {/* Desktop table */}
+        <div className="hidden sm:block bg-white border border-gray-200 overflow-hidden">
           <table className="w-full">
             <thead>
               <tr className="bg-black text-white">
@@ -40,6 +41,24 @@ const DownloadsScreen = () => {
               ))}
             </tbody>
           </table>
+        </div>
+
+        {/* Mobile card layout */}
+        <div className="sm:hidden space-y-3">
+          {documents.map((d, idx) => (
+            <div key={idx} className="bg-white border border-gray-200 p-3">
+              <div className="flex items-start justify-between gap-2 mb-2">
+                <h3 className="text-xs font-semibold text-gray-900 leading-snug flex-1 min-w-0 break-words">{d.name}</h3>
+                <button className="flex-shrink-0 p-1.5 text-black border border-black hover:bg-black hover:text-white transition-all duration-200 cursor-pointer">
+                  <Download size={14} />
+                </button>
+              </div>
+              <div className="flex gap-3 text-[10px] text-gray-400">
+                <span>{d.size}</span>
+                <span>{d.date}</span>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </StudentLayout>

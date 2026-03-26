@@ -8,14 +8,15 @@ const PerformanceCGPA = () => {
   return (
     <StudentLayout activeTab="Grades">
       <div className="max-w-5xl">
-        <div className="flex items-center justify-between mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Course History</h1>
-          <button className="px-5 py-2.5 bg-black text-white text-sm font-semibold hover:bg-[#0e445b] transition-colors shadow-sm cursor-pointer">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-5 sm:mb-8 gap-3">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Course History</h1>
+          <button className="px-4 sm:px-5 py-2 sm:py-2.5 bg-black text-white text-xs sm:text-sm font-semibold hover:bg-[#0e445b] transition-colors shadow-sm cursor-pointer self-start sm:self-auto">
             Filter by Semester
           </button>
         </div>
 
-        <div className="bg-white border border-gray-100 shadow-sm overflow-hidden mb-10">
+        {/* Desktop table */}
+        <div className="hidden sm:block bg-white border border-gray-100 shadow-sm overflow-hidden mb-10">
           <table className="w-full">
             <thead>
               <tr className="bg-black text-white">
@@ -42,8 +43,33 @@ const PerformanceCGPA = () => {
           </table>
         </div>
 
-        <div className="bg-white border border-gray-100 shadow-sm p-6">
-          <h2 className="text-lg font-bold text-gray-900 mb-6">CGPA Trend</h2>
+        {/* Mobile card layout */}
+        <div className="sm:hidden space-y-3 mb-6">
+          {[
+            { name: 'Course A', marks: 85, grade: 'A', gradeColor: 'bg-emerald-50 text-emerald-700 border-emerald-200', type: 'Core', clickable: true },
+            { name: 'Course B', marks: 72, grade: 'B+', gradeColor: 'bg-blue-50 text-blue-700 border-blue-200', type: 'Elective', clickable: false },
+          ].map((c, idx) => (
+            <div key={idx} className="bg-white border border-gray-100 shadow-sm p-3">
+              <div className="flex items-center justify-between mb-2">
+                <h3 className={`text-sm font-semibold ${c.clickable ? 'text-black underline cursor-pointer' : 'text-gray-600'}`} onClick={() => c.clickable && navigate('/course/overview')}>{c.name}</h3>
+                <span className={`px-2 py-0.5 text-xs font-semibold border ${c.gradeColor}`}>{c.grade}</span>
+              </div>
+              <div className="flex gap-4">
+                <div>
+                  <p className="text-[10px] text-gray-400 uppercase">Marks</p>
+                  <p className="text-sm font-semibold text-gray-900">{c.marks}</p>
+                </div>
+                <div>
+                  <p className="text-[10px] text-gray-400 uppercase">Type</p>
+                  <p className="text-sm text-gray-500">{c.type}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="bg-white border border-gray-100 shadow-sm p-3 sm:p-6">
+          <h2 className="text-base sm:text-lg font-bold text-gray-900 mb-4 sm:mb-6">CGPA Trend</h2>
           <div className="relative">
             <svg viewBox="0 0 700 280" className="w-full h-auto">
               {[0, 1, 2, 3, 4, 5, 6].map((gridY) => {
@@ -68,10 +94,10 @@ const PerformanceCGPA = () => {
               {[[150,190],[300,190],[450,160],[600,80]].map(([cx,cy],i) => <rect key={i} x={cx-4} y={cy-4} width="8" height="8" fill="#2ca02c" stroke="white" strokeWidth="2" />)}
             </svg>
           </div>
-          <div className="flex justify-center gap-8 mt-4 pt-4 border-t border-gray-100">
-            <div className="flex items-center gap-2 text-xs text-gray-500"><span className="w-3 h-0.5 bg-black"></span> SGPA</div>
-            <div className="flex items-center gap-2 text-xs text-gray-500"><span className="w-3 h-0.5 bg-[#ff7f0e]"></span> CGPA</div>
-            <div className="flex items-center gap-2 text-xs text-gray-500"><span className="w-3 h-0.5 bg-[#2ca02c]"></span> Class Avg</div>
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-8 mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-100">
+            <div className="flex items-center gap-2 text-[10px] sm:text-xs text-gray-500"><span className="w-3 h-0.5 bg-black"></span> SGPA</div>
+            <div className="flex items-center gap-2 text-[10px] sm:text-xs text-gray-500"><span className="w-3 h-0.5 bg-[#ff7f0e]"></span> CGPA</div>
+            <div className="flex items-center gap-2 text-[10px] sm:text-xs text-gray-500"><span className="w-3 h-0.5 bg-[#2ca02c]"></span> Class Avg</div>
           </div>
         </div>
       </div>

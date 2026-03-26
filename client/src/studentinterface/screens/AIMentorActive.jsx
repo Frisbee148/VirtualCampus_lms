@@ -13,43 +13,43 @@ const AIMentorActive = () => {
   return (
     <StudentLayout activeTab="">
       <div className="max-w-4xl relative">
-        <div className="flex items-center justify-between mb-6">
-          <h1 className="text-3xl font-bold text-gray-900">AI Assistant</h1>
+        <div className="flex items-center justify-between mb-4 sm:mb-6">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">AI Assistant</h1>
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-0 mb-8 border-b border-gray-200">
+        <div className="flex gap-0 mb-5 sm:mb-8 border-b border-gray-200">
           <button
             onClick={() => navigate('/ai')}
-            className="px-6 py-3 text-sm font-semibold border-b-2 -mb-px cursor-pointer transition-all duration-200 border-transparent text-gray-400 hover:text-gray-600"
+            className="px-4 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-semibold border-b-2 -mb-px cursor-pointer transition-all duration-200 border-transparent text-gray-400 hover:text-gray-600"
           >
             Ask AI
           </button>
-          <button className="px-6 py-3 text-sm font-semibold border-b-2 -mb-px cursor-pointer transition-all duration-200 border-black text-black">
+          <button className="px-4 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-semibold border-b-2 -mb-px cursor-pointer transition-all duration-200 border-black text-black">
             MentorBot
           </button>
         </div>
 
         {/* Responses */}
-        <div className="space-y-5 mb-8">
+        <div className="space-y-3 sm:space-y-5 mb-5 sm:mb-8">
           {responses.map((r, idx) => (
             <div key={idx} className="bg-white border border-gray-200 overflow-hidden">
-              <div className="bg-black px-5 py-3">
-                <h3 className="text-white font-semibold text-sm">{r.title}</h3>
+              <div className="bg-black px-3 sm:px-5 py-2.5 sm:py-3">
+                <h3 className="text-white font-semibold text-xs sm:text-sm">{r.title}</h3>
               </div>
-              <div className="p-5">
-                <p className="text-sm text-gray-600 leading-relaxed whitespace-pre-line">{r.content}</p>
+              <div className="p-3 sm:p-5">
+                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed whitespace-pre-line">{r.content}</p>
               </div>
-              <div className="px-5 pb-4 flex items-center gap-2 border-t border-gray-100 pt-3">
-                <button className="px-3 py-1.5 text-xs font-medium text-gray-500 border border-gray-200 hover:bg-gray-50 transition-colors cursor-pointer">
+              <div className="px-3 sm:px-5 pb-3 sm:pb-4 flex flex-wrap items-center gap-1.5 sm:gap-2 border-t border-gray-100 pt-2.5 sm:pt-3">
+                <button className="px-2 sm:px-3 py-1 sm:py-1.5 text-[10px] sm:text-xs font-medium text-gray-500 border border-gray-200 hover:bg-gray-50 transition-colors cursor-pointer">
                   Copy
                 </button>
-                <button className="px-3 py-1.5 text-xs font-medium text-gray-500 border border-gray-200 hover:bg-gray-50 transition-colors cursor-pointer">
+                <button className="px-2 sm:px-3 py-1 sm:py-1.5 text-[10px] sm:text-xs font-medium text-gray-500 border border-gray-200 hover:bg-gray-50 transition-colors cursor-pointer">
                   Regenerate
                 </button>
                 <button 
                   onClick={() => navigate('/calendar')}
-                  className="px-3 py-1.5 text-xs font-medium text-black border border-black/30 hover:bg-black/5 transition-colors cursor-pointer"
+                  className="px-2 sm:px-3 py-1 sm:py-1.5 text-[10px] sm:text-xs font-medium text-black border border-black/30 hover:bg-black/5 transition-colors cursor-pointer"
                 >
                   Add to Calendar
                 </button>
@@ -60,13 +60,13 @@ const AIMentorActive = () => {
 
         {/* Prompt Input */}
         <div className="sticky bottom-6">
-          <div className="flex gap-3 bg-white border border-gray-200 shadow-lg p-2">
+          <div className="flex gap-2 sm:gap-3 bg-white border border-gray-200 shadow-lg p-1.5 sm:p-2">
             <input
               type="text"
               placeholder="Ask a follow-up question..."
-              className="flex-1 px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 outline-none bg-transparent"
+              className="flex-1 px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 outline-none bg-transparent min-w-0"
             />
-            <button className="px-5 py-3 bg-black text-white text-sm font-semibold hover:bg-[#0e445b] transition-colors cursor-pointer">
+            <button className="flex-shrink-0 px-3 sm:px-5 py-2.5 sm:py-3 bg-black text-white text-xs sm:text-sm font-semibold hover:bg-[#0e445b] transition-colors cursor-pointer">
               Send
             </button>
           </div>

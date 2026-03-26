@@ -34,62 +34,67 @@ const CalendarWeekly = () => {
     { day: 4, start: 8, dur: 2, title: 'Re:Studio', time: '4-6pm', color: 'bg-stone-600' },
   ];
 
+  const cellH = 40; // smaller on mobile-friendly
+  const cellHSm = 56;
+
   return (
     <StudentLayout activeTab="Timetable">
       <div className="max-w-6xl">
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 sm:mb-6 gap-3">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Timetable</h1>
-            <p className="text-sm text-gray-400 mt-1">Weekly schedule</p>
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Timetable</h1>
+            <p className="text-xs sm:text-sm text-gray-400 mt-1">Weekly schedule</p>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <select
-              className="px-4 py-2.5 bg-white border border-gray-200 text-sm font-medium text-gray-700 cursor-pointer outline-none focus:border-black transition-colors"
+              className="px-3 sm:px-4 py-2 sm:py-2.5 bg-white border border-gray-200 text-xs sm:text-sm font-medium text-gray-700 cursor-pointer outline-none focus:border-black transition-colors"
               onChange={(e) => { if (e.target.value === 'daily') navigate('/timetable/daily'); }}
               defaultValue="weekly"
             >
               <option value="weekly">Weekly</option>
               <option value="daily">Daily</option>
             </select>
-            <button className="flex items-center gap-2 px-5 py-2.5 bg-black text-white text-sm font-semibold hover:bg-[#0e445b] transition-colors shadow-sm cursor-pointer">
-              <Plus size={16} /> Add Event
+            <button className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-2.5 bg-black text-white text-xs sm:text-sm font-semibold hover:bg-[#0e445b] transition-colors shadow-sm cursor-pointer">
+              <Plus size={14} className="sm:w-4 sm:h-4" /> <span className="hidden sm:inline">Add Event</span><span className="sm:hidden">Add</span>
             </button>
           </div>
         </div>
 
-        <div className="bg-white border border-gray-100 shadow-sm overflow-hidden">
-          <div className="grid grid-cols-[60px_repeat(5,1fr)] border-b border-gray-100">
-            <div className="py-3 text-center text-[10px] font-semibold text-gray-300 uppercase">Time</div>
-            {days.map(d => (
-              <div key={d} className="py-3 text-center text-xs font-semibold text-gray-500 uppercase tracking-wider border-l border-gray-50">{d}</div>
-            ))}
-          </div>
-
-          <div className="grid grid-cols-[60px_repeat(5,1fr)] relative" style={{ height: `${hours.length * 56}px` }}>
-            <div className="relative">
-              {hours.map((hr, idx) => (
-                <div key={idx} className="absolute w-full text-right pr-2" style={{ top: `${idx * 56 - 7}px` }}>
-                  <span className="text-[10px] font-medium text-gray-400">{hr}</span>
-                </div>
+        <div className="bg-white border border-gray-100 shadow-sm overflow-x-auto">
+          <div className="min-w-[500px]">
+            <div className="grid grid-cols-[40px_repeat(5,1fr)] sm:grid-cols-[60px_repeat(5,1fr)] border-b border-gray-100">
+              <div className="py-2 sm:py-3 text-center text-[8px] sm:text-[10px] font-semibold text-gray-300 uppercase">Time</div>
+              {days.map(d => (
+                <div key={d} className="py-2 sm:py-3 text-center text-[10px] sm:text-xs font-semibold text-gray-500 uppercase tracking-wider border-l border-gray-50">{d}</div>
               ))}
             </div>
-            {days.map((_, dayIdx) => (
-              <div key={dayIdx} className="relative border-l border-gray-50">
-                {hours.map((_, hIdx) => (
-                  <div key={hIdx} className="absolute w-full h-px bg-gray-50" style={{ top: `${hIdx * 56}px` }}></div>
-                ))}
-                {events.filter(e => e.day === dayIdx).map((ev, i) => (
-                  <div
-                    key={i}
-                    className={`absolute left-1 right-1 ${ev.color} text-white px-2 py-1.5 overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer`}
-                    style={{ top: `${ev.start * 56}px`, height: `${ev.dur * 56 - 4}px` }}
-                  >
-                    <p className="text-[10px] font-bold truncate leading-tight">{ev.title}</p>
-                    <p className="text-[9px] opacity-80 mt-0.5">{ev.time}</p>
+
+            <div className="grid grid-cols-[40px_repeat(5,1fr)] sm:grid-cols-[60px_repeat(5,1fr)] relative" style={{ height: `${hours.length * cellHSm}px` }}>
+              <div className="relative">
+                {hours.map((hr, idx) => (
+                  <div key={idx} className="absolute w-full text-right pr-1 sm:pr-2" style={{ top: `${idx * cellHSm - 7}px` }}>
+                    <span className="text-[8px] sm:text-[10px] font-medium text-gray-400">{hr}</span>
                   </div>
                 ))}
               </div>
-            ))}
+              {days.map((_, dayIdx) => (
+                <div key={dayIdx} className="relative border-l border-gray-50">
+                  {hours.map((_, hIdx) => (
+                    <div key={hIdx} className="absolute w-full h-px bg-gray-50" style={{ top: `${hIdx * cellHSm}px` }}></div>
+                  ))}
+                  {events.filter(e => e.day === dayIdx).map((ev, i) => (
+                    <div
+                      key={i}
+                      className={`absolute left-0.5 right-0.5 sm:left-1 sm:right-1 ${ev.color} text-white px-1 sm:px-2 py-1 sm:py-1.5 overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer`}
+                      style={{ top: `${ev.start * cellHSm}px`, height: `${ev.dur * cellHSm - 4}px` }}
+                    >
+                      <p className="text-[8px] sm:text-[10px] font-bold truncate leading-tight">{ev.title}</p>
+                      <p className="text-[7px] sm:text-[9px] opacity-80 mt-0.5 hidden sm:block">{ev.time}</p>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
