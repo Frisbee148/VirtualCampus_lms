@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 
-import LoginPage from './LoginPage';
+import LoginPage from './auth/LoginPage';
 import DashboardHome from './studentinterface/screens/DashboardHome';
 import CourseOverview from './studentinterface/screens/CourseOverview';
 import CourseSyllabus from './studentinterface/screens/CourseSyllabus';

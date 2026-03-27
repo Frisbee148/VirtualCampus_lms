@@ -145,7 +145,7 @@ const LoginPage = () => {
     if (selectedRole === 'student') {
       navigate('/dashboard');
     } else {
-      // For other roles, we can extend later
+      // For other roles, extend later
       alert(`Logging in as ${selectedRole}...`);
     }
   }, [selectedRole, username, password, captcha, rememberMe, navigate]);
