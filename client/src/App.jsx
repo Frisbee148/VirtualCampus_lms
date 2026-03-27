@@ -2,16 +2,16 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 
-// Screen imports
+import LoginPage from './LoginPage';
 import DashboardHome from './studentinterface/screens/DashboardHome';
 import CourseOverview from './studentinterface/screens/CourseOverview';
 import CourseSyllabus from './studentinterface/screens/CourseSyllabus';
 import CourseAttendance from './studentinterface/screens/CourseAttendance';
 import CourseFaculties from './studentinterface/screens/CourseFaculties';
 import CalendarMonthly from './studentinterface/screens/CalendarMonthly';
-import PerformanceCGPA from './studentinterface/screens/PerformanceCGPA';
 import CalendarWeekly from './studentinterface/screens/CalendarWeekly';
 import CalendarDaily from './studentinterface/screens/CalendarDaily';
+import PerformanceCGPA from './studentinterface/screens/PerformanceCGPA';
 import GradesScreen from './studentinterface/screens/GradesScreen';
 import DownloadsScreen from './studentinterface/screens/DownloadsScreen';
 import FacultyFeedback from './studentinterface/screens/FacultyFeedback';
@@ -27,52 +27,41 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* Main Dashboard */}
-        <Route path="/" element={<DashboardHome />} />
+        {/* Auth */}
+        <Route path="/" element={<LoginPage />} />
 
-        {/* Course Detail Pages */}
+        {/* Student Dashboard */}
+        <Route path="/dashboard" element={<DashboardHome />} />
+        <Route path="/performance" element={<PerformanceCGPA />} />
+        <Route path="/grades" element={<GradesScreen />} />
+        <Route path="/fee-status" element={<FeeStatus />} />
+
+        {/* Courses */}
         <Route path="/course/overview" element={<CourseOverview />} />
         <Route path="/course/syllabus" element={<CourseSyllabus />} />
         <Route path="/course/attendance" element={<CourseAttendance />} />
         <Route path="/course/faculties" element={<CourseFaculties />} />
 
-        {/* Calendar */}
+        {/* Calendar & Timetable */}
         <Route path="/calendar" element={<CalendarMonthly />} />
-
-        {/* Performance / CGPA */}
-        <Route path="/performance" element={<PerformanceCGPA />} />
-
-        {/* Grades */}
-        <Route path="/grades" element={<GradesScreen />} />
-
-        {/* Timetable */}
         <Route path="/timetable" element={<CalendarWeekly />} />
         <Route path="/timetable/daily" element={<CalendarDaily />} />
 
-        {/* Downloads */}
+        {/* Resources & Community */}
         <Route path="/downloads" element={<DownloadsScreen />} />
-
-        {/* Feedback */}
         <Route path="/feedback" element={<FacultyFeedback />} />
-
-        {/* Community */}
         <Route path="/community" element={<CommunityClubs />} />
         <Route path="/community/club" element={<ClubDetail />} />
 
-        {/* Profile */}
+        {/* User */}
         <Route path="/profile" element={<ProfileScreen />} />
-
-        {/* Notifications */}
         <Route path="/notifications" element={<NotificationsScreen />} />
 
         {/* AI Mentor */}
         <Route path="/ai" element={<AIMentorEmpty />} />
         <Route path="/ai/active" element={<AIMentorActive />} />
 
-        {/* Fee Status */}
-        <Route path="/fee-status" element={<FeeStatus />} />
-
-        {/* Catch-all redirect */}
+        {/* Fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>

@@ -22,7 +22,7 @@ const StudentLayout = ({ children, activeTab }) => {
 
       {/* Floating AI Button */}
       <button 
-        onClick={() => isAIOpen ? navigate('/') : navigate('/ai')}
+        onClick={() => isAIOpen ? navigate('/dashboard') : navigate('/ai')}
         className={`fixed bottom-5 right-5 sm:bottom-8 sm:right-8 w-[50px] h-[50px] sm:w-[60px] sm:h-[60px] rounded-full flex items-center justify-center shadow-2xl z-50 transition-all duration-300 overflow-hidden ${
           isAIOpen 
             ? 'bg-red-500 hover:bg-red-600 text-white shadow-red-500/30' 

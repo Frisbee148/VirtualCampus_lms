@@ -10,7 +10,7 @@ const Sidebar = ({ mobileOpen, onClose }) => {
   const location = useLocation();
 
   const menuItems1 = [
-    { id: 'Performance Review', icon: LayoutDashboard, label: 'Performance Review', path: '/' },
+    { id: 'Performance Review', icon: LayoutDashboard, label: 'Performance Review', path: '/dashboard' },
     { id: 'Calendar', icon: Calendar, label: 'Calendar', path: '/calendar' },
     { id: 'Grades', icon: FileText, label: 'Grades', path: '/grades' },
     { id: 'Timetable', icon: CalendarDays, label: 'Timetable', path: '/timetable' },
