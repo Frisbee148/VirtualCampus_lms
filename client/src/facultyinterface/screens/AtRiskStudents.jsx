@@ -47,17 +47,17 @@ const AtRiskStudents = () => {
   return (
     <FacultyLayout>
       <div className="max-w-5xl">
-        <h2 className="text-xl font-semibold text-gray-800 mb-4">ABC course</h2>
+        <h2 className="text-lg sm:text-xl font-semibold text-gray-800 mb-4">ABC course</h2>
 
         {/* Filter row */}
-        <div className="flex flex-wrap gap-2 mb-6">
-          <div className="bg-[#1a7a7a] text-white px-5 py-2.5 text-sm font-medium flex items-center">
+        <div className="flex flex-wrap gap-2 mb-4 sm:mb-6">
+          <div className="bg-[#1a7a7a] text-white px-3 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-medium flex items-center">
             Filter by type
           </div>
           <div className="relative">
             <button
               onClick={() => setFilterOpen(!filterOpen)}
-              className="bg-[#1a7a7a] text-white px-5 py-2.5 text-sm font-medium flex items-center gap-2"
+              className="bg-[#1a7a7a] text-white px-3 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-medium flex items-center gap-2"
             >
               Type ({RISK_TYPES.filter(t => t !== 'All').join(', ').toLowerCase()})
               <ChevronDown size={14} className="text-[#90ee90]" />
@@ -82,21 +82,21 @@ const AtRiskStudents = () => {
 
         {/* Table */}
         <div className="overflow-x-auto">
-          <table className="w-full border-collapse text-sm">
+          <table className="w-full border-collapse text-xs sm:text-sm">
             <thead>
               <tr className="bg-[#1a7a7a] text-white">
-                <th className="text-left px-4 py-3 font-semibold min-w-[140px]">Name</th>
-                <th className="text-left px-4 py-3 font-semibold min-w-[100px]">Message</th>
-                <th className="text-left px-4 py-3 font-semibold min-w-[100px]">Feedback</th>
-                <th className="text-left px-4 py-3 font-semibold min-w-[120px]">Mark as reviewed</th>
-                <th className="text-left px-4 py-3 font-semibold min-w-[180px]">Reason</th>
+                <th className="text-left px-2 sm:px-4 py-2 sm:py-3 font-semibold min-w-[90px] sm:min-w-[140px]">Name</th>
+                <th className="text-left px-2 sm:px-4 py-2 sm:py-3 font-semibold min-w-[70px] sm:min-w-[100px]">Message</th>
+                <th className="text-left px-2 sm:px-4 py-2 sm:py-3 font-semibold min-w-[70px] sm:min-w-[100px]">Feedback</th>
+                <th className="text-left px-2 sm:px-4 py-2 sm:py-3 font-semibold min-w-[80px] sm:min-w-[120px]">Mark as reviewed</th>
+                <th className="text-left px-2 sm:px-4 py-2 sm:py-3 font-semibold min-w-[100px] sm:min-w-[180px]">Reason</th>
               </tr>
             </thead>
             <tbody>
               {filtered.map((student, idx) => (
                 <tr key={student.id} className={idx % 2 === 0 ? 'bg-gray-100' : 'bg-gray-200/60'}>
-                  <td className="px-4 py-3 font-medium text-gray-800">{student.name}</td>
-                  <td className="px-4 py-3">
+                  <td className="px-2 sm:px-4 py-2 sm:py-3 font-medium text-gray-800">{student.name}</td>
+                  <td className="px-2 sm:px-4 py-2 sm:py-3">
                     <button
                       onClick={() => { setMessageTarget(student); setMessageText(''); }}
                       className="bg-[#1a7a7a] text-white px-3 py-1.5 text-xs font-medium hover:bg-[#15696a] transition-colors flex items-center gap-1.5"
@@ -104,7 +104,7 @@ const AtRiskStudents = () => {
                       <MessageSquare size={13} /> Message
                     </button>
                   </td>
-                  <td className="px-4 py-3">
+                  <td className="px-2 sm:px-4 py-2 sm:py-3">
                     <button
                       onClick={() => { setFeedbackTarget(student); setFeedbackText(''); }}
                       className="border border-[#1a7a7a] text-[#1a7a7a] px-3 py-1.5 text-xs font-medium hover:bg-[#1a7a7a]/10 transition-colors"
@@ -112,7 +112,7 @@ const AtRiskStudents = () => {
                       Feedback
                     </button>
                   </td>
-                  <td className="px-4 py-3">
+                  <td className="px-2 sm:px-4 py-2 sm:py-3">
                     <label className="flex items-center gap-2 cursor-pointer">
                       <input
                         type="checkbox"
@@ -125,7 +125,7 @@ const AtRiskStudents = () => {
                       </span>
                     </label>
                   </td>
-                  <td className="px-4 py-3 text-gray-600">{student.reason}</td>
+                  <td className="px-2 sm:px-4 py-2 sm:py-3 text-gray-600">{student.reason}</td>
                 </tr>
               ))}
               {filtered.length === 0 && (
@@ -142,7 +142,7 @@ const AtRiskStudents = () => {
 
       {/* Message Panel */}
       {messageTarget && (
-        <div className="fixed bottom-5 right-5 sm:bottom-8 sm:right-8 w-[320px] bg-[#1a7a7a] rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden">
+        <div className="fixed bottom-3 right-3 left-3 sm:left-auto sm:bottom-8 sm:right-8 sm:w-[320px] bg-[#1a7a7a] rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden">
           <div className="flex items-center justify-between px-4 py-3">
             <span className="text-white text-sm font-medium">
               Message — {messageTarget.name}
@@ -181,7 +181,7 @@ const AtRiskStudents = () => {
       {feedbackTarget && (
         <>
           <div className="fixed inset-0 bg-black/40 z-40" onClick={() => setFeedbackTarget(null)} />
-          <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-md bg-white rounded-lg shadow-2xl z-50 p-6">
+          <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[92%] max-w-md bg-white rounded-lg shadow-2xl z-50 p-4 sm:p-6">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-base font-semibold text-gray-800">
                 Feedback for {feedbackTarget.name}

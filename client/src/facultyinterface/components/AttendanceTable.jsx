@@ -65,7 +65,7 @@ const AttendanceTable = () => {
           <div className="relative">
             <button
               onClick={() => { setMonthDropdownOpen(!monthDropdownOpen); setDateDropdownOpen(false); }}
-              className="bg-[#1a7a7a] text-white px-4 py-2 text-sm font-medium flex items-center gap-2"
+              className="bg-[#1a7a7a] text-white px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium flex items-center gap-2"
             >
               {selectedMonth || 'Select month'}
               <ChevronDown size={14} className="text-[#90ee90]" />
@@ -91,7 +91,7 @@ const AttendanceTable = () => {
           <div className="relative">
             <button
               onClick={() => { setDateDropdownOpen(!dateDropdownOpen); setMonthDropdownOpen(false); }}
-              className="bg-[#1a7a7a] text-white px-4 py-2 text-sm font-medium flex items-center gap-2"
+              className="bg-[#1a7a7a] text-white px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium flex items-center gap-2"
             >
               {selectedDateRange ? `Select dates` : 'Select dates'}
               <ChevronDown size={14} className="text-[#90ee90]" />
@@ -116,7 +116,7 @@ const AttendanceTable = () => {
 
         <button
           onClick={() => setEditing(!editing)}
-          className={`px-6 py-2 text-sm font-medium border-2 transition-all duration-200 ${
+          className={`px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium border-2 transition-all duration-200 ${
             editing
               ? 'border-red-400 text-red-600 hover:bg-red-50'
               : 'border-[#2d8a4e] text-[#2d8a4e] hover:bg-green-50'
@@ -128,12 +128,12 @@ const AttendanceTable = () => {
 
       {/* Table */}
       <div className="overflow-x-auto">
-        <table className="w-full border-collapse text-sm">
+        <table className="w-full border-collapse text-xs sm:text-sm">
           <thead>
             <tr className="bg-[#1a7a7a] text-white">
-              <th className="text-left px-4 py-3 font-semibold min-w-[120px]">Student name</th>
+              <th className="text-left px-2 sm:px-4 py-2 sm:py-3 font-semibold min-w-[80px] sm:min-w-[120px]">Student name</th>
               {dates.map(date => (
-                <th key={date} className="text-left px-4 py-3 font-semibold min-w-[80px]">
+                <th key={date} className="text-left px-2 sm:px-4 py-2 sm:py-3 font-semibold min-w-[60px] sm:min-w-[80px]">
                   {typeof date === 'number' ? `${selectedMonth ? selectedMonth.slice(0, 3) : ''} ${date}` : date}
                 </th>
               ))}
@@ -142,20 +142,20 @@ const AttendanceTable = () => {
           <tbody>
             {students.map((student, idx) => (
               <tr key={student.id} className={idx % 2 === 0 ? 'bg-gray-100' : 'bg-gray-200/60'}>
-                <td className="px-4 py-3">
+                <td className="px-2 sm:px-4 py-2 sm:py-3">
                   {editing ? (
                     <input
                       type="text"
                       value={student.name}
                       onChange={(e) => updateStudentName(student.id, e.target.value)}
-                      className="bg-white border border-gray-300 px-2 py-1 text-sm w-full max-w-[100px]"
+                      className="bg-white border border-gray-300 px-2 py-1 text-xs sm:text-sm w-full"
                     />
                   ) : (
                     student.name
                   )}
                 </td>
                 {dates.map(date => (
-                  <td key={date} className="px-4 py-3">
+                  <td key={date} className="px-2 sm:px-4 py-2 sm:py-3">
                     <label className="flex items-center gap-2 cursor-pointer">
                       <input
                         type="checkbox"

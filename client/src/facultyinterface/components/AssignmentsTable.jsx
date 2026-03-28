@@ -61,7 +61,7 @@ const AssignmentsTable = () => {
       <div className="flex items-center justify-end mb-4">
         <button
           onClick={() => setEditing(!editing)}
-          className={`px-6 py-2 text-sm font-medium border-2 transition-all duration-200 ${
+          className={`px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium border-2 transition-all duration-200 ${
             editing
               ? 'border-red-400 text-red-600 hover:bg-red-50'
               : 'border-[#2d8a4e] text-[#2d8a4e] hover:bg-green-50'
@@ -73,57 +73,57 @@ const AssignmentsTable = () => {
 
       {/* Table */}
       <div className="overflow-x-auto">
-        <table className="w-full border-collapse text-sm">
+        <table className="w-full border-collapse text-xs sm:text-sm">
           <thead>
             <tr className="bg-[#1a7a7a] text-white">
-              <th className="text-left px-4 py-3 font-semibold min-w-[110px]">Prof. name</th>
-              <th className="text-left px-4 py-3 font-semibold min-w-[120px]">Assignment name</th>
-              <th className="text-left px-4 py-3 font-semibold min-w-[130px]">Description</th>
-              <th className="text-left px-4 py-3 font-semibold min-w-[110px]">Due date</th>
-              <th className="text-left px-4 py-3 font-semibold min-w-[110px]">Upload file</th>
-              <th className="text-left px-4 py-3 font-semibold min-w-[120px]">Submission close</th>
+              <th className="text-left px-2 sm:px-4 py-2 sm:py-3 font-semibold min-w-[80px] sm:min-w-[110px]">Prof. name</th>
+              <th className="text-left px-2 sm:px-4 py-2 sm:py-3 font-semibold min-w-[80px] sm:min-w-[120px]">Assignment name</th>
+              <th className="text-left px-2 sm:px-4 py-2 sm:py-3 font-semibold min-w-[90px] sm:min-w-[130px]">Description</th>
+              <th className="text-left px-2 sm:px-4 py-2 sm:py-3 font-semibold min-w-[90px] sm:min-w-[110px]">Due date</th>
+              <th className="text-left px-2 sm:px-4 py-2 sm:py-3 font-semibold min-w-[80px] sm:min-w-[110px]">Upload file</th>
+              <th className="text-left px-2 sm:px-4 py-2 sm:py-3 font-semibold min-w-[80px] sm:min-w-[120px]">Submission close</th>
             </tr>
           </thead>
           <tbody>
             {assignments.map((assignment, idx) => (
               <tr key={assignment.id} className={idx % 2 === 0 ? 'bg-gray-100' : 'bg-gray-200/60'}>
-                <td className="px-4 py-3">
+                <td className="px-2 sm:px-4 py-2 sm:py-3">
                   {editing ? (
                     <input
                       type="text"
                       value={assignment.profName}
                       onChange={(e) => updateAssignment(assignment.id, 'profName', e.target.value)}
-                      className="bg-white border border-gray-300 px-2 py-1 text-sm w-full max-w-[100px]"
+                      className="bg-white border border-gray-300 px-2 py-1 text-xs sm:text-sm w-full"
                     />
                   ) : (
                     assignment.profName
                   )}
                 </td>
-                <td className="px-4 py-3">
+                <td className="px-2 sm:px-4 py-2 sm:py-3">
                   {editing ? (
                     <input
                       type="text"
                       value={assignment.name}
                       onChange={(e) => updateAssignment(assignment.id, 'name', e.target.value)}
-                      className="bg-white border border-gray-300 px-2 py-1 text-sm w-full max-w-[100px]"
+                      className="bg-white border border-gray-300 px-2 py-1 text-xs sm:text-sm w-full"
                     />
                   ) : (
                     assignment.name
                   )}
                 </td>
-                <td className="px-4 py-3">
+                <td className="px-2 sm:px-4 py-2 sm:py-3">
                   {editing ? (
                     <input
                       type="text"
                       value={assignment.description}
                       onChange={(e) => updateAssignment(assignment.id, 'description', e.target.value)}
-                      className="bg-white border border-gray-300 px-2 py-1 text-sm w-full max-w-[130px]"
+                      className="bg-white border border-gray-300 px-2 py-1 text-xs sm:text-sm w-full"
                     />
                   ) : (
                     assignment.description
                   )}
                 </td>
-                <td className="px-4 py-3">
+                <td className="px-2 sm:px-4 py-2 sm:py-3">
                   {editing ? (
                     <input
                       type="date"
@@ -135,12 +135,12 @@ const AssignmentsTable = () => {
                     assignment.dueDate
                   )}
                 </td>
-                <td className="px-4 py-3">
+                <td className="px-2 sm:px-4 py-2 sm:py-3">
                   {editing ? (
                     <input
                       type="file"
                       onChange={(e) => updateAssignment(assignment.id, 'file', e.target.files[0])}
-                      className="text-xs w-full max-w-[120px]"
+                      className="text-[10px] sm:text-xs w-full"
                     />
                   ) : (
                     assignment.file ? (
@@ -148,7 +148,7 @@ const AssignmentsTable = () => {
                     ) : ''
                   )}
                 </td>
-                <td className="px-4 py-3">
+                <td className="px-2 sm:px-4 py-2 sm:py-3">
                   <input
                     type="checkbox"
                     checked={assignment.submissionClosed}

@@ -45,12 +45,12 @@ const BatchInsights = () => {
   return (
     <FacultyLayout>
       <div className="max-w-5xl">
-        <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
-          <h2 className="text-xl font-semibold text-gray-800">Batch Insights</h2>
+        <div className="flex items-center justify-between mb-4 sm:mb-6 flex-wrap gap-3">
+          <h2 className="text-lg sm:text-xl font-semibold text-gray-800">Batch Insights</h2>
           <select
             value={batch}
             onChange={(e) => setBatch(e.target.value)}
-            className="bg-[#1a7a7a] text-white px-4 py-2 text-sm font-medium outline-none cursor-pointer"
+            className="bg-[#1a7a7a] text-white px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium outline-none cursor-pointer"
           >
             <option value="2023">Batch 2023</option>
             <option value="2022">Batch 2022</option>
@@ -59,27 +59,27 @@ const BatchInsights = () => {
         </div>
 
         {/* Stats cards */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 mb-6 sm:mb-8">
           {[
             { label: 'Total Students', value: '78', accent: '#1a7a7a' },
             { label: 'At Risk', value: '25', accent: '#ef4444' },
             { label: 'Avg CGPA', value: '7.4', accent: '#e8a435' },
             { label: 'Avg Attendance', value: '83%', accent: '#2d8a4e' },
           ].map((stat) => (
-            <div key={stat.label} className="bg-white border border-gray-100 p-4 shadow-sm">
-              <p className="text-xs text-gray-400 font-medium mb-1">{stat.label}</p>
-              <p className="text-2xl font-bold" style={{ color: stat.accent }}>{stat.value}</p>
+            <div key={stat.label} className="bg-white border border-gray-100 p-3 sm:p-4 shadow-sm">
+              <p className="text-[10px] sm:text-xs text-gray-400 font-medium mb-1">{stat.label}</p>
+              <p className="text-xl sm:text-2xl font-bold" style={{ color: stat.accent }}>{stat.value}</p>
             </div>
           ))}
         </div>
 
         {/* Charts grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
 
           {/* Attendance Bar Chart */}
-          <div className="bg-white border border-gray-100 p-5 shadow-sm">
+          <div className="bg-white border border-gray-100 p-3 sm:p-5 shadow-sm">
             <h3 className="text-sm font-semibold text-gray-700 mb-4">Monthly Attendance (%)</h3>
-            <ResponsiveContainer width="100%" height={250}>
+            <ResponsiveContainer width="100%" height={200}>
               <BarChart data={attendanceData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
                 <XAxis dataKey="month" tick={{ fontSize: 12 }} />
@@ -92,9 +92,9 @@ const BatchInsights = () => {
           </div>
 
           {/* CGPA Distribution */}
-          <div className="bg-white border border-gray-100 p-5 shadow-sm">
+          <div className="bg-white border border-gray-100 p-3 sm:p-5 shadow-sm">
             <h3 className="text-sm font-semibold text-gray-700 mb-4">CGPA Distribution</h3>
-            <ResponsiveContainer width="100%" height={250}>
+            <ResponsiveContainer width="100%" height={200}>
               <BarChart data={cgpaData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
                 <XAxis dataKey="range" tick={{ fontSize: 12 }} />
@@ -106,9 +106,9 @@ const BatchInsights = () => {
           </div>
 
           {/* Performance Trend */}
-          <div className="bg-white border border-gray-100 p-5 shadow-sm">
+          <div className="bg-white border border-gray-100 p-3 sm:p-5 shadow-sm">
             <h3 className="text-sm font-semibold text-gray-700 mb-4">Avg CGPA Trend</h3>
-            <ResponsiveContainer width="100%" height={250}>
+            <ResponsiveContainer width="100%" height={200}>
               <LineChart data={performanceTrend}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
                 <XAxis dataKey="sem" tick={{ fontSize: 12 }} />
@@ -127,9 +127,9 @@ const BatchInsights = () => {
           </div>
 
           {/* Risk Distribution Pie */}
-          <div className="bg-white border border-gray-100 p-5 shadow-sm">
+          <div className="bg-white border border-gray-100 p-3 sm:p-5 shadow-sm">
             <h3 className="text-sm font-semibold text-gray-700 mb-4">Risk Distribution</h3>
-            <ResponsiveContainer width="100%" height={250}>
+            <ResponsiveContainer width="100%" height={200}>
               <PieChart>
                 <Pie
                   data={riskDistribution}

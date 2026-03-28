@@ -20,7 +20,7 @@ const FacultyDashboard = () => {
     <FacultyLayout>
       <div className="max-w-5xl">
         {/* Course Title */}
-        <h2 className="text-xl font-semibold text-gray-800 mb-4">ABC course</h2>
+        <h2 className="text-lg sm:text-xl font-semibold text-gray-800 mb-4">ABC course</h2>
 
         {/* Tabs */}
         <CourseTabs activeTab={activeTab} onTabChange={setActiveTab} />

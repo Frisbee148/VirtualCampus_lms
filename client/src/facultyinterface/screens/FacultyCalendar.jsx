@@ -44,10 +44,10 @@ const FacultyCalendar = () => {
   return (
     <FacultyLayout>
       <div className="max-w-5xl">
-        <h2 className="text-xl font-semibold text-gray-800 mb-6">Calendar</h2>
+        <h2 className="text-lg sm:text-xl font-semibold text-gray-800 mb-4 sm:mb-6">Calendar</h2>
 
         {/* Month navigation */}
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-3 sm:mb-4">
           <button onClick={prev} className="p-2 hover:bg-gray-100 transition-colors">
             <ChevronLeft size={20} className="text-gray-600" />
           </button>
@@ -60,9 +60,9 @@ const FacultyCalendar = () => {
         </div>
 
         {/* Day headers */}
-        <div className="grid grid-cols-7 bg-[#1a7a7a] text-white text-sm font-semibold">
+        <div className="grid grid-cols-7 bg-[#1a7a7a] text-white text-[10px] sm:text-sm font-semibold">
           {DAYS.map((d) => (
-            <div key={d} className="py-2.5 text-center">{d}</div>
+            <div key={d} className="py-1.5 sm:py-2.5 text-center">{d}</div>
           ))}
         </div>
 
@@ -73,13 +73,13 @@ const FacultyCalendar = () => {
             return (
               <div
                 key={i}
-                className={`min-h-[80px] sm:min-h-[100px] border-r border-b border-gray-200 p-1.5 ${
+                className={`min-h-[56px] sm:min-h-[100px] border-r border-b border-gray-200 p-1 sm:p-1.5 ${
                   day ? 'bg-white' : 'bg-gray-50'
                 }`}
               >
                 {day && (
                   <>
-                    <span className={`inline-flex items-center justify-center w-6 h-6 text-xs font-medium ${
+                    <span className={`inline-flex items-center justify-center w-5 h-5 sm:w-6 sm:h-6 text-[10px] sm:text-xs font-medium ${
                       isToday(day)
                         ? 'bg-[#1a7a7a] text-white rounded-full'
                         : 'text-gray-700'

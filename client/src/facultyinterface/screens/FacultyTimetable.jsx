@@ -30,28 +30,28 @@ const FacultyTimetable = () => {
   return (
     <FacultyLayout>
       <div className="max-w-5xl">
-        <h2 className="text-xl font-semibold text-gray-800 mb-6">Timetable</h2>
+        <h2 className="text-lg sm:text-xl font-semibold text-gray-800 mb-4 sm:mb-6">Timetable</h2>
 
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse text-sm min-w-[640px]">
+        <div className="overflow-x-auto -mx-3 px-3 sm:mx-0 sm:px-0">
+          <table className="w-full border-collapse text-[10px] sm:text-sm min-w-[480px] sm:min-w-[640px]">
             <thead>
               <tr className="bg-[#1a7a7a] text-white">
-                <th className="text-left px-3 py-3 font-semibold w-[80px]">Time</th>
+                <th className="text-left px-1.5 sm:px-3 py-2 sm:py-3 font-semibold w-[50px] sm:w-[80px]">Time</th>
                 {DAYS.map((d) => (
-                  <th key={d} className="text-left px-3 py-3 font-semibold">{d}</th>
+                  <th key={d} className="text-left px-1.5 sm:px-3 py-2 sm:py-3 font-semibold">{d}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {SLOTS.map((slot, idx) => (
                 <tr key={slot} className={idx % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
-                  <td className="px-3 py-4 font-medium text-gray-500 border-r border-gray-200">{slot}</td>
+                  <td className="px-1.5 sm:px-3 py-2 sm:py-4 font-medium text-gray-500 border-r border-gray-200">{slot}</td>
                   {DAYS.map((day) => {
                     const entry = timetable[day]?.[slot];
                     return (
-                      <td key={day} className="px-2 py-2 border-r border-gray-100">
+                      <td key={day} className="px-1 sm:px-2 py-1 sm:py-2 border-r border-gray-100">
                         {entry && (
-                          <div className={`px-2.5 py-2 text-xs font-medium ${getSlotStyle(entry)}`}>
+                          <div className={`px-1.5 sm:px-2.5 py-1 sm:py-2 text-[9px] sm:text-xs font-medium ${getSlotStyle(entry)}`}>
                             {entry}
                           </div>
                         )}
@@ -65,13 +65,13 @@ const FacultyTimetable = () => {
         </div>
 
         {/* Legend */}
-        <div className="flex flex-wrap gap-4 mt-5">
+        <div className="flex flex-wrap gap-3 sm:gap-4 mt-4 sm:mt-5">
           {[
             { label: 'CS301', color: 'bg-[#1a7a7a]' },
             { label: 'CS405', color: 'bg-[#e8a435]' },
             { label: 'Office Hours', color: 'bg-gray-600' },
           ].map((item) => (
-            <div key={item.label} className="flex items-center gap-2 text-sm text-gray-600">
+            <div key={item.label} className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
               <span className={`w-3 h-3 ${item.color}`} />
               {item.label}
             </div>

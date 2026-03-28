@@ -23,12 +23,12 @@ const EvaluationTable = ({ sections, onSectionsChange }) => {
     <div>
       {/* Weightage banner and edit button */}
       <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
-        <div className="bg-[#e8a435] text-white px-6 py-2 text-sm font-semibold rounded-sm">
+        <div className="bg-[#e8a435] text-white px-3 sm:px-6 py-2 text-xs sm:text-sm font-semibold rounded-sm">
           Total weightage = {totalWeightage}
         </div>
         <button
           onClick={() => setEditing(!editing)}
-          className={`px-6 py-2 text-sm font-medium border-2 transition-all duration-200 ${
+          className={`px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium border-2 transition-all duration-200 ${
             editing
               ? 'border-red-400 text-red-600 hover:bg-red-50'
               : 'border-[#2d8a4e] text-[#2d8a4e] hover:bg-green-50'
@@ -40,61 +40,61 @@ const EvaluationTable = ({ sections, onSectionsChange }) => {
 
       {/* Table */}
       <div className="overflow-x-auto">
-        <table className="w-full border-collapse text-sm">
+        <table className="w-full border-collapse text-xs sm:text-sm">
           <thead>
             <tr className="bg-[#1a7a7a] text-white">
-              <th className="text-left px-4 py-3 font-semibold">Evaluation criteria</th>
-              <th className="text-left px-4 py-3 font-semibold">Weightage</th>
-              <th className="text-left px-4 py-3 font-semibold">Class average</th>
-              <th className="text-left px-4 py-3 font-semibold">Feedform creation</th>
-              <th className="text-left px-4 py-3 font-semibold">Completed</th>
+              <th className="text-left px-2 sm:px-4 py-2 sm:py-3 font-semibold">Evaluation criteria</th>
+              <th className="text-left px-2 sm:px-4 py-2 sm:py-3 font-semibold">Weightage</th>
+              <th className="text-left px-2 sm:px-4 py-2 sm:py-3 font-semibold">Class average</th>
+              <th className="text-left px-2 sm:px-4 py-2 sm:py-3 font-semibold">Feedform creation</th>
+              <th className="text-left px-2 sm:px-4 py-2 sm:py-3 font-semibold">Completed</th>
             </tr>
           </thead>
           <tbody>
             {sections.map((section, idx) => (
               <tr key={section.id} className={idx % 2 === 0 ? 'bg-gray-100' : 'bg-gray-200/60'}>
-                <td className="px-4 py-3">
+                <td className="px-2 sm:px-4 py-2 sm:py-3">
                   {editing ? (
                     <input
                       type="text"
                       value={section.name}
                       onChange={(e) => updateSection(section.id, 'name', e.target.value)}
-                      className="bg-white border border-gray-300 px-2 py-1 text-sm w-full max-w-[150px]"
+                      className="bg-white border border-gray-300 px-2 py-1 text-xs sm:text-sm w-full"
                     />
                   ) : (
                     section.name
                   )}
                 </td>
-                <td className="px-4 py-3">
+                <td className="px-2 sm:px-4 py-2 sm:py-3">
                   {editing ? (
                     <input
                       type="number"
                       value={section.weightage}
                       onChange={(e) => updateSection(section.id, 'weightage', Number(e.target.value))}
-                      className="bg-white border border-gray-300 px-2 py-1 text-sm w-20"
+                      className="bg-white border border-gray-300 px-2 py-1 text-xs sm:text-sm w-14 sm:w-20"
                     />
                   ) : (
                     section.weightage
                   )}
                 </td>
-                <td className="px-4 py-3">
+                <td className="px-2 sm:px-4 py-2 sm:py-3">
                   {editing ? (
                     <input
                       type="number"
                       value={section.classAverage}
                       onChange={(e) => updateSection(section.id, 'classAverage', Number(e.target.value))}
-                      className="bg-white border border-gray-300 px-2 py-1 text-sm w-20"
+                      className="bg-white border border-gray-300 px-2 py-1 text-xs sm:text-sm w-14 sm:w-20"
                     />
                   ) : (
                     section.classAverage
                   )}
                 </td>
-                <td className="px-4 py-3">
+                <td className="px-2 sm:px-4 py-2 sm:py-3">
                   <button className="text-[#1a7a7a] underline hover:text-[#145e5e] text-sm transition-colors">
                     Create hyperlink
                   </button>
                 </td>
-                <td className="px-4 py-3">
+                <td className="px-2 sm:px-4 py-2 sm:py-3">
                   <input
                     type="checkbox"
                     checked={section.completed}

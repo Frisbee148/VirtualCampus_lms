@@ -36,12 +36,12 @@ const MarksTable = ({ sections }) => {
     <div>
       {/* Weightage banner and edit */}
       <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
-        <div className="bg-[#e8a435] text-white px-6 py-2 text-sm font-semibold rounded-sm">
+        <div className="bg-[#e8a435] text-white px-3 sm:px-6 py-2 text-xs sm:text-sm font-semibold rounded-sm">
           Total weightage = {totalWeightage}
         </div>
         <button
           onClick={() => setEditing(!editing)}
-          className={`px-6 py-2 text-sm font-medium border-2 transition-all duration-200 ${
+          className={`px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium border-2 transition-all duration-200 ${
             editing
               ? 'border-red-400 text-red-600 hover:bg-red-50'
               : 'border-[#2d8a4e] text-[#2d8a4e] hover:bg-green-50'
@@ -56,14 +56,14 @@ const MarksTable = ({ sections }) => {
         <table className="w-full border-collapse text-sm">
           <thead>
             <tr className="bg-[#1a7a7a] text-white">
-              <th className="text-left px-4 py-3 font-semibold min-w-[120px]">Student name</th>
+              <th className="text-left px-2 sm:px-4 py-2 sm:py-3 font-semibold min-w-[80px] sm:min-w-[120px] text-xs sm:text-sm">Student name</th>
               {sections.map(sec => (
-                <th key={sec.id} className="text-left px-4 py-3 font-semibold min-w-[100px]">
+                <th key={sec.id} className="text-left px-2 sm:px-4 py-2 sm:py-3 font-semibold min-w-[70px] sm:min-w-[100px] text-xs sm:text-sm">
                   {sec.name}<br />
                   <span className="font-normal text-xs">( max {sec.weightage})</span>
                 </th>
               ))}
-              <th className="text-left px-4 py-3 font-semibold min-w-[110px]">
+              <th className="text-left px-2 sm:px-4 py-2 sm:py-3 font-semibold min-w-[70px] sm:min-w-[110px] text-xs sm:text-sm">
                 Total marks<br />
                 <span className="font-normal text-xs">(max {totalWeightage})</span>
               </th>
@@ -72,26 +72,26 @@ const MarksTable = ({ sections }) => {
           <tbody>
             {students.map((student, idx) => (
               <tr key={student.id} className={idx % 2 === 0 ? 'bg-gray-100' : 'bg-gray-200/60'}>
-                <td className="px-4 py-3">
+                <td className="px-2 sm:px-4 py-2 sm:py-3">
                   {editing ? (
                     <input
                       type="text"
                       value={student.name}
                       onChange={(e) => updateStudentName(student.id, e.target.value)}
-                      className="bg-white border border-gray-300 px-2 py-1 text-sm w-full max-w-[100px]"
+                      className="bg-white border border-gray-300 px-2 py-1 text-xs sm:text-sm w-full"
                     />
                   ) : (
                     student.name
                   )}
                 </td>
                 {sections.map(sec => (
-                  <td key={sec.id} className="px-4 py-3">
+                  <td key={sec.id} className="px-2 sm:px-4 py-2 sm:py-3">
                     {editing ? (
                       <input
                         type="number"
                         value={student.marks[sec.id] || ''}
                         onChange={(e) => updateMark(student.id, sec.id, e.target.value)}
-                        className="bg-white border border-gray-300 px-2 py-1 text-sm w-16"
+                        className="bg-white border border-gray-300 px-2 py-1 text-xs sm:text-sm w-14 sm:w-16"
                         max={sec.weightage}
                       />
                     ) : (
@@ -99,7 +99,7 @@ const MarksTable = ({ sections }) => {
                     )}
                   </td>
                 ))}
-                <td className="px-4 py-3 font-medium">{getTotalMarks(student) || ''}</td>
+                <td className="px-2 sm:px-4 py-2 sm:py-3 font-medium text-xs sm:text-sm">{getTotalMarks(student) || ''}</td>
               </tr>
             ))}
           </tbody>
