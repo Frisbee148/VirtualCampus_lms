@@ -155,22 +155,22 @@ const AtRiskStudents = () => {
             </button>
           </div>
           <div className="h-40 bg-[#1a7a7a]" />
-          <div className="bg-white p-3 flex items-center gap-2">
+          <div className="bg-white p-3 flex items-center gap-2 min-w-0">
             <input
               type="text"
               value={messageText}
               onChange={(e) => setMessageText(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
               placeholder="Message"
-              className="flex-1 border border-gray-300 px-3 py-2 text-sm outline-none focus:border-[#1a7a7a] transition-colors"
+              className="flex-1 min-w-0 border border-gray-300 px-3 py-2 text-sm outline-none focus:border-[#1a7a7a] transition-colors"
             />
             <button
               onClick={handleSendMessage}
-              className="bg-gray-200 hover:bg-gray-300 px-3 py-2 text-xs font-medium text-gray-700 transition-colors"
+              className="shrink-0 bg-gray-200 hover:bg-gray-300 px-3 py-2 text-xs font-medium text-gray-700 transition-colors"
             >
               send
             </button>
-            <button className="bg-gray-200 hover:bg-gray-300 px-3 py-2 text-xs font-medium text-gray-700 transition-colors">
+            <button className="shrink-0 bg-gray-200 hover:bg-gray-300 px-3 py-2 text-xs font-medium text-gray-700 transition-colors">
               voice
             </button>
           </div>

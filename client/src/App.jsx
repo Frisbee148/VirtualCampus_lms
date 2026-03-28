@@ -24,6 +24,9 @@ import AIMentorActive from './studentinterface/screens/AIMentorActive';
 import FeeStatus from './studentinterface/screens/FeeStatus';
 import FacultyDashboard from './facultyinterface/screens/FacultyDashboard';
 import AtRiskStudents from './facultyinterface/screens/AtRiskStudents';
+import BatchInsights from './facultyinterface/screens/BatchInsights';
+import FacultyCalendar from './facultyinterface/screens/FacultyCalendar';
+import FacultyTimetable from './facultyinterface/screens/FacultyTimetable';
 
 function App() {
   return (
@@ -66,6 +69,9 @@ function App() {
         {/* Faculty Dashboard */}
         <Route path="/faculty/dashboard" element={<FacultyDashboard />} />
         <Route path="/faculty/at-risk" element={<AtRiskStudents />} />
+        <Route path="/faculty/batch-insights" element={<BatchInsights />} />
+        <Route path="/faculty/calendar" element={<FacultyCalendar />} />
+        <Route path="/faculty/timetable" element={<FacultyTimetable />} />
 
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />

@@ -96,7 +96,12 @@ const FacultySidebar = ({ mobileOpen, onClose }) => {
             <Settings size={16} strokeWidth={1.8} /> Settings
           </NavLink>
           <button
-            onClick={() => { navigate('/'); if (onClose) onClose(); }}
+            onClick={() => {
+              localStorage.removeItem('rememberedUsername');
+              sessionStorage.clear();
+              navigate('/', { replace: true });
+              if (onClose) onClose();
+            }}
             className="w-full flex items-center gap-3 px-3 py-2.5 text-[13px] font-medium text-white/40 hover:text-red-400 hover:bg-red-500/[0.06] transition-all duration-200"
           >
             <LogOut size={16} strokeWidth={1.8} /> Log out
