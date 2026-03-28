@@ -7,8 +7,8 @@ const ROLES = [
   { value: 'faculty', label: 'Faculty' },
   { value: 'staff', label: 'Staff' },
   { value: 'admin', label: 'Admin' },
-  { value: 'guardian', label: 'Guardian' },
-  { value: 'guest', label: 'Guest' },
+  { value: 'guardian', label: 'Guardian/Parent' },
+  { value: 'hod', label: 'HOD' },
 ];
 
 const ABOUT_LINKS = [
@@ -20,14 +20,13 @@ const ABOUT_LINKS = [
   'About Option 6',
 ];
 
-const SCRAMBLE_TEXT = 'VIRTUCAMPUS';
+
 
 const LoginPage = () => {
   const navigate = useNavigate();
 
   /* ---- state ---- */
-  const [preloaderVisible, setPreloaderVisible] = useState(true);
-  const [scrambledDisplay, setScrambledDisplay] = useState(SCRAMBLE_TEXT);
+
   const [selectedRole, setSelectedRole] = useState('');
   const [roleLabel, setRoleLabel] = useState('Select Role');
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -45,35 +44,7 @@ const LoginPage = () => {
   const aboutRef = useRef(null);
   const closeTimeoutRef = useRef(null);
 
-  /* ---- Preloader scramble effect ---- */
-  useEffect(() => {
-    let iterations = 0;
-    const maxIterations = 3;
 
-    const interval = setInterval(() => {
-      setScrambledDisplay(
-        SCRAMBLE_TEXT.split('')
-          .map((letter, index) => {
-            if (iterations >= index * 3) return SCRAMBLE_TEXT[index];
-            return String.fromCharCode(65 + Math.floor(Math.random() * 26));
-          })
-          .join('')
-      );
-
-      if (iterations >= maxIterations * SCRAMBLE_TEXT.length) {
-        clearInterval(interval);
-        setScrambledDisplay(SCRAMBLE_TEXT);
-      }
-      iterations += 1 / 3;
-    }, 30);
-
-    const hideTimer = setTimeout(() => setPreloaderVisible(false), 3500);
-
-    return () => {
-      clearInterval(interval);
-      clearTimeout(hideTimer);
-    };
-  }, []);
 
   /* ---- Remember-me: load saved username ---- */
   useEffect(() => {
@@ -146,6 +117,8 @@ const LoginPage = () => {
       navigate('/dashboard');
     } else if (selectedRole === 'faculty') {
       navigate('/faculty/dashboard');
+    } else if (selectedRole === 'guardian') {
+      navigate('/parent/dashboard');
     } else {
       // For other roles, extend later
       alert(`Logging in as ${selectedRole}...`);
@@ -179,10 +152,7 @@ const LoginPage = () => {
         <img src="/lnmiit.jpg" alt="Campus Background" />
       </div>
 
-      {/* Preloader */}
-      <div className={`login-preloader${preloaderVisible ? '' : ' hidden'}`}>  
-        <div className="scrambled-text">{scrambledDisplay}</div>
-      </div>
+
 
       {/* Header */}
       <header className="lp-header">
@@ -211,7 +181,7 @@ const LoginPage = () => {
       {/* Login form */}
       <div className="lp-login-wrapper">
         <div className={`lp-login-box${shake ? ' shake' : ''}`}>
-          <img src="/Virtucampus_logo_wb.png" alt="VirtuCampus Logo" className="lp-logo" />
+          <img src="/LNMIIT-Logo-Transperant-Background.png" alt="LNMIIT Logo" className="lp-logo" />
 
           {/* Role selector */}
           <div className="lp-custom-select" ref={selectRef}>
@@ -290,7 +260,7 @@ const LoginPage = () => {
       </div>
 
       {/* Footer */}
-      <div className="lp-footer">© 2025 VirtuCampus. All rights reserved.</div>
+      <div className="lp-footer">© 2026 LNMIIT. All rights reserved.</div>
     </div>
   );
 };

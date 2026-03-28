@@ -28,6 +28,15 @@ import BatchInsights from './facultyinterface/screens/BatchInsights';
 import FacultyCalendar from './facultyinterface/screens/FacultyCalendar';
 import FacultyTimetable from './facultyinterface/screens/FacultyTimetable';
 import FacultyProfile from './facultyinterface/screens/FacultyProfile';
+import ParentDashboard from './parentinterface/screens/ParentDashboard';
+import ParentPerformance from './parentinterface/screens/ParentPerformance';
+import ParentGrades from './parentinterface/screens/ParentGrades';
+import ParentAttendance from './parentinterface/screens/ParentAttendance';
+import ParentFeeStatus from './parentinterface/screens/ParentFeeStatus';
+import ParentCalendar from './parentinterface/screens/ParentCalendar';
+import ParentTimetable from './parentinterface/screens/ParentTimetable';
+import ParentProfile from './parentinterface/screens/ParentProfile';
+import ParentNotifications from './parentinterface/screens/ParentNotifications';
 
 function App() {
   return (
@@ -74,6 +83,17 @@ function App() {
         <Route path="/faculty/calendar" element={<FacultyCalendar />} />
         <Route path="/faculty/timetable" element={<FacultyTimetable />} />
         <Route path="/faculty/profile" element={<FacultyProfile />} />
+
+        {/* Parent/Guardian Dashboard */}
+        <Route path="/parent/dashboard" element={<ParentDashboard />} />
+        <Route path="/parent/performance" element={<ParentPerformance />} />
+        <Route path="/parent/grades" element={<ParentGrades />} />
+        <Route path="/parent/attendance" element={<ParentAttendance />} />
+        <Route path="/parent/fee-status" element={<ParentFeeStatus />} />
+        <Route path="/parent/calendar" element={<ParentCalendar />} />
+        <Route path="/parent/timetable" element={<ParentTimetable />} />
+        <Route path="/parent/profile" element={<ParentProfile />} />
+        <Route path="/parent/notifications" element={<ParentNotifications />} />
 
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />

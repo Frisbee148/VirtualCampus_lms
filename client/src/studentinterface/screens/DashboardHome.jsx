@@ -30,7 +30,7 @@ const DashboardHome = () => {
             >
               <div className="flex items-center justify-between mb-2 sm:mb-3">
                 <p className="text-[10px] sm:text-xs font-medium text-gray-400 uppercase tracking-wider">{s.label}</p>
-                {s.onClick && <ChevronRight size={14} className="text-gray-300 hidden sm:block" />}
+                {s.onClick && <ChevronRight size={14} className="text-gray-300" />}
               </div>
               <p className="text-xl sm:text-3xl font-bold text-gray-900 mb-0.5 sm:mb-1">{s.value}</p>
               <p className="text-[10px] sm:text-[11px] text-gray-400">{s.sub}</p>
