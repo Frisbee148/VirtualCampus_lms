@@ -2,41 +2,31 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 
+// Auth
 import LoginPage from './auth/LoginPage';
-import DashboardHome from './studentinterface/screens/DashboardHome';
-import CourseOverview from './studentinterface/screens/CourseOverview';
-import CourseSyllabus from './studentinterface/screens/CourseSyllabus';
-import CourseAttendance from './studentinterface/screens/CourseAttendance';
-import CourseFaculties from './studentinterface/screens/CourseFaculties';
-import CalendarMonthly from './studentinterface/screens/CalendarMonthly';
-import CalendarWeekly from './studentinterface/screens/CalendarWeekly';
-import CalendarDaily from './studentinterface/screens/CalendarDaily';
-import PerformanceCGPA from './studentinterface/screens/PerformanceCGPA';
-import GradesScreen from './studentinterface/screens/GradesScreen';
-import DownloadsScreen from './studentinterface/screens/DownloadsScreen';
-import FacultyFeedback from './studentinterface/screens/FacultyFeedback';
-import CommunityClubs from './studentinterface/screens/CommunityClubs';
-import ClubDetail from './studentinterface/screens/ClubDetail';
-import ProfileScreen from './studentinterface/screens/ProfileScreen';
-import NotificationsScreen from './studentinterface/screens/NotificationsScreen';
-import AIMentorEmpty from './studentinterface/screens/AIMentorEmpty';
-import AIMentorActive from './studentinterface/screens/AIMentorActive';
-import FeeStatus from './studentinterface/screens/FeeStatus';
-import FacultyDashboard from './facultyinterface/screens/FacultyDashboard';
-import AtRiskStudents from './facultyinterface/screens/AtRiskStudents';
-import BatchInsights from './facultyinterface/screens/BatchInsights';
-import FacultyCalendar from './facultyinterface/screens/FacultyCalendar';
-import FacultyTimetable from './facultyinterface/screens/FacultyTimetable';
-import FacultyProfile from './facultyinterface/screens/FacultyProfile';
-import ParentDashboard from './parentinterface/screens/ParentDashboard';
-import ParentPerformance from './parentinterface/screens/ParentPerformance';
-import ParentGrades from './parentinterface/screens/ParentGrades';
-import ParentAttendance from './parentinterface/screens/ParentAttendance';
-import ParentFeeStatus from './parentinterface/screens/ParentFeeStatus';
-import ParentCalendar from './parentinterface/screens/ParentCalendar';
-import ParentTimetable from './parentinterface/screens/ParentTimetable';
-import ParentProfile from './parentinterface/screens/ParentProfile';
-import ParentNotifications from './parentinterface/screens/ParentNotifications';
+
+// Student Interface
+import {
+  DashboardHome, CourseOverview, CourseSyllabus, CourseAttendance, CourseFaculties,
+  CalendarMonthly, CalendarWeekly, CalendarDaily,
+  PerformanceCGPA, GradesScreen, FeeStatus,
+  DownloadsScreen, FacultyFeedback, CommunityClubs, ClubDetail,
+  ProfileScreen, NotificationsScreen,
+  AIMentorEmpty, AIMentorActive,
+} from './studentinterface';
+
+// Faculty Interface
+import {
+  FacultyDashboard, AtRiskStudents, BatchInsights,
+  FacultyCalendar, FacultyTimetable, FacultyProfile,
+} from './facultyinterface';
+
+// Parent / Guardian Interface
+import {
+  ParentDashboard, ParentPerformance, ParentGrades, ParentAttendance,
+  ParentFeeStatus, ParentCalendar, ParentTimetable,
+  ParentProfile, ParentNotifications,
+} from './parentinterface';
 
 function App() {
   return (

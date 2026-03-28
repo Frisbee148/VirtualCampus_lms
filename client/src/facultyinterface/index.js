@@ -1,0 +1,6 @@
+export { default as FacultyDashboard } from './screens/FacultyDashboard';
+export { default as AtRiskStudents } from './screens/AtRiskStudents';
+export { default as BatchInsights } from './screens/BatchInsights';
+export { default as FacultyCalendar } from './screens/FacultyCalendar';
+export { default as FacultyTimetable } from './screens/FacultyTimetable';
+export { default as FacultyProfile } from './screens/FacultyProfile';

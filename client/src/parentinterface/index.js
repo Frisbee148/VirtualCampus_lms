@@ -1,0 +1,9 @@
+export { default as ParentDashboard } from './screens/ParentDashboard';
+export { default as ParentPerformance } from './screens/ParentPerformance';
+export { default as ParentGrades } from './screens/ParentGrades';
+export { default as ParentAttendance } from './screens/ParentAttendance';
+export { default as ParentFeeStatus } from './screens/ParentFeeStatus';
+export { default as ParentCalendar } from './screens/ParentCalendar';
+export { default as ParentTimetable } from './screens/ParentTimetable';
+export { default as ParentProfile } from './screens/ParentProfile';
+export { default as ParentNotifications } from './screens/ParentNotifications';
