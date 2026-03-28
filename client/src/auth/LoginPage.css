@@ -450,6 +450,19 @@
 }
 
 /* ---------- Custom cursor ---------- */
+.login-page {
+  cursor: none;
+}
+
+.login-page *,
+.login-page a,
+.login-page button,
+.login-page input,
+.login-page select,
+.login-page label {
+  cursor: none !important;
+}
+
 .login-page .lp-cursor-wrapper {
   position: fixed;
   top: 0; left: 0;
@@ -462,7 +475,7 @@
   position: fixed;
   width: 32px; height: 32px;
   pointer-events: none;
-  transform: translate(-50%, -50%);
+  transform: translate(-4px, -2px);
   z-index: 999999;
   background-image: url('/cursor.png');
   background-size: contain;
