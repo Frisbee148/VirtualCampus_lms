@@ -27,6 +27,7 @@ import AtRiskStudents from './facultyinterface/screens/AtRiskStudents';
 import BatchInsights from './facultyinterface/screens/BatchInsights';
 import FacultyCalendar from './facultyinterface/screens/FacultyCalendar';
 import FacultyTimetable from './facultyinterface/screens/FacultyTimetable';
+import FacultyProfile from './facultyinterface/screens/FacultyProfile';
 
 function App() {
   return (
@@ -72,6 +73,7 @@ function App() {
         <Route path="/faculty/batch-insights" element={<BatchInsights />} />
         <Route path="/faculty/calendar" element={<FacultyCalendar />} />
         <Route path="/faculty/timetable" element={<FacultyTimetable />} />
+        <Route path="/faculty/profile" element={<FacultyProfile />} />
 
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />
