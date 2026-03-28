@@ -127,15 +127,15 @@ const LoginPage = () => {
   /* ---- Login handler ---- */
   const handleLogin = useCallback(() => {
     setErrorMsg('');
-    if (!selectedRole || !username || !password || !captcha) {
-      setErrorMsg('Please fill out all fields and select a role.');
+    if (!selectedRole) {
+      setErrorMsg('Please select a role.');
       setShake(true);
       setTimeout(() => setShake(false), 400);
       return;
     }
 
     // Persist remember-me preference
-    if (rememberMe) {
+    if (rememberMe && username) {
       localStorage.setItem('rememberedUsername', username);
     } else {
       localStorage.removeItem('rememberedUsername');
@@ -144,6 +144,8 @@ const LoginPage = () => {
     // Navigate based on role
     if (selectedRole === 'student') {
       navigate('/dashboard');
+    } else if (selectedRole === 'faculty') {
+      navigate('/faculty/dashboard');
     } else {
       // For other roles, extend later
       alert(`Logging in as ${selectedRole}...`);
