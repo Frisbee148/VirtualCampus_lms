@@ -23,6 +23,7 @@ import AIMentorEmpty from './studentinterface/screens/AIMentorEmpty';
 import AIMentorActive from './studentinterface/screens/AIMentorActive';
 import FeeStatus from './studentinterface/screens/FeeStatus';
 import FacultyDashboard from './facultyinterface/screens/FacultyDashboard';
+import AtRiskStudents from './facultyinterface/screens/AtRiskStudents';
 
 function App() {
   return (
@@ -64,6 +65,7 @@ function App() {
 
         {/* Faculty Dashboard */}
         <Route path="/faculty/dashboard" element={<FacultyDashboard />} />
+        <Route path="/faculty/at-risk" element={<AtRiskStudents />} />
 
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />
