@@ -1,121 +1,95 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import './App.css';
+
+// Auth
+import LoginPage from './auth/LoginPage';
+
+// Student Interface
+import {
+  DashboardHome, CourseOverview, CourseSyllabus, CourseAttendance, CourseFaculties,
+  CalendarMonthly, CalendarWeekly, CalendarDaily,
+  PerformanceCGPA, GradesScreen, FeeStatus,
+  DownloadsScreen, FacultyFeedback, CommunityClubs, ClubDetail,
+  ProfileScreen, NotificationsScreen,
+  AIMentorEmpty, AIMentorActive,
+} from './studentinterface';
+
+// Faculty Interface
+import {
+  FacultyDashboard, AtRiskStudents, BatchInsights,
+  FacultyCalendar, FacultyTimetable, FacultyProfile,
+} from './facultyinterface';
+
+// Parent / Guardian Interface
+import {
+  ParentDashboard, ParentPerformance, ParentGrades, ParentAttendance,
+  ParentFeeStatus, ParentCalendar, ParentTimetable,
+  ParentProfile, ParentNotifications,
+} from './parentinterface';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1 className="text-3xl font-bold text-blue-600">Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <Router>
+      <Routes>
+        {/* Auth */}
+        <Route path="/" element={<LoginPage />} />
 
-      <div className="ticks"></div>
+        {/* Student Dashboard */}
+        <Route path="/dashboard" element={<DashboardHome />} />
+        <Route path="/performance" element={<PerformanceCGPA />} />
+        <Route path="/grades" element={<GradesScreen />} />
+        <Route path="/fee-status" element={<FeeStatus />} />
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+        {/* Courses */}
+        <Route path="/course/overview" element={<CourseOverview />} />
+        <Route path="/course/syllabus" element={<CourseSyllabus />} />
+        <Route path="/course/attendance" element={<CourseAttendance />} />
+        <Route path="/course/faculties" element={<CourseFaculties />} />
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+        {/* Calendar & Timetable */}
+        <Route path="/calendar" element={<CalendarMonthly />} />
+        <Route path="/timetable" element={<CalendarWeekly />} />
+        <Route path="/timetable/daily" element={<CalendarDaily />} />
+
+        {/* Resources & Community */}
+        <Route path="/downloads" element={<DownloadsScreen />} />
+        <Route path="/feedback" element={<FacultyFeedback />} />
+        <Route path="/community" element={<CommunityClubs />} />
+        <Route path="/community/club" element={<ClubDetail />} />
+
+        {/* User */}
+        <Route path="/profile" element={<ProfileScreen />} />
+        <Route path="/notifications" element={<NotificationsScreen />} />
+
+        {/* AI Mentor */}
+        <Route path="/ai" element={<AIMentorEmpty />} />
+        <Route path="/ai/active" element={<AIMentorActive />} />
+
+        {/* Faculty Dashboard */}
+        <Route path="/faculty/dashboard" element={<FacultyDashboard />} />
+        <Route path="/faculty/at-risk" element={<AtRiskStudents />} />
+        <Route path="/faculty/batch-insights" element={<BatchInsights />} />
+        <Route path="/faculty/calendar" element={<FacultyCalendar />} />
+        <Route path="/faculty/timetable" element={<FacultyTimetable />} />
+        <Route path="/faculty/profile" element={<FacultyProfile />} />
+
+        {/* Parent/Guardian Dashboard */}
+        <Route path="/parent/dashboard" element={<ParentDashboard />} />
+        <Route path="/parent/performance" element={<ParentPerformance />} />
+        <Route path="/parent/grades" element={<ParentGrades />} />
+        <Route path="/parent/attendance" element={<ParentAttendance />} />
+        <Route path="/parent/fee-status" element={<ParentFeeStatus />} />
+        <Route path="/parent/calendar" element={<ParentCalendar />} />
+        <Route path="/parent/timetable" element={<ParentTimetable />} />
+        <Route path="/parent/profile" element={<ParentProfile />} />
+        <Route path="/parent/notifications" element={<ParentNotifications />} />
+
+        {/* Fallback */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
