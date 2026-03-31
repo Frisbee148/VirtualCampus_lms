@@ -1,24 +1,49 @@
-import React from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { 
-  LayoutDashboard, Calendar, FileText, CalendarDays, 
-  Settings, LogOut, ChevronRight, X
-} from 'lucide-react';
+import React from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import {
+  LayoutDashboard,
+  Calendar,
+  FileText,
+  CalendarDays,
+  Settings,
+  LogOut,
+  ChevronRight,
+  X,
+} from "lucide-react";
 
 const ParentSidebar = ({ mobileOpen, onClose }) => {
   const navigate = useNavigate();
 
   const menuItems1 = [
-    { id: 'Dashboard', icon: LayoutDashboard, label: 'Dashboard', path: '/parent/dashboard' },
-    { id: 'Performance', icon: FileText, label: 'Performance', path: '/parent/performance' },
-    { id: 'Grades', icon: FileText, label: 'Grades', path: '/parent/grades' },
-    { id: 'Attendance', icon: Calendar, label: 'Attendance', path: '/parent/attendance' },
-    { id: 'Timetable', icon: CalendarDays, label: 'Timetable', path: '/parent/timetable' },
-    { id: 'Calendar', icon: Calendar, label: 'Calendar', path: '/parent/calendar' },
+    {
+      id: "Dashboard",
+      icon: LayoutDashboard,
+      label: "Dashboard",
+      path: "/parent/dashboard",
+    },
+    {
+      id: "Performance",
+      icon: FileText,
+      label: "Performance",
+      path: "/parent/performance",
+    },
+    { id: "Grades", icon: FileText, label: "Grades", path: "/parent/grades" },
+    {
+      id: "Attendance",
+      icon: Calendar,
+      label: "Attendance",
+      path: "/parent/attendance",
+    },
+    {
+      id: "Timetable",
+      icon: CalendarDays,
+      label: "Timetable",
+      path: "/parent/timetable",
+    },
   ];
 
   const menuItems2 = [
-    { id: 'Fee Status', label: 'Fee Status', path: '/parent/fee-status' },
+    { id: "Fee Status", label: "Fee Status", path: "/parent/fee-status" },
   ];
 
   const handleNavClick = (path) => {
@@ -30,18 +55,19 @@ const ParentSidebar = ({ mobileOpen, onClose }) => {
     <>
       {/* Overlay for mobile */}
       {mobileOpen && (
-        <div 
-          className="fixed inset-0 bg-black/50 z-[55] lg:hidden" 
+        <div
+          className="fixed inset-0 bg-black/50 z-[55] lg:hidden"
           onClick={onClose}
         />
       )}
 
-      <aside className={`fixed left-0 top-0 bottom-0 w-[260px] bg-[#0f1117] text-white flex flex-col z-[60] transition-transform duration-300 ease-in-out lg:translate-x-0 ${
-        mobileOpen ? 'translate-x-0' : '-translate-x-full'
-      }`}>
-        
+      <aside
+        className={`fixed left-0 top-0 bottom-0 w-[260px] bg-[#0f1117] text-white flex flex-col z-[60] transition-transform duration-300 ease-in-out lg:translate-x-0 ${
+          mobileOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
         {/* Close button - mobile only */}
-        <button 
+        <button
           onClick={onClose}
           className="lg:hidden absolute top-4 right-4 p-1 text-white/50 hover:text-white transition-colors"
         >
@@ -49,16 +75,27 @@ const ParentSidebar = ({ mobileOpen, onClose }) => {
         </button>
 
         {/* Profile Section */}
-        <div 
+        <div
           className="flex items-center gap-3 mx-4 mt-5 mb-6 p-3 bg-white/5 hover:bg-white/10 cursor-pointer transition-all duration-200 group"
-          onClick={() => handleNavClick('/parent/profile')}
+          onClick={() => handleNavClick("/parent/profile")}
         >
-          <img src="/Picture1.png" alt="Profile" className="w-10 h-10 rounded-full object-cover flex-shrink-0" />
+          <img
+            src="/Picture1.png"
+            alt="Profile"
+            className="w-10 h-10 rounded-full object-cover flex-shrink-0"
+          />
           <div className="overflow-hidden flex-1">
-            <h3 className="font-semibold text-sm text-white/90 truncate group-hover:text-white">Parent User</h3>
-            <p className="text-[11px] text-white/40 truncate">parent@guardian.io</p>
+            <h3 className="font-semibold text-sm text-white/90 truncate group-hover:text-white">
+              Parent User
+            </h3>
+            <p className="text-[11px] text-white/40 truncate">
+              parent@guardian.io
+            </p>
           </div>
-          <ChevronRight size={14} className="text-white/20 group-hover:text-white/50 transition-colors" />
+          <ChevronRight
+            size={14}
+            className="text-white/20 group-hover:text-white/50 transition-colors"
+          />
         </div>
 
         {/* Role badge */}
@@ -73,7 +110,9 @@ const ParentSidebar = ({ mobileOpen, onClose }) => {
 
         {/* Nav List 1 */}
         <nav className="flex-1 px-3 space-y-0.5 overflow-y-auto">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/25 px-3 mb-2">Ward's Academics</p>
+          <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/25 px-3 mb-2">
+            Ward's Academics
+          </p>
           {menuItems1.map((item) => {
             const Icon = item.icon;
             return (
@@ -81,11 +120,11 @@ const ParentSidebar = ({ mobileOpen, onClose }) => {
                 key={item.id}
                 to={item.path}
                 onClick={onClose}
-                className={({ isActive }) => 
+                className={({ isActive }) =>
                   `w-full flex items-center gap-3 px-3 py-2.5 text-[13px] font-medium no-underline transition-all duration-200 ${
                     isActive
-                      ? 'bg-black text-white shadow-md shadow-black/20' 
-                      : 'text-white/50 hover:text-white/80 hover:bg-white/[0.04]'
+                      ? "bg-black text-white shadow-md shadow-black/20"
+                      : "text-white/50 hover:text-white/80 hover:bg-white/[0.04]"
                   }`
                 }
               >
@@ -96,17 +135,19 @@ const ParentSidebar = ({ mobileOpen, onClose }) => {
           })}
 
           <div className="pt-5 pb-1">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/25 px-3 mb-2">Financial</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/25 px-3 mb-2">
+              Financial
+            </p>
             {menuItems2.map((item) => (
               <NavLink
                 key={item.id}
                 to={item.path}
                 onClick={onClose}
-                className={({ isActive }) => 
+                className={({ isActive }) =>
                   `w-full flex items-center gap-3 px-3 py-2.5 text-[13px] font-medium no-underline transition-all duration-200 ${
                     isActive
-                      ? 'bg-black text-white shadow-md shadow-black/20' 
-                      : 'text-white/50 hover:text-white/80 hover:bg-white/[0.04]'
+                      ? "bg-black text-white shadow-md shadow-black/20"
+                      : "text-white/50 hover:text-white/80 hover:bg-white/[0.04]"
                   }`
                 }
               >
@@ -121,9 +162,11 @@ const ParentSidebar = ({ mobileOpen, onClose }) => {
           <NavLink
             to="/parent/profile"
             onClick={onClose}
-            className={({ isActive }) => 
+            className={({ isActive }) =>
               `w-full flex items-center gap-3 px-3 py-2.5 text-[13px] font-medium no-underline transition-all duration-200 ${
-                isActive ? 'text-white bg-white/[0.06]' : 'text-white/40 hover:text-white/70 hover:bg-white/[0.04]'
+                isActive
+                  ? "text-white bg-white/[0.06]"
+                  : "text-white/40 hover:text-white/70 hover:bg-white/[0.04]"
               }`
             }
           >
