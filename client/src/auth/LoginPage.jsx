@@ -5,9 +5,11 @@ import './LoginPage.css';
 const ROLES = [
   { value: 'student', label: 'Student' },
   { value: 'faculty', label: 'Faculty' },
-  { value: 'staff', label: 'Staff' },
+  { value: 'director', label: 'Director' },
+  { value: 'registrar', label: 'Registrar' },
   { value: 'admin', label: 'Admin' },
   { value: 'guardian', label: 'Guardian/Parent' },
+  { value: 'staff', label: 'Staff' },
   { value: 'hod', label: 'HOD' },
 ];
 
@@ -119,6 +121,12 @@ const LoginPage = () => {
       navigate('/faculty/dashboard');
     } else if (selectedRole === 'guardian') {
       navigate('/parent/dashboard');
+    } else if (selectedRole === 'director') {
+      navigate('/director/dashboard');
+    } else if (selectedRole === 'registrar') {
+      navigate('/registrar/dashboard');
+    } else if (selectedRole === 'admin') {
+      navigate('/admin/dashboard');
     } else {
       // For other roles, extend later
       alert(`Logging in as ${selectedRole}...`);

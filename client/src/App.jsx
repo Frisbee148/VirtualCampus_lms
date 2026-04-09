@@ -1,32 +1,94 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import './App.css';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import "./App.css";
 
 // Auth
-import LoginPage from './auth/LoginPage';
+import LoginPage from "./auth/LoginPage";
 
 // Student Interface
 import {
-  DashboardHome, CourseOverview, CourseSyllabus, CourseAttendance, CourseFaculties,
-  CalendarMonthly, CalendarWeekly, CalendarDaily,
-  PerformanceCGPA, GradesScreen, FeeStatus,
-  DownloadsScreen, FacultyFeedback, CommunityClubs, ClubDetail,
-  ProfileScreen, NotificationsScreen,
-  AIMentorEmpty, AIMentorActive,
-} from './studentinterface';
+  DashboardHome,
+  CourseOverview,
+  CourseSyllabus,
+  CourseAttendance,
+  CourseFaculties,
+  CalendarMonthly,
+  CalendarWeekly,
+  CalendarDaily,
+  PerformanceCGPA,
+  GradesScreen,
+  FeeStatus,
+  DownloadsScreen,
+  FacultyFeedback,
+  CommunityClubs,
+  ClubDetail,
+  ProfileScreen,
+  NotificationsScreen,
+  AIMentorEmpty,
+  AIMentorActive,
+} from "./studentinterface";
 
 // Faculty Interface
 import {
-  FacultyDashboard, AtRiskStudents, BatchInsights,
-  FacultyCalendar, FacultyTimetable, FacultyProfile,
-} from './facultyinterface';
+  FacultyDashboard,
+  AtRiskStudents,
+  BatchInsights,
+  FacultyCalendar,
+  FacultyTimetable,
+  FacultyProfile,
+  FacultyNotifications,
+} from "./facultyinterface";
 
 // Parent / Guardian Interface
 import {
-  ParentDashboard, ParentPerformance, ParentGrades, ParentAttendance,
-  ParentFeeStatus, ParentCalendar, ParentTimetable,
-  ParentProfile, ParentNotifications,
-} from './parentinterface';
+  ParentDashboard,
+  ParentPerformance,
+  ParentGrades,
+  ParentAttendance,
+  ParentFeeStatus,
+  ParentCalendar,
+  ParentTimetable,
+  ParentProfile,
+  ParentNotifications,
+} from "./parentinterface";
+
+// Director Interface
+import {
+  DirectorDashboard,
+  Departments,
+  FacultyManagement,
+  DirectorApprovals,
+  InstitutionAnalytics,
+  DirectorProfile,
+  DirectorNotifications,
+} from "./directorinterface";
+
+// Registrar Interface
+import {
+  RegistrarDashboard,
+  Admissions,
+  StudentRecords,
+  ExamManagement,
+  CertificateRequests,
+  RegistrarProfile,
+  RegistrarNotifications,
+} from "./registrarinterface";
+
+// Admin Interface
+import {
+  AdminDashboard,
+  UserManagement,
+  RolePermissions,
+  SystemSettings,
+  AuditLogs,
+  AdminProfile,
+  AdminNotifications,
+} from "./admininterface";
 
 function App() {
   return (
@@ -73,6 +135,10 @@ function App() {
         <Route path="/faculty/calendar" element={<FacultyCalendar />} />
         <Route path="/faculty/timetable" element={<FacultyTimetable />} />
         <Route path="/faculty/profile" element={<FacultyProfile />} />
+        <Route
+          path="/faculty/notifications"
+          element={<FacultyNotifications />}
+        />
 
         {/* Parent/Guardian Dashboard */}
         <Route path="/parent/dashboard" element={<ParentDashboard />} />
@@ -84,6 +150,42 @@ function App() {
         <Route path="/parent/timetable" element={<ParentTimetable />} />
         <Route path="/parent/profile" element={<ParentProfile />} />
         <Route path="/parent/notifications" element={<ParentNotifications />} />
+
+        {/* Director Dashboard */}
+        <Route path="/director/dashboard" element={<DirectorDashboard />} />
+        <Route path="/director/departments" element={<Departments />} />
+        <Route path="/director/faculty" element={<FacultyManagement />} />
+        <Route path="/director/approvals" element={<DirectorApprovals />} />
+        <Route path="/director/analytics" element={<InstitutionAnalytics />} />
+        <Route path="/director/profile" element={<DirectorProfile />} />
+        <Route
+          path="/director/notifications"
+          element={<DirectorNotifications />}
+        />
+
+        {/* Registrar Dashboard */}
+        <Route path="/registrar/dashboard" element={<RegistrarDashboard />} />
+        <Route path="/registrar/admissions" element={<Admissions />} />
+        <Route path="/registrar/records" element={<StudentRecords />} />
+        <Route path="/registrar/exams" element={<ExamManagement />} />
+        <Route
+          path="/registrar/certificates"
+          element={<CertificateRequests />}
+        />
+        <Route path="/registrar/profile" element={<RegistrarProfile />} />
+        <Route
+          path="/registrar/notifications"
+          element={<RegistrarNotifications />}
+        />
+
+        {/* Admin Dashboard */}
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route path="/admin/users" element={<UserManagement />} />
+        <Route path="/admin/roles" element={<RolePermissions />} />
+        <Route path="/admin/settings" element={<SystemSettings />} />
+        <Route path="/admin/audit" element={<AuditLogs />} />
+        <Route path="/admin/profile" element={<AdminProfile />} />
+        <Route path="/admin/notifications" element={<AdminNotifications />} />
 
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />
