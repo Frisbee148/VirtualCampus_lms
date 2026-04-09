@@ -74,3 +74,14 @@ button {
 .role-monochrome {
   background: #f8f9fa !important;
 }
+
+/* Prevent browser focus outlines from appearing when clicking chart areas */
+.recharts-wrapper:focus,
+.recharts-wrapper:focus-visible,
+.recharts-wrapper [tabindex]:focus,
+.recharts-wrapper [tabindex]:focus-visible,
+.recharts-wrapper svg:focus,
+.recharts-wrapper svg:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
