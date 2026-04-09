@@ -31,6 +31,7 @@ import {
   NotificationsScreen,
   AIMentorEmpty,
   AIMentorActive,
+  StudentServiceScreen,
 } from "./studentinterface";
 
 // Faculty Interface
@@ -119,6 +120,111 @@ function App() {
         <Route path="/feedback" element={<FacultyFeedback />} />
         <Route path="/community" element={<CommunityClubs />} />
         <Route path="/community/club" element={<ClubDetail />} />
+
+        {/* Added Student Services (missing options only) */}
+        <Route
+          path="/btp"
+          element={<StudentServiceScreen serviceKey="btp" activeTab="BTP" />}
+        />
+        <Route
+          path="/mini-project"
+          element={
+            <StudentServiceScreen
+              serviceKey="miniProject"
+              activeTab="Mini Project"
+            />
+          }
+        />
+        <Route
+          path="/extra-curriculum"
+          element={
+            <StudentServiceScreen
+              serviceKey="extraCurriculum"
+              activeTab="Extra Curriculum"
+            />
+          }
+        />
+        <Route
+          path="/student-history"
+          element={
+            <StudentServiceScreen
+              serviceKey="studentHistory"
+              activeTab="Student History"
+            />
+          }
+        />
+        <Route
+          path="/fee-receipt"
+          element={
+            <StudentServiceScreen
+              serviceKey="feeReceipt"
+              activeTab="Fee Receipt"
+            />
+          }
+        />
+        <Route
+          path="/attendance-date-wise"
+          element={
+            <StudentServiceScreen
+              serviceKey="attendanceDateWise"
+              activeTab="Attendance Date Wise"
+            />
+          }
+        />
+        <Route
+          path="/admit-card"
+          element={
+            <StudentServiceScreen
+              serviceKey="admitCard"
+              activeTab="Admit Card"
+            />
+          }
+        />
+        <Route
+          path="/disciplinary-action"
+          element={
+            <StudentServiceScreen
+              serviceKey="disciplinaryAction"
+              activeTab="Disciplinary Action"
+            />
+          }
+        />
+        <Route
+          path="/drop-course"
+          element={
+            <StudentServiceScreen
+              serviceKey="dropCourse"
+              activeTab="Drop Course"
+            />
+          }
+        />
+        <Route
+          path="/bank-details-submission"
+          element={
+            <StudentServiceScreen
+              serviceKey="bankDetailsSubmission"
+              activeTab="Bank Details Submission"
+            />
+          }
+        />
+        <Route
+          path="/student-charges"
+          element={
+            <StudentServiceScreen
+              serviceKey="studentCharges"
+              activeTab="Student Charges"
+            />
+          }
+        />
+        <Route
+          path="/course-replacement"
+          element={
+            <StudentServiceScreen
+              serviceKey="courseReplacement"
+              activeTab="Course Replacement"
+            />
+          }
+        />
 
         {/* User */}
         <Route path="/profile" element={<ProfileScreen />} />

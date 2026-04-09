@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 import RegistrarLayout from "../RegistrarLayout";
-import {
-  Search,
-  Clock,
-  CheckCircle,
-  Download,
-  Award,
-  FileText,
-} from "lucide-react";
+import { Search, Clock, CheckCircle, Download, FileText } from "lucide-react";
 
 const requestsData = [
   {
@@ -113,15 +106,6 @@ const statusConfig = {
   },
 };
 
-const typeIcons = {
-  "Degree Certificate": Award,
-  "Provisional Certificate": Award,
-  "Migration Certificate": FileText,
-  "Bonafide Certificate": FileText,
-  "Character Certificate": FileText,
-  Transcript: Download,
-};
-
 const CertificateRequests = () => {
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("all");
@@ -185,7 +169,6 @@ const CertificateRequests = () => {
           {filtered.map((req) => {
             const sc = statusConfig[req.status];
             const StatusIcon = sc.icon;
-            const TypeIcon = typeIcons[req.type] || FileText;
 
             return (
               <div
@@ -193,9 +176,6 @@ const CertificateRequests = () => {
                 className="bg-white rounded-xl border border-gray-100 p-5 hover:shadow-sm transition-shadow"
               >
                 <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4">
-                  <div className="p-2.5 rounded-xl bg-[#059669]/10 flex-shrink-0">
-                    <TypeIcon size={20} className="text-[#059669]" />
-                  </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
                       <h3 className="text-sm font-semibold text-gray-800">

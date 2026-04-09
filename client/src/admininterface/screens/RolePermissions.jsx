@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { ChevronDown, ChevronRight } from "lucide-react";
 import AdminLayout from "../AdminLayout";
 
 const rolesData = [
@@ -186,22 +187,8 @@ const RolePermissions = () => {
                     </p>
                   </div>
                   <div className="flex items-center gap-3 w-full sm:w-auto justify-end">
-                    <div className="hidden sm:flex items-center gap-1">
-                      <div className="w-20 h-2 bg-gray-100 rounded-full overflow-hidden">
-                        <div
-                          className="h-full rounded-full"
-                          style={{
-                            width: `${(granted / permEntries.length) * 100}%`,
-                            backgroundColor: role.color,
-                          }}
-                        ></div>
-                      </div>
-                      <span className="text-xs text-gray-400">
-                        {Math.round((granted / permEntries.length) * 100)}%
-                      </span>
-                    </div>
-                    <span className="text-xs font-medium text-gray-500">
-                      {isExpanded ? "Hide" : "Show"}
+                    <span className="text-gray-400 transition-transform duration-200">
+                      {isExpanded ? <ChevronDown size={18} /> : <ChevronRight size={18} />}
                     </span>
                   </div>
                 </div>

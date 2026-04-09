@@ -1,5 +1,9 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import {
+  LayoutDashboard, Users, Shield, Wrench, FileSearch,
+  Settings, LogOut, ChevronRight, X
+} from "lucide-react";
 
 const AdminSidebar = ({ mobileOpen, onClose }) => {
   const navigate = useNavigate();
@@ -7,26 +11,31 @@ const AdminSidebar = ({ mobileOpen, onClose }) => {
   const menuItems1 = [
     {
       id: "dashboard",
+      icon: LayoutDashboard,
       label: "Dashboard",
       path: "/admin/dashboard",
     },
     {
       id: "users",
+      icon: Users,
       label: "User Management",
       path: "/admin/users",
     },
     {
       id: "roles",
+      icon: Shield,
       label: "Roles & Permissions",
       path: "/admin/roles",
     },
     {
       id: "settings",
+      icon: Wrench,
       label: "System Settings",
       path: "/admin/settings",
     },
     {
       id: "audit",
+      icon: FileSearch,
       label: "Audit Logs",
       path: "/admin/audit",
     },
@@ -51,11 +60,12 @@ const AdminSidebar = ({ mobileOpen, onClose }) => {
           mobileOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
+        {/* Close button - mobile only */}
         <button
           onClick={onClose}
-          className="lg:hidden absolute top-4 right-4 px-2 py-1 text-xs text-white/70 hover:text-white transition-colors"
+          className="lg:hidden absolute top-4 right-4 p-1 text-white/50 hover:text-white transition-colors"
         >
-          Close
+          <X size={20} />
         </button>
 
         {/* Profile Section */}
@@ -76,6 +86,7 @@ const AdminSidebar = ({ mobileOpen, onClose }) => {
               admin@lnmiit.ac.in
             </p>
           </div>
+          <ChevronRight size={14} className="text-white/20 group-hover:text-white/50 transition-colors" />
         </div>
 
         <div className="mx-5 mb-3 border-t border-white/[0.06]"></div>
@@ -86,6 +97,7 @@ const AdminSidebar = ({ mobileOpen, onClose }) => {
             Main Menu
           </p>
           {menuItems1.map((item) => {
+            const Icon = item.icon;
             return (
               <NavLink
                 key={item.id}
@@ -99,6 +111,7 @@ const AdminSidebar = ({ mobileOpen, onClose }) => {
                   }`
                 }
               >
+                <Icon size={17} strokeWidth={1.8} />
                 {item.label}
               </NavLink>
             );
@@ -118,6 +131,7 @@ const AdminSidebar = ({ mobileOpen, onClose }) => {
               }`
             }
           >
+            <Settings size={16} strokeWidth={1.8} />
             Settings
           </NavLink>
           <button
@@ -129,6 +143,7 @@ const AdminSidebar = ({ mobileOpen, onClose }) => {
             }}
             className="w-full flex items-center gap-3 px-3 py-2.5 text-[13px] font-medium text-white/40 hover:text-red-400 hover:bg-red-500/[0.06] transition-all duration-200"
           >
+            <LogOut size={16} strokeWidth={1.8} />
             Log out
           </button>
         </div>
