@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Bell, UserCircle, Menu } from 'lucide-react';
 
-const FacultyTopHeader = ({ onMenuToggle }) => {
+const DirectorTopHeader = ({ onMenuToggle }) => {
   const navigate = useNavigate();
 
   return (
@@ -18,7 +18,7 @@ const FacultyTopHeader = ({ onMenuToggle }) => {
 
       <div className="flex items-center gap-1 sm:gap-2">
         <button
-          onClick={() => navigate('/faculty/notifications')}
+          onClick={() => navigate('/director/notifications')}
           className="relative p-2 sm:p-2.5 text-gray-400 hover:text-black hover:bg-black/5 transition-all duration-200 cursor-pointer"
         >
           <Bell size={20} strokeWidth={1.8} className="sm:w-[22px] sm:h-[22px]" />
@@ -26,7 +26,7 @@ const FacultyTopHeader = ({ onMenuToggle }) => {
         </button>
 
         <button
-          onClick={() => navigate('/faculty/profile')}
+          onClick={() => navigate('/director/profile')}
           className="p-1.5 sm:p-2 text-gray-400 hover:text-black hover:bg-black/5 transition-all duration-200 cursor-pointer"
         >
           <UserCircle size={24} strokeWidth={1.5} className="sm:w-[26px] sm:h-[26px]" />
@@ -36,4 +36,4 @@ const FacultyTopHeader = ({ onMenuToggle }) => {
   );
 };
 
-export default FacultyTopHeader;
+export default DirectorTopHeader;

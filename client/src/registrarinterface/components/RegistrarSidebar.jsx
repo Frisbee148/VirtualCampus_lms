@@ -1,50 +1,50 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import {
-  BookOpen,
-  AlertTriangle,
-  BarChart3,
-  Calendar,
-  CalendarDays,
+  LayoutDashboard,
+  UserPlus,
+  FileText,
+  ClipboardList,
+  Award,
   Settings,
   LogOut,
   ChevronRight,
   X,
 } from "lucide-react";
 
-const FacultySidebar = ({ mobileOpen, onClose }) => {
+const RegistrarSidebar = ({ mobileOpen, onClose }) => {
   const navigate = useNavigate();
 
-  const menuItems = [
+  const menuItems1 = [
     {
-      id: "my-courses",
-      icon: BookOpen,
-      label: "My Courses",
-      path: "/faculty/dashboard",
+      id: "dashboard",
+      icon: LayoutDashboard,
+      label: "Dashboard",
+      path: "/registrar/dashboard",
     },
     {
-      id: "at-risk",
-      icon: AlertTriangle,
-      label: "At Risk Students",
-      path: "/faculty/at-risk",
+      id: "admissions",
+      icon: UserPlus,
+      label: "Admissions",
+      path: "/registrar/admissions",
     },
     {
-      id: "batch-insights",
-      icon: BarChart3,
-      label: "Batch Insights",
-      path: "/faculty/batch-insights",
+      id: "records",
+      icon: FileText,
+      label: "Student Records",
+      path: "/registrar/records",
     },
     {
-      id: "calendar",
-      icon: Calendar,
-      label: "Calendar",
-      path: "/faculty/calendar",
+      id: "exams",
+      icon: ClipboardList,
+      label: "Exam Management",
+      path: "/registrar/exams",
     },
     {
-      id: "timetable",
-      icon: CalendarDays,
-      label: "Timetable",
-      path: "/faculty/timetable",
+      id: "certificates",
+      icon: Award,
+      label: "Certificates",
+      path: "/registrar/certificates",
     },
   ];
 
@@ -77,7 +77,7 @@ const FacultySidebar = ({ mobileOpen, onClose }) => {
         {/* Profile Section */}
         <div
           className="flex items-center gap-3 mx-4 mt-5 mb-6 p-3 bg-white/5 hover:bg-white/10 cursor-pointer transition-all duration-200 group"
-          onClick={() => handleNavClick("/faculty/profile")}
+          onClick={() => handleNavClick("/registrar/profile")}
         >
           <img
             src="/Picture1.png"
@@ -86,10 +86,10 @@ const FacultySidebar = ({ mobileOpen, onClose }) => {
           />
           <div className="overflow-hidden flex-1">
             <h3 className="font-semibold text-sm text-white/90 truncate group-hover:text-white">
-              Faculty Name
+              Dr. Neha Agarwal
             </h3>
             <p className="text-[11px] text-white/40 truncate">
-              faculty@lnmiit.ac.in
+              registrar@lnmiit.ac.in
             </p>
           </div>
           <ChevronRight
@@ -105,7 +105,7 @@ const FacultySidebar = ({ mobileOpen, onClose }) => {
           <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/25 px-3 mb-2">
             Main Menu
           </p>
-          {menuItems.map((item) => {
+          {menuItems1.map((item) => {
             const Icon = item.icon;
             return (
               <NavLink
@@ -130,7 +130,7 @@ const FacultySidebar = ({ mobileOpen, onClose }) => {
         {/* Footer */}
         <div className="p-3 space-y-0.5 border-t border-white/[0.06]">
           <NavLink
-            to="/faculty/profile"
+            to="/registrar/profile"
             onClick={onClose}
             className={({ isActive }) =>
               `w-full flex items-center gap-3 px-3 py-2.5 text-[13px] font-medium no-underline transition-all duration-200 ${
@@ -159,4 +159,4 @@ const FacultySidebar = ({ mobileOpen, onClose }) => {
   );
 };
 
-export default FacultySidebar;
+export default RegistrarSidebar;
