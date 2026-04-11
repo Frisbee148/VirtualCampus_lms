@@ -130,6 +130,8 @@ const LoginPage = () => {
       navigate('/admin/dashboard');
     } else if (selectedRole === 'librarian') {
       navigate('/librarian/dashboard');
+    } else if (selectedRole === 'hod') {
+      navigate('/hod/dashboard');
     } else {
       // For other roles, extend later
       alert(`Logging in as ${selectedRole}...`);

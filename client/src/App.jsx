@@ -101,6 +101,22 @@ import {
   LibrarianNotifications,
 } from "./librarianinterface";
 
+// HOD Interface
+import {
+  HodDashboard,
+  HodFacultyManagement,
+  HodCourseAllocation,
+  HodApprovals,
+  HodDeptAnalytics,
+  HodMyCourses,
+  HodAtRisk,
+  HodBatchInsights,
+  HodCalendar,
+  HodTimetable,
+  HodProfile,
+  HodNotifications,
+} from "./hodinterface";
+
 function App() {
   return (
     <Router>
@@ -313,6 +329,20 @@ function App() {
           path="/librarian/notifications"
           element={<LibrarianNotifications />}
         />
+
+        {/* HOD Dashboard */}
+        <Route path="/hod/dashboard" element={<HodDashboard />} />
+        <Route path="/hod/faculty" element={<HodFacultyManagement />} />
+        <Route path="/hod/courses" element={<HodCourseAllocation />} />
+        <Route path="/hod/approvals" element={<HodApprovals />} />
+        <Route path="/hod/analytics" element={<HodDeptAnalytics />} />
+        <Route path="/hod/my-courses" element={<HodMyCourses />} />
+        <Route path="/hod/at-risk" element={<HodAtRisk />} />
+        <Route path="/hod/batch-insights" element={<HodBatchInsights />} />
+        <Route path="/hod/calendar" element={<HodCalendar />} />
+        <Route path="/hod/timetable" element={<HodTimetable />} />
+        <Route path="/hod/profile" element={<HodProfile />} />
+        <Route path="/hod/notifications" element={<HodNotifications />} />
 
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />

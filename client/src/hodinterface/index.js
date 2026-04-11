@@ -1,0 +1,12 @@
+export { default as HodDashboard } from "./screens/HodDashboard";
+export { default as HodFacultyManagement } from "./screens/HodFacultyManagement";
+export { default as HodCourseAllocation } from "./screens/HodCourseAllocation";
+export { default as HodApprovals } from "./screens/HodApprovals";
+export { default as HodDeptAnalytics } from "./screens/HodDeptAnalytics";
+export { default as HodMyCourses } from "./screens/HodMyCourses";
+export { default as HodAtRisk } from "./screens/HodAtRisk";
+export { default as HodBatchInsights } from "./screens/HodBatchInsights";
+export { default as HodCalendar } from "./screens/HodCalendar";
+export { default as HodTimetable } from "./screens/HodTimetable";
+export { default as HodProfile } from "./screens/HodProfile";
+export { default as HodNotifications } from "./screens/HodNotifications";
