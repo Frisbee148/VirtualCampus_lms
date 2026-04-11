@@ -317,26 +317,18 @@
 .login-page .lp-select-items {
   position: absolute;
   background-color: #fff;
-  top: calc(100% + 0.5rem);
-  bottom: auto;
+  top: 100%;
   left: 0; right: 0;
-  z-index: 120;
+  z-index: 99;
   border: 1px solid #ddd;
   border-radius: 16px;
+  margin-top: 0.5rem;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   display: none;
-  overflow-y: auto;
-  overflow-x: hidden;
-  overscroll-behavior: contain;
 }
 
 .login-page .lp-select-items.active {
   display: block;
-}
-
-.login-page .lp-select-items.open-up {
-  top: auto;
-  bottom: calc(100% + 0.5rem);
 }
 
 .login-page .lp-select-item {
@@ -455,6 +447,40 @@
   background: transparent;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+}
+
+/* ---------- Custom cursor ---------- */
+.login-page {
+  cursor: none;
+}
+
+.login-page *,
+.login-page a,
+.login-page button,
+.login-page input,
+.login-page select,
+.login-page label {
+  cursor: none !important;
+}
+
+.login-page .lp-cursor-wrapper {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 999999;
+}
+
+.login-page .lp-custom-cursor {
+  position: fixed;
+  width: 32px; height: 32px;
+  pointer-events: none;
+  transform: translate(-4px, -2px);
+  z-index: 999999;
+  background-image: url('/cursor.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 /* ---------- Responsive ---------- */

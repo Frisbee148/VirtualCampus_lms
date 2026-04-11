@@ -1,17 +1,14 @@
-import React, { useState, useEffect, useRef, useCallback, useLayoutEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
 
 const ROLES = [
   { value: 'student', label: 'Student' },
   { value: 'faculty', label: 'Faculty' },
-  { value: 'director', label: 'Director' },
-  { value: 'registrar', label: 'Registrar' },
+  { value: 'staff', label: 'Staff' },
   { value: 'admin', label: 'Admin' },
   { value: 'guardian', label: 'Guardian/Parent' },
-  { value: 'staff', label: 'Staff' },
   { value: 'hod', label: 'HOD' },
-  { value: 'librarian', label: 'Librarian' },
 ];
 
 const ABOUT_LINKS = [
@@ -44,11 +41,8 @@ const LoginPage = () => {
   /* ---- refs ---- */
   const cursorRef = useRef(null);
   const selectRef = useRef(null);
-  const dropdownRef = useRef(null);
   const aboutRef = useRef(null);
   const closeTimeoutRef = useRef(null);
-  const [dropdownPlacement, setDropdownPlacement] = useState('bottom');
-  const [dropdownMaxHeight, setDropdownMaxHeight] = useState(320);
 
 
 
@@ -125,18 +119,6 @@ const LoginPage = () => {
       navigate('/faculty/dashboard');
     } else if (selectedRole === 'guardian') {
       navigate('/parent/dashboard');
-    } else if (selectedRole === 'director') {
-      navigate('/director/dashboard');
-    } else if (selectedRole === 'registrar') {
-      navigate('/registrar/dashboard');
-    } else if (selectedRole === 'admin') {
-      navigate('/admin/dashboard');
-    } else if (selectedRole === 'librarian') {
-      navigate('/librarian/dashboard');
-    } else if (selectedRole === 'hod') {
-      navigate('/hod/dashboard');
-    } else if (selectedRole === 'staff') {
-      navigate('/staff/dashboard');
     } else {
       // For other roles, extend later
       alert(`Logging in as ${selectedRole}...`);
@@ -157,50 +139,6 @@ const LoginPage = () => {
   const handleAboutLeave = () => {
     closeTimeoutRef.current = setTimeout(() => setAboutOpen(false), 200);
   };
-
-  const updateDropdownLayout = useCallback(() => {
-    if (!selectRef.current || !dropdownRef.current) {
-      return;
-    }
-
-    const selectRect = selectRef.current.getBoundingClientRect();
-    const dropdownHeight = dropdownRef.current.scrollHeight;
-    const viewportHeight = window.innerHeight;
-    const viewportGap = 12;
-    const preferredMaxHeight = 320;
-    const availableBelow = Math.max(viewportHeight - selectRect.bottom - viewportGap, 0);
-    const availableAbove = Math.max(selectRect.top - viewportGap, 0);
-    const needsMoreSpaceThanBelow = availableBelow < Math.min(dropdownHeight, preferredMaxHeight);
-    const shouldOpenUpward = needsMoreSpaceThanBelow && availableAbove > availableBelow;
-    const availableSpace = shouldOpenUpward ? availableAbove : availableBelow;
-
-    setDropdownPlacement(shouldOpenUpward ? 'top' : 'bottom');
-    setDropdownMaxHeight(Math.min(Math.max(availableSpace, 0), preferredMaxHeight));
-  }, []);
-
-  useLayoutEffect(() => {
-    if (!dropdownOpen) {
-      return;
-    }
-
-    updateDropdownLayout();
-  }, [dropdownOpen, updateDropdownLayout]);
-
-  useEffect(() => {
-    if (!dropdownOpen) {
-      return;
-    }
-
-    const handleViewportChange = () => updateDropdownLayout();
-
-    window.addEventListener('resize', handleViewportChange);
-    window.addEventListener('scroll', handleViewportChange, true);
-
-    return () => {
-      window.removeEventListener('resize', handleViewportChange);
-      window.removeEventListener('scroll', handleViewportChange, true);
-    };
-  }, [dropdownOpen, updateDropdownLayout]);
 
   return (
     <div className="login-page">
@@ -253,11 +191,7 @@ const LoginPage = () => {
             >
               {roleLabel}
             </div>
-            <div
-              ref={dropdownRef}
-              className={`lp-select-items${dropdownOpen ? ' active' : ''}${dropdownPlacement === 'top' ? ' open-up' : ''}`}
-              style={dropdownOpen ? { maxHeight: `${dropdownMaxHeight}px` } : undefined}
-            >
+            <div className={`lp-select-items${dropdownOpen ? ' active' : ''}`}>
               {ROLES.map((role) => (
                 <div
                   key={role.value}

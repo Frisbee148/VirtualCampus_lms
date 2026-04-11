@@ -91,6 +91,43 @@ import {
   AdminNotifications,
 } from "./admininterface";
 
+// Librarian Interface
+import {
+  LibrarianDashboard,
+  BookManagement,
+  LibrarianUserManagement,
+  BorrowReturn,
+  LibrarianProfile,
+  LibrarianNotifications,
+} from "./librarianinterface";
+
+// Staff Interface
+import {
+  StaffDashboard,
+  StaffUserManagement,
+  StaffCourseManagement,
+  StaffEnrollmentManagement,
+  StaffAnnouncements,
+  StaffProfile,
+  StaffNotifications,
+} from "./staffinterface";
+
+// HOD Interface
+import {
+  HodDashboard,
+  HodFacultyManagement,
+  HodCourseAllocation,
+  HodApprovals,
+  HodDeptAnalytics,
+  HodMyCourses,
+  HodAtRisk,
+  HodBatchInsights,
+  HodCalendar,
+  HodTimetable,
+  HodProfile,
+  HodNotifications,
+} from "./hodinterface";
+
 function App() {
   return (
     <Router>
@@ -292,6 +329,40 @@ function App() {
         <Route path="/admin/audit" element={<AuditLogs />} />
         <Route path="/admin/profile" element={<AdminProfile />} />
         <Route path="/admin/notifications" element={<AdminNotifications />} />
+
+        {/* Librarian Dashboard */}
+        <Route path="/librarian/dashboard" element={<LibrarianDashboard />} />
+        <Route path="/librarian/books" element={<BookManagement />} />
+        <Route path="/librarian/users" element={<LibrarianUserManagement />} />
+        <Route path="/librarian/borrow" element={<BorrowReturn />} />
+        <Route path="/librarian/profile" element={<LibrarianProfile />} />
+        <Route
+          path="/librarian/notifications"
+          element={<LibrarianNotifications />}
+        />
+
+        {/* Staff Dashboard */}
+        <Route path="/staff/dashboard" element={<StaffDashboard />} />
+        <Route path="/staff/users" element={<StaffUserManagement />} />
+        <Route path="/staff/courses" element={<StaffCourseManagement />} />
+        <Route path="/staff/enrollments" element={<StaffEnrollmentManagement />} />
+        <Route path="/staff/announcements" element={<StaffAnnouncements />} />
+        <Route path="/staff/profile" element={<StaffProfile />} />
+        <Route path="/staff/notifications" element={<StaffNotifications />} />
+
+        {/* HOD Dashboard */}
+        <Route path="/hod/dashboard" element={<HodDashboard />} />
+        <Route path="/hod/faculty" element={<HodFacultyManagement />} />
+        <Route path="/hod/courses" element={<HodCourseAllocation />} />
+        <Route path="/hod/approvals" element={<HodApprovals />} />
+        <Route path="/hod/analytics" element={<HodDeptAnalytics />} />
+        <Route path="/hod/my-courses" element={<HodMyCourses />} />
+        <Route path="/hod/at-risk" element={<HodAtRisk />} />
+        <Route path="/hod/batch-insights" element={<HodBatchInsights />} />
+        <Route path="/hod/calendar" element={<HodCalendar />} />
+        <Route path="/hod/timetable" element={<HodTimetable />} />
+        <Route path="/hod/profile" element={<HodProfile />} />
+        <Route path="/hod/notifications" element={<HodNotifications />} />
 
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />
