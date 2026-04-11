@@ -317,18 +317,26 @@
 .login-page .lp-select-items {
   position: absolute;
   background-color: #fff;
-  top: 100%;
+  top: calc(100% + 0.5rem);
+  bottom: auto;
   left: 0; right: 0;
-  z-index: 99;
+  z-index: 120;
   border: 1px solid #ddd;
   border-radius: 16px;
-  margin-top: 0.5rem;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   display: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
 }
 
 .login-page .lp-select-items.active {
   display: block;
+}
+
+.login-page .lp-select-items.open-up {
+  top: auto;
+  bottom: calc(100% + 0.5rem);
 }
 
 .login-page .lp-select-item {
