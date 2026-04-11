@@ -101,6 +101,17 @@ import {
   LibrarianNotifications,
 } from "./librarianinterface";
 
+// Staff Interface
+import {
+  StaffDashboard,
+  StaffUserManagement,
+  StaffCourseManagement,
+  StaffEnrollmentManagement,
+  StaffAnnouncements,
+  StaffProfile,
+  StaffNotifications,
+} from "./staffinterface";
+
 // HOD Interface
 import {
   HodDashboard,
@@ -329,6 +340,15 @@ function App() {
           path="/librarian/notifications"
           element={<LibrarianNotifications />}
         />
+
+        {/* Staff Dashboard */}
+        <Route path="/staff/dashboard" element={<StaffDashboard />} />
+        <Route path="/staff/users" element={<StaffUserManagement />} />
+        <Route path="/staff/courses" element={<StaffCourseManagement />} />
+        <Route path="/staff/enrollments" element={<StaffEnrollmentManagement />} />
+        <Route path="/staff/announcements" element={<StaffAnnouncements />} />
+        <Route path="/staff/profile" element={<StaffProfile />} />
+        <Route path="/staff/notifications" element={<StaffNotifications />} />
 
         {/* HOD Dashboard */}
         <Route path="/hod/dashboard" element={<HodDashboard />} />
