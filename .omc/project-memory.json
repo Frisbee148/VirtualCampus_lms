@@ -1,0 +1,219 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1775924182976,
+  "projectRoot": "/home/casp1an/Code/virtualCampus",
+  "techStack": {
+    "languages": [],
+    "frameworks": [],
+    "packageManager": null,
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": null,
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": null,
+    "scripts": {}
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [],
+    "gitBranches": {
+      "defaultBranch": "main",
+      "branchingStrategy": null
+    }
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "client": {
+      "path": "client",
+      "purpose": null,
+      "fileCount": 9,
+      "lastAccessed": 1775924182971,
+      "keyFiles": [
+        "README.md",
+        "eslint.config.js",
+        "index.html",
+        "package-lock.json",
+        "package.json"
+      ]
+    },
+    "context": {
+      "path": "context",
+      "purpose": null,
+      "fileCount": 3,
+      "lastAccessed": 1775924182972,
+      "keyFiles": [
+        "LoginPage.css",
+        "LoginPage.jsx",
+        "project_context.md"
+      ]
+    },
+    "reference": {
+      "path": "reference",
+      "purpose": null,
+      "fileCount": 9,
+      "lastAccessed": 1775924182972,
+      "keyFiles": [
+        "Screenshot From 2026-03-28 12-32-02.png",
+        "Screenshot From 2026-03-28 12-32-07.png",
+        "Screenshot From 2026-03-28 12-32-11.png",
+        "Screenshot From 2026-03-28 12-32-14.png",
+        "Screenshot From 2026-03-28 12-32-18.png"
+      ]
+    },
+    "client/dist": {
+      "path": "client/dist",
+      "purpose": "Distribution/build output",
+      "fileCount": 7,
+      "lastAccessed": 1775924182975,
+      "keyFiles": [
+        "Picture1.png",
+        "Virtucampus_logo.png",
+        "Virtucampus_logo_wb.png"
+      ]
+    },
+    "client/node_modules": {
+      "path": "client/node_modules",
+      "purpose": "Dependencies",
+      "fileCount": 1,
+      "lastAccessed": 1775924182975,
+      "keyFiles": []
+    },
+    "client/public": {
+      "path": "client/public",
+      "purpose": "Public files",
+      "fileCount": 7,
+      "lastAccessed": 1775924182975,
+      "keyFiles": [
+        "LNMIIT-Logo-Transperant-Background.png",
+        "Picture1.png",
+        "Virtucampus_logo.png"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "client/src/App.jsx",
+      "accessCount": 3,
+      "lastAccessed": 1775924737035,
+      "type": "file"
+    },
+    {
+      "path": "client/src/admininterface/AdminLayout.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1775924278949,
+      "type": "file"
+    },
+    {
+      "path": "client/src/admininterface/components/AdminSidebar.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1775924279164,
+      "type": "file"
+    },
+    {
+      "path": "client/src/admininterface/components/AdminTopHeader.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1775924279618,
+      "type": "file"
+    },
+    {
+      "path": "client/src/admininterface/index.js",
+      "accessCount": 1,
+      "lastAccessed": 1775924280250,
+      "type": "file"
+    },
+    {
+      "path": "client/src/admininterface/screens/AdminDashboard.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1775924280745,
+      "type": "file"
+    },
+    {
+      "path": "client/src/admininterface/screens/UserManagement.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1775924287885,
+      "type": "file"
+    },
+    {
+      "path": "client/src/admininterface/screens/AuditLogs.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1775924288063,
+      "type": "file"
+    },
+    {
+      "path": "client/src/admininterface/screens/SystemSettings.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1775924288857,
+      "type": "file"
+    },
+    {
+      "path": "client/src/librarianinterface/LibrarianLayout.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1775924327627,
+      "type": "file"
+    },
+    {
+      "path": "client/src/librarianinterface/components/LibrarianSidebar.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1775924374861,
+      "type": "file"
+    },
+    {
+      "path": "client/src/librarianinterface/components/LibrarianTopHeader.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1775924406845,
+      "type": "file"
+    },
+    {
+      "path": "client/src/librarianinterface/screens/LibrarianDashboard.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1775924447438,
+      "type": "file"
+    },
+    {
+      "path": "client/src/librarianinterface/screens/BookManagement.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1775924512777,
+      "type": "file"
+    },
+    {
+      "path": "client/src/librarianinterface/screens/LibrarianUserManagement.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1775924536555,
+      "type": "file"
+    },
+    {
+      "path": "client/src/librarianinterface/screens/BorrowReturn.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1775924590511,
+      "type": "file"
+    },
+    {
+      "path": "client/src/librarianinterface/screens/LibrarianProfile.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1775924622980,
+      "type": "file"
+    },
+    {
+      "path": "client/src/librarianinterface/screens/LibrarianNotifications.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1775924643614,
+      "type": "file"
+    },
+    {
+      "path": "client/src/librarianinterface/index.js",
+      "accessCount": 1,
+      "lastAccessed": 1775924651353,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}

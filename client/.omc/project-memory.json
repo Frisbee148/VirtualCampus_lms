@@ -1,0 +1,239 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1775925063723,
+  "projectRoot": "/home/casp1an/Code/virtualCampus/client",
+  "techStack": {
+    "languages": [
+      {
+        "name": "JavaScript/TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "package.json"
+        ]
+      }
+    ],
+    "frameworks": [
+      {
+        "name": "react",
+        "version": "19.2.4",
+        "category": "frontend"
+      },
+      {
+        "name": "react-dom",
+        "version": "19.2.4",
+        "category": "frontend"
+      },
+      {
+        "name": "vite",
+        "version": "8.0.1",
+        "category": "build"
+      }
+    ],
+    "packageManager": "npm",
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": "npm run build",
+    "testCommand": null,
+    "lintCommand": "npm run lint",
+    "devCommand": "npm run dev",
+    "scripts": {
+      "dev": "vite",
+      "build": "vite build",
+      "lint": "eslint .",
+      "preview": "vite preview"
+    }
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "public",
+      "src"
+    ],
+    "gitBranches": {
+      "defaultBranch": "main",
+      "branchingStrategy": null
+    }
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "dist": {
+      "path": "dist",
+      "purpose": "Distribution/build output",
+      "fileCount": 8,
+      "lastAccessed": 1775925063709,
+      "keyFiles": [
+        "LNMIIT-Logo-Transperant-Background.png",
+        "Picture1.png",
+        "Virtucampus_logo.png",
+        "Virtucampus_logo_wb.png",
+        "cursor.png"
+      ]
+    },
+    "public": {
+      "path": "public",
+      "purpose": "Public files",
+      "fileCount": 7,
+      "lastAccessed": 1775925063711,
+      "keyFiles": [
+        "LNMIIT-Logo-Transperant-Background.png",
+        "Picture1.png",
+        "Virtucampus_logo.png",
+        "Virtucampus_logo_wb.png",
+        "cursor.png"
+      ]
+    },
+    "src": {
+      "path": "src",
+      "purpose": "Source code",
+      "fileCount": 4,
+      "lastAccessed": 1775925063719,
+      "keyFiles": [
+        "App.css",
+        "App.jsx",
+        "index.css",
+        "main.jsx"
+      ]
+    },
+    "dist/assets": {
+      "path": "dist/assets",
+      "purpose": "Static assets",
+      "fileCount": 2,
+      "lastAccessed": 1775925063720,
+      "keyFiles": [
+        "index-CKr26-Nh.js",
+        "index-DmCQc-t4.css"
+      ]
+    },
+    "src/assets": {
+      "path": "src/assets",
+      "purpose": "Static assets",
+      "fileCount": 3,
+      "lastAccessed": 1775925063720,
+      "keyFiles": [
+        "hero.png",
+        "react.svg",
+        "vite.svg"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "src/facultyinterface/index.js",
+      "accessCount": 1,
+      "lastAccessed": 1775925114964,
+      "type": "file"
+    },
+    {
+      "path": "src/facultyinterface/FacultyLayout.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1775925119039,
+      "type": "file"
+    },
+    {
+      "path": "src/facultyinterface/screens/FacultyDashboard.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1775925119519,
+      "type": "file"
+    },
+    {
+      "path": "src/facultyinterface/screens/AtRiskStudents.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1775925120389,
+      "type": "file"
+    },
+    {
+      "path": "src/facultyinterface/screens/BatchInsights.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1775925120624,
+      "type": "file"
+    },
+    {
+      "path": "src/facultyinterface/screens/FacultyCalendar.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1775925120916,
+      "type": "file"
+    },
+    {
+      "path": "src/facultyinterface/screens/FacultyTimetable.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1775925121363,
+      "type": "file"
+    },
+    {
+      "path": "src/facultyinterface/screens/FacultyProfile.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1775925121827,
+      "type": "file"
+    },
+    {
+      "path": "src/facultyinterface/screens/FacultyNotifications.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1775925122329,
+      "type": "file"
+    },
+    {
+      "path": "src/facultyinterface/components/FacultySidebar.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1775925122745,
+      "type": "file"
+    },
+    {
+      "path": "src/facultyinterface/components/FacultyTopHeader.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1775925123324,
+      "type": "file"
+    },
+    {
+      "path": "src/hodinterface/HodLayout.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1775925179301,
+      "type": "file"
+    },
+    {
+      "path": "src/hodinterface/components/HodTopHeader.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1775925185944,
+      "type": "file"
+    },
+    {
+      "path": "src/hodinterface/components/HodSidebar.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1775925207509,
+      "type": "file"
+    },
+    {
+      "path": "src/hodinterface/screens/HodDashboard.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1775925251386,
+      "type": "file"
+    },
+    {
+      "path": "src/hodinterface/screens/HodFacultyManagement.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1775925300045,
+      "type": "file"
+    },
+    {
+      "path": "src/hodinterface/screens/HodCourseAllocation.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1775925342294,
+      "type": "file"
+    },
+    {
+      "path": "src/hodinterface/screens/HodDeptAnalytics.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1775925371760,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}

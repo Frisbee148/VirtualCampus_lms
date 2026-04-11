@@ -91,6 +91,16 @@ import {
   AdminNotifications,
 } from "./admininterface";
 
+// Librarian Interface
+import {
+  LibrarianDashboard,
+  BookManagement,
+  LibrarianUserManagement,
+  BorrowReturn,
+  LibrarianProfile,
+  LibrarianNotifications,
+} from "./librarianinterface";
+
 function App() {
   return (
     <Router>
@@ -292,6 +302,17 @@ function App() {
         <Route path="/admin/audit" element={<AuditLogs />} />
         <Route path="/admin/profile" element={<AdminProfile />} />
         <Route path="/admin/notifications" element={<AdminNotifications />} />
+
+        {/* Librarian Dashboard */}
+        <Route path="/librarian/dashboard" element={<LibrarianDashboard />} />
+        <Route path="/librarian/books" element={<BookManagement />} />
+        <Route path="/librarian/users" element={<LibrarianUserManagement />} />
+        <Route path="/librarian/borrow" element={<BorrowReturn />} />
+        <Route path="/librarian/profile" element={<LibrarianProfile />} />
+        <Route
+          path="/librarian/notifications"
+          element={<LibrarianNotifications />}
+        />
 
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />

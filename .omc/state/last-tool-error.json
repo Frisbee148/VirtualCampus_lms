@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"ls /home/casp1an/Code/virtualCampus/src/ 2>/dev/null\"}",
+  "error": "Exit code 2\n[rerun: b2]",
+  "timestamp": "2026-04-11T16:17:36.222Z",
+  "retry_count": 1
+}
