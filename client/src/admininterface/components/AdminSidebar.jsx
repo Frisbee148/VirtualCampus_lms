@@ -1,8 +1,13 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import {
-  LayoutDashboard, Users, Shield, Wrench, FileSearch,
-  Settings, LogOut, ChevronRight, X
+  LayoutDashboard,
+  Users,
+  Shield,
+  FileSearch,
+  LogOut,
+  ChevronRight,
+  X,
 } from "lucide-react";
 
 const AdminSidebar = ({ mobileOpen, onClose }) => {
@@ -26,12 +31,6 @@ const AdminSidebar = ({ mobileOpen, onClose }) => {
       icon: Shield,
       label: "Roles & Permissions",
       path: "/admin/roles",
-    },
-    {
-      id: "settings",
-      icon: Wrench,
-      label: "System Settings",
-      path: "/admin/settings",
     },
     {
       id: "audit",
@@ -86,7 +85,10 @@ const AdminSidebar = ({ mobileOpen, onClose }) => {
               admin@lnmiit.ac.in
             </p>
           </div>
-          <ChevronRight size={14} className="text-white/20 group-hover:text-white/50 transition-colors" />
+          <ChevronRight
+            size={14}
+            className="text-white/20 group-hover:text-white/50 transition-colors"
+          />
         </div>
 
         <div className="mx-5 mb-3 border-t border-white/[0.06]"></div>
@@ -120,20 +122,6 @@ const AdminSidebar = ({ mobileOpen, onClose }) => {
 
         {/* Footer */}
         <div className="p-3 space-y-0.5 border-t border-white/[0.06]">
-          <NavLink
-            to="/admin/profile"
-            onClick={onClose}
-            className={({ isActive }) =>
-              `w-full flex items-center gap-3 px-3 py-2.5 text-[13px] font-medium no-underline transition-all duration-200 ${
-                isActive
-                  ? "text-white bg-white/[0.06]"
-                  : "text-white/40 hover:text-white/70 hover:bg-white/[0.04]"
-              }`
-            }
-          >
-            <Settings size={16} strokeWidth={1.8} />
-            Settings
-          </NavLink>
           <button
             onClick={() => {
               localStorage.removeItem("rememberedUsername");

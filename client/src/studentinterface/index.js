@@ -18,3 +18,5 @@ export { default as AIMentorEmpty } from "./screens/AIMentorEmpty";
 export { default as AIMentorActive } from "./screens/AIMentorActive";
 export { default as FeeStatus } from "./screens/FeeStatus";
 export { default as StudentServiceScreen } from "./screens/StudentServiceScreen";
+export { default as CIFCompletionScreen } from "./screens/CIFCompletionScreen";
+export { default as BTPProjectScreen } from "./screens/BTPProjectScreen";

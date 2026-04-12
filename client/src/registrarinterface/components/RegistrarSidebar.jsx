@@ -6,7 +6,6 @@ import {
   FileText,
   ClipboardList,
   Award,
-  Settings,
   LogOut,
   ChevronRight,
   X,
@@ -129,19 +128,6 @@ const RegistrarSidebar = ({ mobileOpen, onClose }) => {
 
         {/* Footer */}
         <div className="p-3 space-y-0.5 border-t border-white/[0.06]">
-          <NavLink
-            to="/registrar/profile"
-            onClick={onClose}
-            className={({ isActive }) =>
-              `w-full flex items-center gap-3 px-3 py-2.5 text-[13px] font-medium no-underline transition-all duration-200 ${
-                isActive
-                  ? "text-white bg-white/[0.06]"
-                  : "text-white/40 hover:text-white/70 hover:bg-white/[0.04]"
-              }`
-            }
-          >
-            <Settings size={16} strokeWidth={1.8} /> Settings
-          </NavLink>
           <button
             onClick={() => {
               localStorage.removeItem("rememberedUsername");

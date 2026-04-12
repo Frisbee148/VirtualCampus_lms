@@ -6,7 +6,6 @@ import {
   GraduationCap,
   ClipboardList,
   Megaphone,
-  Settings,
   LogOut,
   ChevronRight,
   X,
@@ -16,11 +15,36 @@ const StaffSidebar = ({ mobileOpen, onClose }) => {
   const navigate = useNavigate();
 
   const mainMenuItems = [
-    { id: "dashboard", icon: LayoutDashboard, label: "Dashboard", path: "/staff/dashboard" },
-    { id: "users", icon: Users, label: "User Management", path: "/staff/users" },
-    { id: "courses", icon: GraduationCap, label: "Course Management", path: "/staff/courses" },
-    { id: "enrollments", icon: ClipboardList, label: "Enrollments", path: "/staff/enrollments" },
-    { id: "announcements", icon: Megaphone, label: "Announcements", path: "/staff/announcements" },
+    {
+      id: "dashboard",
+      icon: LayoutDashboard,
+      label: "Dashboard",
+      path: "/staff/dashboard",
+    },
+    {
+      id: "users",
+      icon: Users,
+      label: "User Management",
+      path: "/staff/users",
+    },
+    {
+      id: "courses",
+      icon: GraduationCap,
+      label: "Course Management",
+      path: "/staff/courses",
+    },
+    {
+      id: "enrollments",
+      icon: ClipboardList,
+      label: "Enrollments",
+      path: "/staff/enrollments",
+    },
+    {
+      id: "announcements",
+      icon: Megaphone,
+      label: "Announcements",
+      path: "/staff/announcements",
+    },
   ];
 
   const handleNavClick = (path) => {
@@ -104,19 +128,6 @@ const StaffSidebar = ({ mobileOpen, onClose }) => {
 
         {/* Footer */}
         <div className="p-3 space-y-0.5 border-t border-white/[0.06]">
-          <NavLink
-            to="/staff/profile"
-            onClick={onClose}
-            className={({ isActive }) =>
-              `w-full flex items-center gap-3 px-3 py-2.5 text-[13px] font-medium no-underline transition-all duration-200 ${
-                isActive
-                  ? "text-white bg-white/[0.06]"
-                  : "text-white/40 hover:text-white/70 hover:bg-white/[0.04]"
-              }`
-            }
-          >
-            <Settings size={16} strokeWidth={1.8} /> Settings
-          </NavLink>
           <button
             onClick={() => {
               localStorage.removeItem("rememberedUsername");
