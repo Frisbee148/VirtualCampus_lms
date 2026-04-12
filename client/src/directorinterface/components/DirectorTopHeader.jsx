@@ -1,6 +1,6 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Bell, UserCircle, Menu } from 'lucide-react';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { Bell, Menu } from "lucide-react";
 
 const DirectorTopHeader = ({ onMenuToggle }) => {
   const navigate = useNavigate();
@@ -18,19 +18,21 @@ const DirectorTopHeader = ({ onMenuToggle }) => {
 
       <div className="flex items-center gap-1 sm:gap-2">
         <button
-          onClick={() => navigate('/director/notifications')}
+          onClick={() => navigate("/director/notifications")}
           className="relative p-2 sm:p-2.5 text-gray-400 hover:text-black hover:bg-black/5 transition-all duration-200 cursor-pointer"
         >
-          <Bell size={20} strokeWidth={1.8} className="sm:w-[22px] sm:h-[22px]" />
+          <Bell
+            size={20}
+            strokeWidth={1.8}
+            className="sm:w-[22px] sm:h-[22px]"
+          />
           <span className="absolute top-1.5 right-1.5 sm:top-2 sm:right-2 w-2 h-2 bg-red-500 ring-2 ring-[#f8f9fa]"></span>
         </button>
-
-        <button
-          onClick={() => navigate('/director/profile')}
-          className="p-1.5 sm:p-2 text-gray-400 hover:text-black hover:bg-black/5 transition-all duration-200 cursor-pointer"
-        >
-          <UserCircle size={24} strokeWidth={1.5} className="sm:w-[26px] sm:h-[26px]" />
-        </button>
+        <img
+          src="/LNMIIT-Logo-Transperant-Background.png"
+          alt="LNMIIT-Logo-Transparent-Background"
+          className="h-7 sm:h-8 w-auto object-contain"
+        />
       </div>
     </header>
   );

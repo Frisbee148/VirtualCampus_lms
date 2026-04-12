@@ -10,7 +10,6 @@ import {
   CalendarDays,
   ClipboardCheck,
   GraduationCap,
-  Settings,
   LogOut,
   ChevronRight,
   X,
@@ -20,19 +19,69 @@ const HodSidebar = ({ mobileOpen, onClose }) => {
   const navigate = useNavigate();
 
   const mainMenuItems = [
-    { id: "dashboard", icon: LayoutDashboard, label: "Dashboard", path: "/hod/dashboard" },
-    { id: "faculty", icon: Users, label: "Faculty Management", path: "/hod/faculty" },
-    { id: "courses", icon: GraduationCap, label: "Course Allocation", path: "/hod/courses" },
-    { id: "approvals", icon: ClipboardCheck, label: "Approvals", path: "/hod/approvals" },
-    { id: "analytics", icon: BarChart3, label: "Dept Analytics", path: "/hod/analytics" },
+    {
+      id: "dashboard",
+      icon: LayoutDashboard,
+      label: "Dashboard",
+      path: "/hod/dashboard",
+    },
+    {
+      id: "faculty",
+      icon: Users,
+      label: "Faculty Management",
+      path: "/hod/faculty",
+    },
+    {
+      id: "courses",
+      icon: GraduationCap,
+      label: "Course Allocation",
+      path: "/hod/courses",
+    },
+    {
+      id: "approvals",
+      icon: ClipboardCheck,
+      label: "Approvals",
+      path: "/hod/approvals",
+    },
+    {
+      id: "analytics",
+      icon: BarChart3,
+      label: "Dept Analytics",
+      path: "/hod/analytics",
+    },
   ];
 
   const academicItems = [
-    { id: "my-courses", icon: BookOpen, label: "My Courses", path: "/hod/my-courses" },
-    { id: "at-risk", icon: AlertTriangle, label: "At Risk Students", path: "/hod/at-risk" },
-    { id: "batch-insights", icon: BarChart3, label: "Batch Insights", path: "/hod/batch-insights" },
-    { id: "calendar", icon: Calendar, label: "Calendar", path: "/hod/calendar" },
-    { id: "timetable", icon: CalendarDays, label: "Timetable", path: "/hod/timetable" },
+    {
+      id: "my-courses",
+      icon: BookOpen,
+      label: "My Courses",
+      path: "/hod/my-courses",
+    },
+    {
+      id: "at-risk",
+      icon: AlertTriangle,
+      label: "At Risk Students",
+      path: "/hod/at-risk",
+    },
+    {
+      id: "batch-insights",
+      icon: BarChart3,
+      label: "Batch Insights",
+      path: "/hod/batch-insights",
+    },
+    {
+      id: "calendar",
+      icon: Calendar,
+      label: "Calendar",
+      path: "/hod/calendar",
+    },
+    {
+      id: "timetable",
+      icon: CalendarDays,
+      label: "Timetable",
+      path: "/hod/timetable",
+    },
   ];
 
   const handleNavClick = (path) => {
@@ -142,19 +191,6 @@ const HodSidebar = ({ mobileOpen, onClose }) => {
 
         {/* Footer */}
         <div className="p-3 space-y-0.5 border-t border-white/[0.06]">
-          <NavLink
-            to="/hod/profile"
-            onClick={onClose}
-            className={({ isActive }) =>
-              `w-full flex items-center gap-3 px-3 py-2.5 text-[13px] font-medium no-underline transition-all duration-200 ${
-                isActive
-                  ? "text-white bg-white/[0.06]"
-                  : "text-white/40 hover:text-white/70 hover:bg-white/[0.04]"
-              }`
-            }
-          >
-            <Settings size={16} strokeWidth={1.8} /> Settings
-          </NavLink>
           <button
             onClick={() => {
               localStorage.removeItem("rememberedUsername");

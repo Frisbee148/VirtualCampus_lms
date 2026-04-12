@@ -6,7 +6,6 @@ import {
   BarChart3,
   Calendar,
   CalendarDays,
-  Settings,
   LogOut,
   ChevronRight,
   X,
@@ -20,7 +19,7 @@ const FacultySidebar = ({ mobileOpen, onClose }) => {
       id: "my-courses",
       icon: BookOpen,
       label: "My Courses",
-      path: "/faculty/dashboard",
+      path: "/faculty/my-courses",
     },
     {
       id: "at-risk",
@@ -33,6 +32,16 @@ const FacultySidebar = ({ mobileOpen, onClose }) => {
       icon: BarChart3,
       label: "Batch Insights",
       path: "/faculty/batch-insights",
+    },
+    {
+      id: "cif-completion",
+      label: "CIF Completion",
+      path: "/faculty/cif-completion",
+    },
+    {
+      id: "btp-projects",
+      label: "BTP Projects",
+      path: "/faculty/btp",
     },
     {
       id: "calendar",
@@ -120,7 +129,7 @@ const FacultySidebar = ({ mobileOpen, onClose }) => {
                   }`
                 }
               >
-                <Icon size={17} strokeWidth={1.8} />
+                {Icon ? <Icon size={17} strokeWidth={1.8} /> : null}
                 {item.label}
               </NavLink>
             );
@@ -129,19 +138,6 @@ const FacultySidebar = ({ mobileOpen, onClose }) => {
 
         {/* Footer */}
         <div className="p-3 space-y-0.5 border-t border-white/[0.06]">
-          <NavLink
-            to="/faculty/profile"
-            onClick={onClose}
-            className={({ isActive }) =>
-              `w-full flex items-center gap-3 px-3 py-2.5 text-[13px] font-medium no-underline transition-all duration-200 ${
-                isActive
-                  ? "text-white bg-white/[0.06]"
-                  : "text-white/40 hover:text-white/70 hover:bg-white/[0.04]"
-              }`
-            }
-          >
-            <Settings size={16} strokeWidth={1.8} /> Settings
-          </NavLink>
           <button
             onClick={() => {
               localStorage.removeItem("rememberedUsername");

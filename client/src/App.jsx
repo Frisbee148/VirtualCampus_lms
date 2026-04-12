@@ -32,6 +32,8 @@ import {
   AIMentorEmpty,
   AIMentorActive,
   StudentServiceScreen,
+  CIFCompletionScreen,
+  BTPProjectScreen,
 } from "./studentinterface";
 
 // Faculty Interface
@@ -43,6 +45,8 @@ import {
   FacultyTimetable,
   FacultyProfile,
   FacultyNotifications,
+  FacultyCIFCompletion,
+  FacultyBTPProjects,
 } from "./facultyinterface";
 
 // Parent / Guardian Interface
@@ -158,11 +162,13 @@ function App() {
         <Route path="/community" element={<CommunityClubs />} />
         <Route path="/community/club" element={<ClubDetail />} />
 
+        {/* CIF Completion */}
+        <Route path="/cif-completion" element={<CIFCompletionScreen />} />
+
+        {/* BTP Projects */}
+        <Route path="/btp" element={<BTPProjectScreen />} />
+
         {/* Added Student Services (missing options only) */}
-        <Route
-          path="/btp"
-          element={<StudentServiceScreen serviceKey="btp" activeTab="BTP" />}
-        />
         <Route
           path="/mini-project"
           element={
@@ -271,13 +277,22 @@ function App() {
         <Route path="/ai" element={<AIMentorEmpty />} />
         <Route path="/ai/active" element={<AIMentorActive />} />
 
-        {/* Faculty Dashboard */}
-        <Route path="/faculty/dashboard" element={<FacultyDashboard />} />
+        {/* Faculty */}
+        <Route path="/faculty/my-courses" element={<FacultyDashboard />} />
+        <Route
+          path="/faculty/dashboard"
+          element={<Navigate to="/faculty/my-courses" replace />}
+        />
         <Route path="/faculty/at-risk" element={<AtRiskStudents />} />
         <Route path="/faculty/batch-insights" element={<BatchInsights />} />
         <Route path="/faculty/calendar" element={<FacultyCalendar />} />
         <Route path="/faculty/timetable" element={<FacultyTimetable />} />
         <Route path="/faculty/profile" element={<FacultyProfile />} />
+        <Route
+          path="/faculty/cif-completion"
+          element={<FacultyCIFCompletion />}
+        />
+        <Route path="/faculty/btp" element={<FacultyBTPProjects />} />
         <Route
           path="/faculty/notifications"
           element={<FacultyNotifications />}
@@ -345,7 +360,10 @@ function App() {
         <Route path="/staff/dashboard" element={<StaffDashboard />} />
         <Route path="/staff/users" element={<StaffUserManagement />} />
         <Route path="/staff/courses" element={<StaffCourseManagement />} />
-        <Route path="/staff/enrollments" element={<StaffEnrollmentManagement />} />
+        <Route
+          path="/staff/enrollments"
+          element={<StaffEnrollmentManagement />}
+        />
         <Route path="/staff/announcements" element={<StaffAnnouncements />} />
         <Route path="/staff/profile" element={<StaffProfile />} />
         <Route path="/staff/notifications" element={<StaffNotifications />} />

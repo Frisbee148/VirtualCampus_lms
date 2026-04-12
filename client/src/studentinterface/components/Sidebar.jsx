@@ -6,7 +6,6 @@ import {
   FileText,
   CalendarDays,
   Download,
-  Settings,
   LogOut,
   ChevronRight,
   X,
@@ -237,20 +236,15 @@ const Sidebar = ({ mobileOpen, onClose }) => {
 
         {/* Footer Nav */}
         <div className="p-3 space-y-0.5 border-t border-white/[0.06]">
-          <NavLink
-            to="/profile"
-            onClick={onClose}
-            className={({ isActive }) =>
-              `w-full flex items-center gap-3 px-3 py-2.5 text-[13px] font-medium no-underline transition-all duration-200 ${
-                isActive
-                  ? "text-white bg-white/[0.06]"
-                  : "text-white/40 hover:text-white/70 hover:bg-white/[0.04]"
-              }`
-            }
+          <button
+            onClick={() => {
+              localStorage.removeItem("rememberedUsername");
+              sessionStorage.clear();
+              navigate("/", { replace: true });
+              if (onClose) onClose();
+            }}
+            className="w-full flex items-center gap-3 px-3 py-2.5 text-[13px] font-medium text-white/40 hover:text-red-400 hover:bg-red-500/[0.06] transition-all duration-200"
           >
-            <Settings size={16} strokeWidth={1.8} /> Settings
-          </NavLink>
-          <button className="w-full flex items-center gap-3 px-3 py-2.5 text-[13px] font-medium text-white/40 hover:text-red-400 hover:bg-red-500/[0.06] transition-all duration-200">
             <LogOut size={16} strokeWidth={1.8} /> Log out
           </button>
         </div>

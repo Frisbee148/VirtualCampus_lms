@@ -5,3 +5,5 @@ export { default as FacultyCalendar } from "./screens/FacultyCalendar";
 export { default as FacultyTimetable } from "./screens/FacultyTimetable";
 export { default as FacultyProfile } from "./screens/FacultyProfile";
 export { default as FacultyNotifications } from "./screens/FacultyNotifications";
+export { default as FacultyCIFCompletion } from "./screens/FacultyCIFCompletion";
+export { default as FacultyBTPProjects } from "./screens/FacultyBTPProjects";

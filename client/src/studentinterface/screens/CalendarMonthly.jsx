@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
-import StudentLayout from '../StudentLayout';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useEffect, useState } from "react";
+import StudentLayout from "../StudentLayout";
+import StudentEventModal from "../components/StudentEventModal";
+import {
+  MONTHLY_EVENTS_STORAGE_KEY,
+  loadStoredArray,
+  saveStoredArray,
+} from "../utils/studentEventHelpers";
+import { ChevronLeft, ChevronRight, Plus } from "lucide-react";
 
-const EVENTS = {
+const DEFAULT_EVENTS = {
   "2026-03-02": [{ title: "Quiz 1 — CS301", color: "#6366f1" }],
   "2026-03-05": [{ title: "Assignment Due — CS301", color: "#e8a435" }],
   "2026-03-10": [{ title: "Midsem Exam", color: "#ef4444" }],
@@ -23,6 +29,15 @@ const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 const CalendarMonthly = () => {
   const [current, setCurrent] = useState(new Date(2026, 2, 1)); // March 2026
+  const [showModal, setShowModal] = useState(false);
+  const [customEvents, setCustomEvents] = useState(() =>
+    loadStoredArray(MONTHLY_EVENTS_STORAGE_KEY),
+  );
+  const [form, setForm] = useState({ date: "", title: "", color: "#1a7a7a" });
+
+  useEffect(() => {
+    saveStoredArray(MONTHLY_EVENTS_STORAGE_KEY, customEvents);
+  }, [customEvents]);
 
   const year = current.getFullYear();
   const month = current.getMonth();
@@ -33,6 +48,31 @@ const CalendarMonthly = () => {
   const prev = () => setCurrent(new Date(year, month - 1, 1));
   const next = () => setCurrent(new Date(year, month + 1, 1));
 
+  const openAddEvent = () => {
+    setForm({
+      date: `${year}-${String(month + 1).padStart(2, "0")}-01`,
+      title: "",
+      color: "#1a7a7a",
+    });
+    setShowModal(true);
+  };
+
+  const handleAddEvent = (event) => {
+    event.preventDefault();
+
+    if (!form.date || !form.title.trim()) return;
+
+    setCustomEvents((currentEvents) => [
+      ...currentEvents,
+      {
+        date: form.date,
+        title: form.title.trim(),
+        color: form.color,
+      },
+    ]);
+    setShowModal(false);
+  };
+
   const cells = [];
   for (let i = 0; i < firstDay; i++) cells.push(null);
   for (let d = 1; d <= daysInMonth; d++) cells.push(d);
@@ -40,7 +80,10 @@ const CalendarMonthly = () => {
   const getEvents = (day) => {
     if (!day) return [];
     const key = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
-    return EVENTS[key] || [];
+    return [
+      ...(DEFAULT_EVENTS[key] || []),
+      ...customEvents.filter((ev) => ev.date === key),
+    ];
   };
 
   const isToday = (day) =>
@@ -57,6 +100,17 @@ const CalendarMonthly = () => {
         <h2 className="text-lg sm:text-xl font-semibold text-gray-800 mb-4 sm:mb-6">
           Calendar
         </h2>
+
+        <div className="flex justify-end mb-3 sm:mb-4">
+          <button
+            onClick={openAddEvent}
+            className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-2.5 bg-black text-white text-xs sm:text-sm font-semibold hover:bg-[#0e445b] transition-colors shadow-sm cursor-pointer"
+          >
+            <Plus size={14} className="sm:w-4 sm:h-4" />
+            <span className="hidden sm:inline">Add Event</span>
+            <span className="sm:hidden">Add</span>
+          </button>
+        </div>
 
         {/* Month navigation */}
         <div className="flex items-center justify-between gap-2 mb-3 sm:mb-4">
@@ -76,6 +130,69 @@ const CalendarMonthly = () => {
             <ChevronRight size={20} className="text-gray-600" />
           </button>
         </div>
+
+        <StudentEventModal
+          open={showModal}
+          title="Add Calendar Event"
+          description="Create a custom calendar item for the selected date."
+          submitLabel="Add Event"
+          onClose={() => setShowModal(false)}
+          onSubmit={handleAddEvent}
+        >
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <label className="block">
+              <span className="mb-1.5 block text-sm font-medium text-gray-700">
+                Date
+              </span>
+              <input
+                type="date"
+                value={form.date}
+                onChange={(event) =>
+                  setForm((currentForm) => ({
+                    ...currentForm,
+                    date: event.target.value,
+                  }))
+                }
+                className="w-full border border-gray-200 px-3 py-2.5 text-sm outline-none focus:border-black"
+                required
+              />
+            </label>
+            <label className="block">
+              <span className="mb-1.5 block text-sm font-medium text-gray-700">
+                Color
+              </span>
+              <input
+                type="color"
+                value={form.color}
+                onChange={(event) =>
+                  setForm((currentForm) => ({
+                    ...currentForm,
+                    color: event.target.value,
+                  }))
+                }
+                className="h-[46px] w-full cursor-pointer border border-gray-200 bg-white px-2 py-1"
+              />
+            </label>
+          </div>
+          <label className="block">
+            <span className="mb-1.5 block text-sm font-medium text-gray-700">
+              Title
+            </span>
+            <input
+              type="text"
+              value={form.title}
+              onChange={(event) =>
+                setForm((currentForm) => ({
+                  ...currentForm,
+                  title: event.target.value,
+                }))
+              }
+              placeholder="Enter event title"
+              className="w-full border border-gray-200 px-3 py-2.5 text-sm outline-none focus:border-black"
+              required
+            />
+          </label>
+        </StudentEventModal>
 
         {/* Day headers */}
         <div className="grid grid-cols-7 bg-[#1a7a7a] text-white text-[10px] sm:text-sm font-semibold">
