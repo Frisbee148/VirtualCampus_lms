@@ -105,6 +105,17 @@ import {
   LibrarianNotifications,
 } from "./librarianinterface";
 
+// Administrative Officer Interface
+import {
+  AODashboard,
+  AOAnalytics,
+  AOCourseOversight,
+  AOUserOverview,
+  AOReports,
+  AOProfile,
+  AONotifications,
+} from "./adminofficerinterface";
+
 // Staff Interface
 import {
   StaffDashboard,
@@ -367,6 +378,15 @@ function App() {
         <Route path="/staff/announcements" element={<StaffAnnouncements />} />
         <Route path="/staff/profile" element={<StaffProfile />} />
         <Route path="/staff/notifications" element={<StaffNotifications />} />
+
+        {/* Administrative Officer */}
+        <Route path="/ao/dashboard" element={<AODashboard />} />
+        <Route path="/ao/analytics" element={<AOAnalytics />} />
+        <Route path="/ao/courses" element={<AOCourseOversight />} />
+        <Route path="/ao/users" element={<AOUserOverview />} />
+        <Route path="/ao/reports" element={<AOReports />} />
+        <Route path="/ao/profile" element={<AOProfile />} />
+        <Route path="/ao/notifications" element={<AONotifications />} />
 
         {/* HOD Dashboard */}
         <Route path="/hod/dashboard" element={<HodDashboard />} />
