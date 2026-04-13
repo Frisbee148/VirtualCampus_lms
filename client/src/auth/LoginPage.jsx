@@ -239,42 +239,40 @@ const LoginPage = () => {
         <img src="/lnmiit.jpg" alt="Campus Background" />
       </div>
 
-      {/* Header */}
-      <header className="lp-header">
-        <div className="lp-header-title">
-          <img src="/Lnmiit_logo.png" alt="LNMIIT" className="lp-parliament-logo" />
-          The LNM Institute of Information Technology
-        </div>
-
-        <div
-          ref={aboutRef}
-          className={`lp-about-container${aboutOpen ? " active" : ""}`}
-          onMouseEnter={handleAboutEnter}
-          onMouseLeave={handleAboutLeave}
+      {/* About floating menu */}
+      <div
+        ref={aboutRef}
+        className={`lp-about-container lp-about-floating${aboutOpen ? " active" : ""}`}
+        onMouseEnter={handleAboutEnter}
+        onMouseLeave={handleAboutLeave}
+      >
+        <button
+          className="lp-about-btn"
+          onMouseEnter={() => clearTimeout(closeTimeoutRef.current)}
+          onClick={(e) => {
+            e.stopPropagation();
+            setAboutOpen((v) => !v);
+          }}
         >
-          <button
-            className="lp-about-btn"
-            onMouseEnter={() => clearTimeout(closeTimeoutRef.current)}
-            onClick={(e) => {
-              e.stopPropagation();
-              setAboutOpen((v) => !v);
-            }}
-          >
-            About
-          </button>
-          <div 
-            className="lp-about-dropdown"
-            onMouseEnter={() => clearTimeout(closeTimeoutRef.current)}
-            onMouseLeave={() => closeTimeoutRef.current = setTimeout(() => setAboutOpen(false), 500)}
-          >
-            {ABOUT_LINKS.map((link, i) => (
-              <a key={i} href="#">
-                {link}
-              </a>
-            ))}
-          </div>
+          About
+        </button>
+        <div
+          className="lp-about-dropdown"
+          onMouseEnter={() => clearTimeout(closeTimeoutRef.current)}
+          onMouseLeave={() =>
+            (closeTimeoutRef.current = setTimeout(
+              () => setAboutOpen(false),
+              500,
+            ))
+          }
+        >
+          {ABOUT_LINKS.map((link, i) => (
+            <a key={i} href="#">
+              {link}
+            </a>
+          ))}
         </div>
-      </header>
+      </div>
 
       {/* Login form */}
       <div className="lp-login-wrapper">
