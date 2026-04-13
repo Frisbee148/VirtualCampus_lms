@@ -17,7 +17,8 @@ const ROLES = [
   { value: "faculty", label: "Faculty" },
   { value: "director", label: "Director" },
   { value: "registrar", label: "Registrar" },
-  { value: "admin", label: "Admin" },
+  { value: "admin", label: "Website Admin" },
+  { value: "admin-officer", label: "Admin Officer" },
   { value: "guardian", label: "Guardian/Parent" },
   { value: "staff", label: "Staff" },
   { value: "hod", label: "HOD" },
@@ -141,6 +142,8 @@ const LoginPage = () => {
       navigate("/registrar/dashboard");
     } else if (selectedRole === "admin") {
       navigate("/admin/dashboard");
+    } else if (selectedRole === "admin-officer") {
+      navigate("/ao/dashboard");
     } else if (selectedRole === "librarian") {
       navigate("/librarian/dashboard");
     } else if (selectedRole === "hod") {

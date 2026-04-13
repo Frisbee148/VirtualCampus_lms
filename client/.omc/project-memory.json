@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastScanned": 1775925063723,
+  "lastScanned": 1776088030108,
   "projectRoot": "/home/casp1an/Code/virtualCampus/client",
   "techStack": {
     "languages": [
@@ -69,7 +69,7 @@
       "path": "dist",
       "purpose": "Distribution/build output",
       "fileCount": 8,
-      "lastAccessed": 1775925063709,
+      "lastAccessed": 1776088030092,
       "keyFiles": [
         "LNMIIT-Logo-Transperant-Background.png",
         "Picture1.png",
@@ -82,7 +82,7 @@
       "path": "public",
       "purpose": "Public files",
       "fileCount": 7,
-      "lastAccessed": 1775925063711,
+      "lastAccessed": 1776088030094,
       "keyFiles": [
         "LNMIIT-Logo-Transperant-Background.png",
         "Picture1.png",
@@ -95,7 +95,7 @@
       "path": "src",
       "purpose": "Source code",
       "fileCount": 4,
-      "lastAccessed": 1775925063719,
+      "lastAccessed": 1776088030103,
       "keyFiles": [
         "App.css",
         "App.jsx",
@@ -107,17 +107,17 @@
       "path": "dist/assets",
       "purpose": "Static assets",
       "fileCount": 2,
-      "lastAccessed": 1775925063720,
+      "lastAccessed": 1776088030106,
       "keyFiles": [
-        "index-CKr26-Nh.js",
-        "index-DmCQc-t4.css"
+        "index-B3nQ1BNw.css",
+        "index-fGNpnKwe.js"
       ]
     },
     "src/assets": {
       "path": "src/assets",
       "purpose": "Static assets",
       "fileCount": 3,
-      "lastAccessed": 1775925063720,
+      "lastAccessed": 1776088030106,
       "keyFiles": [
         "hero.png",
         "react.svg",
@@ -126,6 +126,12 @@
     }
   },
   "hotPaths": [
+    {
+      "path": "src/App.jsx",
+      "accessCount": 3,
+      "lastAccessed": 1776088945244,
+      "type": "file"
+    },
     {
       "path": "src/facultyinterface/index.js",
       "accessCount": 1,
@@ -232,6 +238,150 @@
       "path": "src/hodinterface/screens/HodDeptAnalytics.jsx",
       "accessCount": 1,
       "lastAccessed": 1775925371760,
+      "type": "file"
+    },
+    {
+      "path": "",
+      "accessCount": 1,
+      "lastAccessed": 1776088595505,
+      "type": "directory"
+    },
+    {
+      "path": "src/studentinterface",
+      "accessCount": 1,
+      "lastAccessed": 1776088601451,
+      "type": "directory"
+    },
+    {
+      "path": "src/studentinterface/components/TopHeader.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1776088605748,
+      "type": "file"
+    },
+    {
+      "path": "src/staffinterface/StaffLayout.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1776088606154,
+      "type": "file"
+    },
+    {
+      "path": "src/staffinterface/index.js",
+      "accessCount": 1,
+      "lastAccessed": 1776088606674,
+      "type": "file"
+    },
+    {
+      "path": "src/admininterface/AdminLayout.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1776088607305,
+      "type": "file"
+    },
+    {
+      "path": "src/admininterface/index.js",
+      "accessCount": 1,
+      "lastAccessed": 1776088607735,
+      "type": "file"
+    },
+    {
+      "path": "src/admininterface/components/AdminSidebar.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1776088614212,
+      "type": "file"
+    },
+    {
+      "path": "src/admininterface/components/AdminTopHeader.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1776088614821,
+      "type": "file"
+    },
+    {
+      "path": "src/admininterface/screens/AdminDashboard.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1776088615376,
+      "type": "file"
+    },
+    {
+      "path": "src/staffinterface/screens/StaffDashboard.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1776088615730,
+      "type": "file"
+    },
+    {
+      "path": "src/adminofficerinterface/AdminOfficerLayout.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1776088656764,
+      "type": "file"
+    },
+    {
+      "path": "src/adminofficerinterface/components/AOTopHeader.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1776088657742,
+      "type": "file"
+    },
+    {
+      "path": "src/adminofficerinterface/components/AOSidebar.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1776088676547,
+      "type": "file"
+    },
+    {
+      "path": "src/adminofficerinterface/index.js",
+      "accessCount": 1,
+      "lastAccessed": 1776088677290,
+      "type": "file"
+    },
+    {
+      "path": "src/adminofficerinterface/screens/AODashboard.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1776088718824,
+      "type": "file"
+    },
+    {
+      "path": "src/adminofficerinterface/screens/AOAnalytics.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1776088765771,
+      "type": "file"
+    },
+    {
+      "path": "src/adminofficerinterface/screens/AOCourseOversight.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1776088817637,
+      "type": "file"
+    },
+    {
+      "path": "src/adminofficerinterface/screens/AOUserOverview.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1776088845862,
+      "type": "file"
+    },
+    {
+      "path": "src/adminofficerinterface/screens/AOReports.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1776088872944,
+      "type": "file"
+    },
+    {
+      "path": "src/admininterface/screens/AdminProfile.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1776088883986,
+      "type": "file"
+    },
+    {
+      "path": "src/admininterface/screens/AdminNotifications.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1776088884434,
+      "type": "file"
+    },
+    {
+      "path": "src/adminofficerinterface/screens/AOProfile.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1776088911138,
+      "type": "file"
+    },
+    {
+      "path": "src/adminofficerinterface/screens/AONotifications.jsx",
+      "accessCount": 1,
+      "lastAccessed": 1776088924279,
       "type": "file"
     }
   ],
