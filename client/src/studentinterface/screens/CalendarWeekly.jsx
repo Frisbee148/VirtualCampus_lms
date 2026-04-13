@@ -7,7 +7,6 @@ import {
   formatWeeklyTimeRange,
   loadStoredArray,
   saveStoredArray,
-  timeLabelToMinutes,
 } from "../utils/studentEventHelpers";
 import { Plus } from "lucide-react";
 
@@ -17,6 +16,8 @@ const CalendarWeekly = () => {
   const [customEvents, setCustomEvents] = useState(() =>
     loadStoredArray(WEEKLY_EVENTS_STORAGE_KEY),
   );
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [editEventIndex, setEditEventIndex] = useState(0);
   const [form, setForm] = useState({
     day: "0",
     startTime: "08:00",
@@ -241,11 +242,37 @@ const CalendarWeekly = () => {
     "#10b981": "bg-emerald-500",
     "#4b5563": "bg-slate-600",
   };
+  const colorValueByClass = Object.entries(colorClassByValue).reduce(
+    (accumulator, [colorValue, colorClass]) => {
+      accumulator[colorClass] = colorValue;
+      return accumulator;
+    },
+    {},
+  );
 
   const cellH = 40; // smaller on mobile-friendly
   const cellHSm = 56;
 
+  const timeInputFromSlot = (slotValue) => {
+    const totalMinutes = 8 * 60 + Math.round(Number(slotValue) * 60);
+    const hour = Math.floor(totalMinutes / 60);
+    const minute = totalMinutes % 60;
+    return `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`;
+  };
+
+  const applyFormFromCustomEvent = (eventItem) => {
+    setForm({
+      day: String(eventItem.day ?? 0),
+      startTime: timeInputFromSlot(eventItem.start ?? 0),
+      duration: String(eventItem.dur ?? 1),
+      title: eventItem.title || "",
+      color: colorValueByClass[eventItem.color] || "#1a7a7a",
+    });
+  };
+
   const openAddEvent = () => {
+    setIsEditMode(false);
+    setEditEventIndex(0);
     setForm({
       day: "0",
       startTime: "08:00",
@@ -256,7 +283,17 @@ const CalendarWeekly = () => {
     setShowModal(true);
   };
 
-  const handleAddEvent = (event) => {
+  const openEditEventAtIndex = (eventIndex) => {
+    const selectedEvent = customEvents[eventIndex];
+    if (!selectedEvent) return;
+
+    setIsEditMode(true);
+    setEditEventIndex(eventIndex);
+    applyFormFromCustomEvent(selectedEvent);
+    setShowModal(true);
+  };
+
+  const handleSubmitEvent = (event) => {
     event.preventDefault();
 
     if (!form.title.trim()) return;
@@ -265,28 +302,44 @@ const CalendarWeekly = () => {
     const startHour = Number(form.startTime.split(":")[0]);
     const startMinute = Number(form.startTime.split(":")[1]);
     const startSlot = startHour + startMinute / 60 - 8;
+    const nextEvent = {
+      day: Number(form.day),
+      start: startSlot,
+      dur: durationValue,
+      title: form.title.trim(),
+      time: formatWeeklyTimeRange(form.startTime, durationValue),
+      color: colorClassByValue[form.color] || "bg-teal-700",
+    };
 
-    setCustomEvents((currentEvents) => [
-      ...currentEvents,
-      {
-        day: Number(form.day),
-        start: startSlot,
-        dur: durationValue,
-        title: form.title.trim(),
-        time: formatWeeklyTimeRange(form.startTime, durationValue),
-        color: colorClassByValue[form.color] || "bg-teal-700",
-      },
-    ]);
+    if (isEditMode) {
+      setCustomEvents((currentEvents) =>
+        currentEvents.map((currentEvent, index) =>
+          index === editEventIndex ? nextEvent : currentEvent,
+        ),
+      );
+    } else {
+      setCustomEvents((currentEvents) => [...currentEvents, nextEvent]);
+    }
+
     setShowModal(false);
   };
 
-  const events = [...defaultEvents, ...customEvents].sort(
-    (leftEvent, rightEvent) => {
-      if (leftEvent.day !== rightEvent.day)
-        return leftEvent.day - rightEvent.day;
-      return leftEvent.start - rightEvent.start;
-    },
-  );
+  const events = [
+    ...defaultEvents.map((eventItem, index) => ({
+      ...eventItem,
+      id: `default-${index}`,
+      isCustom: false,
+    })),
+    ...customEvents.map((eventItem, index) => ({
+      ...eventItem,
+      id: `custom-${index}`,
+      isCustom: true,
+      customIndex: index,
+    })),
+  ].sort((leftEvent, rightEvent) => {
+    if (leftEvent.day !== rightEvent.day) return leftEvent.day - rightEvent.day;
+    return leftEvent.start - rightEvent.start;
+  });
 
   return (
     <StudentLayout activeTab="Timetable">
@@ -325,11 +378,15 @@ const CalendarWeekly = () => {
 
         <StudentEventModal
           open={showModal}
-          title="Add Timetable Event"
-          description="Create a custom block for your weekly timetable."
-          submitLabel="Add Event"
+          title={isEditMode ? "Edit Timetable Event" : "Add Timetable Event"}
+          description={
+            isEditMode
+              ? "Update this custom weekly timetable block."
+              : "Create a custom block for your weekly timetable."
+          }
+          submitLabel={isEditMode ? "Save Changes" : "Add Event"}
           onClose={() => setShowModal(false)}
-          onSubmit={handleAddEvent}
+          onSubmit={handleSubmitEvent}
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <label className="block">
@@ -477,23 +534,44 @@ const CalendarWeekly = () => {
                   ))}
                   {events
                     .filter((e) => e.day === dayIdx)
-                    .map((ev, i) => (
-                      <div
-                        key={i}
-                        className={`absolute left-0.5 right-0.5 sm:left-1 sm:right-1 ${ev.color} text-white px-1 sm:px-2 py-1 sm:py-1.5 overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer`}
-                        style={{
-                          top: `${ev.start * cellHSm}px`,
-                          height: `${ev.dur * cellHSm - 4}px`,
-                        }}
-                      >
-                        <p className="text-[8px] sm:text-[10px] font-bold truncate leading-tight">
-                          {ev.title}
-                        </p>
-                        <p className="text-[7px] sm:text-[9px] opacity-80 mt-0.5 hidden sm:block">
-                          {ev.time}
-                        </p>
-                      </div>
-                    ))}
+                    .map((ev, i) =>
+                      ev.isCustom ? (
+                        <button
+                          key={ev.id || i}
+                          type="button"
+                          onClick={() => openEditEventAtIndex(ev.customIndex)}
+                          title="Click to edit"
+                          className={`absolute left-0.5 right-0.5 sm:left-1 sm:right-1 ${ev.color} text-white px-1 sm:px-2 py-1 sm:py-1.5 overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer text-left`}
+                          style={{
+                            top: `${ev.start * cellHSm}px`,
+                            height: `${ev.dur * cellHSm - 4}px`,
+                          }}
+                        >
+                          <p className="text-[8px] sm:text-[10px] font-bold truncate leading-tight">
+                            {ev.title}
+                          </p>
+                          <p className="text-[7px] sm:text-[9px] opacity-80 mt-0.5 hidden sm:block">
+                            {ev.time}
+                          </p>
+                        </button>
+                      ) : (
+                        <div
+                          key={ev.id || i}
+                          className={`absolute left-0.5 right-0.5 sm:left-1 sm:right-1 ${ev.color} text-white px-1 sm:px-2 py-1 sm:py-1.5 overflow-hidden shadow-sm`}
+                          style={{
+                            top: `${ev.start * cellHSm}px`,
+                            height: `${ev.dur * cellHSm - 4}px`,
+                          }}
+                        >
+                          <p className="text-[8px] sm:text-[10px] font-bold truncate leading-tight">
+                            {ev.title}
+                          </p>
+                          <p className="text-[7px] sm:text-[9px] opacity-80 mt-0.5 hidden sm:block">
+                            {ev.time}
+                          </p>
+                        </div>
+                      ),
+                    )}
                 </div>
               ))}
             </div>

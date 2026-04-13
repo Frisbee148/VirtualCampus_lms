@@ -149,7 +149,7 @@ const serviceConfigs = {
   },
   studentHistory: {
     title: "Student History",
-    subtitle: "Semester-wise academic history with credits, SGPA, and remarks.",
+    subtitle: "Course list with session, grades, credits, and course type.",
     session: "Historical Snapshot",
     stats: [
       {
@@ -161,35 +161,159 @@ const serviceConfigs = {
       { label: "CGPA", value: "8.32", note: "Cumulative performance" },
     ],
     columns: [
-      { label: "Semester", key: "semester" },
-      { label: "Credits", key: "credits" },
-      { label: "SGPA", key: "sgpa" },
-      { label: "Remark", key: "remark" },
+      { label: "Sr. No.", key: "srNo" },
+      { label: "Session", key: "session" },
+      { label: "Course Name", key: "courseName" },
+      { label: "Grade - Credits", key: "gradeCredits" },
+      { label: "Course Type", key: "courseType" },
     ],
     rows: [
       {
-        semester: "Sem 1 (2024-25 I)",
-        credits: "21",
-        sgpa: "8.12",
-        remark: "Good",
+        srNo: "1",
+        session: "2024-2025 I",
+        courseName: "BASIC ELECTRONICS",
+        gradeCredits: "B- 4.00",
+        courseType: "CORE",
       },
       {
-        semester: "Sem 2 (2024-25 II)",
-        credits: "22",
-        sgpa: "8.35",
-        remark: "Very Good",
+        srNo: "2",
+        session: "2024-2025 I",
+        courseName: "BASIC ELECTRONICS LAB",
+        gradeCredits: "BC- 1.50",
+        courseType: "CORE",
       },
       {
-        semester: "Sem 3 (2025-26 I)",
-        credits: "20",
-        sgpa: "8.18",
-        remark: "Good",
+        srNo: "3",
+        session: "2024-2025 I",
+        courseName: "CALCULUS AND ORDINARY DIFFERENTIAL EQUATIONS",
+        gradeCredits: "A- 4.00",
+        courseType: "CORE",
       },
       {
-        semester: "Sem 4 (2025-26 II)",
-        credits: "21",
-        sgpa: "8.63",
-        remark: "Excellent",
+        srNo: "4",
+        session: "2024-2025 I",
+        courseName: "CLASSICAL PHYSICS",
+        gradeCredits: "B- 4.00",
+        courseType: "CORE",
+      },
+      {
+        srNo: "5",
+        session: "2025-2026 I",
+        courseName: "COMPUTER ORGANIZATION AND ARCHITECTURE",
+        gradeCredits: "B- 4.00",
+        courseType: "CORE",
+      },
+      {
+        srNo: "6",
+        session: "2024-2025 II",
+        courseName: "DATA STRUCTURES AND ALGORITHMS",
+        gradeCredits: "A- 4.50",
+        courseType: "CORE",
+      },
+      {
+        srNo: "7",
+        session: "2025-2026 I",
+        courseName: "DATABASE MANAGEMENT SYSTEMS",
+        gradeCredits: "B- 4.00",
+        courseType: "CORE",
+      },
+      {
+        srNo: "8",
+        session: "2025-2026 I",
+        courseName: "DESIGN AND ANALYSIS OF ALGORITHMS",
+        gradeCredits: "C- 4.00",
+        courseType: "CORE",
+      },
+      {
+        srNo: "9",
+        session: "2024-2025 II",
+        courseName: "DIGITAL SYSTEMS",
+        gradeCredits: "B- 4.00",
+        courseType: "CORE",
+      },
+      {
+        srNo: "10",
+        session: "2024-2025 II",
+        courseName: "DISCRETE MATHEMATICS",
+        gradeCredits: "B- 3.00",
+        courseType: "CORE",
+      },
+      {
+        srNo: "11",
+        session: "2024-2025 II",
+        courseName: "ENVIRONMENTAL SCIENCE",
+        gradeCredits: "S - 1.00",
+        courseType: "MANDATORY",
+      },
+      {
+        srNo: "12",
+        session: "2024-2025 II",
+        courseName: "HUMAN VALUES AND ETHICS",
+        gradeCredits: "B- 3.00",
+        courseType: "CORE",
+      },
+      {
+        srNo: "13",
+        session: "2024-2025 I",
+        courseName: "INDIAN KNOWLEDGE SYSTEM",
+        gradeCredits: "S - 1.00",
+        courseType: "MANDATORY",
+      },
+      {
+        srNo: "14",
+        session: "2024-2025 II",
+        courseName: "INTRODUCTION TO SCRIPTING LANGUAGES",
+        gradeCredits: "BC- 1.00",
+        courseType: "CORE",
+      },
+      {
+        srNo: "15",
+        session: "2024-2025 II",
+        courseName: "LINEAR ALGEBRA AND COMPLEX ANALYSIS",
+        gradeCredits: "A- 4.00",
+        courseType: "CORE",
+      },
+      {
+        srNo: "16",
+        session: "2025-2026 I",
+        courseName: "OBJECT ORIENTED PROGRAMMING",
+        gradeCredits: "B- 4.00",
+        courseType: "CORE",
+      },
+      {
+        srNo: "17",
+        session: "2025-2026 I",
+        courseName: "PROBABILITY AND STATISTICS",
+        gradeCredits: "A- 4.00",
+        courseType: "CORE",
+      },
+      {
+        srNo: "18",
+        session: "2024-2025 I",
+        courseName: "PROGRAMMING FOR PROBLEM SOLVING",
+        gradeCredits: "BC- 4.50",
+        courseType: "CORE",
+      },
+      {
+        srNo: "19",
+        session: "2025-2026 I",
+        courseName: "SIGNALS AND SYSTEMS",
+        gradeCredits: "B- 3.00",
+        courseType: "CORE",
+      },
+      {
+        srNo: "20",
+        session: "2024-2025 I",
+        courseName: "TECHNICAL COMMUNICATION IN ENGLISH",
+        gradeCredits: "BC- 3.00",
+        courseType: "CORE",
+      },
+      {
+        srNo: "21",
+        session: "2024-2025 II",
+        courseName: "UG PHYSICS LABORATORY",
+        gradeCredits: "AB- 1.50",
+        courseType: "CORE",
       },
     ],
   },
@@ -528,6 +652,7 @@ const getBadgeClass = (value) => {
 
 const StudentServiceScreen = ({ serviceKey, activeTab }) => {
   const config = serviceConfigs[serviceKey];
+  const isStudentHistory = serviceKey === "studentHistory";
 
   if (!config) {
     return (
@@ -577,106 +702,158 @@ const StudentServiceScreen = ({ serviceKey, activeTab }) => {
           ))}
         </div>
 
-        <div className="bg-white border border-gray-100 shadow-sm overflow-hidden">
-          <div className="px-3 sm:px-5 py-3 sm:py-4 border-b border-gray-100 flex items-center justify-between gap-3">
-            <h2 className="text-sm sm:text-base font-semibold text-gray-900">
-              Current Entries
-            </h2>
-            <button className="px-3 py-1.5 bg-black text-white text-[11px] sm:text-xs font-medium hover:bg-[#0e445b] transition-colors cursor-pointer">
-              New Request
-            </button>
-          </div>
+        {isStudentHistory ? (
+          <div className="bg-white border border-gray-100 shadow-sm overflow-hidden">
+            <div className="px-3 sm:px-5 py-3 sm:py-4 border-b border-gray-100 flex items-center justify-between gap-3">
+              <h2 className="text-sm sm:text-base font-semibold text-gray-900">
+                Course List
+              </h2>
+            </div>
 
-          <div className="hidden sm:block overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="bg-gray-50 border-b border-gray-100">
-                  {config.columns.map((col) => (
-                    <th
-                      key={col.key}
-                      className="py-3 px-5 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider"
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[800px]">
+                <thead>
+                  <tr className="bg-gray-50 border-b border-gray-100">
+                    {config.columns.map((col) => (
+                      <th
+                        key={col.key}
+                        className="py-3 px-5 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider whitespace-nowrap"
+                      >
+                        {col.label}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {config.rows.map((row, index) => (
+                    <tr
+                      key={`${row[config.columns[0].key]}-${index}`}
+                      className="border-b border-gray-50 last:border-b-0 hover:bg-gray-50/50 transition-colors"
                     >
-                      {col.label}
-                    </th>
+                      {config.columns.map((col) => (
+                        <td
+                          key={col.key}
+                          className="py-3.5 px-5 text-sm text-gray-700 whitespace-nowrap"
+                        >
+                          <span
+                            className={
+                              col.key === "courseName"
+                                ? "font-medium text-gray-900"
+                                : "text-gray-700"
+                            }
+                          >
+                            {row[col.key]}
+                          </span>
+                        </td>
+                      ))}
+                    </tr>
                   ))}
-                </tr>
-              </thead>
-              <tbody>
-                {config.rows.map((row, index) => (
-                  <tr
-                    key={`${row[config.columns[0].key]}-${index}`}
-                    className="border-b border-gray-50 last:border-b-0 hover:bg-gray-50/50 transition-colors"
-                  >
-                    {config.columns.map((col) => {
+                </tbody>
+              </table>
+            </div>
+          </div>
+        ) : (
+          <div className="bg-white border border-gray-100 shadow-sm overflow-hidden">
+            <div className="px-3 sm:px-5 py-3 sm:py-4 border-b border-gray-100 flex items-center justify-between gap-3">
+              <h2 className="text-sm sm:text-base font-semibold text-gray-900">
+                Current Entries
+              </h2>
+              <button className="px-3 py-1.5 bg-black text-white text-[11px] sm:text-xs font-medium hover:bg-[#0e445b] transition-colors cursor-pointer">
+                New Request
+              </button>
+            </div>
+
+            <div className="hidden sm:block overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="bg-gray-50 border-b border-gray-100">
+                    {config.columns.map((col) => (
+                      <th
+                        key={col.key}
+                        className="py-3 px-5 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider whitespace-nowrap"
+                      >
+                        {col.label}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {config.rows.map((row, index) => (
+                    <tr
+                      key={`${row[config.columns[0].key]}-${index}`}
+                      className="border-b border-gray-50 last:border-b-0 hover:bg-gray-50/50 transition-colors"
+                    >
+                      {config.columns.map((col) => {
+                        const value = row[col.key];
+                        const isBadge =
+                          col.key === "status" || col.key === "attendance";
+
+                        return (
+                          <td
+                            key={col.key}
+                            className="py-3.5 px-5 text-sm text-gray-700 whitespace-nowrap"
+                          >
+                            {isBadge ? (
+                              <span
+                                className={`inline-block px-2 py-0.5 text-xs font-semibold border ${getBadgeClass(value)}`}
+                              >
+                                {value}
+                              </span>
+                            ) : (
+                              <span className="text-gray-700">{value}</span>
+                            )}
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <div className="sm:hidden p-3 space-y-3">
+              {config.rows.map((row, index) => (
+                <div
+                  key={`${row[config.columns[0].key]}-${index}`}
+                  className="border border-gray-100 p-3"
+                >
+                  <p className="text-sm font-semibold text-gray-900 mb-2">
+                    {row[config.columns[0].key]}
+                  </p>
+                  <div className="space-y-1.5">
+                    {config.columns.slice(1).map((col) => {
                       const value = row[col.key];
                       const isBadge =
                         col.key === "status" || col.key === "attendance";
 
                       return (
-                        <td
+                        <div
                           key={col.key}
-                          className="py-3.5 px-5 text-sm text-gray-700"
+                          className="flex items-center justify-between gap-2"
                         >
+                          <span className="text-[11px] text-gray-400 uppercase tracking-wide">
+                            {col.label}
+                          </span>
                           {isBadge ? (
                             <span
-                              className={`inline-block px-2 py-0.5 text-xs font-semibold border ${getBadgeClass(value)}`}
+                              className={`inline-block px-2 py-0.5 text-[10px] font-semibold border ${getBadgeClass(value)}`}
                             >
                               {value}
                             </span>
                           ) : (
-                            <span className="text-gray-700">{value}</span>
+                            <span className="text-xs text-gray-700 text-right">
+                              {value}
+                            </span>
                           )}
-                        </td>
+                        </div>
                       );
                     })}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          <div className="sm:hidden p-3 space-y-3">
-            {config.rows.map((row, index) => (
-              <div
-                key={`${row[config.columns[0].key]}-${index}`}
-                className="border border-gray-100 p-3"
-              >
-                <p className="text-sm font-semibold text-gray-900 mb-2">
-                  {row[config.columns[0].key]}
-                </p>
-                <div className="space-y-1.5">
-                  {config.columns.slice(1).map((col) => {
-                    const value = row[col.key];
-                    const isBadge =
-                      col.key === "status" || col.key === "attendance";
-
-                    return (
-                      <div
-                        key={col.key}
-                        className="flex items-center justify-between gap-2"
-                      >
-                        <span className="text-[11px] text-gray-400 uppercase tracking-wide">
-                          {col.label}
-                        </span>
-                        {isBadge ? (
-                          <span
-                            className={`inline-block px-2 py-0.5 text-[10px] font-semibold border ${getBadgeClass(value)}`}
-                          >
-                            {value}
-                          </span>
-                        ) : (
-                          <span className="text-xs text-gray-700 text-right">
-                            {value}
-                          </span>
-                        )}
-                      </div>
-                    );
-                  })}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </StudentLayout>
   );

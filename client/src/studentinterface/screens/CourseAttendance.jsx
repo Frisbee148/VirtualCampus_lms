@@ -55,13 +55,18 @@ const CourseAttendance = () => {
             {attendanceData.map((status, idx) => (
               <div
                 key={idx}
-                className={`aspect-square flex items-center justify-center text-[10px] sm:text-sm font-semibold transition-all duration-200 ${
+                className={`aspect-square flex flex-col items-center justify-center transition-all duration-200 ${
                   status === 1 ? 'bg-emerald-100 text-emerald-700 border border-emerald-200' :
                   status === 0 ? 'bg-red-100 text-red-600 border border-red-200' :
                   'bg-gray-50 text-gray-300 border border-gray-100'
                 }`}
               >
-                {idx + 1}
+                <span className="text-[10px] sm:text-sm font-semibold">{idx + 1}</span>
+                {status !== null && (
+                  <span className="text-[7px] sm:text-[10px] font-medium opacity-80 mt-0.5 sm:mt-1">
+                    09:00 AM
+                  </span>
+                )}
               </div>
             ))}
           </div>
