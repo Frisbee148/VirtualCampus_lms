@@ -34,6 +34,8 @@ const CalendarMonthly = () => {
     loadStoredArray(MONTHLY_EVENTS_STORAGE_KEY),
   );
   const [form, setForm] = useState({ date: "", title: "", color: "#1a7a7a" });
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [editEventIndex, setEditEventIndex] = useState(0);
 
   useEffect(() => {
     saveStoredArray(MONTHLY_EVENTS_STORAGE_KEY, customEvents);
@@ -49,6 +51,8 @@ const CalendarMonthly = () => {
   const next = () => setCurrent(new Date(year, month + 1, 1));
 
   const openAddEvent = () => {
+    setIsEditMode(false);
+    setEditEventIndex(0);
     setForm({
       date: `${year}-${String(month + 1).padStart(2, "0")}-01`,
       title: "",
@@ -57,19 +61,49 @@ const CalendarMonthly = () => {
     setShowModal(true);
   };
 
-  const handleAddEvent = (event) => {
+  const openEditEventAtIndex = (eventIndex) => {
+    const selectedEvent = customEvents[eventIndex];
+    if (!selectedEvent) return;
+
+    setIsEditMode(true);
+    setEditEventIndex(eventIndex);
+    setForm({
+      date: selectedEvent.date,
+      title: selectedEvent.title,
+      color: selectedEvent.color || "#1a7a7a",
+    });
+    setShowModal(true);
+  };
+
+  const handleSubmitEvent = (event) => {
     event.preventDefault();
 
     if (!form.date || !form.title.trim()) return;
 
-    setCustomEvents((currentEvents) => [
-      ...currentEvents,
-      {
-        date: form.date,
-        title: form.title.trim(),
-        color: form.color,
-      },
-    ]);
+    if (isEditMode) {
+      setCustomEvents((currentEvents) =>
+        currentEvents.map((currentEvent, index) =>
+          index === editEventIndex
+            ? {
+                ...currentEvent,
+                date: form.date,
+                title: form.title.trim(),
+                color: form.color,
+              }
+            : currentEvent,
+        ),
+      );
+    } else {
+      setCustomEvents((currentEvents) => [
+        ...currentEvents,
+        {
+          date: form.date,
+          title: form.title.trim(),
+          color: form.color,
+        },
+      ]);
+    }
+
     setShowModal(false);
   };
 
@@ -80,10 +114,24 @@ const CalendarMonthly = () => {
   const getEvents = (day) => {
     if (!day) return [];
     const key = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
-    return [
-      ...(DEFAULT_EVENTS[key] || []),
-      ...customEvents.filter((ev) => ev.date === key),
-    ];
+
+    const defaultEvents = (DEFAULT_EVENTS[key] || []).map(
+      (eventItem, index) => ({
+        ...eventItem,
+        id: `default-${key}-${index}`,
+        isCustom: false,
+      }),
+    );
+    const userEvents = customEvents
+      .map((eventItem, index) => ({
+        ...eventItem,
+        id: `custom-${index}`,
+        isCustom: true,
+        customIndex: index,
+      }))
+      .filter((eventItem) => eventItem.date === key);
+
+    return [...defaultEvents, ...userEvents];
   };
 
   const isToday = (day) =>
@@ -133,11 +181,15 @@ const CalendarMonthly = () => {
 
         <StudentEventModal
           open={showModal}
-          title="Add Calendar Event"
-          description="Create a custom calendar item for the selected date."
-          submitLabel="Add Event"
+          title={isEditMode ? "Edit Calendar Event" : "Add Calendar Event"}
+          description={
+            isEditMode
+              ? "Update this custom calendar event."
+              : "Create a custom calendar item for the selected date."
+          }
+          submitLabel={isEditMode ? "Save Changes" : "Add Event"}
           onClose={() => setShowModal(false)}
-          onSubmit={handleAddEvent}
+          onSubmit={handleSubmitEvent}
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <label className="block">
@@ -225,15 +277,28 @@ const CalendarMonthly = () => {
                     >
                       {day}
                     </span>
-                    {events.map((ev, j) => (
-                      <div
-                        key={j}
-                        className="mt-1 px-1.5 py-0.5 text-[10px] sm:text-xs font-medium text-white truncate"
-                        style={{ backgroundColor: ev.color }}
-                      >
-                        {ev.title}
-                      </div>
-                    ))}
+                    {events.map((ev, j) =>
+                      ev.isCustom ? (
+                        <button
+                          key={ev.id || j}
+                          type="button"
+                          onClick={() => openEditEventAtIndex(ev.customIndex)}
+                          title="Click to edit"
+                          className="mt-1 w-full text-left px-1.5 py-0.5 text-[10px] sm:text-xs font-medium text-white truncate cursor-pointer"
+                          style={{ backgroundColor: ev.color }}
+                        >
+                          {ev.title}
+                        </button>
+                      ) : (
+                        <div
+                          key={ev.id || j}
+                          className="mt-1 px-1.5 py-0.5 text-[10px] sm:text-xs font-medium text-white truncate"
+                          style={{ backgroundColor: ev.color }}
+                        >
+                          {ev.title}
+                        </div>
+                      ),
+                    )}
                   </>
                 )}
               </div>

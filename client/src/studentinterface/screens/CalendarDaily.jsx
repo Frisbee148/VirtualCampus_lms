@@ -17,6 +17,8 @@ const CalendarDaily = () => {
   const [customSchedule, setCustomSchedule] = useState(() =>
     loadStoredArray(DAILY_EVENTS_STORAGE_KEY),
   );
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [editEventIndex, setEditEventIndex] = useState(0);
   const [form, setForm] = useState({ time: "09:00", event: "", room: "" });
 
   useEffect(() => {
@@ -32,29 +34,79 @@ const CalendarDaily = () => {
     { time: "4:30 PM", event: "", room: "" },
   ];
 
-  const schedule = [...defaultSchedule, ...customSchedule].sort(
+  const schedule = [
+    ...defaultSchedule.map((scheduleItem, index) => ({
+      ...scheduleItem,
+      id: `default-${index}`,
+      isCustom: false,
+    })),
+    ...customSchedule.map((scheduleItem, index) => ({
+      ...scheduleItem,
+      id: `custom-${index}`,
+      isCustom: true,
+      customIndex: index,
+    })),
+  ].sort(
     (leftItem, rightItem) =>
       timeLabelToMinutes(leftItem.time) - timeLabelToMinutes(rightItem.time),
   );
 
+  const toTimeInputValue = (timeLabel) => {
+    const totalMinutes = timeLabelToMinutes(timeLabel);
+    const hour = Math.floor(totalMinutes / 60) % 24;
+    const minute = totalMinutes % 60;
+    return `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`;
+  };
+
+  const applyFormFromCustomEvent = (scheduleItem) => {
+    setForm({
+      time: toTimeInputValue(scheduleItem.time),
+      event: scheduleItem.event || "",
+      room: scheduleItem.room || "",
+    });
+  };
+
   const openAddEvent = () => {
+    setIsEditMode(false);
+    setEditEventIndex(0);
     setForm({ time: "09:00", event: "", room: "" });
     setShowModal(true);
   };
 
-  const handleAddEvent = (event) => {
+  const openEditEventAtIndex = (eventIndex) => {
+    const selectedEvent = customSchedule[eventIndex];
+    if (!selectedEvent) return;
+
+    setIsEditMode(true);
+    setEditEventIndex(eventIndex);
+    applyFormFromCustomEvent(selectedEvent);
+    setShowModal(true);
+  };
+
+  const handleSubmitEvent = (event) => {
     event.preventDefault();
 
     if (!form.event.trim()) return;
 
-    setCustomSchedule((currentSchedule) => [
-      ...currentSchedule,
-      {
-        time: formatTimeInputLabel(form.time),
-        event: form.event.trim(),
-        room: form.room.trim(),
-      },
-    ]);
+    const nextScheduleItem = {
+      time: formatTimeInputLabel(form.time),
+      event: form.event.trim(),
+      room: form.room.trim(),
+    };
+
+    if (isEditMode) {
+      setCustomSchedule((currentSchedule) =>
+        currentSchedule.map((scheduleItem, index) =>
+          index === editEventIndex ? nextScheduleItem : scheduleItem,
+        ),
+      );
+    } else {
+      setCustomSchedule((currentSchedule) => [
+        ...currentSchedule,
+        nextScheduleItem,
+      ]);
+    }
+
     setShowModal(false);
   };
 
@@ -94,11 +146,15 @@ const CalendarDaily = () => {
 
         <StudentEventModal
           open={showModal}
-          title="Add Timetable Entry"
-          description="Create a custom item for the daily timetable."
-          submitLabel="Add Event"
+          title={isEditMode ? "Edit Timetable Entry" : "Add Timetable Entry"}
+          description={
+            isEditMode
+              ? "Update this custom daily timetable item."
+              : "Create a custom item for the daily timetable."
+          }
+          submitLabel={isEditMode ? "Save Changes" : "Add Event"}
           onClose={() => setShowModal(false)}
-          onSubmit={handleAddEvent}
+          onSubmit={handleSubmitEvent}
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <label className="block">
@@ -171,7 +227,7 @@ const CalendarDaily = () => {
             <tbody>
               {schedule.map((s, idx) => (
                 <tr
-                  key={idx}
+                  key={s.id || idx}
                   className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors"
                 >
                   <td className="py-3 sm:py-5 px-3 sm:px-5 text-xs sm:text-sm font-semibold text-gray-500">
@@ -179,16 +235,34 @@ const CalendarDaily = () => {
                   </td>
                   <td className="py-3 sm:py-5 px-3 sm:px-5">
                     {s.event ? (
-                      <div>
-                        <p className="text-xs sm:text-sm font-medium text-gray-900">
-                          {s.event}
-                        </p>
-                        {s.room && (
-                          <p className="text-[10px] sm:text-xs text-gray-400 mt-0.5">
-                            {s.room}
+                      s.isCustom ? (
+                        <button
+                          type="button"
+                          onClick={() => openEditEventAtIndex(s.customIndex)}
+                          title="Click to edit"
+                          className="w-full text-left cursor-pointer"
+                        >
+                          <p className="text-xs sm:text-sm font-medium text-gray-900">
+                            {s.event}
                           </p>
-                        )}
-                      </div>
+                          {s.room && (
+                            <p className="text-[10px] sm:text-xs text-gray-400 mt-0.5">
+                              {s.room}
+                            </p>
+                          )}
+                        </button>
+                      ) : (
+                        <div>
+                          <p className="text-xs sm:text-sm font-medium text-gray-900">
+                            {s.event}
+                          </p>
+                          {s.room && (
+                            <p className="text-[10px] sm:text-xs text-gray-400 mt-0.5">
+                              {s.room}
+                            </p>
+                          )}
+                        </div>
+                      )
                     ) : (
                       <span className="text-[10px] sm:text-xs text-gray-300 italic">
                         No event scheduled

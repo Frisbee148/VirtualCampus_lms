@@ -1,289 +1,392 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
 import StudentLayout from "../StudentLayout";
+import { ChevronDown } from "lucide-react";
+
+const SEMESTER_RECORDS = [
+  {
+    id: "sem1",
+    label: "Sem 1 (2024-25 I)",
+    shortLabel: "Sem 1",
+    credits: 21,
+    sgpa: 8.12,
+  },
+  {
+    id: "sem2",
+    label: "Sem 2 (2024-25 II)",
+    shortLabel: "Sem 2",
+    credits: 22,
+    sgpa: 8.35,
+  },
+  {
+    id: "sem3",
+    label: "Sem 3 (2025-26 I)",
+    shortLabel: "Sem 3",
+    credits: 20,
+    sgpa: 8.18,
+  },
+  {
+    id: "sem4",
+    label: "Sem 4 (2025-26 II)",
+    shortLabel: "Sem 4",
+    credits: 21,
+    sgpa: 8.63,
+  },
+];
+
+const SESSION_OPTIONS = [
+  { id: "sem4", label: "Session 2025-26 II" },
+  { id: "sem3", label: "Session 2025-26 I" },
+  { id: "sem2", label: "Session 2024-25 II" },
+  { id: "sem1", label: "Session 2024-25 I" },
+];
+
+const buildSemesterHistory = (records) => {
+  let totalCredits = 0;
+  let weightedPoints = 0;
+
+  return records.map((record, index) => {
+    totalCredits += record.credits;
+    weightedPoints += record.credits * record.sgpa;
+
+    return {
+      ...record,
+      order: index + 1,
+      totalCredits,
+      cgpa: Number((weightedPoints / totalCredits).toFixed(2)),
+    };
+  });
+};
+
+const SEMESTER_HISTORY = buildSemesterHistory(SEMESTER_RECORDS);
 
 const PerformanceCGPA = () => {
-  const navigate = useNavigate();
+  const semesterMenuRef = useRef(null);
+  const [semesterMenuOpen, setSemesterMenuOpen] = useState(false);
+  const [selectedSemesterId, setSelectedSemesterId] = useState("sem4");
+
+  useEffect(() => {
+    const handleDocumentClick = (event) => {
+      if (
+        semesterMenuRef.current &&
+        !semesterMenuRef.current.contains(event.target)
+      ) {
+        setSemesterMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleDocumentClick);
+    return () => document.removeEventListener("mousedown", handleDocumentClick);
+  }, []);
+
+  const activeSemester =
+    SEMESTER_HISTORY.find((semester) => semester.id === selectedSemesterId) ||
+    null;
+  const selectedSessionLabel =
+    SESSION_OPTIONS.find((session) => session.id === selectedSemesterId)
+      ?.label || "All Sessions";
+
+  const visibleHistory = SEMESTER_HISTORY;
+
+  const totalCredits = SEMESTER_HISTORY.reduce(
+    (sum, semester) => sum + semester.credits,
+    0,
+  );
+  const weightedCgpa =
+    totalCredits > 0
+      ? SEMESTER_HISTORY.reduce(
+          (sum, semester) => sum + semester.credits * semester.sgpa,
+          0,
+        ) / totalCredits
+      : 0;
+  const latestCgpa = SEMESTER_HISTORY[SEMESTER_HISTORY.length - 1].cgpa;
+
+  const summaryCards = activeSemester
+    ? [
+        {
+          label: "Semester Credits",
+          value: activeSemester.credits,
+          note: activeSemester.label,
+        },
+        {
+          label: "SGPA",
+          value: activeSemester.sgpa.toFixed(2),
+          note: "This session performance",
+        },
+        {
+          label: "CGPA",
+          value: activeSemester.cgpa.toFixed(2),
+          note: "Cumulative performance",
+        },
+      ]
+    : [
+        {
+          label: "Credits Earned",
+          value: totalCredits,
+          note: "Across all sessions",
+        },
+        {
+          label: "Average SGPA",
+          value: weightedCgpa.toFixed(2),
+          note: "Weighted semester average",
+        },
+        {
+          label: "CGPA",
+          value: latestCgpa.toFixed(2),
+          note: "Cumulative performance",
+        },
+      ];
+
+  const summaryTitle = activeSemester
+    ? activeSemester.label
+    : "Current Session";
+
+  const chartPadding = { top: 24, right: 24, bottom: 42, left: 44 };
+  const chartWidth = 760;
+  const chartHeight = 320;
+  const plotWidth = chartWidth - chartPadding.left - chartPadding.right;
+  const plotHeight = chartHeight - chartPadding.top - chartPadding.bottom;
+  const dataValues = visibleHistory.flatMap((semester) => [
+    semester.sgpa,
+    semester.cgpa,
+  ]);
+  const rawMin = Math.min(...dataValues);
+  const rawMax = Math.max(...dataValues);
+  const chartMin = rawMin === rawMax ? rawMin - 0.5 : rawMin - 0.2;
+  const chartMax = rawMin === rawMax ? rawMax + 0.5 : rawMax + 0.2;
+  const yScale = (value) =>
+    chartPadding.top +
+    ((chartMax - value) / (chartMax - chartMin)) * plotHeight;
+  const xScale = (index) =>
+    chartPadding.left +
+    (plotWidth / Math.max(visibleHistory.length - 1, 1)) * index;
+
+  const buildPath = (key) =>
+    visibleHistory
+      .map(
+        (semester, index) =>
+          `${index === 0 ? "M" : "L"} ${xScale(index)} ${yScale(semester[key])}`,
+      )
+      .join(" ");
 
   return (
     <StudentLayout activeTab="Grades">
       <div className="max-w-5xl">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-5 sm:mb-8 gap-3">
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
-            Course History
-          </h1>
-          <button className="px-4 sm:px-5 py-2 sm:py-2.5 bg-black text-white text-xs sm:text-sm font-semibold hover:bg-[#0e445b] transition-colors shadow-sm cursor-pointer self-start sm:self-auto">
-            Filter by Semester
-          </button>
-        </div>
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-5 sm:mb-8">
+          <div>
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
+              Semester Performance
+            </h1>
+            <p className="text-xs sm:text-sm text-gray-400">
+              Semester credits, SGPA, and CGPA trend.
+            </p>
+          </div>
 
-        {/* Desktop table */}
-        <div className="hidden sm:block bg-white border border-gray-100 shadow-sm overflow-hidden mb-10">
-          <table className="w-full">
-            <thead>
-              <tr className="bg-black text-white">
-                <th className="py-3.5 px-5 text-left text-sm font-semibold">
-                  Course Name
-                </th>
-                <th className="py-3.5 px-5 text-left text-sm font-semibold">
-                  Total Marks (out of 100)
-                </th>
-                <th className="py-3.5 px-5 text-left text-sm font-semibold">
-                  Grade
-                </th>
-                <th className="py-3.5 px-5 text-left text-sm font-semibold">
-                  Course Type
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors">
-                <td
-                  className="py-4 px-5 text-sm font-medium text-black underline cursor-pointer hover:text-[#0e445b]"
-                  onClick={() => navigate("/course/overview")}
-                >
-                  Course A
-                </td>
-                <td className="py-4 px-5 text-sm text-gray-600">85</td>
-                <td className="py-4 px-5">
-                  <span className="px-2.5 py-1 bg-emerald-50 text-emerald-700 text-xs font-semibold border border-emerald-200">
-                    A
-                  </span>
-                </td>
-                <td className="py-4 px-5 text-sm text-gray-500">Core</td>
-              </tr>
-              <tr className="hover:bg-gray-50/50 transition-colors">
-                <td className="py-4 px-5 text-sm font-medium text-gray-600">
-                  Course B
-                </td>
-                <td className="py-4 px-5 text-sm text-gray-600">72</td>
-                <td className="py-4 px-5">
-                  <span className="px-2.5 py-1 bg-blue-50 text-blue-700 text-xs font-semibold border border-blue-200">
-                    AB
-                  </span>
-                </td>
-                <td className="py-4 px-5 text-sm text-gray-500">Elective</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        {/* Mobile card layout */}
-        <div className="sm:hidden space-y-3 mb-6">
-          {[
-            {
-              name: "Course A",
-              marks: 85,
-              grade: "A",
-              gradeColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
-              type: "Core",
-              clickable: true,
-            },
-            {
-              name: "Course B",
-              marks: 72,
-              grade: "AB",
-              gradeColor: "bg-blue-50 text-blue-700 border-blue-200",
-              type: "Elective",
-              clickable: false,
-            },
-          ].map((c, idx) => (
-            <div
-              key={idx}
-              className="bg-white border border-gray-100 shadow-sm p-3"
+          <div
+            ref={semesterMenuRef}
+            className="relative self-start sm:self-auto"
+          >
+            <button
+              type="button"
+              onClick={() => setSemesterMenuOpen((current) => !current)}
+              aria-haspopup="menu"
+              aria-expanded={semesterMenuOpen}
+              className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 bg-black text-white text-xs sm:text-sm font-semibold shadow-sm hover:bg-[#0e445b] transition-colors"
             >
-              <div className="flex items-center justify-between mb-2">
-                <h3
-                  className={`text-sm font-semibold ${c.clickable ? "text-black underline cursor-pointer" : "text-gray-600"}`}
-                  onClick={() => c.clickable && navigate("/course/overview")}
-                >
-                  {c.name}
-                </h3>
-                <span
-                  className={`px-2 py-0.5 text-xs font-semibold border ${c.gradeColor}`}
-                >
-                  {c.grade}
+              {selectedSessionLabel}
+              <ChevronDown
+                size={14}
+                className={`transition-transform ${semesterMenuOpen ? "rotate-180" : ""}`}
+              />
+            </button>
+
+            {semesterMenuOpen ? (
+              <div className="absolute right-0 mt-2 w-64 bg-white border border-gray-100 shadow-xl z-30 overflow-hidden">
+                <p className="px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-gray-400 border-b border-gray-100">
+                  Sessions
+                </p>
+                <div className="py-1">
+                  {SESSION_OPTIONS.map((session) => (
+                    <button
+                      key={session.id}
+                      type="button"
+                      onClick={() => {
+                        setSelectedSemesterId(session.id);
+                        setSemesterMenuOpen(false);
+                      }}
+                      className={`w-full text-left px-4 py-3 text-sm transition-colors hover:bg-gray-50 ${
+                        selectedSemesterId === session.id
+                          ? "bg-gray-50 font-semibold text-black"
+                          : "text-gray-600"
+                      }`}
+                    >
+                      {session.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-6 sm:mb-8">
+          {summaryCards.map((card) => (
+            <div
+              key={card.label}
+              className="bg-white border border-gray-100 shadow-sm p-4 sm:p-5"
+            >
+              <p className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.18em] text-gray-400">
+                {card.label}
+              </p>
+              <div className="mt-2 flex items-end gap-2">
+                <span className="text-2xl sm:text-3xl font-bold text-gray-900">
+                  {card.value}
                 </span>
               </div>
-              <div className="flex gap-4">
-                <div>
-                  <p className="text-[10px] text-gray-400 uppercase">Marks</p>
-                  <p className="text-sm font-semibold text-gray-900">
-                    {c.marks}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-[10px] text-gray-400 uppercase">Type</p>
-                  <p className="text-sm text-gray-500">{c.type}</p>
-                </div>
-              </div>
+              <p className="mt-2 text-[10px] sm:text-xs text-gray-400">
+                {card.label === "Semester Credits" ? summaryTitle : card.note}
+              </p>
             </div>
           ))}
         </div>
 
         <div className="bg-white border border-gray-100 shadow-sm p-3 sm:p-6">
-          <h2 className="text-base sm:text-lg font-bold text-gray-900 mb-4 sm:mb-6">
-            CGPA Trend
-          </h2>
-          <div className="relative">
-            <svg viewBox="0 0 700 280" className="w-full h-auto">
-              {[0, 1, 2, 3, 4, 5, 6].map((gridY) => {
-                const y = 260 - gridY * 42;
+          <div className="flex items-center justify-between gap-3 mb-4 sm:mb-6">
+            <h2 className="text-base sm:text-lg font-bold text-gray-900">
+              Academic Trend
+            </h2>
+            <span className="text-[10px] sm:text-xs text-gray-400">
+              {visibleHistory.length} semesters shown
+            </span>
+          </div>
+
+          <div className="w-full overflow-x-auto">
+            <svg
+              viewBox={`0 0 ${chartWidth} ${chartHeight}`}
+              className="w-full min-w-[720px] h-auto"
+            >
+              {[0, 1, 2, 3, 4].map((gridIndex) => {
+                const value =
+                  chartMin + (gridIndex * (chartMax - chartMin)) / 4;
+                const y = yScale(value);
+
                 return (
-                  <g key={gridY}>
+                  <g key={gridIndex}>
                     <line
-                      x1="40"
+                      x1={chartPadding.left}
                       y1={y}
-                      x2="680"
+                      x2={chartWidth - chartPadding.right}
                       y2={y}
-                      stroke="#f1f5f9"
+                      stroke="#eef2f7"
                       strokeWidth="1"
                     />
                     <text
-                      x="25"
+                      x={chartPadding.left - 10}
                       y={y + 4}
                       fontSize="11"
                       fill="#94a3b8"
                       textAnchor="end"
-                      fontFamily="Inter"
                     >
-                      {gridY}
+                      {value.toFixed(1)}
                     </text>
                   </g>
                 );
               })}
+
               <line
-                x1="40"
-                y1="8"
-                x2="40"
-                y2="260"
+                x1={chartPadding.left}
+                y1={chartPadding.top}
+                x2={chartPadding.left}
+                y2={chartHeight - chartPadding.bottom}
                 stroke="#e2e8f0"
                 strokeWidth="1"
               />
-              <text
-                x="150"
-                y="278"
-                fontSize="11"
-                fill="#94a3b8"
-                textAnchor="middle"
-                fontFamily="Inter"
-              >
-                Sem 1
-              </text>
-              <text
-                x="300"
-                y="278"
-                fontSize="11"
-                fill="#94a3b8"
-                textAnchor="middle"
-                fontFamily="Inter"
-              >
-                Sem 2
-              </text>
-              <text
-                x="450"
-                y="278"
-                fontSize="11"
-                fill="#94a3b8"
-                textAnchor="middle"
-                fontFamily="Inter"
-              >
-                Sem 3
-              </text>
-              <text
-                x="600"
-                y="278"
-                fontSize="11"
-                fill="#94a3b8"
-                textAnchor="middle"
-                fontFamily="Inter"
-              >
-                Sem 4
-              </text>
-              <polyline
-                points="150,110 300,180 450,140 600,90"
-                fill="none"
-                stroke="black"
-                strokeWidth="2.5"
-                strokeLinejoin="round"
+              <line
+                x1={chartPadding.left}
+                y1={chartHeight - chartPadding.bottom}
+                x2={chartWidth - chartPadding.right}
+                y2={chartHeight - chartPadding.bottom}
+                stroke="#e2e8f0"
+                strokeWidth="1"
               />
-              {[
-                [150, 110],
-                [300, 180],
-                [450, 140],
-                [600, 90],
-              ].map(([cx, cy], i) => (
-                <rect
-                  key={i}
-                  x={cx - 4}
-                  y={cy - 4}
-                  width="8"
-                  height="8"
-                  fill="black"
-                  stroke="white"
-                  strokeWidth="2"
-                />
-              ))}
-              <polyline
-                points="150,180 300,100 450,200 600,170"
+
+              <path
+                d={buildPath("sgpa")}
                 fill="none"
-                stroke="#ff7f0e"
-                strokeWidth="2.5"
+                stroke="#f97316"
+                strokeWidth="3"
                 strokeLinejoin="round"
+                strokeLinecap="round"
               />
-              {[
-                [150, 180],
-                [300, 100],
-                [450, 200],
-                [600, 170],
-              ].map(([cx, cy], i) => (
-                <rect
-                  key={i}
-                  x={cx - 4}
-                  y={cy - 4}
-                  width="8"
-                  height="8"
-                  fill="#ff7f0e"
-                  stroke="white"
-                  strokeWidth="2"
-                />
-              ))}
-              <polyline
-                points="150,190 300,190 450,160 600,80"
+              <path
+                d={buildPath("cgpa")}
                 fill="none"
-                stroke="#2ca02c"
-                strokeWidth="2.5"
+                stroke="#111827"
+                strokeWidth="3"
                 strokeLinejoin="round"
+                strokeLinecap="round"
               />
-              {[
-                [150, 190],
-                [300, 190],
-                [450, 160],
-                [600, 80],
-              ].map(([cx, cy], i) => (
+
+              {visibleHistory.map((semester, index) => {
+                const x = xScale(index);
+                const sgpaY = yScale(semester.sgpa);
+                const cgpaY = yScale(semester.cgpa);
+
+                return (
+                  <g key={semester.id}>
+                    <rect
+                      x={x - 4}
+                      y={sgpaY - 4}
+                      width="8"
+                      height="8"
+                      fill="#f97316"
+                      stroke="white"
+                      strokeWidth="2"
+                    />
+                    <rect
+                      x={x - 4}
+                      y={cgpaY - 4}
+                      width="8"
+                      height="8"
+                      fill="#111827"
+                      stroke="white"
+                      strokeWidth="2"
+                    />
+                    <text
+                      x={x}
+                      y={chartHeight - 16}
+                      fontSize="12"
+                      fill="#94a3b8"
+                      textAnchor="middle"
+                    >
+                      {semester.shortLabel}
+                    </text>
+                  </g>
+                );
+              })}
+
+              <g>
                 <rect
-                  key={i}
-                  x={cx - 4}
-                  y={cy - 4}
-                  width="8"
-                  height="8"
-                  fill="#2ca02c"
-                  stroke="white"
-                  strokeWidth="2"
+                  x={chartWidth - 168}
+                  y={16}
+                  width="10"
+                  height="10"
+                  fill="#f97316"
                 />
-              ))}
+                <text x={chartWidth - 152} y={25} fontSize="12" fill="#6b7280">
+                  SGPA
+                </text>
+                <rect
+                  x={chartWidth - 102}
+                  y={16}
+                  width="10"
+                  height="10"
+                  fill="#111827"
+                />
+                <text x={chartWidth - 86} y={25} fontSize="12" fill="#6b7280">
+                  CGPA
+                </text>
+              </g>
             </svg>
-          </div>
-          <div className="flex flex-wrap justify-center gap-4 sm:gap-8 mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-100">
-            <div className="flex items-center gap-2 text-[10px] sm:text-xs text-gray-500">
-              <span className="w-3 h-0.5 bg-black"></span> SGPA
-            </div>
-            <div className="flex items-center gap-2 text-[10px] sm:text-xs text-gray-500">
-              <span className="w-3 h-0.5 bg-[#ff7f0e]"></span> CGPA
-            </div>
-            <div className="flex items-center gap-2 text-[10px] sm:text-xs text-gray-500">
-              <span className="w-3 h-0.5 bg-[#2ca02c]"></span> Class Avg
-            </div>
           </div>
         </div>
       </div>

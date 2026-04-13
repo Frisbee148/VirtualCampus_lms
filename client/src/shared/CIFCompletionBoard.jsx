@@ -42,9 +42,10 @@ const CIFCompletionBoard = ({
     () => getCifCourse(selectedCourseKey),
     [selectedCourseKey],
   );
-  const [completedIds, setCompletedIds] = useState(() =>
+  const [savedIds, setSavedIds] = useState(() =>
     readStoredCompletion(selectedCourseKey),
   );
+  const [completedIds, setCompletedIds] = useState(savedIds);
 
   useEffect(() => {
     if (courseKey) {
@@ -68,12 +69,18 @@ const CIFCompletionBoard = ({
   }, [selectedCourseKey, showCourseSelector]);
 
   useEffect(() => {
-    setCompletedIds(readStoredCompletion(selectedCourseKey));
+    const loaded = readStoredCompletion(selectedCourseKey);
+    setSavedIds(loaded);
+    setCompletedIds(loaded);
   }, [selectedCourseKey]);
 
-  useEffect(() => {
+  const handleSave = () => {
     saveStoredCompletion(selectedCourseKey, completedIds);
-  }, [completedIds, selectedCourseKey]);
+    setSavedIds(completedIds);
+  };
+
+  const hasUnsavedChanges = 
+    JSON.stringify([...completedIds].sort()) !== JSON.stringify([...savedIds].sort());
 
   const summary = useMemo(
     () => getCifCompletionSummary(completedIds, currentCourse),
@@ -304,11 +311,28 @@ const CIFCompletionBoard = ({
                 </span>{" "}
                 complete
               </p>
-              <p className="text-gray-400">
-                {editable
-                  ? "Tick topics to update the student view."
-                  : "Faculty update reflected automatically."}
-              </p>
+              {editable ? (
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                  <p className="text-gray-400">
+                    Tick topics to update the student view.
+                  </p>
+                  <button
+                    onClick={handleSave}
+                    disabled={!hasUnsavedChanges}
+                    className={`px-3 py-1.5 text-xs font-semibold transition-colors ${
+                      hasUnsavedChanges
+                        ? "bg-[#1a7a7a] text-white hover:bg-[#145c5c] cursor-pointer"
+                        : "bg-gray-100 text-gray-400 cursor-not-allowed"
+                    }`}
+                  >
+                    {hasUnsavedChanges ? "Save Changes" : "Saved"}
+                  </button>
+                </div>
+              ) : (
+                <p className="text-gray-400">
+                  Faculty update reflected automatically.
+                </p>
+              )}
             </div>
 
             <div className="max-h-[560px] overflow-y-auto border border-gray-200">

@@ -56,7 +56,7 @@ const Sidebar = ({ mobileOpen, onClose }) => {
     {
       id: "Attendance Date Wise",
       label: "Attendance Date Wise",
-      path: "/attendance-date-wise",
+      path: "/course/attendance",
     },
     { id: "Admit Card", label: "Admit Card", path: "/admit-card" },
     {
