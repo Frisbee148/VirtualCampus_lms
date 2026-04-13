@@ -105,6 +105,16 @@ import {
   LibrarianNotifications,
 } from "./librarianinterface";
 
+// Library Operator Interface
+import {
+  LibraryOperatorDashboard,
+  LibraryOperatorIssue,
+  LibraryOperatorReturn,
+  LibraryOperatorRenew,
+  LibraryOperatorSearch,
+  LibraryOperatorProfile,
+} from "./libraryoperatorinterface";
+
 // Administrative Officer Interface
 import {
   AODashboard,
@@ -366,6 +376,14 @@ function App() {
           path="/librarian/notifications"
           element={<LibrarianNotifications />}
         />
+
+        {/* Library Operator */}
+        <Route path="/library-operator/dashboard" element={<LibraryOperatorDashboard />} />
+        <Route path="/library-operator/issue" element={<LibraryOperatorIssue />} />
+        <Route path="/library-operator/return" element={<LibraryOperatorReturn />} />
+        <Route path="/library-operator/renew" element={<LibraryOperatorRenew />} />
+        <Route path="/library-operator/search" element={<LibraryOperatorSearch />} />
+        <Route path="/library-operator/profile" element={<LibraryOperatorProfile />} />
 
         {/* Staff Dashboard */}
         <Route path="/staff/dashboard" element={<StaffDashboard />} />

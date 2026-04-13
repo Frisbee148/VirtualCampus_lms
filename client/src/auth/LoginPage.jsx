@@ -22,16 +22,15 @@ const ROLES = [
   { value: "guardian", label: "Guardian/Parent" },
   { value: "staff", label: "Staff" },
   { value: "hod", label: "HOD" },
-  { value: "librarian", label: "Librarian" },
+  { value: "librarian", label: "Library Administrator" },
+  { value: "library-operator", label: "Library Operator" },
 ];
 
 const ABOUT_LINKS = [
-  "About Option 1",
-  "About Option 2",
-  "About Option 3",
-  "About Option 4",
-  "About Option 5",
-  "About Option 6",
+  "Course Registration",
+  "Multimedia Studio Booking",
+  "Latest News",
+  "Notice Board",
 ];
 
 const LoginPage = () => {
@@ -146,6 +145,8 @@ const LoginPage = () => {
       navigate("/ao/dashboard");
     } else if (selectedRole === "librarian") {
       navigate("/librarian/dashboard");
+    } else if (selectedRole === "library-operator") {
+      navigate("/library-operator/dashboard");
     } else if (selectedRole === "hod") {
       navigate("/hod/dashboard");
     } else if (selectedRole === "staff") {
@@ -168,7 +169,7 @@ const LoginPage = () => {
     setAboutOpen(true);
   };
   const handleAboutLeave = () => {
-    closeTimeoutRef.current = setTimeout(() => setAboutOpen(false), 200);
+    closeTimeoutRef.current = setTimeout(() => setAboutOpen(false), 500);
   };
 
   const updateDropdownLayout = useCallback(() => {
@@ -241,6 +242,7 @@ const LoginPage = () => {
       {/* Header */}
       <header className="lp-header">
         <div className="lp-header-title">
+          <img src="/Lnmiit_logo.png" alt="LNMIIT" className="lp-parliament-logo" />
           The LNM Institute of Information Technology
         </div>
 
@@ -252,6 +254,7 @@ const LoginPage = () => {
         >
           <button
             className="lp-about-btn"
+            onMouseEnter={() => clearTimeout(closeTimeoutRef.current)}
             onClick={(e) => {
               e.stopPropagation();
               setAboutOpen((v) => !v);
@@ -259,7 +262,11 @@ const LoginPage = () => {
           >
             About
           </button>
-          <div className="lp-about-dropdown">
+          <div 
+            className="lp-about-dropdown"
+            onMouseEnter={() => clearTimeout(closeTimeoutRef.current)}
+            onMouseLeave={() => closeTimeoutRef.current = setTimeout(() => setAboutOpen(false), 500)}
+          >
             {ABOUT_LINKS.map((link, i) => (
               <a key={i} href="#">
                 {link}
