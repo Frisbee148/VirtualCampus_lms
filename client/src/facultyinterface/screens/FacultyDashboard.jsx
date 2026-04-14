@@ -43,7 +43,7 @@ const FacultyDashboard = () => {
               sections={sections}
               onSectionsChange={setSections}
             />
-            <div className="my-8 border-t-2 border-[#1a7a7a]/30"></div>
+            <div className="my-8 border-t-2 border-[#9f1239]/30"></div>
             <FacultyCards />
           </div>
         )}

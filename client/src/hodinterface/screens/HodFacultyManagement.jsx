@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import HodLayout from "../HodLayout";
-import { Search, X, ChevronDown } from "lucide-react";
+import { X, ChevronDown } from "lucide-react";
 
 const initialFaculty = [
   { id: 1, name: "Dr. Farah Khan", designation: "Associate Professor", email: "farah.khan@lnmiit.ac.in", phone: "+91 98765 12345", courses: ["CS301", "CS405"], students: 78, avgAttendance: "88%", avgCGPA: "7.8", publications: 12, status: "active", joiningYear: "2018", cabin: "A-204", leaveBalance: 18 },
@@ -41,13 +41,12 @@ const HodFacultyManagement = () => {
         {/* Search & Filter */}
         <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-4">
           <div className="relative flex-1">
-            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
             <input
               type="text"
               placeholder="Search by name or email..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-9 pr-3 py-2.5 text-sm border border-gray-200 bg-white focus:outline-none focus:border-gray-400 transition-colors"
+              className="w-full px-3 py-2.5 text-sm border border-gray-200 bg-white focus:outline-none focus:border-gray-400 transition-colors"
             />
           </div>
           <div className="relative">

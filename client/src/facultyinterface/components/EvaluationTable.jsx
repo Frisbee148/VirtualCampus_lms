@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Plus } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 
 const EvaluationTable = ({ sections, onSectionsChange }) => {
   const [editing, setEditing] = useState(false);
@@ -250,7 +250,7 @@ const EvaluationTable = ({ sections, onSectionsChange }) => {
         onClick={addSection}
         className="flex items-center gap-1 mt-4 text-sm text-gray-700 hover:text-[#1a7a7a] transition-colors"
       >
-        Add section <Plus size={16} className="text-[#1a7a7a]" />
+        Add section
       </button>
     </div>
   );

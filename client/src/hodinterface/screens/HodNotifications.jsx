@@ -38,7 +38,6 @@ const HodNotifications = () => {
             </button>
             <div>
               <h1 className="text-xl sm:text-3xl font-bold text-gray-900">Notifications</h1>
-              {unreadCount > 0 && <p className="text-xs text-gray-400">{unreadCount} unread</p>}
             </div>
           </div>
           {unreadCount > 0 && (

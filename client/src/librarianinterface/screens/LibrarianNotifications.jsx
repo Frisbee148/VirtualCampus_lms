@@ -1,32 +1,20 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import LibrarianLayout from "../LibrarianLayout";
-import { AlertTriangle, BookOpen, Clock, Check } from "lucide-react";
+import { ArrowLeft, Check } from "lucide-react";
 
 const initialNotifications = [
-  { id: 1, type: "overdue", title: "Overdue: Data Structures Using C", message: "Rahul Verma has not returned this book. 7 days overdue.", time: "10 min ago", read: false },
-  { id: 2, type: "overdue", title: "Overdue: Linear Algebra", message: "Meera Iyer has not returned this book. 5 days overdue.", time: "10 min ago", read: false },
-  { id: 3, type: "reservation", title: "Reservation Request", message: "Karan Singh has reserved 'Database System Concepts'.", time: "1 hr ago", read: false },
-  { id: 4, type: "return", title: "Book Returned", message: "Priya Patel returned 'Database System Concepts'.", time: "2 hrs ago", read: true },
-  { id: 5, type: "overdue", title: "Overdue: Probability & Statistics", message: "Karan Singh has not returned this book. 3 days overdue.", time: "3 hrs ago", read: true },
-  { id: 6, type: "system", title: "System Backup Complete", message: "Library database backup completed successfully.", time: "6 hrs ago", read: true },
-  { id: 7, type: "return", title: "Book Returned", message: "Vikram Reddy returned 'Discrete Mathematics'.", time: "1 day ago", read: true },
+  { id: 1, title: "Overdue: Data Structures Using C", message: "Rahul Verma has not returned this book. 7 days overdue.", time: "10 min ago", read: false },
+  { id: 2, title: "Overdue: Linear Algebra", message: "Meera Iyer has not returned this book. 5 days overdue.", time: "10 min ago", read: false },
+  { id: 3, title: "Reservation Request", message: "Karan Singh has reserved 'Database System Concepts'.", time: "1 hr ago", read: false },
+  { id: 4, title: "Book Returned", message: "Priya Patel returned 'Database System Concepts'.", time: "2 hrs ago", read: true },
+  { id: 5, title: "Overdue: Probability & Statistics", message: "Karan Singh has not returned this book. 3 days overdue.", time: "3 hrs ago", read: true },
+  { id: 6, title: "System Backup Complete", message: "Library database backup completed successfully.", time: "6 hrs ago", read: true },
+  { id: 7, title: "Book Returned", message: "Vikram Reddy returned 'Discrete Mathematics'.", time: "1 day ago", read: true },
 ];
 
-const iconMap = {
-  overdue: AlertTriangle,
-  reservation: Clock,
-  return: BookOpen,
-  system: Check,
-};
-
-const iconColorMap = {
-  overdue: "text-red-500 bg-red-50",
-  reservation: "text-blue-500 bg-blue-50",
-  return: "text-emerald-500 bg-emerald-50",
-  system: "text-gray-500 bg-gray-100",
-};
-
 const LibrarianNotifications = () => {
+  const navigate = useNavigate();
   const [notifications, setNotifications] = useState(initialNotifications);
 
   const markAsRead = (id) => {
@@ -39,67 +27,65 @@ const LibrarianNotifications = () => {
     setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
   };
 
-  const unreadCount = notifications.filter((n) => !n.read).length;
-
   return (
     <LibrarianLayout>
-      <div className="max-w-4xl">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
-          <div>
-            <h2 className="text-lg sm:text-xl font-semibold text-gray-800">Notifications</h2>
-            <p className="text-sm text-gray-400">
-              {unreadCount > 0 ? `${unreadCount} unread` : "All caught up"}
-            </p>
-          </div>
-          {unreadCount > 0 && (
+      <div className="max-w-3xl">
+        <div className="flex items-center justify-between mb-5 sm:mb-8 gap-2">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
             <button
-              onClick={markAllRead}
-              className="px-4 py-2 text-sm font-medium text-[#d97706] bg-amber-50 rounded-lg hover:bg-amber-100 transition-colors w-full sm:w-auto"
+              onClick={() => navigate(-1)}
+              className="flex-shrink-0 p-1.5 sm:p-2 hover:bg-gray-100 text-gray-400 cursor-pointer transition-colors"
             >
-              Mark all as read
+              <ArrowLeft size={18} className="sm:w-5 sm:h-5" />
             </button>
-          )}
-        </div>
-
-        <div className="bg-white rounded-xl border border-gray-100 overflow-hidden">
-          <div className="divide-y divide-gray-50">
-            {notifications.map((n) => {
-              const Icon = iconMap[n.type] || Check;
-              const colorClass = iconColorMap[n.type] || iconColorMap.system;
-              return (
-                <div
-                  key={n.id}
-                  onClick={() => markAsRead(n.id)}
-                  className={`px-4 sm:px-5 py-4 flex items-start gap-3 cursor-pointer transition-colors ${
-                    n.read ? "hover:bg-gray-50/50" : "bg-amber-50/30 hover:bg-amber-50/50"
-                  }`}
-                >
-                  <div className={`p-2 rounded-lg flex-shrink-0 ${colorClass}`}>
-                    <Icon size={16} />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-start justify-between gap-2">
-                      <p className={`text-sm ${n.read ? "text-gray-700" : "text-gray-800 font-medium"}`}>
-                        {n.title}
-                      </p>
-                      {!n.read && (
-                        <span className="w-2 h-2 rounded-full bg-[#d97706] flex-shrink-0 mt-1.5"></span>
-                      )}
-                    </div>
-                    <p className="text-xs text-gray-400 mt-0.5">{n.message}</p>
-                    <p className="text-[10px] text-gray-300 mt-1">{n.time}</p>
-                  </div>
-                </div>
-              );
-            })}
+            <h1 className="text-xl sm:text-3xl font-bold text-gray-900 truncate">
+              Notifications
+            </h1>
           </div>
-
-          {notifications.length === 0 && (
-            <div className="text-center py-10 text-gray-400 text-sm">
-              No notifications.
-            </div>
-          )}
+          <button
+            onClick={markAllRead}
+            className="flex-shrink-0 flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-black font-medium hover:underline cursor-pointer whitespace-nowrap"
+          >
+            <Check size={14} className="sm:w-4 sm:h-4" />
+            <span className="hidden sm:inline">Mark all as read</span>
+            <span className="sm:hidden">Read all</span>
+          </button>
         </div>
+
+        <div className="space-y-0">
+          {notifications.map((n) => (
+            <div
+              key={n.id}
+              onClick={() => markAsRead(n.id)}
+              className={`border-b border-gray-100 px-3 sm:px-4 py-3 sm:py-4 flex items-start justify-between hover:bg-gray-50/50 transition-colors cursor-pointer gap-2 ${!n.read ? "bg-black/[0.02]" : ""}`}
+            >
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <h3
+                    className={`text-xs sm:text-sm font-semibold truncate ${n.read ? "text-gray-700" : "text-gray-900"}`}
+                  >
+                    {n.title}
+                  </h3>
+                  {!n.read && (
+                    <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-black flex-shrink-0"></span>
+                  )}
+                </div>
+                <p className="text-[10px] sm:text-xs text-gray-400 mt-0.5 truncate">
+                  {n.message}
+                </p>
+              </div>
+              <span className="text-[9px] sm:text-[11px] text-gray-300 font-medium flex-shrink-0 mt-0.5">
+                {n.time}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {notifications.length === 0 && (
+          <div className="text-center py-10 text-gray-400 text-sm">
+            No notifications.
+          </div>
+        )}
       </div>
     </LibrarianLayout>
   );

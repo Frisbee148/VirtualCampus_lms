@@ -98,11 +98,11 @@ const roleColors = {
   Director: { bg: "bg-purple-50", text: "text-purple-600" },
   Registrar: { bg: "bg-emerald-50", text: "text-emerald-600" },
   Admin: { bg: "bg-amber-50", text: "text-amber-600" },
-  Faculty: { bg: "bg-blue-50", text: "text-blue-600" },
-  Student: { bg: "bg-cyan-50", text: "text-cyan-600" },
+  Faculty: { bg: "bg-zinc-100", text: "text-zinc-600" },
+  Student: { bg: "bg-zinc-100", text: "text-zinc-700" },
   Staff: { bg: "bg-gray-100", text: "text-gray-600" },
-  HOD: { bg: "bg-indigo-50", text: "text-indigo-600" },
-  Guardian: { bg: "bg-pink-50", text: "text-pink-600" },
+  HOD: { bg: "bg-zinc-100", text: "text-zinc-800" },
+  Guardian: { bg: "bg-rose-50", text: "text-rose-600" },
 };
 
 const UserManagement = () => {

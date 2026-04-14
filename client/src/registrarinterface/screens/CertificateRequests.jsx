@@ -94,8 +94,8 @@ const statusConfig = {
   },
   processing: {
     label: "Processing",
-    bg: "bg-blue-50",
-    text: "text-blue-600",
+    bg: "bg-zinc-100",
+    text: "text-zinc-600",
     icon: FileText,
   },
   completed: {
@@ -131,16 +131,12 @@ const CertificateRequests = () => {
             </p>
           </div>
           <div className="relative w-full sm:w-auto">
-            <Search
-              size={16}
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-            />
             <input
               type="text"
               placeholder="Search requests..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="pl-9 pr-4 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-[#059669] w-full sm:w-56 transition-colors"
+              className="px-3 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-[#059669] w-full sm:w-56 transition-colors"
             />
           </div>
         </div>

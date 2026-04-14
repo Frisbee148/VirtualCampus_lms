@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Plus, Search, ChevronDown } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 
 const AssignmentsTable = () => {
   const [assignments, setAssignments] = useState([
@@ -377,16 +377,11 @@ const AssignmentsTable = () => {
         onClick={addAssignment}
         className="flex items-center gap-1 mt-4 text-sm text-gray-700 hover:text-[#1a7a7a] transition-colors"
       >
-        Add section <Plus size={16} className="text-[#1a7a7a]" />
+        Add section
       </button>
 
       {/* Search FAB */}
-      <div className="hidden sm:block fixed bottom-5 right-5 sm:bottom-8 sm:right-8 z-50">
-        <button className="flex items-center gap-1 bg-[#4a4a4a] text-white px-4 py-3 rounded shadow-lg hover:bg-[#333] transition-colors">
-          <Search size={18} />
-          <ChevronDown size={14} />
-        </button>
-      </div>
+      {/* Search FAB removed */}
     </div>
   );
 };

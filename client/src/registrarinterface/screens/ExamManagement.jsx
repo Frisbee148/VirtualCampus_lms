@@ -115,8 +115,8 @@ const statusConfig = {
   },
   completed: {
     label: "Completed",
-    bg: "bg-blue-50",
-    text: "text-blue-600",
+    bg: "bg-zinc-100",
+    text: "text-zinc-600",
     icon: CheckCircle,
   },
   "results-published": {

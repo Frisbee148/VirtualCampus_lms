@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import LibraryOperatorLayout from "../LibraryOperatorLayout";
-import { Search, BookOpen, CheckCircle, AlertTriangle } from "lucide-react";
+import { CheckCircle, AlertTriangle, ChevronRight } from "lucide-react";
 
 const LibraryOperatorReturn = () => {
   const [bookQuery, setBookQuery] = useState("");
@@ -35,11 +35,9 @@ const LibraryOperatorReturn = () => {
 
         <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
           <h2 className="text-base font-semibold text-gray-900 mb-4 flex items-center gap-2">
-            <Search size={18} className="text-blue-500" />
             Scan / Search Book
           </h2>
           <div className="relative">
-            <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
             <input
               type="text"
               value={bookQuery}
@@ -48,16 +46,16 @@ const LibraryOperatorReturn = () => {
                 setReturnedBook(null);
               }}
               placeholder="Enter book ID or title..."
-              className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
+              className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-zinc-500/20 focus:border-zinc-500"
               autoFocus
             />
           </div>
         </div>
 
         {returnedBook && (
-          <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-5">
+          <div className="bg-zinc-50 border border-zinc-200 rounded-xl p-5">
             <div className="flex items-center gap-2 mb-3">
-              <CheckCircle size={20} className="text-emerald-500" />
+              <CheckCircle size={20} className="text-[#9f1239]" />
               <span className="font-semibold text-gray-900">Book Returned Successfully</span>
             </div>
             <div className="space-y-2 text-sm">
@@ -81,7 +79,7 @@ const LibraryOperatorReturn = () => {
                 {filteredBooks.map((book) => (
                   <div
                     key={book.id}
-                    className="p-4 rounded-lg border border-gray-100 hover:border-blue-200 transition-all"
+                    className="p-4 rounded-lg border border-gray-100 hover:border-zinc-200 transition-all"
                   >
                     <div className="flex justify-between items-start mb-2">
                       <div>
@@ -99,7 +97,7 @@ const LibraryOperatorReturn = () => {
                       </div>
                       <button
                         onClick={() => handleReturn(book)}
-                        className="px-4 py-2 bg-blue-500 text-white text-sm rounded-lg hover:bg-blue-600 transition-colors"
+                        className="px-4 py-2 bg-zinc-800 text-white text-sm rounded-lg hover:bg-[#9f1239] transition-colors"
                       >
                         Confirm Return
                       </button>
@@ -118,15 +116,15 @@ const LibraryOperatorReturn = () => {
           <div className="space-y-3">
             <div className="flex justify-between items-center py-2 border-b border-gray-50">
               <span className="text-sm text-gray-600">Clean Code</span>
-              <span className="text-xs text-emerald-500">Returned today</span>
+              <span className="text-xs text-zinc-500">Returned today</span>
             </div>
             <div className="flex justify-between items-center py-2 border-b border-gray-50">
               <span className="text-sm text-gray-600">Design Patterns</span>
-              <span className="text-xs text-emerald-500">Returned yesterday</span>
+              <span className="text-xs text-zinc-500">Returned yesterday</span>
             </div>
             <div className="flex justify-between items-center py-2">
               <span className="text-sm text-gray-600">Refactoring</span>
-              <span className="text-xs text-emerald-500">Returned 2 days ago</span>
+              <span className="text-xs text-zinc-500">Returned 2 days ago</span>
             </div>
           </div>
         </div>

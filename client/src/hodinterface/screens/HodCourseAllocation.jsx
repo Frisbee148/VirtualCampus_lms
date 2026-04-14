@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import HodLayout from "../HodLayout";
-import { Search, X, Plus, ChevronDown } from "lucide-react";
+import { X, Plus, ChevronDown, ChevronRight } from "lucide-react";
 
 const initialCourses = [
   { id: 1, code: "CS102", name: "Programming Fundamentals", credits: 4, semester: 1, faculty: "Dr. Neha Gupta", students: 45, schedule: "MWF 9:00-10:00", type: "Core" },
@@ -65,13 +65,12 @@ const HodCourseAllocation = () => {
         {/* Search & Filters */}
         <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-4">
           <div className="relative flex-1">
-            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
             <input
               type="text"
               placeholder="Search by code, name, or faculty..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-9 pr-3 py-2.5 text-sm border border-gray-200 bg-white focus:outline-none focus:border-gray-400 transition-colors"
+              className="w-full px-3 py-2.5 text-sm border border-gray-200 bg-white focus:outline-none focus:border-gray-400 transition-colors"
             />
           </div>
           <div className="flex gap-2">

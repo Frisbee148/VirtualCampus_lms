@@ -338,7 +338,7 @@ const CIFCompletionBoard = ({
             <div className="max-h-[560px] overflow-y-auto border border-gray-200">
               {currentCourse.sections.map((section) => (
                 <div key={section.id}>
-                  <div className="grid grid-cols-[minmax(0,1fr)_70px_80px] sm:grid-cols-[minmax(0,1fr)_90px_100px_120px] bg-[#0f1117] text-white text-[10px] sm:text-xs font-semibold">
+                  <div className="grid grid-cols-[minmax(0,1fr)_70px_80px] sm:grid-cols-[minmax(0,1fr)_90px_100px_120px] bg-[#18181b] text-white text-[10px] sm:text-xs font-semibold">
                     <div className="px-3 sm:px-4 py-2 sm:py-2.5">
                       {section.unitTitle}
                     </div>

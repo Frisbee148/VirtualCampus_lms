@@ -82,26 +82,24 @@ const StaffCourseManagement = () => {
           </div>
           <button
             onClick={openCreate}
-            className="flex items-center gap-2 px-4 py-2 bg-[#0f1117] text-white text-xs font-medium hover:bg-[#1a1d27] transition-colors"
+            className="flex items-center gap-2 px-4 py-2 bg-[#18181b] text-white text-xs font-medium hover:bg-[#1a1d27] transition-colors"
           >
-            <Plus size={14} /> Create Course
+            Create Course
           </button>
         </div>
 
         {/* Filters */}
         <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-4">
           <div className="relative flex-1 max-w-sm">
-            <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-300" />
             <input
               type="text"
               placeholder="Search by name or code..."
               value={search}
               onChange={(e) => { setSearch(e.target.value); setPage(1); }}
-              className="w-full pl-9 pr-3 py-2 text-xs border border-gray-200 bg-white focus:outline-none focus:border-gray-400 transition-colors"
+              className="w-full px-3 py-2 text-xs border border-gray-200 bg-white focus:outline-none focus:border-gray-400 transition-colors"
             />
           </div>
           <div className="flex items-center gap-2">
-            <Filter size={14} className="text-gray-400" />
             <select
               value={statusFilter}
               onChange={(e) => { setStatusFilter(e.target.value); setPage(1); }}
@@ -156,7 +154,7 @@ const StaffCourseManagement = () => {
                           <Edit3 size={13} />
                         </button>
                         {!c.instructor && (
-                          <button onClick={() => openAssign(c)} className="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 transition-colors" title="Assign Instructor">
+                          <button onClick={() => openAssign(c)} className="p-1.5 text-gray-400 hover:text-zinc-800 hover:bg-gray-100 transition-colors" title="Assign Instructor">
                             <UserPlus size={13} />
                           </button>
                         )}
@@ -297,7 +295,7 @@ const StaffCourseManagement = () => {
               </div>
               <div className="flex items-center justify-end gap-2 px-5 py-4 border-t border-gray-100">
                 <button onClick={() => setShowModal(false)} className="px-4 py-2 text-xs text-gray-600 hover:bg-gray-100 transition-colors">Cancel</button>
-                <button onClick={() => setShowModal(false)} className="px-4 py-2 text-xs bg-[#0f1117] text-white font-medium hover:bg-[#1a1d27] transition-colors">
+                <button onClick={() => setShowModal(false)} className="px-4 py-2 text-xs bg-[#18181b] text-white font-medium hover:bg-[#1a1d27] transition-colors">
                   {modalType === "create" ? "Create" : modalType === "assign" ? "Assign" : "Save"}
                 </button>
               </div>

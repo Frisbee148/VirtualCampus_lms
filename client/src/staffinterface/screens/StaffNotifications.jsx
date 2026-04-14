@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import StaffLayout from "../StaffLayout";
-import { Check, CheckCheck } from "lucide-react";
+import { ArrowLeft, Check } from "lucide-react";
 
-const notifications = [
+const notificationsData = [
   { id: 1, title: "New enrollment request", detail: "Rahul Verma wants to enroll in MA201 Linear Algebra", time: "5 min ago", read: false },
   { id: 2, title: "Course created", detail: "ME205 Thermodynamics added to Fall 2026 catalog", time: "22 min ago", read: false },
   { id: 3, title: "Enrollment approved", detail: "Batch approval completed — 15 students enrolled in EE101", time: "2h ago", read: false },
@@ -14,59 +15,76 @@ const notifications = [
 ];
 
 const StaffNotifications = () => {
-  const [items, setItems] = useState(notifications);
+  const navigate = useNavigate();
+  const [items, setItems] = useState(notificationsData);
 
   const markAllRead = () => {
     setItems(items.map((n) => ({ ...n, read: true })));
   };
 
-  const unreadCount = items.filter((n) => !n.read).length;
+  const markAsRead = (id) => {
+    setItems(items.map((n) => (n.id === id ? { ...n, read: true } : n)));
+  };
 
   return (
     <StaffLayout>
       <div className="max-w-3xl">
-        <div className="flex items-center justify-between mb-5">
-          <div>
-            <h2 className="text-lg sm:text-xl font-semibold text-gray-800 mb-1">Notifications</h2>
-            <p className="text-sm text-gray-400">{unreadCount} unread</p>
-          </div>
-          {unreadCount > 0 && (
+        <div className="flex items-center justify-between mb-5 sm:mb-8 gap-2">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
             <button
-              onClick={markAllRead}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs text-gray-600 hover:bg-gray-100 transition-colors"
+              onClick={() => navigate(-1)}
+              className="flex-shrink-0 p-1.5 sm:p-2 hover:bg-gray-100 text-gray-400 cursor-pointer transition-colors"
             >
-              <CheckCheck size={14} /> Mark all read
+              <ArrowLeft size={18} className="sm:w-5 sm:h-5" />
             </button>
-          )}
-        </div>
-
-        <div className="bg-white border border-gray-100 shadow-sm">
-          <div className="divide-y divide-gray-50">
-            {items.map((n) => (
-              <div
-                key={n.id}
-                className={`px-4 sm:px-5 py-4 transition-colors ${n.read ? "" : "bg-blue-50/30"}`}
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center gap-2 mb-0.5">
-                      {!n.read && <span className="w-1.5 h-1.5 bg-blue-500 rounded-full flex-shrink-0" />}
-                      <h4 className={`text-xs font-medium ${n.read ? "text-gray-600" : "text-gray-800"}`}>{n.title}</h4>
-                    </div>
-                    <p className="text-[10px] text-gray-400 mt-0.5">{n.detail}</p>
-                  </div>
-                  <span className="text-[10px] text-gray-300 flex-shrink-0">{n.time}</span>
-                </div>
-              </div>
-            ))}
+            <h1 className="text-xl sm:text-3xl font-bold text-gray-900 truncate">
+              Notifications
+            </h1>
           </div>
-
-          {items.length === 0 && (
-            <div className="px-4 py-12 text-center">
-              <p className="text-sm text-gray-400">No notifications</p>
-            </div>
-          )}
+          <button
+            onClick={markAllRead}
+            className="flex-shrink-0 flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-black font-medium hover:underline cursor-pointer whitespace-nowrap"
+          >
+            <Check size={14} className="sm:w-4 sm:h-4" />
+            <span className="hidden sm:inline">Mark all as read</span>
+            <span className="sm:hidden">Read all</span>
+          </button>
         </div>
+
+        <div className="space-y-0">
+          {items.map((n) => (
+            <div
+              key={n.id}
+              onClick={() => markAsRead(n.id)}
+              className={`border-b border-gray-100 px-3 sm:px-4 py-3 sm:py-4 flex items-start justify-between hover:bg-gray-50/50 transition-colors cursor-pointer gap-2 ${!n.read ? "bg-black/[0.02]" : ""}`}
+            >
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <h3
+                    className={`text-xs sm:text-sm font-semibold truncate ${n.read ? "text-gray-700" : "text-gray-900"}`}
+                  >
+                    {n.title}
+                  </h3>
+                  {!n.read && (
+                    <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-black flex-shrink-0"></span>
+                  )}
+                </div>
+                <p className="text-[10px] sm:text-xs text-gray-400 mt-0.5 truncate">
+                  {n.detail}
+                </p>
+              </div>
+              <span className="text-[9px] sm:text-[11px] text-gray-300 font-medium flex-shrink-0 mt-0.5">
+                {n.time}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {items.length === 0 && (
+          <div className="px-4 py-12 text-center text-gray-400 text-sm">
+            No notifications
+          </div>
+        )}
       </div>
     </StaffLayout>
   );

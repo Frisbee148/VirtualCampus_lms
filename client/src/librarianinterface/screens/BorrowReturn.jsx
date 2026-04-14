@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import LibrarianLayout from "../LibrarianLayout";
-import { Search, CheckCircle, AlertCircle } from "lucide-react";
+import { CheckCircle, AlertCircle, ChevronRight } from "lucide-react";
 
 const allUsers = [
   { id: 1, name: "Aarav Sharma", email: "aarav.20b@lnmiit.ac.in", role: "Student", booksIssued: 3, maxBooks: 5, status: "active", finesDue: 0 },
@@ -128,7 +128,6 @@ const BorrowReturn = () => {
               Step 1 — Search User
             </label>
             <div className="relative">
-              <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
               <input
                 type="text"
                 placeholder="Type user name or email..."
@@ -138,7 +137,7 @@ const BorrowReturn = () => {
                   setSelectedUser(null);
                   setSelectedIssued(null);
                 }}
-                className="pl-9 pr-3 py-2.5 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-[#d97706] w-full transition-colors"
+                className="px-3 py-2.5 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-[#9f1239] w-full transition-colors"
                 autoFocus
               />
             </div>
@@ -160,7 +159,7 @@ const BorrowReturn = () => {
                       <p className="text-xs text-gray-400">{u.email}</p>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className={`text-[10px] font-medium px-2 py-0.5 rounded-full ${u.role === "Faculty" ? "bg-blue-50 text-blue-600" : "bg-cyan-50 text-cyan-600"}`}>
+                      <span className={`text-[10px] font-medium px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-600`}>
                         {u.role}
                       </span>
                       {u.status === "blocked" && (
@@ -204,7 +203,6 @@ const BorrowReturn = () => {
               {mode === "issue" ? (
                 <>
                   <div className="relative">
-                    <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
                     <input
                       type="text"
                       placeholder="Type book title or author..."
@@ -213,7 +211,7 @@ const BorrowReturn = () => {
                         setBookSearch(e.target.value);
                         setSelectedBook(null);
                       }}
-                      className="pl-9 pr-3 py-2.5 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-[#d97706] w-full transition-colors"
+                      className="px-3 py-2.5 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-[#9f1239] w-full transition-colors"
                     />
                   </div>
 
@@ -261,7 +259,7 @@ const BorrowReturn = () => {
                         onClick={() => setSelectedIssued(ib)}
                         className={`w-full text-left p-3 rounded-lg border transition-all ${
                           selectedIssued?.id === ib.id
-                            ? "border-[#d97706] bg-amber-50/50"
+                            ? "border-[#9f1239] bg-rose-50/5"
                             : "border-gray-200 hover:border-gray-300 hover:bg-gray-50"
                         }`}
                       >
@@ -293,7 +291,7 @@ const BorrowReturn = () => {
                   disabled={!selectedBook}
                   className={`px-6 py-2.5 text-sm font-medium rounded-lg transition-colors ${
                     selectedBook
-                      ? "bg-[#d97706] text-white hover:bg-[#b45309]"
+                      ? "bg-[#9f1239] text-white hover:bg-rose-900"
                       : "bg-gray-100 text-gray-400 cursor-not-allowed"
                   }`}
                 >
@@ -306,7 +304,7 @@ const BorrowReturn = () => {
                     disabled={!selectedIssued}
                     className={`px-6 py-2.5 text-sm font-medium rounded-lg transition-colors ${
                       selectedIssued
-                        ? "bg-[#d97706] text-white hover:bg-[#b45309]"
+                        ? "bg-[#9f1239] text-white hover:bg-rose-900"
                         : "bg-gray-100 text-gray-400 cursor-not-allowed"
                     }`}
                   >
@@ -317,7 +315,7 @@ const BorrowReturn = () => {
                     disabled={!selectedIssued}
                     className={`px-6 py-2.5 text-sm font-medium rounded-lg transition-colors ${
                       selectedIssued
-                        ? "bg-blue-600 text-white hover:bg-blue-700"
+                        ? "bg-rose-800 text-white hover:bg-rose-900"
                         : "bg-gray-100 text-gray-400 cursor-not-allowed"
                     }`}
                   >

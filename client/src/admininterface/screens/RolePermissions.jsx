@@ -6,7 +6,7 @@ const rolesData = [
   {
     id: 1,
     name: "Director",
-    color: "#6c2bd9",
+    color: "#9f1239",
     users: 1,
     permissions: {
       Dashboard: true,
@@ -23,7 +23,7 @@ const rolesData = [
   {
     id: 2,
     name: "Registrar",
-    color: "#059669",
+    color: "#52525b",
     users: 1,
     permissions: {
       Dashboard: true,
@@ -40,7 +40,7 @@ const rolesData = [
   {
     id: 3,
     name: "Admin",
-    color: "#d97706",
+    color: "#18181b",
     users: 2,
     permissions: {
       Dashboard: true,
@@ -57,7 +57,7 @@ const rolesData = [
   {
     id: 4,
     name: "Faculty",
-    color: "#2563eb",
+    color: "#71717a",
     users: 186,
     permissions: {
       Dashboard: true,
@@ -74,7 +74,7 @@ const rolesData = [
   {
     id: 5,
     name: "HOD",
-    color: "#4f46e5",
+    color: "#a1a1aa",
     users: 12,
     permissions: {
       Dashboard: true,
@@ -91,7 +91,7 @@ const rolesData = [
   {
     id: 6,
     name: "Student",
-    color: "#0891b2",
+    color: "#d4d4d8",
     users: 3248,
     permissions: {
       Dashboard: true,
@@ -108,7 +108,7 @@ const rolesData = [
   {
     id: 7,
     name: "Guardian",
-    color: "#be185d",
+    color: "#e4e4e7",
     users: 2800,
     permissions: {
       Dashboard: true,
@@ -125,7 +125,7 @@ const rolesData = [
   {
     id: 8,
     name: "Staff",
-    color: "#64748b",
+    color: "#f4f4f5",
     users: 45,
     permissions: {
       Dashboard: true,
@@ -156,7 +156,7 @@ const RolePermissions = () => {
               Manage access control for all user roles
             </p>
           </div>
-          <button className="px-4 py-2 text-sm font-medium bg-[#d97706] text-white rounded-lg hover:bg-[#b45309] transition-colors w-full sm:w-auto">
+          <button className="px-4 py-2 text-sm font-medium bg-[#9f1239] text-white rounded-lg hover:bg-rose-950 transition-colors w-full sm:w-auto">
             Create Role
           </button>
         </div>

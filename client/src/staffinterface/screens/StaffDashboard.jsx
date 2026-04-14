@@ -1,28 +1,19 @@
 import React from "react";
 import StaffLayout from "../StaffLayout";
-import {
-  Users,
-  GraduationCap,
-  ClipboardList,
-  AlertTriangle,
-  BookOpen,
-  Clock,
-  UserX,
-  Megaphone,
-} from "lucide-react";
+import { ChevronRight } from "lucide-react";
 
 const kpiCards = [
-  { label: "Total Users", value: "1,248", icon: Users, accent: "#1a7a7a", change: "Students: 986 · Faculty: 142 · Staff: 120" },
-  { label: "Total Courses", value: "156", icon: GraduationCap, accent: "#e8a435", change: "12 depts · 6 terms" },
-  { label: "Active Enrollments", value: "3,842", icon: ClipboardList, accent: "#2d8a4e", change: "Spring 2026" },
-  { label: "Current Term", value: "Spring '26", icon: BookOpen, accent: "#6366f1", change: "Jan 15 – May 30" },
+  { label: "Total Users", value: "1,248", accent: "#9f1239", change: "Students: 986 · Faculty: 142 · Staff: 120" },
+  { label: "Total Courses", value: "156", accent: "#18181b", change: "12 depts · 6 terms" },
+  { label: "Active Enrollments", value: "3,842", accent: "#71717a", change: "Spring 2026" },
+  { label: "Current Term", value: "Spring '26", accent: "#9f1239", change: "Jan 15 – May 30" },
 ];
 
 const alerts = [
-  { id: 1, type: "Enrollment", message: "23 pending enrollment approvals", icon: ClipboardList, color: "text-amber-600 bg-amber-50", urgent: true },
-  { id: 2, type: "Course", message: "4 courses without assigned instructors", icon: AlertTriangle, color: "text-red-600 bg-red-50", urgent: true },
-  { id: 3, type: "User", message: "8 inactive user accounts flagged", icon: UserX, color: "text-orange-600 bg-orange-50", urgent: false },
-  { id: 4, type: "Announcement", message: "2 draft announcements pending review", icon: Megaphone, color: "text-blue-600 bg-blue-50", urgent: false },
+  { id: 1, type: "Enrollment", message: "23 pending enrollment approvals", color: "text-amber-600 bg-amber-50", urgent: true },
+  { id: 2, type: "Course", message: "4 courses without assigned instructors", color: "text-red-600 bg-red-50", urgent: true },
+  { id: 3, type: "User", message: "8 inactive user accounts flagged", color: "text-orange-600 bg-orange-50", urgent: false },
+  { id: 4, type: "Announcement", message: "2 draft announcements pending review", color: "text-zinc-600 bg-zinc-50", urgent: false },
 ];
 
 const recentActivity = [
@@ -37,10 +28,10 @@ const recentActivity = [
 ];
 
 const quickStats = [
-  { label: "Pending Enrollments", value: "23", icon: Clock, color: "#e8a435" },
-  { label: "Unassigned Courses", value: "4", icon: AlertTriangle, color: "#ef4444" },
-  { label: "Inactive Users", value: "8", icon: UserX, color: "#f97316" },
-  { label: "Active Courses", value: "98", icon: GraduationCap, color: "#2d8a4e" },
+  { label: "Pending Enrollments", value: "23", color: "#18181b" },
+  { label: "Unassigned Courses", value: "4", color: "#9f1239" },
+  { label: "Inactive Users", value: "8", color: "#71717a" },
+  { label: "Active Courses", value: "98", color: "#9f1239" },
 ];
 
 const StaffDashboard = () => {
@@ -60,7 +51,6 @@ const StaffDashboard = () => {
               <div key={card.label} className="bg-white border border-gray-100 p-3 sm:p-4 shadow-sm">
                 <div className="flex items-start justify-between mb-2">
                   <p className="text-[10px] sm:text-xs text-gray-400 font-medium">{card.label}</p>
-                  <Icon size={16} style={{ color: card.accent }} />
                 </div>
                 <p className="text-xl sm:text-2xl font-bold" style={{ color: card.accent }}>
                   {card.value}
@@ -86,9 +76,6 @@ const StaffDashboard = () => {
                 const Icon = alert.icon;
                 return (
                   <div key={alert.id} className="px-4 py-3 flex items-center gap-3 hover:bg-gray-50/50 transition-colors">
-                    <div className={`p-2 rounded-lg ${alert.color}`}>
-                      <Icon size={15} />
-                    </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2">
                         <span className="text-[10px] font-medium px-1.5 py-0.5 bg-gray-100 text-gray-600 rounded">
@@ -115,9 +102,6 @@ const StaffDashboard = () => {
                 return (
                   <div key={s.label} className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="p-2 rounded-lg bg-gray-50">
-                        <Icon size={16} style={{ color: s.color }} />
-                      </div>
                       <span className="text-xs text-gray-600">{s.label}</span>
                     </div>
                     <span className="text-sm font-bold" style={{ color: s.color }}>{s.value}</span>

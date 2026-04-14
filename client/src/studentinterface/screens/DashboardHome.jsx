@@ -67,7 +67,7 @@ const DashboardHome = () => {
         </div>
 
         {/* AI Suggestion */}
-        <div className="w-full bg-black py-6 sm:py-10 shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center mt-3 sm:mt-4">
+        <div className="w-full bg-rose-900 py-6 sm:py-10 shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center mt-3 sm:mt-4">
           <h2 className="text-base sm:text-xl font-bold text-white text-center">
             AI suggestions
           </h2>

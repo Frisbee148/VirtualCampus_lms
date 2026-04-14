@@ -16,8 +16,8 @@ const SystemSettings = () => {
     semesterEnd: "2026-05-30",
     examStart: "2026-04-14",
     resultDate: "2026-06-15",
-    primaryColor: "#2c3e50",
-    accentColor: "#3498db",
+    primaryColor: "#9f1239",
+    accentColor: "#18181b",
     emailNotifications: true,
     smsNotifications: false,
     maintenanceMode: false,
@@ -43,7 +43,7 @@ const SystemSettings = () => {
               Configure institution and system preferences
             </p>
           </div>
-          <button className="px-4 py-2 text-sm font-medium bg-[#d97706] text-white rounded-lg hover:bg-[#b45309] transition-colors w-full sm:w-auto">
+          <button className="px-4 py-2 text-sm font-medium bg-[#9f1239] text-white rounded-lg hover:bg-rose-950 transition-colors w-full sm:w-auto">
             Save Changes
           </button>
         </div>
@@ -65,7 +65,7 @@ const SystemSettings = () => {
                   onChange={(e) =>
                     updateSetting("instituteName", e.target.value)
                   }
-                  className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#d97706] transition-colors"
+                  className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#9f1239] transition-colors"
                 />
               </div>
               <div>
@@ -76,7 +76,7 @@ const SystemSettings = () => {
                   type="text"
                   value={settings.shortName}
                   onChange={(e) => updateSetting("shortName", e.target.value)}
-                  className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#d97706] transition-colors"
+                  className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#9f1239] transition-colors"
                 />
               </div>
               <div>
@@ -87,7 +87,7 @@ const SystemSettings = () => {
                   type="text"
                   value={settings.website}
                   onChange={(e) => updateSetting("website", e.target.value)}
-                  className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#d97706] transition-colors"
+                  className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#9f1239] transition-colors"
                 />
               </div>
               <div>
@@ -100,7 +100,7 @@ const SystemSettings = () => {
                   onChange={(e) =>
                     updateSetting("contactEmail", e.target.value)
                   }
-                  className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#d97706] transition-colors"
+                  className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#9f1239] transition-colors"
                 />
               </div>
               <div className="sm:col-span-2">
@@ -111,7 +111,7 @@ const SystemSettings = () => {
                   type="text"
                   value={settings.address}
                   onChange={(e) => updateSetting("address", e.target.value)}
-                  className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#d97706] transition-colors"
+                  className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#9f1239] transition-colors"
                 />
               </div>
             </div>
@@ -133,7 +133,7 @@ const SystemSettings = () => {
                   onChange={(e) =>
                     updateSetting("academicYear", e.target.value)
                   }
-                  className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#d97706] transition-colors"
+                  className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#9f1239] transition-colors"
                 />
               </div>
               <div>
@@ -146,7 +146,7 @@ const SystemSettings = () => {
                   onChange={(e) =>
                     updateSetting("currentSemester", e.target.value)
                   }
-                  className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#d97706] transition-colors"
+                  className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#9f1239] transition-colors"
                 />
               </div>
               <div>
@@ -159,7 +159,7 @@ const SystemSettings = () => {
                   onChange={(e) =>
                     updateSetting("semesterStart", e.target.value)
                   }
-                  className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#d97706] transition-colors"
+                  className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#9f1239] transition-colors"
                 />
               </div>
               <div>
@@ -170,7 +170,7 @@ const SystemSettings = () => {
                   type="date"
                   value={settings.semesterEnd}
                   onChange={(e) => updateSetting("semesterEnd", e.target.value)}
-                  className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#d97706] transition-colors"
+                  className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#9f1239] transition-colors"
                 />
               </div>
             </div>
@@ -198,7 +198,7 @@ const SystemSettings = () => {
                       !settings.emailNotifications,
                     )
                   }
-                  className={`w-11 h-6 rounded-full transition-colors self-start sm:self-auto ${settings.emailNotifications ? "bg-[#d97706]" : "bg-gray-300"}`}
+                  className={`w-11 h-6 rounded-full transition-colors self-start sm:self-auto ${settings.emailNotifications ? "bg-[#9f1239]" : "bg-gray-300"}`}
                 >
                   <span
                     className={`block w-5 h-5 bg-white rounded-full shadow transition-transform ${settings.emailNotifications ? "translate-x-5" : "translate-x-0.5"}`}
@@ -221,7 +221,7 @@ const SystemSettings = () => {
                       !settings.smsNotifications,
                     )
                   }
-                  className={`w-11 h-6 rounded-full transition-colors self-start sm:self-auto ${settings.smsNotifications ? "bg-[#d97706]" : "bg-gray-300"}`}
+                  className={`w-11 h-6 rounded-full transition-colors self-start sm:self-auto ${settings.smsNotifications ? "bg-[#9f1239]" : "bg-gray-300"}`}
                 >
                   <span
                     className={`block w-5 h-5 bg-white rounded-full shadow transition-transform ${settings.smsNotifications ? "translate-x-5" : "translate-x-0.5"}`}
@@ -261,7 +261,7 @@ const SystemSettings = () => {
                   onClick={() =>
                     updateSetting("autoBackup", !settings.autoBackup)
                   }
-                  className={`w-11 h-6 rounded-full transition-colors self-start sm:self-auto ${settings.autoBackup ? "bg-[#d97706]" : "bg-gray-300"}`}
+                  className={`w-11 h-6 rounded-full transition-colors self-start sm:self-auto ${settings.autoBackup ? "bg-[#9f1239]" : "bg-gray-300"}`}
                 >
                   <span
                     className={`block w-5 h-5 bg-white rounded-full shadow transition-transform ${settings.autoBackup ? "translate-x-5" : "translate-x-0.5"}`}
@@ -279,7 +279,7 @@ const SystemSettings = () => {
                     onChange={(e) =>
                       updateSetting("sessionTimeout", e.target.value)
                     }
-                    className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#d97706] transition-colors"
+                    className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#9f1239] transition-colors"
                   />
                 </div>
                 <div>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import LibraryOperatorLayout from "../LibraryOperatorLayout";
-import { Search, BookOpen, User, ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronRight } from "lucide-react";
 
 const LibraryOperatorSearch = () => {
   const [query, setQuery] = useState("");
@@ -45,13 +45,12 @@ const LibraryOperatorSearch = () => {
         </div>
 
         <div className="relative">
-          <Search size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search books or users..."
-            className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 text-lg"
+            className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-800/20 focus:border-rose-800 text-lg"
             autoFocus
           />
         </div>
@@ -61,22 +60,20 @@ const LibraryOperatorSearch = () => {
             onClick={() => setActiveTab("books")}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all ${
               activeTab === "books"
-                ? "bg-purple-500 text-white"
+                ? "bg-rose-800 text-white"
                 : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
             }`}
           >
-            <BookOpen size={18} />
             Books
           </button>
           <button
             onClick={() => setActiveTab("users")}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all ${
               activeTab === "users"
-                ? "bg-purple-500 text-white"
+                ? "bg-rose-800 text-white"
                 : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
             }`}
           >
-            <User size={18} />
             Users
           </button>
         </div>
@@ -90,12 +87,9 @@ const LibraryOperatorSearch = () => {
                     {filteredBooks.map((book) => (
                       <div
                         key={book.id}
-                        className="flex items-center justify-between p-4 rounded-lg border border-gray-100 hover:border-purple-200 hover:bg-purple-50/50 transition-all"
+                        className="flex items-center justify-between p-4 rounded-lg border border-gray-100 hover:border-rose-200 hover:bg-rose-50/5 transition-all"
                       >
                         <div className="flex items-center gap-4">
-                          <div className="p-2 bg-purple-100 rounded-lg">
-                            <BookOpen size={20} className="text-purple-500" />
-                          </div>
                           <div>
                             <p className="font-medium text-gray-900">{book.title}</p>
                             <p className="text-xs text-gray-500">{book.author} • {book.id}</p>
@@ -109,7 +103,7 @@ const LibraryOperatorSearch = () => {
                           }`}>
                             {book.status === "available" ? `${book.available} available` : "Issued"}
                           </span>
-                          <button className="p-2 text-gray-400 hover:text-purple-500 transition-colors">
+                          <button className="p-2 text-gray-400 hover:text-rose-800 transition-colors">
                             <ArrowRight size={18} />
                           </button>
                         </div>
@@ -127,12 +121,9 @@ const LibraryOperatorSearch = () => {
                     {filteredUsers.map((user) => (
                       <div
                         key={user.id}
-                        className="flex items-center justify-between p-4 rounded-lg border border-gray-100 hover:border-purple-200 hover:bg-purple-50/50 transition-all"
+                        className="flex items-center justify-between p-4 rounded-lg border border-gray-100 hover:border-rose-200 hover:bg-rose-50/5 transition-all"
                       >
                         <div className="flex items-center gap-4">
-                          <div className="p-2 bg-purple-100 rounded-lg">
-                            <User size={20} className="text-purple-500" />
-                          </div>
                           <div>
                             <p className="font-medium text-gray-900">{user.name}</p>
                             <p className="text-xs text-gray-500">{user.id} • {user.email}</p>
@@ -142,7 +133,7 @@ const LibraryOperatorSearch = () => {
                           <span className="text-sm text-gray-500">
                             {user.issued}/{user.max} books
                           </span>
-                          <button className="p-2 text-gray-400 hover:text-purple-500 transition-colors">
+                          <button className="p-2 text-gray-400 hover:text-rose-800 transition-colors">
                             <ArrowRight size={18} />
                           </button>
                         </div>
@@ -158,8 +149,7 @@ const LibraryOperatorSearch = () => {
         )}
 
         {!query && (
-          <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 text-center">
-            <Search size={48} className="mx-auto text-gray-300 mb-4" />
+          <div className="bg-white border border-gray-100 shadow-sm p-8 text-center">
             <p className="text-gray-500">Start typing to search books or users</p>
           </div>
         )}

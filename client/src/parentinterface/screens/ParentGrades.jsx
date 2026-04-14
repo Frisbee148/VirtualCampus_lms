@@ -33,7 +33,7 @@ const ParentGrades = () => {
                   <span className="text-[10px] sm:text-sm text-gray-500">Avg: <b className="text-gray-900">{c.avg}</b></span>
                 </div>
                 <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
-                  <span className="text-xs sm:text-sm font-bold text-blue-700">{c.grade}</span>
+                  <span className="text-xs sm:text-sm font-bold text-[#9f1239]">{c.grade}</span>
                   {expanded === idx ? <ChevronUp size={16} className="text-gray-400" /> : <ChevronDown size={16} className="text-gray-400" />}
                 </div>
               </div>

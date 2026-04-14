@@ -6,7 +6,7 @@ const StaffLayout = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="non-student-ui role-monochrome min-h-screen bg-[#f8f9fa] flex relative">
+    <div className="min-h-screen bg-[#f8f9fa] flex relative">
       <StaffSidebar
         mobileOpen={sidebarOpen}
         onClose={() => setSidebarOpen(false)}

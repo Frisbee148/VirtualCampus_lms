@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import LibraryOperatorLayout from "../LibraryOperatorLayout";
-import { Search, RefreshCw, CheckCircle, AlertTriangle } from "lucide-react";
+import { RefreshCw, CheckCircle, AlertTriangle, ChevronRight } from "lucide-react";
 
 const LibraryOperatorRenew = () => {
   const [query, setQuery] = useState("");
@@ -43,11 +43,9 @@ const LibraryOperatorRenew = () => {
 
         <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
           <h2 className="text-base font-semibold text-gray-900 mb-4 flex items-center gap-2">
-            <Search size={18} className="text-amber-500" />
             Search Book or User
           </h2>
           <div className="relative">
-            <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
             <input
               type="text"
               value={query}
@@ -56,16 +54,16 @@ const LibraryOperatorRenew = () => {
                 setRenewed(false);
               }}
               placeholder="Search by book title, ID, or user name..."
-              className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500"
+              className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#9f1239]/20 focus:border-[#9f1239]"
               autoFocus
             />
           </div>
         </div>
 
         {renewed && (
-          <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-5">
+          <div className="bg-zinc-50 border border-zinc-200 rounded-xl p-5">
             <div className="flex items-center gap-2 mb-3">
-              <CheckCircle size={20} className="text-emerald-500" />
+              <CheckCircle size={20} className="text-[#9f1239]" />
               <span className="font-semibold text-gray-900">Book Renewed Successfully</span>
             </div>
             <p className="text-sm text-gray-600">New due date: 14 days from now</p>
@@ -83,8 +81,8 @@ const LibraryOperatorRenew = () => {
                     onClick={() => setSelectedBook(book)}
                     className={`p-4 rounded-lg border transition-all cursor-pointer ${
                       selectedBook?.id === book.id
-                        ? "border-amber-300 bg-amber-50"
-                        : "border-gray-100 hover:border-amber-200"
+                        ? "border-[#9f1239] bg-zinc-50"
+                        : "border-gray-100 hover:border-maroon-200"
                     }`}
                   >
                     <div className="flex justify-between items-start mb-2">
@@ -140,7 +138,7 @@ const LibraryOperatorRenew = () => {
                 disabled={!canRenew}
                 className={`w-full py-3 rounded-lg font-medium transition-all flex items-center justify-center gap-2 ${
                   canRenew
-                    ? "bg-amber-500 text-white hover:bg-amber-600"
+                    ? "bg-[#9f1239] text-white hover:bg-rose-900"
                     : "bg-gray-100 text-gray-400 cursor-not-allowed"
                 }`}
               >

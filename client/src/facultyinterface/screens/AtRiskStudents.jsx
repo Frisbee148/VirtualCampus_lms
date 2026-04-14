@@ -149,7 +149,7 @@ const AtRiskStudents = () => {
                       }}
                       className="bg-[#1a7a7a] text-white px-3 py-1.5 text-xs font-medium hover:bg-[#15696a] transition-colors flex items-center gap-1.5"
                     >
-                      <MessageSquare size={13} /> Message
+                      Message
                     </button>
                   </td>
                   <td className="px-2 sm:px-4 py-2 sm:py-3">

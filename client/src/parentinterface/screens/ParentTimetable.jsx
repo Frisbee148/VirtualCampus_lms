@@ -6,13 +6,13 @@ const ParentTimetable = () => {
   const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
 
   const events = [
-    { day: 0, start: 0, dur: 3, title: 'UX 1 Assignment', time: '8-11am', color: 'bg-indigo-400' },
+    { day: 0, start: 0, dur: 3, title: 'UX 1 Assignment', time: '8-11am', color: 'bg-zinc-800' },
     { day: 0, start: 3, dur: 3, title: 'UX 2 Assignment', time: '11am-2pm', color: 'bg-emerald-500' },
     { day: 0, start: 6, dur: 2, title: 'Workout + Lunch', time: '2-4pm', color: 'bg-red-500' },
     { day: 0, start: 8, dur: 2, title: 'Booklab Assignment', time: '4-6pm', color: 'bg-amber-500' },
     { day: 1, start: 0, dur: 1, title: 'Messaging Matrix', time: '8-9am', color: 'bg-red-500' },
     { day: 1, start: 1, dur: 1, title: 'Marketing Workload', time: '9-10am', color: 'bg-emerald-500' },
-    { day: 1, start: 3, dur: 2, title: 'Portfolio Dev', time: '11am-12:30pm', color: 'bg-sky-500' },
+    { day: 1, start: 3, dur: 2, title: 'Portfolio Dev', time: '11am-12:30pm', color: 'bg-stone-500' },
     { day: 1, start: 5, dur: 2, title: 'Call David', time: '1-2:30pm', color: 'bg-orange-500' },
     { day: 1, start: 7, dur: 3, title: 'Taylor House Call', time: '3-6pm', color: 'bg-amber-400' },
     { day: 2, start: 0, dur: 1, title: 'Workload Mgmt', time: '8-9am', color: 'bg-purple-600' },
@@ -27,7 +27,7 @@ const ParentTimetable = () => {
     { day: 4, start: 0, dur: 1.5, title: 'Leeds Content Dev', time: '8-9:30', color: 'bg-red-500' },
     { day: 4, start: 1.5, dur: 1, title: 'BBW', time: '9:30-10:30', color: 'bg-teal-600' },
     { day: 4, start: 4, dur: 2, title: 'Hold for Tracy', time: '12-2pm', color: 'bg-orange-500' },
-    { day: 4, start: 6, dur: 2, title: 'CU Grad Pages', time: '2-4pm', color: 'bg-sky-500' },
+    { day: 4, start: 6, dur: 2, title: 'CU Grad Pages', time: '2-4pm', color: 'bg-stone-500' },
     { day: 4, start: 8, dur: 2, title: 'Re:Studio', time: '4-6pm', color: 'bg-stone-600' },
   ];
 

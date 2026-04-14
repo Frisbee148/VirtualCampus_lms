@@ -172,8 +172,8 @@ const AdminDashboard = () => {
                 <Area
                   type="monotone"
                   dataKey="users"
-                  stroke="#d97706"
-                  fill="#d97706"
+                  stroke="#9f1239"
+                  fill="#9f1239"
                   fillOpacity={0.1}
                   strokeWidth={2}
                 />
@@ -223,7 +223,7 @@ const AdminDashboard = () => {
             </p>
             <a
               href="/admin/audit"
-              className="text-xs text-[#d97706] hover:underline font-medium"
+              className="text-xs text-[#9f1239] hover:underline font-medium"
             >
               View All Logs
             </a>
@@ -240,7 +240,7 @@ const AdminDashboard = () => {
                       ? "bg-red-500"
                       : item.type === "success"
                         ? "bg-emerald-500"
-                        : "bg-blue-500"
+                        : "bg-zinc-500"
                   }`}
                 ></span>
                 <div className="flex-1 min-w-0">

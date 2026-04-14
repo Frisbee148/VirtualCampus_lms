@@ -349,7 +349,7 @@ const BTPProjectBoard = ({ editable = false, roleLabel = "Student View" }) => {
                 </div>
 
                 <div className="border border-gray-200">
-                  <div className="px-3 sm:px-4 py-3 bg-[#0f1117] text-white text-xs sm:text-sm font-semibold flex items-center gap-2">
+                  <div className="px-3 sm:px-4 py-3 bg-[#18181b] text-white text-xs sm:text-sm font-semibold flex items-center gap-2">
                     Progress Checklist
                   </div>
                   <div className="divide-y divide-gray-200">

@@ -1,13 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import LibrarianLayout from "../LibrarianLayout";
-import { BookOpen, Users, AlertTriangle, ArrowLeftRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 
 const stats = [
-  { label: "Total Books", value: "12,480", icon: BookOpen, color: "text-blue-600", bg: "bg-blue-50" },
-  { label: "Books Issued", value: "1,236", icon: ArrowLeftRight, color: "text-amber-600", bg: "bg-amber-50" },
-  { label: "Overdue Books", value: "47", icon: AlertTriangle, color: "text-red-600", bg: "bg-red-50" },
-  { label: "Active Users", value: "3,842", icon: Users, color: "text-emerald-600", bg: "bg-emerald-50" },
+  { label: "Total Books", value: "12,480" },
+  { label: "Books Issued", value: "1,236" },
+  { label: "Overdue Books", value: "47", alert: true },
+  { label: "Active Users", value: "3,842" },
 ];
 
 const recentTransactions = [
@@ -27,9 +27,9 @@ const overdueAlerts = [
 ];
 
 const actionColors = {
-  issue: "bg-blue-50 text-blue-600",
+  issue: "bg-zinc-100 text-zinc-600",
   return: "bg-emerald-50 text-emerald-600",
-  renew: "bg-amber-50 text-amber-600",
+  renew: "bg-zinc-100 text-zinc-600",
 };
 
 const LibrarianDashboard = () => {
@@ -55,14 +55,11 @@ const LibrarianDashboard = () => {
                 className="bg-white p-4 sm:p-5 border border-gray-200 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
               >
                 <div className="flex items-center justify-between mb-3">
-                  <div className={`p-2 rounded-lg ${s.bg}`}>
-                    <Icon size={18} className={s.color} strokeWidth={1.8} />
-                  </div>
+                  <p className="text-[11px] text-gray-400 font-medium uppercase tracking-wider">{s.label}</p>
                 </div>
-                <p className="text-2xl sm:text-3xl font-bold text-gray-900 mb-0.5">
+                <p className={`text-2xl sm:text-3xl font-bold mb-0.5 ${s.alert ? "text-red-600" : "text-gray-900"}`}>
                   {s.value}
                 </p>
-                <p className="text-[11px] text-gray-400">{s.label}</p>
               </div>
             );
           })}
@@ -78,7 +75,7 @@ const LibrarianDashboard = () => {
               </p>
               <button
                 onClick={() => navigate("/librarian/borrow")}
-                className="text-xs text-[#d97706] hover:underline font-medium"
+                className="text-xs text-[#9f1239] hover:underline font-medium"
               >
                 Issue / Return
               </button>
