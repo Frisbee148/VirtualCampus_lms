@@ -109,7 +109,7 @@ const AssignmentsTable = () => {
       <div className="hidden md:block overflow-x-auto">
         <table className="w-full border-collapse text-xs sm:text-sm">
           <thead>
-            <tr className="bg-[#1a7a7a] text-white">
+            <tr className="bg-[#242424] text-white">
               <th className="text-left px-2 sm:px-4 py-2 sm:py-3 font-semibold min-w-[80px] sm:min-w-[110px]">
                 Prof. name
               </th>
@@ -218,7 +218,7 @@ const AssignmentsTable = () => {
                       className="text-[10px] sm:text-xs w-full"
                     />
                   ) : assignment.file ? (
-                    <span className="text-[#1a7a7a] text-xs">
+                    <span className="text-[#242424] text-xs">
                       {assignment.file.name}
                     </span>
                   ) : (
@@ -231,7 +231,7 @@ const AssignmentsTable = () => {
                     checked={assignment.submissionClosed}
                     onChange={() => toggleSubmission(assignment.id)}
                     disabled={!editing}
-                    className="w-4 h-4 accent-[#1a7a7a] cursor-pointer"
+                    className="w-4 h-4 accent-[#242424] cursor-pointer"
                   />
                 </td>
               </tr>
@@ -351,7 +351,7 @@ const AssignmentsTable = () => {
                     className="text-[10px] sm:text-xs w-full mt-1"
                   />
                 ) : (
-                  <p className="text-xs text-[#1a7a7a] mt-1">
+                  <p className="text-xs text-[#242424] mt-1">
                     {assignment.file ? assignment.file.name : "-"}
                   </p>
                 )}
@@ -363,7 +363,7 @@ const AssignmentsTable = () => {
                   checked={assignment.submissionClosed}
                   onChange={() => toggleSubmission(assignment.id)}
                   disabled={!editing}
-                  className="w-4 h-4 accent-[#1a7a7a] cursor-pointer"
+                  className="w-4 h-4 accent-[#242424] cursor-pointer"
                 />
                 <span className="text-xs text-gray-600">Submission Closed</span>
               </label>
@@ -375,7 +375,7 @@ const AssignmentsTable = () => {
       {/* Add section */}
       <button
         onClick={addAssignment}
-        className="flex items-center gap-1 mt-4 text-sm text-gray-700 hover:text-[#1a7a7a] transition-colors"
+        className="flex items-center gap-1 mt-4 text-sm text-gray-700 hover:text-[#242424] transition-colors"
       >
         Add section
       </button>

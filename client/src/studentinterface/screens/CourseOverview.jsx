@@ -40,7 +40,7 @@ const CourseOverview = () => {
         
         <div className="flex flex-wrap gap-2 sm:gap-3 mb-5 sm:mb-8 mt-3 sm:mt-4">
           <span className="px-3 sm:px-4 py-1 sm:py-1.5 bg-emerald-50 text-emerald-700 text-xs sm:text-sm font-semibold border border-emerald-200">Elective</span>
-          <span className="px-3 sm:px-4 py-1 sm:py-1.5 bg-blue-50 text-blue-700 text-xs sm:text-sm font-semibold border border-blue-200">Semester 3</span>
+          <span className="px-3 sm:px-4 py-1 sm:py-1.5 bg-blue-50 text-[#242424] text-xs sm:text-sm font-semibold border border-blue-200">Semester 3</span>
         </div>
 
         <CourseTabs active="overview" />
@@ -55,7 +55,7 @@ const CourseOverview = () => {
         <div className="hidden sm:block bg-white border border-gray-100 shadow-sm overflow-hidden">
           <table className="w-full">
             <thead>
-              <tr className="bg-black text-white">
+              <tr className="bg-[#242424] text-white">
                 <th className="py-3.5 px-5 text-left text-sm font-semibold">Evaluation Criteria</th>
                 <th className="py-3.5 px-5 text-left text-sm font-semibold">Weightage</th>
                 <th className="py-3.5 px-5 text-left text-sm font-semibold">Your Score</th>

@@ -91,7 +91,7 @@ const HodDeptAnalytics = () => {
         {/* Summary cards */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 mb-6">
           {[
-            { label: "Dept Avg CGPA", value: "7.6", accent: "#1a7a7a" },
+            { label: "Dept Avg CGPA", value: "7.6", accent: "#242424" },
             { label: "Avg Attendance", value: "84%", accent: "#e8a435" },
             { label: "Pass Rate", value: "96.3%", accent: "#2d8a4e" },
             { label: "At Risk %", value: "6.4%", accent: "#ef4444" },
@@ -114,7 +114,7 @@ const HodDeptAnalytics = () => {
                 <XAxis dataKey="month" tick={{ fontSize: 12 }} />
                 <YAxis domain={[60, 100]} tick={{ fontSize: 12 }} />
                 <Tooltip />
-                <Line type="monotone" dataKey="value" stroke="#1a7a7a" strokeWidth={2.5} dot={{ r: 4, fill: "#1a7a7a" }} />
+                <Line type="monotone" dataKey="value" stroke="#242424" strokeWidth={2.5} dot={{ r: 4, fill: "#242424" }} />
               </LineChart>
             </ResponsiveContainer>
           </div>
@@ -128,7 +128,7 @@ const HodDeptAnalytics = () => {
                 <XAxis dataKey="range" tick={{ fontSize: 12 }} />
                 <YAxis tick={{ fontSize: 12 }} />
                 <Tooltip />
-                <Bar dataKey="count" fill="#1a7a7a" radius={[3, 3, 0, 0]} />
+                <Bar dataKey="count" fill="#242424" radius={[3, 3, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -182,7 +182,7 @@ const HodDeptAnalytics = () => {
                 <XAxis type="number" tick={{ fontSize: 12 }} />
                 <YAxis dataKey="name" type="category" tick={{ fontSize: 10 }} width={110} />
                 <Tooltip />
-                <Bar dataKey="students" fill="#1a7a7a" radius={[0, 3, 3, 0]} />
+                <Bar dataKey="students" fill="#242424" radius={[0, 3, 3, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>

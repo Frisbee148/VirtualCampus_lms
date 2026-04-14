@@ -172,8 +172,8 @@ const AdminDashboard = () => {
                 <Area
                   type="monotone"
                   dataKey="users"
-                  stroke="#9f1239"
-                  fill="#9f1239"
+                  stroke="#242424"
+                  fill="#242424"
                   fillOpacity={0.1}
                   strokeWidth={2}
                 />
@@ -223,7 +223,7 @@ const AdminDashboard = () => {
             </p>
             <a
               href="/admin/audit"
-              className="text-xs text-[#9f1239] hover:underline font-medium"
+              className="text-xs text-[#242424] hover:underline font-medium"
             >
               View All Logs
             </a>

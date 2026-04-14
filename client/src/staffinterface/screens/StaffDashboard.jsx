@@ -3,10 +3,10 @@ import StaffLayout from "../StaffLayout";
 import { ChevronRight } from "lucide-react";
 
 const kpiCards = [
-  { label: "Total Users", value: "1,248", accent: "#9f1239", change: "Students: 986 · Faculty: 142 · Staff: 120" },
-  { label: "Total Courses", value: "156", accent: "#18181b", change: "12 depts · 6 terms" },
+  { label: "Total Users", value: "1,248", accent: "#242424", change: "Students: 986 · Faculty: 142 · Staff: 120" },
+  { label: "Total Courses", value: "156", accent: "#000000", change: "12 depts · 6 terms" },
   { label: "Active Enrollments", value: "3,842", accent: "#71717a", change: "Spring 2026" },
-  { label: "Current Term", value: "Spring '26", accent: "#9f1239", change: "Jan 15 – May 30" },
+  { label: "Current Term", value: "Spring '26", accent: "#242424", change: "Jan 15 – May 30" },
 ];
 
 const alerts = [
@@ -28,10 +28,10 @@ const recentActivity = [
 ];
 
 const quickStats = [
-  { label: "Pending Enrollments", value: "23", color: "#18181b" },
-  { label: "Unassigned Courses", value: "4", color: "#9f1239" },
+  { label: "Pending Enrollments", value: "23", color: "#000000" },
+  { label: "Unassigned Courses", value: "4", color: "#242424" },
   { label: "Inactive Users", value: "8", color: "#71717a" },
-  { label: "Active Courses", value: "98", color: "#9f1239" },
+  { label: "Active Courses", value: "98", color: "#242424" },
 ];
 
 const StaffDashboard = () => {

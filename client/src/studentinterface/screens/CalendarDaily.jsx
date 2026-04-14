@@ -135,7 +135,7 @@ const CalendarDaily = () => {
             </select>
             <button
               onClick={openAddEvent}
-              className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-2.5 bg-black text-white text-xs sm:text-sm font-semibold hover:bg-[#0e445b] transition-colors shadow-sm cursor-pointer"
+              className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-2.5 bg-[#242424] text-white text-xs sm:text-sm font-semibold hover:bg-[#434343] transition-colors shadow-sm cursor-pointer"
             >
               <Plus size={14} className="sm:w-4 sm:h-4" />{" "}
               <span className="hidden sm:inline">Add Event</span>
@@ -215,7 +215,7 @@ const CalendarDaily = () => {
         <div className="bg-white border border-gray-100 shadow-sm overflow-hidden">
           <table className="w-full">
             <thead>
-              <tr className="bg-black text-white">
+              <tr className="bg-[#242424] text-white">
                 <th className="py-2.5 sm:py-3.5 px-3 sm:px-5 text-left text-xs sm:text-sm font-semibold w-[30%]">
                   Time
                 </th>

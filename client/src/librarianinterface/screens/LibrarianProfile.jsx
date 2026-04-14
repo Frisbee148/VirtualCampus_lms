@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LibrarianLayout from "../LibrarianLayout";
+import { ArrowLeft } from 'lucide-react';
 
 const initialProfile = {
   name: "Librarian",
@@ -67,8 +68,8 @@ const LibrarianProfile = () => {
           onClick={() => navigate(-1)}
           className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-gray-400 hover:text-gray-600 mb-4 sm:mb-6 cursor-pointer transition-colors"
         >
-          Back
-        </button>
+  <ArrowLeft size={18} className="sm:w-5 sm:h-5" />
+</button>
 
         <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-5 sm:mb-8">
           Profile

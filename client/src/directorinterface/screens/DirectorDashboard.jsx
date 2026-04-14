@@ -31,8 +31,8 @@ const enrollmentData = [
 ];
 
 const deptDistribution = [
-  { name: "CSE", value: 820, color: "#9f1239" },
-  { name: "ECE", value: 640, color: "#059669" },
+  { name: "CSE", value: 820, color: "#242424" },
+  { name: "ECE", value: 640, color: "#242424" },
   { name: "ME", value: 480, color: "#d97706" },
   { name: "CE", value: 380, color: "#71717a" },
   { name: "Others", value: 928, color: "#94a3b8" },
@@ -126,7 +126,7 @@ const DirectorDashboard = () => {
                     fontSize: "13px",
                   }}
                 />
-                <Bar dataKey="students" fill="#9f1239" radius={[2, 2, 0, 0]} />
+                <Bar dataKey="students" fill="#242424" radius={[2, 2, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -189,7 +189,7 @@ const DirectorDashboard = () => {
             </p>
             <a
               href="/director/approvals"
-              className="text-xs text-[#9f1239] hover:underline font-medium"
+              className="text-xs text-[#242424] hover:underline font-medium"
             >
               View All
             </a>

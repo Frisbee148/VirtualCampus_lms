@@ -23,7 +23,7 @@ const CalendarWeekly = () => {
     startTime: "08:00",
     duration: "1",
     title: "",
-    color: "#1a7a7a",
+    color: "#242424",
   });
 
   useEffect(() => {
@@ -233,7 +233,7 @@ const CalendarWeekly = () => {
   ];
 
   const colorClassByValue = {
-    "#1a7a7a": "bg-teal-700",
+    "#242424": "bg-[#242424]",
     "#0ea5e9": "bg-sky-500",
     "#6366f1": "bg-indigo-500",
     "#ef4444": "bg-red-500",
@@ -266,7 +266,7 @@ const CalendarWeekly = () => {
       startTime: timeInputFromSlot(eventItem.start ?? 0),
       duration: String(eventItem.dur ?? 1),
       title: eventItem.title || "",
-      color: colorValueByClass[eventItem.color] || "#1a7a7a",
+      color: colorValueByClass[eventItem.color] || "#242424",
     });
   };
 
@@ -278,7 +278,7 @@ const CalendarWeekly = () => {
       startTime: "08:00",
       duration: "1",
       title: "",
-      color: "#1a7a7a",
+      color: "#242424",
     });
     setShowModal(true);
   };
@@ -308,7 +308,7 @@ const CalendarWeekly = () => {
       dur: durationValue,
       title: form.title.trim(),
       time: formatWeeklyTimeRange(form.startTime, durationValue),
-      color: colorClassByValue[form.color] || "bg-teal-700",
+      color: colorClassByValue[form.color] || "bg-[#242424]",
     };
 
     if (isEditMode) {
@@ -367,7 +367,7 @@ const CalendarWeekly = () => {
             <button
               type="button"
               onClick={openAddEvent}
-              className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-2.5 bg-black text-white text-xs sm:text-sm font-semibold hover:bg-[#0e445b] transition-colors shadow-sm cursor-pointer"
+              className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-2.5 bg-[#242424] text-white text-xs sm:text-sm font-semibold hover:bg-[#434343] transition-colors shadow-sm cursor-pointer"
             >
               <Plus size={14} className="sm:w-4 sm:h-4" />
               <span className="hidden sm:inline">Add Event</span>

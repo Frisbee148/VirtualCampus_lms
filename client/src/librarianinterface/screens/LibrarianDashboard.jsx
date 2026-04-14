@@ -75,7 +75,7 @@ const LibrarianDashboard = () => {
               </p>
               <button
                 onClick={() => navigate("/librarian/borrow")}
-                className="text-xs text-[#9f1239] hover:underline font-medium"
+                className="text-xs text-[#242424] hover:underline font-medium"
               >
                 Issue / Return
               </button>

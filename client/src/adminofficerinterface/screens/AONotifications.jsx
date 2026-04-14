@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import AdminOfficerLayout from "../AdminOfficerLayout";
+import { ArrowLeft } from 'lucide-react';
 
 const notifications = [
   {
@@ -51,10 +52,10 @@ const AONotifications = () => {
           <div className="flex items-center gap-2 sm:gap-3 min-w-0">
             <button
               onClick={() => navigate(-1)}
-              className="flex-shrink-0 px-2 py-1 text-xs sm:text-sm hover:bg-gray-100 text-gray-500 cursor-pointer transition-colors"
+              className="flex-shrink-0 p-1.5 sm:p-2 hover:bg-gray-100 text-gray-400 cursor-pointer transition-colors"
             >
-              Back
-            </button>
+  <ArrowLeft size={18} className="sm:w-5 sm:h-5" />
+</button>
             <h1 className="text-xl sm:text-3xl font-bold text-gray-900 truncate">
               Notifications
             </h1>
@@ -77,7 +78,7 @@ const AONotifications = () => {
                     {n.title}
                   </h3>
                   {n.unread && (
-                    <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-black flex-shrink-0"></span>
+                    <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#242424] flex-shrink-0"></span>
                   )}
                 </div>
                 <p className="text-[10px] sm:text-xs text-gray-400 mt-0.5 truncate">

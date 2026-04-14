@@ -6,7 +6,7 @@ const reportCategories = [
   {
     id: "enrollment",
     title: "Enrollment Reports",
-    accent: "#9f1239",
+    accent: "#242424",
     reports: [
       { name: "Enrollment Summary", desc: "Total enrollments by term, department, and course", formats: ["CSV", "PDF"] },
       { name: "Enrollment Trends", desc: "Term-over-term enrollment comparison", formats: ["CSV", "PDF"] },
@@ -16,7 +16,7 @@ const reportCategories = [
   {
     id: "course",
     title: "Course Performance",
-    accent: "#059669",
+    accent: "#242424",
     reports: [
       { name: "Course Completion Report", desc: "Completion rates across all active courses", formats: ["CSV", "PDF"] },
       { name: "Instructor Load Report", desc: "Course assignments per instructor", formats: ["CSV"] },
@@ -153,7 +153,7 @@ const AOReports = () => {
                     </td>
                     <td className="px-4 py-3 text-gray-400">{exp.size}</td>
                     <td className="px-4 py-3">
-                      <button className="text-gray-400 hover:text-rose-800 transition-colors cursor-pointer">
+                      <button className="text-gray-400 hover:text-[#242424] transition-colors cursor-pointer">
                         <Download size={13} />
                       </button>
                     </td>
@@ -171,7 +171,7 @@ const AOReports = () => {
                   <p className="text-xs font-medium text-gray-800 truncate">{exp.name}</p>
                   <p className="text-[10px] text-gray-400 mt-0.5">{exp.date} · {exp.format} · {exp.size}</p>
                 </div>
-                <button className="text-gray-400 hover:text-rose-800 flex-shrink-0 cursor-pointer">
+                <button className="text-gray-400 hover:text-[#242424] flex-shrink-0 cursor-pointer">
                   <Download size={14} />
                 </button>
               </div>

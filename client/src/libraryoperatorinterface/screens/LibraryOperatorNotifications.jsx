@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import LibrarianLayout from "../LibrarianLayout";
+import LibraryOperatorLayout from "../LibraryOperatorLayout";
 import { ArrowLeft, Check } from "lucide-react";
 
 const initialNotifications = [
-  { id: 1, title: "Overdue: Data Structures Using C", message: "Rahul Verma has not returned this book. 7 days overdue.", time: "10 min ago", read: false },
-  { id: 2, title: "Overdue: Linear Algebra", message: "Meera Iyer has not returned this book. 5 days overdue.", time: "10 min ago", read: false },
-  { id: 3, title: "Reservation Request", message: "Karan Singh has reserved 'Database System Concepts'.", time: "1 hr ago", read: false },
-  { id: 4, title: "Book Returned", message: "Priya Patel returned 'Database System Concepts'.", time: "2 hrs ago", read: true },
-  { id: 5, title: "Overdue: Probability & Statistics", message: "Karan Singh has not returned this book. 3 days overdue.", time: "3 hrs ago", read: true },
-  { id: 6, title: "System Backup Complete", message: "Library database backup completed successfully.", time: "6 hrs ago", read: true },
-  { id: 7, title: "Book Returned", message: "Vikram Reddy returned 'Discrete Mathematics'.", time: "1 day ago", read: true },
+  { id: 1, title: "Book Issued", message: "Data Structures Using C issued to Rahul Verma.", time: "10 min ago", read: false },
+  { id: 2, title: "Book Returned", message: "Discrete Mathematics returned by Priya Patel.", time: "1 hr ago", read: false },
+  { id: 3, title: "Fine Paid", message: "Late fee of ₹50 collected from Amit Singh.", time: "2 hrs ago", read: false },
+  { id: 4, title: "Book Renewed", message: "Database System Concepts renewed for Karan Singh.", time: "3 hrs ago", read: true },
+  { id: 5, title: "System Update", message: "Library management software updated successfully.", time: "1 day ago", read: true },
 ];
 
-const LibrarianNotifications = () => {
+const LibraryOperatorNotifications = () => {
   const navigate = useNavigate();
   const [notifications, setNotifications] = useState(initialNotifications);
 
@@ -28,7 +26,7 @@ const LibrarianNotifications = () => {
   };
 
   return (
-    <LibrarianLayout>
+    <LibraryOperatorLayout>
       <div className="max-w-3xl">
         <div className="flex items-center justify-between mb-5 sm:mb-8 gap-2">
           <div className="flex items-center gap-2 sm:gap-3 min-w-0">
@@ -87,8 +85,8 @@ const LibrarianNotifications = () => {
           </div>
         )}
       </div>
-    </LibrarianLayout>
+    </LibraryOperatorLayout>
   );
 };
 
-export default LibrarianNotifications;
+export default LibraryOperatorNotifications;

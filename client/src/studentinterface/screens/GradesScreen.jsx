@@ -172,7 +172,7 @@ const GradesScreen = () => {
               onClick={() => setSessionMenuOpen((current) => !current)}
               aria-haspopup="menu"
               aria-expanded={sessionMenuOpen}
-              className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 bg-black text-white text-xs sm:text-sm font-semibold shadow-sm hover:bg-[#0e445b] transition-colors"
+              className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 bg-[#242424] text-white text-xs sm:text-sm font-semibold shadow-sm hover:bg-[#434343] transition-colors"
             >
               {selectedSession.label}
               <ChevronDown
@@ -227,7 +227,7 @@ const GradesScreen = () => {
                     event.stopPropagation();
                     navigate("/course/overview");
                   }}
-                  className="justify-self-start inline-flex shrink-0 items-center rounded-none border border-gray-200 bg-white px-3 py-1 text-left text-xs sm:text-sm font-semibold text-black shadow-sm transition-colors hover:border-black hover:bg-black hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-black/20 whitespace-nowrap"
+                  className="justify-self-start inline-flex shrink-0 items-center rounded-none border border-gray-200 bg-white px-3 py-1 text-left text-xs sm:text-sm font-semibold text-black shadow-sm transition-colors hover:border-black hover:bg-[#242424] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-black/20 whitespace-nowrap"
                 >
                   {c.name}
                 </button>
@@ -240,7 +240,7 @@ const GradesScreen = () => {
                   </span>
                 </div>
                 <div className="ml-auto flex items-center gap-2 sm:gap-3 flex-shrink-0">
-                  <span className="text-xs sm:text-sm font-bold text-blue-700 whitespace-nowrap">
+                  <span className="text-xs sm:text-sm font-bold text-[#242424] whitespace-nowrap">
                     {c.grade}
                   </span>
                   <span>

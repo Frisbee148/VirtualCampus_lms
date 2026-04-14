@@ -59,7 +59,7 @@ const HodNotifications = () => {
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-1.5 sm:gap-2">
                   <h3 className="text-xs sm:text-sm font-semibold text-gray-900 truncate">{n.title}</h3>
-                  {n.unread && <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-black flex-shrink-0"></span>}
+                  {n.unread && <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#242424] flex-shrink-0"></span>}
                 </div>
                 <p className="text-[10px] sm:text-xs text-gray-400 mt-0.5 truncate">{n.desc}</p>
               </div>

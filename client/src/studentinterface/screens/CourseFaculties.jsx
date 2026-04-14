@@ -19,7 +19,7 @@ const CourseFaculties = () => {
         <div className="hidden sm:block bg-white border border-gray-200 overflow-hidden">
           <table className="w-full">
             <thead>
-              <tr className="bg-black text-white">
+              <tr className="bg-[#242424] text-white">
                 <th className="py-3.5 px-5 text-left text-sm font-semibold">Name</th>
                 <th className="py-3.5 px-5 text-left text-sm font-semibold">Department</th>
                 <th className="py-3.5 px-5 text-left text-sm font-semibold">Room</th>

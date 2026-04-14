@@ -13,7 +13,7 @@ const timetable = {
 };
 
 const slotColors = {
-  'CS301': 'bg-[#1a7a7a] text-white',
+  'CS301': 'bg-[#242424] text-white',
   'CS405': 'bg-[#e8a435] text-white',
   'Office': 'bg-gray-600 text-white',
 };
@@ -23,7 +23,7 @@ const getSlotStyle = (text) => {
   for (const key in slotColors) {
     if (text.startsWith(key)) return slotColors[key];
   }
-  return 'bg-[#1a7a7a]/80 text-white';
+  return 'bg-[#242424]/80 text-white';
 };
 
 const FacultyTimetable = () => {
@@ -35,7 +35,7 @@ const FacultyTimetable = () => {
         <div className="overflow-x-auto -mx-3 px-3 sm:mx-0 sm:px-0">
           <table className="w-full border-collapse text-[10px] sm:text-sm min-w-[480px] sm:min-w-[640px]">
             <thead>
-              <tr className="bg-[#1a7a7a] text-white">
+              <tr className="bg-[#242424] text-white">
                 <th className="text-left px-1.5 sm:px-3 py-2 sm:py-3 font-semibold w-[50px] sm:w-[80px]">Time</th>
                 {DAYS.map((d) => (
                   <th key={d} className="text-left px-1.5 sm:px-3 py-2 sm:py-3 font-semibold">{d}</th>
@@ -67,7 +67,7 @@ const FacultyTimetable = () => {
         {/* Legend */}
         <div className="flex flex-wrap gap-3 sm:gap-4 mt-4 sm:mt-5">
           {[
-            { label: 'CS301', color: 'bg-[#1a7a7a]' },
+            { label: 'CS301', color: 'bg-[#242424]' },
             { label: 'CS405', color: 'bg-[#e8a435]' },
             { label: 'Office Hours', color: 'bg-gray-600' },
           ].map((item) => (

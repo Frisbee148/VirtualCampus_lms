@@ -15,7 +15,7 @@ const ParentFeeStatus = () => {
         <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Fee Status</h1>
         <p className="text-xs sm:text-sm text-gray-400 mb-5 sm:mb-8">Semester 3 - 2024-25</p>
 
-        <div className="inline-block px-3 sm:px-5 py-1.5 sm:py-2 bg-black text-white text-xs sm:text-sm font-semibold mb-5 sm:mb-8">
+        <div className="inline-block px-3 sm:px-5 py-1.5 sm:py-2 bg-[#242424] text-white text-xs sm:text-sm font-semibold mb-5 sm:mb-8">
           Semester 3
         </div>
 
@@ -50,7 +50,7 @@ const ParentFeeStatus = () => {
           </div>
         </div>
 
-        <button className="px-4 sm:px-6 py-2.5 sm:py-3 bg-black text-white text-xs sm:text-sm font-semibold hover:bg-[#0e445b] transition-colors cursor-pointer">
+        <button className="px-4 sm:px-6 py-2.5 sm:py-3 bg-[#242424] text-white text-xs sm:text-sm font-semibold hover:bg-[#434343] transition-colors cursor-pointer">
           Pay Now
         </button>
       </div>

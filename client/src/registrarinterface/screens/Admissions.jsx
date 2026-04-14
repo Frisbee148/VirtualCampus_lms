@@ -147,7 +147,7 @@ const Admissions = () => {
                 placeholder="Search applications..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="pl-9 pr-4 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-[#059669] w-full sm:w-56 transition-colors"
+                className="pl-9 pr-4 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-[#242424] w-full sm:w-56 transition-colors"
               />
             </div>
           </div>
@@ -209,7 +209,7 @@ const Admissions = () => {
                       className="hover:bg-gray-50/50 transition-colors"
                     >
                       <td className="px-5 py-3.5">
-                        <span className="text-sm font-mono text-[#059669] font-medium">
+                        <span className="text-sm font-mono text-[#242424] font-medium">
                           {app.id}
                         </span>
                       </td>
@@ -249,7 +249,7 @@ const Admissions = () => {
                       </td>
                       <td className="px-3 py-3.5">
                         <button
-                          className="p-1.5 text-gray-300 hover:text-[#059669] transition-colors"
+                          className="p-1.5 text-gray-300 hover:text-[#242424] transition-colors"
                           title="View Details"
                         >
                           <Eye size={16} />
@@ -289,7 +289,7 @@ const Admissions = () => {
                       Docs {app.verified}/{app.documents}
                     </span>
                     <button
-                      className="p-1.5 text-gray-300 hover:text-[#059669] transition-colors"
+                      className="p-1.5 text-gray-300 hover:text-[#242424] transition-colors"
                       title="View Details"
                     >
                       <Eye size={16} />

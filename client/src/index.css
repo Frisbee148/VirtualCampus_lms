@@ -62,10 +62,10 @@ button {
 
 /* ERP Portal UI System Variables - Academic Maroon Theme */
 :root {
-  --erp-primary: #9f1239; /* Rose 800 - Maroon */
-  --erp-primary-hover: #e11d48; /* Rose 600 */
-  --erp-sidebar: #18181b; /* Zinc 900 - Neutral Black */
-  --erp-sidebar-active: #9f1239; /* Rose 800 */
+  --erp-primary: #242424; /* Twilight Rust */
+  --erp-primary-hover: #434343; /* Sandalwood */
+  --erp-sidebar: #000000; /* Warm Stone 900 */
+  --erp-sidebar-active: #242424; /* Twilight Rust */
   --erp-surface: #ffffff;
   --erp-background: #fafafa; /* Neutral light gray */
 }

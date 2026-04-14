@@ -54,7 +54,7 @@ const LibraryOperatorRenew = () => {
                 setRenewed(false);
               }}
               placeholder="Search by book title, ID, or user name..."
-              className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#9f1239]/20 focus:border-[#9f1239]"
+              className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#242424]/20 focus:border-[#242424]"
               autoFocus
             />
           </div>
@@ -63,7 +63,7 @@ const LibraryOperatorRenew = () => {
         {renewed && (
           <div className="bg-zinc-50 border border-zinc-200 rounded-xl p-5">
             <div className="flex items-center gap-2 mb-3">
-              <CheckCircle size={20} className="text-[#9f1239]" />
+              <CheckCircle size={20} className="text-[#242424]" />
               <span className="font-semibold text-gray-900">Book Renewed Successfully</span>
             </div>
             <p className="text-sm text-gray-600">New due date: 14 days from now</p>
@@ -81,7 +81,7 @@ const LibraryOperatorRenew = () => {
                     onClick={() => setSelectedBook(book)}
                     className={`p-4 rounded-lg border transition-all cursor-pointer ${
                       selectedBook?.id === book.id
-                        ? "border-[#9f1239] bg-zinc-50"
+                        ? "border-[#242424] bg-zinc-50"
                         : "border-gray-100 hover:border-maroon-200"
                     }`}
                   >
@@ -138,7 +138,7 @@ const LibraryOperatorRenew = () => {
                 disabled={!canRenew}
                 className={`w-full py-3 rounded-lg font-medium transition-all flex items-center justify-center gap-2 ${
                   canRenew
-                    ? "bg-[#9f1239] text-white hover:bg-rose-900"
+                    ? "bg-[#242424] text-white hover:bg-rose-900"
                     : "bg-gray-100 text-gray-400 cursor-not-allowed"
                 }`}
               >

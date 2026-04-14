@@ -63,7 +63,7 @@ const MarksTable = ({ sections }) => {
       <div className="hidden md:block overflow-x-auto">
         <table className="w-full border-collapse text-sm">
           <thead>
-            <tr className="bg-[#1a7a7a] text-white">
+            <tr className="bg-[#242424] text-white">
               <th className="text-left px-2 sm:px-4 py-2 sm:py-3 font-semibold min-w-[80px] sm:min-w-[120px] text-xs sm:text-sm">
                 Student name
               </th>
@@ -204,7 +204,7 @@ const MarksTable = ({ sections }) => {
       {/* Add student */}
       <button
         onClick={addStudent}
-        className="flex items-center gap-1 mt-4 text-sm text-gray-700 hover:text-[#1a7a7a] transition-colors"
+        className="flex items-center gap-1 mt-4 text-sm text-gray-700 hover:text-[#242424] transition-colors"
       >
         Add student
       </button>

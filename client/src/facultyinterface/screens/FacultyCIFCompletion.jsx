@@ -23,7 +23,7 @@ const FacultyCIFCompletion = () => {
               login, so you can only edit this course CIF.
             </p>
           </div>
-          <div className="px-3 py-2 bg-[#1a7a7a] text-white text-xs sm:text-sm font-semibold shadow-sm self-start sm:self-auto">
+          <div className="px-3 py-2 bg-[#242424] text-white text-xs sm:text-sm font-semibold shadow-sm self-start sm:self-auto">
             Faculty Editable View
           </div>
         </div>

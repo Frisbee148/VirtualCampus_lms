@@ -62,7 +62,7 @@ const AIMentorEmpty = () => {
               placeholder="Ask a question..."
               className="flex-1 px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 outline-none bg-transparent min-w-0"
             />
-            <button className="flex-shrink-0 px-3 sm:px-5 py-2.5 sm:py-3 bg-black text-white text-xs sm:text-sm font-semibold hover:bg-[#0e445b] transition-colors cursor-pointer flex items-center gap-1.5 sm:gap-2">
+            <button className="flex-shrink-0 px-3 sm:px-5 py-2.5 sm:py-3 bg-[#242424] text-white text-xs sm:text-sm font-semibold hover:bg-[#434343] transition-colors cursor-pointer flex items-center gap-1.5 sm:gap-2">
               Send
             </button>
           </div>

@@ -6,7 +6,7 @@ const rolesData = [
   {
     id: 1,
     name: "Director",
-    color: "#9f1239",
+    color: "#242424",
     users: 1,
     permissions: {
       Dashboard: true,
@@ -40,7 +40,7 @@ const rolesData = [
   {
     id: 3,
     name: "Admin",
-    color: "#18181b",
+    color: "#000000",
     users: 2,
     permissions: {
       Dashboard: true,
@@ -156,7 +156,7 @@ const RolePermissions = () => {
               Manage access control for all user roles
             </p>
           </div>
-          <button className="px-4 py-2 text-sm font-medium bg-[#9f1239] text-white rounded-lg hover:bg-rose-950 transition-colors w-full sm:w-auto">
+          <button className="px-4 py-2 text-sm font-medium bg-[#242424] text-white rounded-lg hover:bg-[#434343] transition-colors w-full sm:w-auto">
             Create Role
           </button>
         </div>

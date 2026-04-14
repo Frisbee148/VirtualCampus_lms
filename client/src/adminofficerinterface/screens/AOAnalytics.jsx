@@ -49,7 +49,7 @@ const assessmentBreakdown = [
   { name: "Finals", value: 15 },
 ];
 
-const PIE_COLORS = ["#2563eb", "#7c3aed", "#059669", "#d97706"];
+const PIE_COLORS = ["#2563eb", "#7c3aed", "#242424", "#d97706"];
 
 const submissionTrend = [
   { week: "W1", submitted: 820, pending: 180, late: 45 },
@@ -199,8 +199,8 @@ const AOAnalytics = () => {
                 <Area
                   type="monotone"
                   dataKey="submissions"
-                  stroke="#059669"
-                  fill="#059669"
+                  stroke="#242424"
+                  fill="#242424"
                   fillOpacity={0.06}
                   strokeWidth={2}
                   name="Submissions"
@@ -271,7 +271,7 @@ const AOAnalytics = () => {
                 }}
               />
               <Legend wrapperStyle={{ fontSize: "11px" }} />
-              <Bar dataKey="submitted" fill="#059669" fillOpacity={0.8} name="Submitted" />
+              <Bar dataKey="submitted" fill="#242424" fillOpacity={0.8} name="Submitted" />
               <Bar dataKey="pending" fill="#d97706" fillOpacity={0.8} name="Pending" />
               <Bar dataKey="late" fill="#ef4444" fillOpacity={0.8} name="Late" />
             </BarChart>

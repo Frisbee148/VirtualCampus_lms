@@ -87,7 +87,7 @@ const AttendanceTable = () => {
                 setMonthDropdownOpen(!monthDropdownOpen);
                 setDateDropdownOpen(false);
               }}
-              className="bg-[#1a7a7a] text-white px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium flex items-center gap-2"
+              className="bg-[#242424] text-white px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium flex items-center gap-2"
             >
               {selectedMonth || "Select month"}
               <ChevronDown size={14} className="text-[#90ee90]" />
@@ -101,9 +101,9 @@ const AttendanceTable = () => {
                       setSelectedMonth(month);
                       setMonthDropdownOpen(false);
                     }}
-                    className={`w-full text-left px-4 py-2 text-sm hover:bg-[#1a7a7a]/10 transition-colors ${
+                    className={`w-full text-left px-4 py-2 text-sm hover:bg-[#242424]/10 transition-colors ${
                       selectedMonth === month
-                        ? "bg-[#1a7a7a]/20 font-medium"
+                        ? "bg-[#242424]/20 font-medium"
                         : ""
                     }`}
                   >
@@ -121,7 +121,7 @@ const AttendanceTable = () => {
                 setDateDropdownOpen(!dateDropdownOpen);
                 setMonthDropdownOpen(false);
               }}
-              className="bg-[#1a7a7a] text-white px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium flex items-center gap-2"
+              className="bg-[#242424] text-white px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium flex items-center gap-2"
             >
               {selectedDateRange ? `Select dates` : "Select dates"}
               <ChevronDown size={14} className="text-[#90ee90]" />
@@ -135,9 +135,9 @@ const AttendanceTable = () => {
                       setSelectedDateRange(range);
                       setDateDropdownOpen(false);
                     }}
-                    className={`w-full text-left px-4 py-2 text-sm hover:bg-[#1a7a7a]/10 transition-colors ${
+                    className={`w-full text-left px-4 py-2 text-sm hover:bg-[#242424]/10 transition-colors ${
                       selectedDateRange === range
-                        ? "bg-[#1a7a7a]/20 font-medium"
+                        ? "bg-[#242424]/20 font-medium"
                         : ""
                     }`}
                   >
@@ -165,7 +165,7 @@ const AttendanceTable = () => {
       <div className="hidden md:block overflow-x-auto">
         <table className="w-full border-collapse text-xs sm:text-sm">
           <thead>
-            <tr className="bg-[#1a7a7a] text-white">
+            <tr className="bg-[#242424] text-white">
               <th className="text-left px-2 sm:px-4 py-2 sm:py-3 font-semibold min-w-[80px] sm:min-w-[120px]">
                 Student name
               </th>
@@ -209,7 +209,7 @@ const AttendanceTable = () => {
                         checked={isAbsent(student, date)}
                         onChange={() => toggleAttendance(student.id, date)}
                         disabled={!editing}
-                        className="w-4 h-4 accent-[#1a7a7a] cursor-pointer"
+                        className="w-4 h-4 accent-[#242424] cursor-pointer"
                       />
                       {isAbsent(student, date) && (
                         <span className="text-xs text-gray-600">absent</span>
@@ -267,7 +267,7 @@ const AttendanceTable = () => {
                       checked={isAbsent(student, date)}
                       onChange={() => toggleAttendance(student.id, date)}
                       disabled={!editing}
-                      className="w-4 h-4 accent-[#1a7a7a] cursor-pointer"
+                      className="w-4 h-4 accent-[#242424] cursor-pointer"
                     />
                     {isAbsent(student, date) && (
                       <span className="text-xs text-gray-600">absent</span>
@@ -283,7 +283,7 @@ const AttendanceTable = () => {
       {/* Add student */}
       <button
         onClick={addStudent}
-        className="flex items-center gap-1 mt-4 text-sm text-gray-700 hover:text-[#1a7a7a] transition-colors"
+        className="flex items-center gap-1 mt-4 text-sm text-gray-700 hover:text-[#242424] transition-colors"
       >
         Add student
       </button>

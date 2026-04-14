@@ -19,7 +19,7 @@ const DownloadsScreen = () => {
         <div className="hidden sm:block bg-white border border-gray-200 overflow-hidden">
           <table className="w-full">
             <thead>
-              <tr className="bg-black text-white">
+              <tr className="bg-[#242424] text-white">
                 <th className="py-3.5 px-5 text-left text-sm font-semibold w-[55%]">Document Name</th>
                 <th className="py-3.5 px-5 text-left text-sm font-semibold w-[20%]">Size</th>
                 <th className="py-3.5 px-5 text-left text-sm font-semibold w-[15%]">Date</th>
@@ -33,7 +33,7 @@ const DownloadsScreen = () => {
                   <td className="py-4 px-5 text-sm text-gray-500">{d.size}</td>
                   <td className="py-4 px-5 text-sm text-gray-400">{d.date}</td>
                   <td className="py-4 px-5 text-center">
-                    <button className="px-3 py-1.5 text-xs font-semibold text-black border border-black hover:bg-black hover:text-white transition-all duration-200 cursor-pointer">
+                    <button className="px-3 py-1.5 text-xs font-semibold text-black border border-black hover:bg-[#242424] hover:text-white transition-all duration-200 cursor-pointer">
                       Download
                     </button>
                   </td>
@@ -49,7 +49,7 @@ const DownloadsScreen = () => {
             <div key={idx} className="bg-white border border-gray-200 p-3">
               <div className="flex items-start justify-between gap-2 mb-2">
                 <h3 className="text-xs font-semibold text-gray-900 leading-snug flex-1 min-w-0 break-words">{d.name}</h3>
-                <button className="flex-shrink-0 p-1.5 text-black border border-black hover:bg-black hover:text-white transition-all duration-200 cursor-pointer">
+                <button className="flex-shrink-0 p-1.5 text-black border border-black hover:bg-[#242424] hover:text-white transition-all duration-200 cursor-pointer">
                   <Download size={14} />
                 </button>
               </div>

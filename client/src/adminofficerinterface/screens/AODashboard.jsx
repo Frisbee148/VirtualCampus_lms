@@ -19,7 +19,7 @@ const kpis = [
     value: "2,486",
     change: "+124 this term",
     trend: "up",
-    accent: "#9f1239",
+    accent: "#242424",
   },
   {
     label: "Total Faculty",
@@ -47,7 +47,7 @@ const kpis = [
     value: "Spring '26",
     change: "Jan 15 — May 30",
     trend: "neutral",
-    accent: "#9f1239",
+    accent: "#242424",
   },
 ];
 
@@ -161,7 +161,7 @@ const AODashboard = () => {
             >
               <span
                 className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${
-                  h.status === "good" ? "bg-[#9f1239]" : "bg-amber-500"
+                  h.status === "good" ? "bg-[#242424]" : "bg-amber-500"
                 }`}
               ></span>
               <div className="min-w-0">
@@ -201,8 +201,8 @@ const AODashboard = () => {
                 <Area
                   type="monotone"
                   dataKey="enrollments"
-                  stroke="#9f1239"
-                  fill="#9f1239"
+                  stroke="#242424"
+                  fill="#242424"
                   fillOpacity={0.08}
                   strokeWidth={2}
                 />
@@ -234,7 +234,7 @@ const AODashboard = () => {
                   }}
                   formatter={(value) => [`${value}%`, "Completion"]}
                 />
-                <Bar dataKey="rate" fill="#9f1239" fillOpacity={0.8} />
+                <Bar dataKey="rate" fill="#242424" fillOpacity={0.8} />
               </BarChart>
             </ResponsiveContainer>
           </div>

@@ -16,7 +16,7 @@ const ParentGrades = () => {
         <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Grades</h1>
         <p className="text-xs sm:text-sm text-gray-400 mb-5 sm:mb-8">Session 2024-25 II</p>
 
-        <div className="inline-block px-3 sm:px-5 py-1.5 sm:py-2 bg-black text-white text-xs sm:text-sm font-semibold mb-5 sm:mb-8 shadow-sm">
+        <div className="inline-block px-3 sm:px-5 py-1.5 sm:py-2 bg-[#242424] text-white text-xs sm:text-sm font-semibold mb-5 sm:mb-8 shadow-sm">
           Session - 2024-25 II
         </div>
 
@@ -33,7 +33,7 @@ const ParentGrades = () => {
                   <span className="text-[10px] sm:text-sm text-gray-500">Avg: <b className="text-gray-900">{c.avg}</b></span>
                 </div>
                 <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
-                  <span className="text-xs sm:text-sm font-bold text-[#9f1239]">{c.grade}</span>
+                  <span className="text-xs sm:text-sm font-bold text-[#242424]">{c.grade}</span>
                   {expanded === idx ? <ChevronUp size={16} className="text-gray-400" /> : <ChevronDown size={16} className="text-gray-400" />}
                 </div>
               </div>

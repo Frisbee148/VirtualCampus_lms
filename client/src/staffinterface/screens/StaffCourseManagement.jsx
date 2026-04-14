@@ -82,7 +82,7 @@ const StaffCourseManagement = () => {
           </div>
           <button
             onClick={openCreate}
-            className="flex items-center gap-2 px-4 py-2 bg-[#18181b] text-white text-xs font-medium hover:bg-[#1a1d27] transition-colors"
+            className="flex items-center gap-2 px-4 py-2 bg-[#000000] text-white text-xs font-medium hover:bg-[#1a1d27] transition-colors"
           >
             Create Course
           </button>
@@ -295,7 +295,7 @@ const StaffCourseManagement = () => {
               </div>
               <div className="flex items-center justify-end gap-2 px-5 py-4 border-t border-gray-100">
                 <button onClick={() => setShowModal(false)} className="px-4 py-2 text-xs text-gray-600 hover:bg-gray-100 transition-colors">Cancel</button>
-                <button onClick={() => setShowModal(false)} className="px-4 py-2 text-xs bg-[#18181b] text-white font-medium hover:bg-[#1a1d27] transition-colors">
+                <button onClick={() => setShowModal(false)} className="px-4 py-2 text-xs bg-[#000000] text-white font-medium hover:bg-[#1a1d27] transition-colors">
                   {modalType === "create" ? "Create" : modalType === "assign" ? "Assign" : "Save"}
                 </button>
               </div>

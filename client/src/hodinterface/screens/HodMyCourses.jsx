@@ -22,7 +22,7 @@ const HodMyCourses = () => {
               onClick={() => setSelectedCourse(c)}
               className={`px-4 py-2 text-sm font-medium transition-colors ${
                 selectedCourse.id === c.id
-                  ? "bg-[#1a7a7a] text-white"
+                  ? "bg-[#242424] text-white"
                   : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"
               }`}
             >
@@ -38,7 +38,7 @@ const HodMyCourses = () => {
 
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6">
             <div className="bg-gray-50 p-3 text-center">
-              <p className="text-xl font-bold text-[#1a7a7a]">{selectedCourse.students}</p>
+              <p className="text-xl font-bold text-[#242424]">{selectedCourse.students}</p>
               <p className="text-[10px] text-gray-400">Students</p>
             </div>
             <div className="bg-gray-50 p-3 text-center">

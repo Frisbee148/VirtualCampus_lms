@@ -31,9 +31,9 @@ const admissionsByProgram = [
 ];
 
 const enrollmentStatus = [
-  { name: "Enrolled", value: 3248, color: "#9f1239" },
+  { name: "Enrolled", value: 3248, color: "#242424" },
   { name: "Provisional", value: 142, color: "#71717a" },
-  { name: "Alumni", value: 12450, color: "#18181b" },
+  { name: "Alumni", value: 12450, color: "#000000" },
   { name: "Withdrawn", value: 85, color: "#d4d4d8" },
 ];
 
@@ -128,7 +128,7 @@ const RegistrarDashboard = () => {
                 <Bar
                   dataKey="accepted"
                   name="Accepted"
-                  fill="#9f1239"
+                  fill="#242424"
                   radius={[2, 2, 0, 0]}
                 />
               </BarChart>
@@ -197,7 +197,7 @@ const RegistrarDashboard = () => {
                 key={item.id}
                 className="px-3 sm:px-5 py-3 sm:py-3.5 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 hover:bg-gray-50/50 transition-colors"
               >
-                <div className="w-2 h-2 rounded-full bg-[#9f1239] flex-shrink-0"></div>
+                <div className="w-2 h-2 rounded-full bg-[#242424] flex-shrink-0"></div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium text-gray-700">
                     {item.action}
