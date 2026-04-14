@@ -13,13 +13,13 @@ import {
   ResponsiveContainer,
   Legend,
 } from "recharts";
-import { Users, GraduationCap, UserCheck, UserX } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 
 const userStats = [
-  { label: "Total Students", value: "2,486", icon: Users, accent: "#2563eb" },
-  { label: "Total Faculty", value: "187", icon: GraduationCap, accent: "#7c3aed" },
-  { label: "Active Users", value: "2,541", icon: UserCheck, accent: "#059669" },
-  { label: "Inactive Users", value: "132", icon: UserX, accent: "#ef4444" },
+  { label: "Total Students", value: "2,486", accent: "#4E545C" },
+  { label: "Total Faculty", value: "187", accent: "#52525b" },
+  { label: "Active Users", value: "2,541", accent: "#71717a" },
+  { label: "Inactive Users", value: "132", accent: "#ef4444" },
 ];
 
 const roleDistribution = [
@@ -29,7 +29,7 @@ const roleDistribution = [
   { name: "Admin", value: 12 },
 ];
 
-const ROLE_COLORS = ["#2563eb", "#7c3aed", "#d97706", "#0f1117"];
+const ROLE_COLORS = ["#4E545C", "#52525b", "#71717a", "#0f1117"];
 
 const growthData = [
   { term: "Fall '23", students: 1980, faculty: 165 },
@@ -77,7 +77,6 @@ const AOUserOverview = () => {
               <div key={s.label} className="bg-white p-3 sm:p-4 border border-gray-100 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
                 <div className="flex items-start justify-between mb-2">
                   <p className="text-[10px] sm:text-xs text-gray-400 font-medium">{s.label}</p>
-                  <Icon size={15} style={{ color: s.accent }} />
                 </div>
                 <p className="text-xl sm:text-2xl font-bold" style={{ color: s.accent }}>{s.value}</p>
               </div>
@@ -134,8 +133,8 @@ const AOUserOverview = () => {
                 <YAxis tick={{ fontSize: 11, fill: "#94a3b8" }} />
                 <Tooltip contentStyle={{ borderRadius: "0", border: "1px solid #e5e7eb", fontSize: "13px" }} />
                 <Legend wrapperStyle={{ fontSize: "11px" }} />
-                <Bar dataKey="students" fill="#2563eb" fillOpacity={0.8} name="Students" />
-                <Bar dataKey="faculty" fill="#7c3aed" fillOpacity={0.8} name="Faculty" />
+                <Bar dataKey="students" fill="#4E545C" fillOpacity={0.8} name="Students" />
+                <Bar dataKey="faculty" fill="#52525b" fillOpacity={0.8} name="Faculty" />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -184,7 +183,7 @@ const AOUserOverview = () => {
                   </div>
                   <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-blue-500 rounded-full"
+                      className="h-full bg-[#4E545C] rounded-full"
                       style={{ width: a.pct }}
                     ></div>
                   </div>

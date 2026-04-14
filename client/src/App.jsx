@@ -113,6 +113,7 @@ import {
   LibraryOperatorRenew,
   LibraryOperatorSearch,
   LibraryOperatorProfile,
+  LibraryOperatorNotifications,
 } from "./libraryoperatorinterface";
 
 // Administrative Officer Interface
@@ -384,6 +385,7 @@ function App() {
         <Route path="/library-operator/renew" element={<LibraryOperatorRenew />} />
         <Route path="/library-operator/search" element={<LibraryOperatorSearch />} />
         <Route path="/library-operator/profile" element={<LibraryOperatorProfile />} />
+        <Route path="/library-operator/notifications" element={<LibraryOperatorNotifications />} />
 
         {/* Staff Dashboard */}
         <Route path="/staff/dashboard" element={<StaffDashboard />} />

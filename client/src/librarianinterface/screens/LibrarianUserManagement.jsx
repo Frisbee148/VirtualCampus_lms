@@ -24,8 +24,8 @@ const userBorrowHistory = {
 };
 
 const roleColors = {
-  Student: { bg: "bg-cyan-50", text: "text-cyan-600" },
-  Faculty: { bg: "bg-blue-50", text: "text-blue-600" },
+  Student: { bg: "bg-zinc-100", text: "text-zinc-700" },
+  Faculty: { bg: "bg-zinc-100", text: "text-zinc-600" },
 };
 
 const LibrarianUserManagement = () => {
@@ -55,9 +55,8 @@ const LibrarianUserManagement = () => {
           </div>
           <button
             onClick={() => setShowAddModal(true)}
-            className="flex items-center gap-2 px-4 py-2 text-sm font-medium bg-[#d97706] text-white rounded-lg hover:bg-[#b45309] transition-colors"
+            className="flex items-center gap-2 px-4 py-2 text-sm font-medium bg-[#4E545C] text-white rounded-lg hover:bg-rose-900 transition-colors"
           >
-            <Plus size={16} />
             Add User
           </button>
         </div>
@@ -65,19 +64,18 @@ const LibrarianUserManagement = () => {
         {/* Search & Filters */}
         <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-6">
           <div className="relative w-full sm:max-w-xs">
-            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
             <input
               type="text"
               placeholder="Search users..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="pl-9 pr-3 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-[#d97706] w-full transition-colors"
+              className="px-3 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-[#4E545C] w-full transition-colors"
             />
           </div>
           <select
             value={roleFilter}
             onChange={(e) => setRoleFilter(e.target.value)}
-            className="px-3 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-[#d97706] transition-colors w-full sm:w-auto"
+            className="px-3 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-[#4E545C] transition-colors w-full sm:w-auto"
           >
             <option value="all">All Roles</option>
             <option value="Student">Student</option>
@@ -86,7 +84,7 @@ const LibrarianUserManagement = () => {
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="px-3 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-[#d97706] transition-colors w-full sm:w-auto"
+            className="px-3 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-[#4E545C] transition-colors w-full sm:w-auto"
           >
             <option value="all">All Status</option>
             <option value="active">Active</option>
@@ -138,7 +136,7 @@ const LibrarianUserManagement = () => {
                       <td className="px-3 py-3.5">
                         <button
                           onClick={() => setSelectedUser(u)}
-                          className="text-xs font-medium text-[#d97706] hover:text-[#b45309] transition-colors"
+                          className="text-xs font-medium text-[#4E545C] hover:text-rose-900"
                         >
                           View
                         </button>
@@ -177,7 +175,7 @@ const LibrarianUserManagement = () => {
                     </span>
                     <button
                       onClick={() => setSelectedUser(u)}
-                      className="text-xs font-medium text-[#d97706] hover:text-[#b45309] transition-colors"
+                      className="text-xs font-medium text-[#4E545C] hover:text-rose-900"
                     >
                       View
                     </button>
@@ -246,7 +244,7 @@ const LibrarianUserManagement = () => {
                           <p className="text-sm text-gray-700">{h.book}</p>
                           <p className="text-xs text-gray-400">Issued: {h.issuedOn}</p>
                         </div>
-                        <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-amber-50 text-amber-600">
+                        <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-600">
                           Due {h.dueDate}
                         </span>
                       </div>
@@ -258,7 +256,7 @@ const LibrarianUserManagement = () => {
               </div>
             </div>
             <div className="flex items-center gap-2 p-5 border-t border-gray-100">
-              <button className="px-4 py-2 text-sm font-medium bg-[#d97706] text-white rounded-lg hover:bg-[#b45309] transition-colors">
+              <button className="px-4 py-2 text-sm font-medium bg-[#4E545C] text-white rounded-lg hover:bg-rose-900 transition-colors">
                 Edit User
               </button>
               <button className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
@@ -290,7 +288,7 @@ const LibrarianUserManagement = () => {
                   type="text"
                   value={newUser.name}
                   onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
-                  className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#d97706] transition-colors"
+                  className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#4E545C] transition-colors"
                   autoFocus
                 />
               </div>
@@ -300,7 +298,7 @@ const LibrarianUserManagement = () => {
                   type="email"
                   value={newUser.email}
                   onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
-                  className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#d97706] transition-colors"
+                  className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#4E545C] transition-colors"
                 />
               </div>
               <div>
@@ -308,7 +306,7 @@ const LibrarianUserManagement = () => {
                 <select
                   value={newUser.role}
                   onChange={(e) => setNewUser({ ...newUser, role: e.target.value })}
-                  className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#d97706] transition-colors"
+                  className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#4E545C] transition-colors"
                 >
                   <option>Student</option>
                   <option>Faculty</option>
@@ -322,7 +320,7 @@ const LibrarianUserManagement = () => {
               >
                 Cancel
               </button>
-              <button className="px-4 py-2 text-sm font-medium bg-[#d97706] text-white rounded-lg hover:bg-[#b45309] transition-colors">
+              <button className="px-4 py-2 text-sm font-medium bg-[#4E545C] text-white rounded-lg hover:bg-rose-900 transition-colors">
                 Add User
               </button>
             </div>

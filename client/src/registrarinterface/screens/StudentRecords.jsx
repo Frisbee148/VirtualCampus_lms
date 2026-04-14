@@ -107,7 +107,7 @@ const studentsData = [
 
 const statusColors = {
   active: { bg: "bg-emerald-50", text: "text-emerald-600" },
-  graduated: { bg: "bg-blue-50", text: "text-blue-600" },
+  graduated: { bg: "bg-zinc-100", text: "text-zinc-600" },
   "on-probation": { bg: "bg-amber-50", text: "text-amber-600" },
   withdrawn: { bg: "bg-red-50", text: "text-red-600" },
 };
@@ -138,22 +138,18 @@ const StudentRecords = () => {
           </div>
           <div className="flex flex-col sm:flex-row sm:items-center gap-2 w-full sm:w-auto">
             <div className="relative w-full sm:w-auto">
-              <Search
-                size={16}
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-              />
               <input
                 type="text"
                 placeholder="Search by name or ID..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="pl-9 pr-4 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-[#059669] w-full sm:w-56 transition-colors"
+                className="px-3 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-[#4E545C] w-full sm:w-56 transition-colors"
               />
             </div>
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="px-3 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-[#059669] transition-colors w-full sm:w-auto"
+              className="px-3 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-[#4E545C] transition-colors w-full sm:w-auto"
             >
               <option value="all">All Status</option>
               <option value="active">Active</option>
@@ -202,7 +198,7 @@ const StudentRecords = () => {
                       className="hover:bg-gray-50/50 transition-colors"
                     >
                       <td className="px-5 py-3.5">
-                        <span className="text-sm font-mono text-[#059669] font-medium">
+                        <span className="text-sm font-mono text-[#4E545C] font-medium">
                           {s.id}
                         </span>
                       </td>
@@ -238,13 +234,13 @@ const StudentRecords = () => {
                       <td className="px-3 py-3.5">
                         <div className="flex items-center gap-1">
                           <button
-                            className="p-1.5 text-gray-300 hover:text-[#059669] transition-colors"
+                            className="p-1.5 text-gray-300 hover:text-[#4E545C] transition-colors"
                             title="View Record"
                           >
                             <Eye size={15} />
                           </button>
                           <button
-                            className="p-1.5 text-gray-300 hover:text-[#059669] transition-colors"
+                            className="p-1.5 text-gray-300 hover:text-[#4E545C] transition-colors"
                             title="Download Transcript"
                           >
                             <Download size={15} />
@@ -279,7 +275,7 @@ const StudentRecords = () => {
                     </span>
                   </div>
 
-                  <p className="text-xs font-mono text-[#059669] font-medium">
+                  <p className="text-xs font-mono text-[#4E545C] font-medium">
                     {s.id}
                   </p>
                   <p className="text-xs text-gray-500">{s.program}</p>
@@ -294,13 +290,13 @@ const StudentRecords = () => {
 
                   <div className="flex justify-end gap-1">
                     <button
-                      className="p-1.5 text-gray-300 hover:text-[#059669] transition-colors"
+                      className="p-1.5 text-gray-300 hover:text-[#4E545C] transition-colors"
                       title="View Record"
                     >
                       <Eye size={15} />
                     </button>
                     <button
-                      className="p-1.5 text-gray-300 hover:text-[#059669] transition-colors"
+                      className="p-1.5 text-gray-300 hover:text-[#4E545C] transition-colors"
                       title="Download Transcript"
                     >
                       <Download size={15} />

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Plus, Search, ChevronDown } from "lucide-react";
+import { ChevronDown, ChevronRight } from "lucide-react";
 
 const MarksTable = ({ sections }) => {
   const [students, setStudents] = useState([
@@ -63,7 +63,7 @@ const MarksTable = ({ sections }) => {
       <div className="hidden md:block overflow-x-auto">
         <table className="w-full border-collapse text-sm">
           <thead>
-            <tr className="bg-[#1a7a7a] text-white">
+            <tr className="bg-[#4E545C] text-white">
               <th className="text-left px-2 sm:px-4 py-2 sm:py-3 font-semibold min-w-[80px] sm:min-w-[120px] text-xs sm:text-sm">
                 Student name
               </th>
@@ -204,24 +204,13 @@ const MarksTable = ({ sections }) => {
       {/* Add student */}
       <button
         onClick={addStudent}
-        className="flex items-center gap-1 mt-4 text-sm text-gray-700 hover:text-[#1a7a7a] transition-colors"
+        className="flex items-center gap-1 mt-4 text-sm text-gray-700 hover:text-[#4E545C] transition-colors"
       >
-        Add student <Plus size={16} className="text-[#1a7a7a]" />
+        Add student
       </button>
 
       {/* Search FAB */}
-      <div className="hidden sm:block fixed bottom-5 right-5 sm:bottom-8 sm:right-8 z-50">
-        <button
-          onClick={() => setSearchOpen(!searchOpen)}
-          className="flex items-center gap-1 bg-[#4a4a4a] text-white px-4 py-3 rounded shadow-lg hover:bg-[#333] transition-colors"
-        >
-          <Search size={18} />
-          <ChevronDown
-            size={14}
-            className={`transition-transform ${searchOpen ? "rotate-180" : ""}`}
-          />
-        </button>
-      </div>
+      {/* Search FAB removed */}
     </div>
   );
 };

@@ -47,7 +47,7 @@ const riskDistribution = [
   { name: "Attendance", value: 12, color: "#e8a435" },
   { name: "CGPA", value: 8, color: "#ef4444" },
   { name: "Inactivity", value: 5, color: "#6b7280" },
-  { name: "Safe", value: 53, color: "#1a7a7a" },
+  { name: "Safe", value: 53, color: "#4E545C" },
 ];
 
 const BatchInsights = () => {
@@ -63,7 +63,7 @@ const BatchInsights = () => {
           <select
             value={batch}
             onChange={(e) => setBatch(e.target.value)}
-            className="bg-[#1a7a7a] text-white px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium outline-none cursor-pointer w-full sm:w-auto"
+            className="bg-[#4E545C] text-white px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium outline-none cursor-pointer w-full sm:w-auto"
           >
             <option value="2023">Batch 2023</option>
             <option value="2022">Batch 2022</option>
@@ -74,7 +74,7 @@ const BatchInsights = () => {
         {/* Stats cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 mb-6 sm:mb-8">
           {[
-            { label: "Total Students", value: "78", accent: "#1a7a7a" },
+            { label: "Total Students", value: "78", accent: "#4E545C" },
             { label: "At Risk", value: "25", accent: "#ef4444" },
             { label: "Avg CGPA", value: "7.4", accent: "#e8a435" },
             { label: "Avg Attendance", value: "83%", accent: "#2d8a4e" },
@@ -111,7 +111,7 @@ const BatchInsights = () => {
                 <Tooltip />
                 <Bar
                   dataKey="present"
-                  fill="#1a7a7a"
+                  fill="#4E545C"
                   animationDuration={1200}
                   radius={[3, 3, 0, 0]}
                 />
@@ -138,7 +138,7 @@ const BatchInsights = () => {
                 <Tooltip />
                 <Bar
                   dataKey="count"
-                  fill="#1a7a7a"
+                  fill="#4E545C"
                   animationDuration={1400}
                   radius={[3, 3, 0, 0]}
                 />
@@ -160,9 +160,9 @@ const BatchInsights = () => {
                 <Line
                   type="monotone"
                   dataKey="avg"
-                  stroke="#1a7a7a"
+                  stroke="#4E545C"
                   strokeWidth={2.5}
-                  dot={{ r: 4, fill: "#1a7a7a" }}
+                  dot={{ r: 4, fill: "#4E545C" }}
                   animationDuration={1600}
                 />
               </LineChart>

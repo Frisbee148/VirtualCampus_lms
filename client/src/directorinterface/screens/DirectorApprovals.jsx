@@ -102,7 +102,7 @@ const approvalsData = [
 const priorityColors = {
   high: { bg: "bg-red-50", text: "text-red-600", dot: "bg-red-500" },
   medium: { bg: "bg-amber-50", text: "text-amber-600", dot: "bg-amber-500" },
-  low: { bg: "bg-blue-50", text: "text-blue-600", dot: "bg-blue-500" },
+  low: { bg: "bg-zinc-100", text: "text-zinc-600", dot: "bg-zinc-500" },
 };
 
 const statusConfig = {

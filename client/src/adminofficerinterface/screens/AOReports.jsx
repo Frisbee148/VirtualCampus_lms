@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import AdminOfficerLayout from "../AdminOfficerLayout";
-import { FileText, Download, Calendar, Users, BookOpen, BarChart3 } from "lucide-react";
+import { Download, ChevronRight } from "lucide-react";
 
 const reportCategories = [
   {
     id: "enrollment",
     title: "Enrollment Reports",
-    icon: Users,
-    accent: "#2563eb",
+    accent: "#4E545C",
     reports: [
       { name: "Enrollment Summary", desc: "Total enrollments by term, department, and course", formats: ["CSV", "PDF"] },
       { name: "Enrollment Trends", desc: "Term-over-term enrollment comparison", formats: ["CSV", "PDF"] },
@@ -17,8 +16,7 @@ const reportCategories = [
   {
     id: "course",
     title: "Course Performance",
-    icon: BookOpen,
-    accent: "#059669",
+    accent: "#4E545C",
     reports: [
       { name: "Course Completion Report", desc: "Completion rates across all active courses", formats: ["CSV", "PDF"] },
       { name: "Instructor Load Report", desc: "Course assignments per instructor", formats: ["CSV"] },
@@ -28,8 +26,7 @@ const reportCategories = [
   {
     id: "user",
     title: "User Statistics",
-    icon: Users,
-    accent: "#7c3aed",
+    accent: "#52525b",
     reports: [
       { name: "User Count by Role", desc: "Breakdown of students, faculty, staff, and admin", formats: ["CSV", "PDF"] },
       { name: "Active vs Inactive Users", desc: "User activity status across the institution", formats: ["CSV"] },
@@ -39,7 +36,6 @@ const reportCategories = [
   {
     id: "academic",
     title: "Academic Performance",
-    icon: BarChart3,
     accent: "#d97706",
     reports: [
       { name: "Grade Distribution", desc: "Grade breakdowns across courses and departments", formats: ["CSV", "PDF"] },
@@ -77,7 +73,6 @@ const AOReports = () => {
             </p>
           </div>
           <div className="flex items-center gap-2">
-            <Calendar size={14} className="text-gray-400" />
             <select
               value={selectedTerm}
               onChange={(e) => setSelectedTerm(e.target.value)}
@@ -98,7 +93,6 @@ const AOReports = () => {
             return (
               <div key={cat.id} className="bg-white border border-gray-100">
                 <div className="flex items-center gap-3 px-4 sm:px-5 py-3 border-b border-gray-100">
-                  <CatIcon size={16} style={{ color: cat.accent }} />
                   <h3 className="text-sm font-semibold text-gray-700">{cat.title}</h3>
                 </div>
                 <div className="divide-y divide-gray-50">
@@ -134,7 +128,6 @@ const AOReports = () => {
         {/* Recent Exports */}
         <div className="bg-white border border-gray-100">
           <div className="flex items-center gap-2 px-4 sm:px-5 py-3 border-b border-gray-100">
-            <FileText size={14} className="text-gray-400" />
             <h3 className="text-sm font-semibold text-gray-700">Recent Exports</h3>
           </div>
 
@@ -160,7 +153,7 @@ const AOReports = () => {
                     </td>
                     <td className="px-4 py-3 text-gray-400">{exp.size}</td>
                     <td className="px-4 py-3">
-                      <button className="text-blue-600 hover:text-blue-800 transition-colors cursor-pointer">
+                      <button className="text-gray-400 hover:text-[#4E545C] transition-colors cursor-pointer">
                         <Download size={13} />
                       </button>
                     </td>
@@ -178,7 +171,7 @@ const AOReports = () => {
                   <p className="text-xs font-medium text-gray-800 truncate">{exp.name}</p>
                   <p className="text-[10px] text-gray-400 mt-0.5">{exp.date} · {exp.format} · {exp.size}</p>
                 </div>
-                <button className="text-blue-600 hover:text-blue-800 flex-shrink-0 cursor-pointer">
+                <button className="text-gray-400 hover:text-[#4E545C] flex-shrink-0 cursor-pointer">
                   <Download size={14} />
                 </button>
               </div>

@@ -73,7 +73,7 @@ const FacultyNotifications = () => {
                     {n.title}
                   </h3>
                   {n.unread && (
-                    <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-black flex-shrink-0"></span>
+                    <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#4E545C] flex-shrink-0"></span>
                   )}
                 </div>
                 <p className="text-[10px] sm:text-xs text-gray-400 mt-0.5 truncate">

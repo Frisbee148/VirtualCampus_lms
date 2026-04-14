@@ -28,7 +28,7 @@ const TopHeader = ({ onMenuToggle }) => {
             strokeWidth={1.8}
             className="sm:w-[22px] sm:h-[22px]"
           />
-          <span className="absolute top-1.5 right-1.5 sm:top-2 sm:right-2 w-2 h-2 bg-red-500 ring-2 ring-[#f8f9fa]"></span>
+          <span className="absolute top-1.5 right-1.5 sm:top-2 sm:right-2 w-2 h-2 bg-red-500 rounded-full ring-2 ring-[#f8f9fa]"></span>
         </button>
         <img
           src="/LNMIIT-Logo-Transperant-Background.png"

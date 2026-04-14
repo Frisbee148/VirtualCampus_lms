@@ -11,17 +11,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import {
-  Users,
-  GraduationCap,
-  BookOpen,
-  ClipboardCheck,
-  Calendar,
-  AlertTriangle,
-  UserX,
-  TrendingUp,
-  TrendingDown,
-} from "lucide-react";
+import { ChevronRight } from "lucide-react";
 
 const kpis = [
   {
@@ -29,40 +19,35 @@ const kpis = [
     value: "2,486",
     change: "+124 this term",
     trend: "up",
-    icon: Users,
-    accent: "#2563eb",
+    accent: "#4E545C",
   },
   {
     label: "Total Faculty",
     value: "187",
     change: "12 departments",
     trend: "neutral",
-    icon: GraduationCap,
-    accent: "#7c3aed",
+    accent: "#52525b",
   },
   {
     label: "Active Courses",
     value: "312",
     change: "98% with instructors",
     trend: "up",
-    icon: BookOpen,
-    accent: "#0891b2",
+    accent: "#71717a",
   },
   {
     label: "Active Enrollments",
     value: "8,942",
     change: "+6.2% vs last term",
     trend: "up",
-    icon: ClipboardCheck,
-    accent: "#059669",
+    accent: "#71717a",
   },
   {
     label: "Current Term",
     value: "Spring '26",
     change: "Jan 15 — May 30",
     trend: "neutral",
-    icon: Calendar,
-    accent: "#d97706",
+    accent: "#4E545C",
   },
 ];
 
@@ -100,38 +85,34 @@ const alerts = [
     id: 1,
     severity: "critical",
     message: "6 courses without assigned instructors",
-    icon: AlertTriangle,
   },
   {
     id: 2,
     severity: "warning",
     message: "3 courses below 50% completion rate",
-    icon: TrendingDown,
   },
   {
     id: 3,
     severity: "warning",
     message: "12 faculty with 5+ course assignments",
-    icon: UserX,
   },
   {
     id: 4,
     severity: "info",
     message: "Enrollment up 6.2% vs previous term",
-    icon: TrendingUp,
   },
 ];
 
 const severityStyles = {
   critical: "bg-red-50 text-red-700 border-red-200",
   warning: "bg-amber-50 text-amber-700 border-amber-200",
-  info: "bg-blue-50 text-blue-700 border-blue-200",
+  info: "bg-zinc-50 text-zinc-700 border-zinc-200",
 };
 
 const severityDot = {
   critical: "bg-red-500",
   warning: "bg-amber-500",
-  info: "bg-blue-500",
+  info: "bg-zinc-500",
 };
 
 const AODashboard = () => {
@@ -158,7 +139,6 @@ const AODashboard = () => {
                   <p className="text-[10px] sm:text-xs text-gray-400 font-medium">
                     {kpi.label}
                   </p>
-                  <Icon size={15} style={{ color: kpi.accent }} />
                 </div>
                 <p
                   className="text-xl sm:text-2xl font-bold mb-0.5"
@@ -181,7 +161,7 @@ const AODashboard = () => {
             >
               <span
                 className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${
-                  h.status === "good" ? "bg-emerald-500" : "bg-amber-500"
+                  h.status === "good" ? "bg-[#4E545C]" : "bg-amber-500"
                 }`}
               ></span>
               <div className="min-w-0">
@@ -221,8 +201,8 @@ const AODashboard = () => {
                 <Area
                   type="monotone"
                   dataKey="enrollments"
-                  stroke="#2563eb"
-                  fill="#2563eb"
+                  stroke="#4E545C"
+                  fill="#4E545C"
                   fillOpacity={0.08}
                   strokeWidth={2}
                 />
@@ -254,7 +234,7 @@ const AODashboard = () => {
                   }}
                   formatter={(value) => [`${value}%`, "Completion"]}
                 />
-                <Bar dataKey="rate" fill="#059669" fillOpacity={0.8} />
+                <Bar dataKey="rate" fill="#4E545C" fillOpacity={0.8} />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -281,7 +261,6 @@ const AODashboard = () => {
                   <span
                     className={`w-2 h-2 rounded-full flex-shrink-0 ${severityDot[alert.severity]}`}
                   ></span>
-                  <Icon size={16} className="flex-shrink-0 opacity-60" />
                   <p className="text-xs sm:text-sm flex-1">{alert.message}</p>
                   <span className="text-[10px] font-medium uppercase opacity-60">
                     {alert.severity}

@@ -38,7 +38,6 @@ const HodNotifications = () => {
             </button>
             <div>
               <h1 className="text-xl sm:text-3xl font-bold text-gray-900">Notifications</h1>
-              {unreadCount > 0 && <p className="text-xs text-gray-400">{unreadCount} unread</p>}
             </div>
           </div>
           {unreadCount > 0 && (
@@ -60,7 +59,7 @@ const HodNotifications = () => {
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-1.5 sm:gap-2">
                   <h3 className="text-xs sm:text-sm font-semibold text-gray-900 truncate">{n.title}</h3>
-                  {n.unread && <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-black flex-shrink-0"></span>}
+                  {n.unread && <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#4E545C] flex-shrink-0"></span>}
                 </div>
                 <p className="text-[10px] sm:text-xs text-gray-400 mt-0.5 truncate">{n.desc}</p>
               </div>

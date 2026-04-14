@@ -1,19 +1,12 @@
 import React from "react";
 import HodLayout from "../HodLayout";
-import {
-  Users,
-  BookOpen,
-  GraduationCap,
-  AlertTriangle,
-  TrendingUp,
-  Clock,
-} from "lucide-react";
+import { ChevronRight } from "lucide-react";
 
 const kpiCards = [
-  { label: "Total Faculty", value: "24", icon: Users, accent: "#1a7a7a", change: "+2 this sem" },
-  { label: "Active Courses", value: "38", icon: BookOpen, accent: "#e8a435", change: "6 labs included" },
-  { label: "Total Students", value: "486", icon: GraduationCap, accent: "#2d8a4e", change: "4 batches" },
-  { label: "At Risk Students", value: "31", icon: AlertTriangle, accent: "#ef4444", change: "6.4% of dept" },
+  { label: "Total Faculty", value: "24", accent: "#4E545C", change: "+2 this sem" },
+  { label: "Active Courses", value: "38", accent: "#131518", change: "6 labs included" },
+  { label: "Total Students", value: "486", accent: "#71717a", change: "4 batches" },
+  { label: "At Risk Students", value: "31", accent: "#4E545C", change: "6.4% of dept" },
 ];
 
 const facultyOverview = [
@@ -40,7 +33,7 @@ const announcements = [
 
 const statusColors = {
   active: "bg-emerald-50 text-emerald-700",
-  "on-leave": "bg-amber-50 text-amber-700",
+  "on-leave": "bg-zinc-100 text-zinc-600",
 };
 
 const HodDashboard = () => {
@@ -60,7 +53,6 @@ const HodDashboard = () => {
               <div key={card.label} className="bg-white border border-gray-100 p-3 sm:p-4 shadow-sm">
                 <div className="flex items-start justify-between mb-2">
                   <p className="text-[10px] sm:text-xs text-gray-400 font-medium">{card.label}</p>
-                  <Icon size={16} style={{ color: card.accent }} />
                 </div>
                 <p className="text-xl sm:text-2xl font-bold" style={{ color: card.accent }}>
                   {card.value}
@@ -130,7 +122,7 @@ const HodDashboard = () => {
           <div className="bg-white border border-gray-100 shadow-sm">
             <div className="flex items-center justify-between px-4 sm:px-5 py-3 border-b border-gray-100">
               <h3 className="text-sm font-semibold text-gray-700">Pending Approvals</h3>
-              <span className="text-[10px] font-medium text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full">
+              <span className="text-[10px] font-medium text-zinc-600 bg-zinc-50 px-2 py-0.5 rounded-full">
                 {pendingApprovals.length} pending
               </span>
             </div>
@@ -180,18 +172,15 @@ const HodDashboard = () => {
             <h3 className="text-sm font-semibold text-gray-700 mb-4">Department Snapshot</h3>
             <div className="space-y-4">
               {[
-                { label: "Avg Dept CGPA", value: "7.6", icon: TrendingUp, color: "#1a7a7a" },
-                { label: "Avg Attendance", value: "84%", icon: Clock, color: "#e8a435" },
-                { label: "Courses This Sem", value: "38", icon: BookOpen, color: "#2d8a4e" },
-                { label: "Pending Approvals", value: "4", icon: AlertTriangle, color: "#ef4444" },
+                { label: "Avg Dept CGPA", value: "7.6", color: "#4E545C" },
+                { label: "Avg Attendance", value: "84%", color: "#131518" },
+                { label: "Courses This Sem", value: "38", color: "#71717a" },
+                { label: "Pending Approvals", value: "4", color: "#4E545C" },
               ].map((s) => {
                 const Icon = s.icon;
                 return (
                   <div key={s.label} className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="p-2 rounded-lg bg-gray-50">
-                        <Icon size={16} style={{ color: s.color }} />
-                      </div>
                       <span className="text-xs text-gray-600">{s.label}</span>
                     </div>
                     <span className="text-sm font-bold" style={{ color: s.color }}>{s.value}</span>

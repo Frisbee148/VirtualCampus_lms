@@ -51,7 +51,7 @@ const StudentEventModal = ({
             </button>
             <button
               type="submit"
-              className="px-4 py-2 text-sm font-medium text-white bg-black hover:bg-[#0e445b] transition-colors"
+              className="px-4 py-2 text-sm font-medium text-white bg-[#4E545C] hover:bg-[#828a91] transition-colors"
             >
               {submitLabel}
             </button>

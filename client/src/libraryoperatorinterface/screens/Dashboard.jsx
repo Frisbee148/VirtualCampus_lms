@@ -1,14 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import LibraryOperatorLayout from "../LibraryOperatorLayout";
-import {
-  BookPlus,
-  ArrowLeftRight,
-  RefreshCw,
-  Search,
-  Clock,
-  AlertTriangle,
-} from "lucide-react";
+import { ChevronRight } from "lucide-react";
 
 const LibraryOperatorDashboard = () => {
   const navigate = useNavigate();
@@ -16,31 +9,23 @@ const LibraryOperatorDashboard = () => {
   const quickActions = [
     {
       id: "issue",
-      icon: BookPlus,
       label: "Issue Book",
       path: "/library-operator/issue",
-      color: "bg-emerald-500",
     },
     {
       id: "return",
-      icon: ArrowLeftRight,
       label: "Return Book",
       path: "/library-operator/return",
-      color: "bg-blue-500",
     },
     {
       id: "renew",
-      icon: RefreshCw,
       label: "Renew Book",
       path: "/library-operator/renew",
-      color: "bg-amber-500",
     },
     {
       id: "search",
-      icon: Search,
-      label: "Search",
+      label: "Search Books",
       path: "/library-operator/search",
-      color: "bg-purple-500",
     },
   ];
 
@@ -63,20 +48,14 @@ const LibraryOperatorDashboard = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {quickActions.map((action) => {
-            const Icon = action.icon;
             return (
               <button
                 key={action.id}
                 onClick={() => navigate(action.path)}
-                className="group flex flex-col items-center justify-center gap-3 p-6 bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:border-gray-200 transition-all duration-200"
+                className="group flex items-center justify-between p-5 bg-white border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
               >
-                <div
-                  className={`p-4 ${action.color} rounded-xl text-white shadow-lg group-hover:scale-110 transition-transform duration-200`}
-                >
-                  <Icon size={28} strokeWidth={1.8} />
-                </div>
                 <span className="text-sm font-semibold text-gray-700">
                   {action.label}
                 </span>
@@ -109,9 +88,8 @@ const LibraryOperatorDashboard = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-4">
-          <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
+          <div className="bg-white border border-gray-100 shadow-sm p-5">
             <div className="flex items-center gap-2 mb-4">
-              <AlertTriangle size={18} className="text-amber-500" />
               <h2 className="text-base font-semibold text-gray-900">
                 Overdue Books
               </h2>
@@ -132,9 +110,8 @@ const LibraryOperatorDashboard = () => {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
+          <div className="bg-white border border-gray-100 shadow-sm p-5">
             <div className="flex items-center gap-2 mb-4">
-              <Clock size={18} className="text-blue-500" />
               <h2 className="text-base font-semibold text-gray-900">
                 Upcoming Returns
               </h2>

@@ -14,7 +14,7 @@ const DEFAULT_EVENTS = {
   "2026-03-10": [{ title: "Midsem Exam", color: "#ef4444" }],
   "2026-03-14": [{ title: "Hackathon", color: "#8b5cf6" }],
   "2026-03-18": [{ title: "Guest Lecture", color: "#2d8a4e" }],
-  "2026-03-20": [{ title: "Project Submission", color: "#1a7a7a" }],
+  "2026-03-20": [{ title: "Project Submission", color: "#4E545C" }],
   "2026-03-25": [{ title: "Lab Test — CS302", color: "#ef4444" }],
   "2026-03-28": [{ title: "Cultural Fest", color: "#ec4899" }],
   "2026-04-01": [{ title: "Semester Break Starts", color: "#e8a435" }],
@@ -33,7 +33,7 @@ const CalendarMonthly = () => {
   const [customEvents, setCustomEvents] = useState(() =>
     loadStoredArray(MONTHLY_EVENTS_STORAGE_KEY),
   );
-  const [form, setForm] = useState({ date: "", title: "", color: "#1a7a7a" });
+  const [form, setForm] = useState({ date: "", title: "", color: "#4E545C" });
   const [isEditMode, setIsEditMode] = useState(false);
   const [editEventIndex, setEditEventIndex] = useState(0);
 
@@ -56,7 +56,7 @@ const CalendarMonthly = () => {
     setForm({
       date: `${year}-${String(month + 1).padStart(2, "0")}-01`,
       title: "",
-      color: "#1a7a7a",
+      color: "#4E545C",
     });
     setShowModal(true);
   };
@@ -70,7 +70,7 @@ const CalendarMonthly = () => {
     setForm({
       date: selectedEvent.date,
       title: selectedEvent.title,
-      color: selectedEvent.color || "#1a7a7a",
+      color: selectedEvent.color || "#4E545C",
     });
     setShowModal(true);
   };
@@ -152,7 +152,7 @@ const CalendarMonthly = () => {
         <div className="flex justify-end mb-3 sm:mb-4">
           <button
             onClick={openAddEvent}
-            className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-2.5 bg-black text-white text-xs sm:text-sm font-semibold hover:bg-[#0e445b] transition-colors shadow-sm cursor-pointer"
+            className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-2.5 bg-[#4E545C] text-white text-xs sm:text-sm font-semibold hover:bg-[#828a91] transition-colors shadow-sm cursor-pointer"
           >
             <Plus size={14} className="sm:w-4 sm:h-4" />
             <span className="hidden sm:inline">Add Event</span>
@@ -247,7 +247,7 @@ const CalendarMonthly = () => {
         </StudentEventModal>
 
         {/* Day headers */}
-        <div className="grid grid-cols-7 bg-[#1a7a7a] text-white text-[10px] sm:text-sm font-semibold">
+        <div className="grid grid-cols-7 bg-[#4E545C] text-white text-[10px] sm:text-sm font-semibold">
           {DAYS.map((d) => (
             <div key={d} className="py-1.5 sm:py-2.5 text-center">
               {d}
@@ -271,7 +271,7 @@ const CalendarMonthly = () => {
                     <span
                       className={`inline-flex items-center justify-center w-5 h-5 sm:w-6 sm:h-6 text-[10px] sm:text-xs font-medium ${
                         isToday(day)
-                          ? "bg-[#1a7a7a] text-white rounded-full"
+                          ? "bg-[#4E545C] text-white rounded-full"
                           : "text-gray-700"
                       }`}
                     >

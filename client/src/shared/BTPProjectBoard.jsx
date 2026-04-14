@@ -200,7 +200,7 @@ const BTPProjectBoard = ({ editable = false, roleLabel = "Student View" }) => {
               return (
                 <div
                   key={project.id}
-                  className={`border p-3 sm:p-4 transition-colors ${activeProject ? "border-[#1a7a7a] bg-[#f2fbfb]" : "border-gray-200 bg-white"}`}
+                  className={`border p-3 sm:p-4 transition-colors ${activeProject ? "border-[#4E545C] bg-[#f2fbfb]" : "border-gray-200 bg-white"}`}
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div className="min-w-0">
@@ -240,7 +240,7 @@ const BTPProjectBoard = ({ editable = false, roleLabel = "Student View" }) => {
                       className={`inline-flex items-center px-3 py-2 text-[11px] sm:text-xs font-semibold transition-colors ${
                         disabled
                           ? "bg-gray-100 text-gray-400 cursor-not-allowed border border-gray-200"
-                          : "bg-black text-white hover:bg-[#0e445b]"
+                          : "bg-[#4E545C] text-white hover:bg-[#828a91]"
                       }`}
                     >
                       {activeProject && btpState.status === "pending"
@@ -331,7 +331,7 @@ const BTPProjectBoard = ({ editable = false, roleLabel = "Student View" }) => {
                     </div>
                     <div className="h-2.5 bg-gray-200 overflow-hidden">
                       <div
-                        className="h-full bg-[#1a7a7a] transition-all duration-300"
+                        className="h-full bg-[#4E545C] transition-all duration-300"
                         style={{ width: `${progressPercent}%` }}
                       />
                     </div>
@@ -349,7 +349,7 @@ const BTPProjectBoard = ({ editable = false, roleLabel = "Student View" }) => {
                 </div>
 
                 <div className="border border-gray-200">
-                  <div className="px-3 sm:px-4 py-3 bg-[#0f1117] text-white text-xs sm:text-sm font-semibold flex items-center gap-2">
+                  <div className="px-3 sm:px-4 py-3 bg-[#131518] text-white text-xs sm:text-sm font-semibold flex items-center gap-2">
                     Progress Checklist
                   </div>
                   <div className="divide-y divide-gray-200">
@@ -363,7 +363,7 @@ const BTPProjectBoard = ({ editable = false, roleLabel = "Student View" }) => {
                           checked={step.completed}
                           onChange={() => updateStep(step.id)}
                           disabled={!editable}
-                          className="mt-1 h-4 w-4 accent-[#1a7a7a] disabled:cursor-default"
+                          className="mt-1 h-4 w-4 accent-[#4E545C] disabled:cursor-default"
                         />
                         <div className="min-w-0 flex-1">
                           <p className="text-sm font-medium text-gray-900">
@@ -402,7 +402,7 @@ const BTPProjectBoard = ({ editable = false, roleLabel = "Student View" }) => {
                       <button
                         type="button"
                         onClick={approveRequest}
-                        className="px-4 py-2 bg-[#1a7a7a] text-white text-xs sm:text-sm font-semibold hover:bg-[#145e5e] transition-colors"
+                        className="px-4 py-2 bg-[#4E545C] text-white text-xs sm:text-sm font-semibold hover:bg-[#828a91] transition-colors"
                       >
                         Approve and Lock
                       </button>

@@ -3,11 +3,11 @@ import FacultyLayout from "../FacultyLayout";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const EVENTS = {
-  "2026-03-02": [{ title: "Quiz 1 — CS301", color: "#1a7a7a" }],
+  "2026-03-02": [{ title: "Quiz 1 — CS301", color: "#4E545C" }],
   "2026-03-05": [{ title: "Assignment Due — CS301", color: "#e8a435" }],
   "2026-03-10": [{ title: "Midsem Exam", color: "#ef4444" }],
   "2026-03-15": [{ title: "Faculty Meeting", color: "#6b7280" }],
-  "2026-03-20": [{ title: "Project Review", color: "#1a7a7a" }],
+  "2026-03-20": [{ title: "Project Review", color: "#4E545C" }],
   "2026-03-28": [{ title: "Guest Lecture", color: "#2d8a4e" }],
   "2026-04-01": [{ title: "Semester Break Starts", color: "#e8a435" }],
 };
@@ -71,7 +71,7 @@ const FacultyCalendar = () => {
         </div>
 
         {/* Day headers */}
-        <div className="grid grid-cols-7 bg-[#1a7a7a] text-white text-[10px] sm:text-sm font-semibold">
+        <div className="grid grid-cols-7 bg-[#4E545C] text-white text-[10px] sm:text-sm font-semibold">
           {DAYS.map((d) => (
             <div key={d} className="py-1.5 sm:py-2.5 text-center">
               {d}
@@ -95,7 +95,7 @@ const FacultyCalendar = () => {
                     <span
                       className={`inline-flex items-center justify-center w-5 h-5 sm:w-6 sm:h-6 text-[10px] sm:text-xs font-medium ${
                         isToday(day)
-                          ? "bg-[#1a7a7a] text-white rounded-full"
+                          ? "bg-[#4E545C] text-white rounded-full"
                           : "text-gray-700"
                       }`}
                     >

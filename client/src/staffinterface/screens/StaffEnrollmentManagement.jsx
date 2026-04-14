@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import StaffLayout from "../StaffLayout";
 import {
-  Search,
   Plus,
-  Filter,
-  Check,
-  X,
   Trash2,
   RefreshCw,
   ChevronLeft,
   ChevronRight,
   Upload,
+  Check,
+  X,
 } from "lucide-react";
 
 const allEnrollments = [
@@ -36,8 +34,8 @@ const STATUS_FILTER = ["all", "active", "pending", "rejected"];
 const PAGE_SIZE = 8;
 
 const roleColors = {
-  student: "bg-blue-50 text-blue-700",
-  teacher: "bg-purple-50 text-purple-700",
+  student: "bg-zinc-100 text-zinc-700",
+  teacher: "bg-zinc-100 text-zinc-600",
 };
 
 const statusColors = {
@@ -90,20 +88,20 @@ const StaffEnrollmentManagement = () => {
           <div className="flex items-center gap-2">
             <button
               onClick={() => setShowEnrollModal(true)}
-              className="flex items-center gap-2 px-4 py-2 bg-[#0f1117] text-white text-xs font-medium hover:bg-[#1a1d27] transition-colors"
+              className="flex items-center gap-2 px-4 py-2 bg-[#131518] text-white text-xs font-medium hover:bg-[#1a1d27] transition-colors"
             >
-              <Plus size={14} /> Enroll User
+              Enroll User
             </button>
             <button className="flex items-center gap-2 px-3 py-2 border border-gray-200 text-xs text-gray-600 hover:bg-gray-50 transition-colors" title="Bulk Upload">
-              <Upload size={14} /> Bulk
+              Bulk
             </button>
           </div>
         </div>
 
         {/* Bulk actions bar */}
         {selected.length > 0 && (
-          <div className="flex items-center gap-2 mb-4 px-4 py-2.5 bg-blue-50 border border-blue-100">
-            <span className="text-xs text-blue-700 font-medium">{selected.length} selected</span>
+          <div className="flex items-center gap-2 mb-4 px-4 py-2.5 bg-zinc-50 border border-zinc-100">
+            <span className="text-xs text-zinc-700 font-medium">{selected.length} selected</span>
             <div className="flex-1" />
             <button className="flex items-center gap-1.5 px-3 py-1.5 text-[10px] font-medium text-emerald-700 bg-emerald-50 hover:bg-emerald-100 transition-colors">
               <Check size={12} /> Approve
@@ -123,17 +121,15 @@ const StaffEnrollmentManagement = () => {
         {/* Filters */}
         <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-4">
           <div className="relative flex-1 max-w-sm">
-            <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-300" />
             <input
               type="text"
               placeholder="Search user or course..."
               value={search}
               onChange={(e) => { setSearch(e.target.value); setPage(1); }}
-              className="w-full pl-9 pr-3 py-2 text-xs border border-gray-200 bg-white focus:outline-none focus:border-gray-400 transition-colors"
+              className="w-full px-3 py-2 text-xs border border-gray-200 bg-white focus:outline-none focus:border-gray-400 transition-colors"
             />
           </div>
           <div className="flex items-center gap-2">
-            <Filter size={14} className="text-gray-400" />
             <select
               value={roleFilter}
               onChange={(e) => { setRoleFilter(e.target.value); setPage(1); }}
@@ -178,7 +174,7 @@ const StaffEnrollmentManagement = () => {
               </thead>
               <tbody>
                 {paginated.map((e) => (
-                  <tr key={e.id} className={`border-b border-gray-50 hover:bg-gray-50/50 transition-colors ${selected.includes(e.id) ? "bg-blue-50/30" : ""}`}>
+                  <tr key={e.id} className={`border-b border-gray-50 hover:bg-gray-50/50 transition-colors ${selected.includes(e.id) ? "bg-zinc-50" : ""}`}>
                     <td className="px-4 py-3">
                       <input
                         type="checkbox"
@@ -211,7 +207,7 @@ const StaffEnrollmentManagement = () => {
                             </button>
                           </>
                         )}
-                        <button className="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 transition-colors" title="Change Role">
+                        <button className="p-1.5 text-gray-400 hover:text-zinc-800 hover:bg-gray-100 transition-colors" title="Change Role">
                           <RefreshCw size={13} />
                         </button>
                         <button className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors" title="Remove">
@@ -321,7 +317,7 @@ const StaffEnrollmentManagement = () => {
               </div>
               <div className="flex items-center justify-end gap-2 px-5 py-4 border-t border-gray-100">
                 <button onClick={() => setShowEnrollModal(false)} className="px-4 py-2 text-xs text-gray-600 hover:bg-gray-100 transition-colors">Cancel</button>
-                <button onClick={() => setShowEnrollModal(false)} className="px-4 py-2 text-xs bg-[#0f1117] text-white font-medium hover:bg-[#1a1d27] transition-colors">
+                <button onClick={() => setShowEnrollModal(false)} className="px-4 py-2 text-xs bg-[#131518] text-white font-medium hover:bg-[#1a1d27] transition-colors">
                   Enroll
                 </button>
               </div>

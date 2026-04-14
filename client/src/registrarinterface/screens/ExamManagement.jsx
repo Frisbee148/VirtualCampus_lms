@@ -115,8 +115,8 @@ const statusConfig = {
   },
   completed: {
     label: "Completed",
-    bg: "bg-blue-50",
-    text: "text-blue-600",
+    bg: "bg-zinc-100",
+    text: "text-zinc-600",
     icon: CheckCircle,
   },
   "results-published": {
@@ -145,7 +145,7 @@ const ExamManagement = () => {
               Schedule exams, manage hall tickets, and publish results
             </p>
           </div>
-          <button className="px-4 py-2 text-sm font-medium bg-[#059669] text-white rounded-lg hover:bg-[#047857] transition-colors w-full sm:w-auto">
+          <button className="px-4 py-2 text-sm font-medium bg-[#4E545C] text-white rounded-lg hover:bg-[#828a91] transition-colors w-full sm:w-auto">
             + Schedule Exam
           </button>
         </div>
@@ -186,8 +186,8 @@ const ExamManagement = () => {
                 className="bg-white rounded-xl border border-gray-100 p-5 hover:shadow-sm transition-shadow"
               >
                 <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-                  <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-[#059669]/10 flex flex-col items-center justify-center">
-                    <span className="text-[#059669] font-bold text-sm">
+                  <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-[#4E545C]/10 flex flex-col items-center justify-center">
+                    <span className="text-[#4E545C] font-bold text-sm">
                       {exam.code}
                     </span>
                   </div>

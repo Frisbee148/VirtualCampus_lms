@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import HodLayout from "../HodLayout";
-import { Check, X, ChevronDown, Clock } from "lucide-react";
+import { Check, X, ChevronDown } from "lucide-react";
 
 const initialRequests = [
   { id: 1, type: "Leave", from: "Prof. Suresh Iyer", detail: "Medical leave — 5 days (Apr 14–18)", submitted: "2d ago", status: "pending", urgent: true, reason: "Scheduled surgery recovery" },
@@ -114,9 +114,6 @@ const HodApprovals = () => {
                   r.urgent && r.status === "pending" ? "border-l-2 border-l-red-400" : ""
                 }`}
               >
-                <div className="p-2 rounded-lg bg-gray-50 flex-shrink-0">
-                  <Clock size={16} className="text-gray-400" />
-                </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start justify-between gap-2">
                     <div className="min-w-0">

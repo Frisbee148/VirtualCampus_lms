@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LibraryOperatorLayout from "../LibraryOperatorLayout";
-import { Search, User, BookOpen, CheckCircle, AlertCircle } from "lucide-react";
+import { CheckCircle, AlertCircle, ChevronRight } from "lucide-react";
 
 const LibraryOperatorIssue = () => {
   const navigate = useNavigate();
@@ -51,20 +51,18 @@ const LibraryOperatorIssue = () => {
             <p className="text-sm text-gray-500 mt-1">Issue a book to a user</p>
           </div>
           <div className="flex items-center gap-2">
-            <div className={`w-3 h-3 rounded-full ${step >= 1 ? "bg-emerald-500" : "bg-gray-200"}`} />
-            <div className={`w-3 h-3 rounded-full ${step >= 2 ? "bg-emerald-500" : "bg-gray-200"}`} />
-            <div className={`w-3 h-3 rounded-full ${step >= 3 ? "bg-emerald-500" : "bg-gray-200"}`} />
+            <div className={`w-3 h-3 rounded-full ${step >= 1 ? "bg-[#4E545C]" : "bg-gray-200"}`} />
+            <div className={`w-3 h-3 rounded-full ${step >= 2 ? "bg-[#4E545C]" : "bg-gray-200"}`} />
+            <div className={`w-3 h-3 rounded-full ${step >= 3 ? "bg-[#4E545C]" : "bg-gray-200"}`} />
           </div>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
           <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
             <h2 className="text-base font-semibold text-gray-900 mb-4 flex items-center gap-2">
-              <User size={18} className="text-emerald-500" />
               Search User
             </h2>
             <div className="relative">
-              <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
               <input
                 type="text"
                 value={userQuery}
@@ -73,7 +71,7 @@ const LibraryOperatorIssue = () => {
                   setStep(1);
                 }}
                 placeholder="Search by name or ID..."
-                className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
+                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4E545C]/20 focus:border-[#4E545C]"
                 autoFocus
               />
             </div>
@@ -87,7 +85,7 @@ const LibraryOperatorIssue = () => {
                       setUserQuery("");
                       setStep(2);
                     }}
-                    className="w-full text-left p-3 rounded-lg border border-gray-100 hover:border-emerald-300 hover:bg-emerald-50 transition-all"
+                    className="w-full text-left p-3 rounded-lg border border-gray-100 hover:border-maroon-300 hover:bg-zinc-50 transition-all"
                   >
                     <p className="font-medium text-gray-900">{user.name}</p>
                     <p className="text-xs text-gray-500">{user.id} • {user.email}</p>
@@ -96,7 +94,7 @@ const LibraryOperatorIssue = () => {
                         {user.issued}/{user.max} books
                       </span>
                       {user.active ? (
-                        <span className="ml-2 text-emerald-500">Active</span>
+                        <span className="ml-2 text-[#4E545C]">Active</span>
                       ) : (
                         <span className="ml-2 text-red-500">Inactive</span>
                       )}
@@ -106,9 +104,9 @@ const LibraryOperatorIssue = () => {
               </div>
             )}
             {selectedUser && (
-              <div className="mt-4 p-3 bg-emerald-50 rounded-lg border border-emerald-200">
+              <div className="mt-4 p-3 bg-zinc-50 rounded-lg border border-zinc-200">
                 <div className="flex items-center gap-2">
-                  <CheckCircle size={16} className="text-emerald-500" />
+                  <CheckCircle size={16} className="text-[#4E545C]" />
                   <span className="font-medium text-gray-900">{selectedUser.name}</span>
                 </div>
                 <p className="text-xs text-gray-500 mt-1">{selectedUser.id}</p>
@@ -118,11 +116,9 @@ const LibraryOperatorIssue = () => {
 
           <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
             <h2 className="text-base font-semibold text-gray-900 mb-4 flex items-center gap-2">
-              <BookOpen size={18} className="text-blue-500" />
               Search Book
             </h2>
             <div className="relative">
-              <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
               <input
                 type="text"
                 value={bookQuery}
@@ -131,7 +127,7 @@ const LibraryOperatorIssue = () => {
                   setStep(2);
                 }}
                 placeholder="Search by title or ISBN..."
-                className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
+                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-zinc-500/20 focus:border-zinc-500"
               />
             </div>
             {bookQuery && filteredBooks.length > 0 && (
@@ -148,14 +144,14 @@ const LibraryOperatorIssue = () => {
                     className={`w-full text-left p-3 rounded-lg border transition-all ${
                       book.available === 0
                         ? "border-gray-100 opacity-50 cursor-not-allowed"
-                        : "border-gray-100 hover:border-blue-300 hover:bg-blue-50"
+                        : "border-gray-100 hover:border-zinc-300 hover:bg-zinc-50"
                     }`}
                   >
                     <p className="font-medium text-gray-900">{book.title}</p>
                     <p className="text-xs text-gray-500">{book.author}</p>
                     <p className="text-xs mt-1">
                       {book.available > 0 ? (
-                        <span className="text-emerald-500">{book.available} available</span>
+                        <span className="text-[#4E545C]">{book.available} available</span>
                       ) : (
                         <span className="text-red-500">Not available</span>
                       )}
@@ -165,9 +161,9 @@ const LibraryOperatorIssue = () => {
               </div>
             )}
             {selectedBook && (
-              <div className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
+              <div className="mt-4 p-3 bg-zinc-50 rounded-lg border border-zinc-200">
                 <div className="flex items-center gap-2">
-                  <CheckCircle size={16} className="text-blue-500" />
+                  <CheckCircle size={16} className="text-zinc-500" />
                   <span className="font-medium text-gray-900">{selectedBook.title}</span>
                 </div>
                 <p className="text-xs text-gray-500 mt-1">{selectedBook.author}</p>
@@ -205,7 +201,7 @@ const LibraryOperatorIssue = () => {
                 disabled={!canIssue}
                 className={`w-full py-3 rounded-lg font-medium transition-all ${
                   canIssue
-                    ? "bg-emerald-500 text-white hover:bg-emerald-600"
+                    ? "bg-[#4E545C] text-white hover:bg-rose-900"
                     : "bg-gray-100 text-gray-400 cursor-not-allowed"
                 }`}
               >

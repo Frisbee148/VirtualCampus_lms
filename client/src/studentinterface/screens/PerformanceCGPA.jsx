@@ -190,7 +190,7 @@ const PerformanceCGPA = () => {
               onClick={() => setSemesterMenuOpen((current) => !current)}
               aria-haspopup="menu"
               aria-expanded={semesterMenuOpen}
-              className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 bg-black text-white text-xs sm:text-sm font-semibold shadow-sm hover:bg-[#0e445b] transition-colors"
+              className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 bg-[#4E545C] text-white text-xs sm:text-sm font-semibold shadow-sm hover:bg-[#828a91] transition-colors"
             >
               {selectedSessionLabel}
               <ChevronDown

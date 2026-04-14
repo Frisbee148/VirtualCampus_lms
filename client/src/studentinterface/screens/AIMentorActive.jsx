@@ -34,7 +34,7 @@ const AIMentorActive = () => {
         <div className="space-y-3 sm:space-y-5 mb-5 sm:mb-8">
           {responses.map((r, idx) => (
             <div key={idx} className="bg-white border border-gray-200 overflow-hidden">
-              <div className="bg-black px-3 sm:px-5 py-2.5 sm:py-3">
+              <div className="bg-[#4E545C] px-3 sm:px-5 py-2.5 sm:py-3">
                 <h3 className="text-white font-semibold text-xs sm:text-sm">{r.title}</h3>
               </div>
               <div className="p-3 sm:p-5">
@@ -66,7 +66,7 @@ const AIMentorActive = () => {
               placeholder="Ask a follow-up question..."
               className="flex-1 px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 outline-none bg-transparent min-w-0"
             />
-            <button className="flex-shrink-0 px-3 sm:px-5 py-2.5 sm:py-3 bg-black text-white text-xs sm:text-sm font-semibold hover:bg-[#0e445b] transition-colors cursor-pointer">
+            <button className="flex-shrink-0 px-3 sm:px-5 py-2.5 sm:py-3 bg-[#4E545C] text-white text-xs sm:text-sm font-semibold hover:bg-[#828a91] transition-colors cursor-pointer">
               Send
             </button>
           </div>

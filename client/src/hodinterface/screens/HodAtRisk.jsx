@@ -105,7 +105,7 @@ const HodAtRisk = () => {
               {filtered.map((s) => (
                 <tr key={s.id} className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors">
                   <td className="px-4 py-3 font-medium text-gray-800">{s.name}</td>
-                  <td className="px-4 py-3 text-[#1a7a7a] font-medium">{s.course}</td>
+                  <td className="px-4 py-3 text-[#4E545C] font-medium">{s.course}</td>
                   <td className="px-4 py-3 text-gray-600">{s.faculty}</td>
                   <td className="px-4 py-3">
                     <span className={`px-2 py-0.5 text-[10px] font-medium rounded-full ${
@@ -118,7 +118,7 @@ const HodAtRisk = () => {
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => { setMessageTarget(s); setMessageText(""); }}
-                        className="p-1.5 text-[#1a7a7a] hover:bg-[#1a7a7a]/10 rounded transition-colors"
+                        className="p-1.5 text-[#4E545C] hover:bg-[#4E545C]/10 rounded transition-colors"
                         title="Message faculty"
                       >
                         <MessageSquare size={14} />
@@ -128,7 +128,7 @@ const HodAtRisk = () => {
                           type="checkbox"
                           checked={s.reviewed}
                           onChange={() => toggleReviewed(s.id)}
-                          className="w-3.5 h-3.5 accent-[#1a7a7a] cursor-pointer"
+                          className="w-3.5 h-3.5 accent-[#4E545C] cursor-pointer"
                         />
                         <span className="text-[10px] text-gray-400">{s.reviewed ? "Reviewed" : "Pending"}</span>
                       </label>
@@ -161,12 +161,12 @@ const HodAtRisk = () => {
               <div className="flex items-center gap-3">
                 <button
                   onClick={() => { setMessageTarget(s); setMessageText(""); }}
-                  className="text-xs text-[#1a7a7a] font-medium hover:underline"
+                  className="text-xs text-[#4E545C] font-medium hover:underline"
                 >
                   Message
                 </button>
                 <label className="flex items-center gap-1.5 cursor-pointer">
-                  <input type="checkbox" checked={s.reviewed} onChange={() => toggleReviewed(s.id)} className="w-3.5 h-3.5 accent-[#1a7a7a]" />
+                  <input type="checkbox" checked={s.reviewed} onChange={() => toggleReviewed(s.id)} className="w-3.5 h-3.5 accent-[#4E545C]" />
                   <span className="text-[10px] text-gray-400">{s.reviewed ? "Reviewed" : "Pending"}</span>
                 </label>
               </div>
@@ -177,7 +177,7 @@ const HodAtRisk = () => {
 
       {/* Message Panel */}
       {messageTarget && (
-        <div className="fixed bottom-3 right-3 left-3 sm:left-auto sm:bottom-8 sm:right-8 sm:w-[320px] bg-[#1a7a7a] rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden">
+        <div className="fixed bottom-3 right-3 left-3 sm:left-auto sm:bottom-8 sm:right-8 sm:w-[320px] bg-[#4E545C] rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden">
           <div className="flex items-center justify-between px-4 py-3">
             <span className="text-white text-sm font-medium truncate pr-2">
               Re: {messageTarget.name} — {messageTarget.faculty}
@@ -186,7 +186,7 @@ const HodAtRisk = () => {
               <X size={16} />
             </button>
           </div>
-          <div className="h-28 bg-[#1a7a7a]" />
+          <div className="h-28 bg-[#4E545C]" />
           <div className="bg-white p-3 flex items-center gap-2">
             <input
               type="text"
@@ -194,7 +194,7 @@ const HodAtRisk = () => {
               onChange={(e) => setMessageText(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
               placeholder="Message to faculty..."
-              className="flex-1 border border-gray-300 px-3 py-2 text-sm outline-none focus:border-[#1a7a7a] transition-colors"
+              className="flex-1 border border-gray-300 px-3 py-2 text-sm outline-none focus:border-[#4E545C] transition-colors"
             />
             <button onClick={handleSendMessage} className="px-3 py-2 bg-gray-200 hover:bg-gray-300 text-xs font-medium text-gray-700 transition-colors">
               Send

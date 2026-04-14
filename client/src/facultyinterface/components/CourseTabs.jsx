@@ -11,8 +11,8 @@ const CourseTabs = ({ activeTab, onTabChange }) => {
           onClick={() => onTabChange(tab)}
           className={`px-5 sm:px-8 py-2.5 text-sm font-medium capitalize transition-all duration-200 ${
             activeTab === tab
-              ? 'bg-[#1a7a7a] text-white border-2 border-[#e8a435] shadow-md'
-              : 'bg-[#1a7a7a] text-white border-2 border-transparent hover:border-[#e8a435]/50'
+              ? 'bg-[#4E545C] text-white border-2 border-[#e8a435] shadow-md'
+              : 'bg-[#4E545C] text-white border-2 border-transparent hover:border-[#e8a435]/50'
           }`}
         >
           {tab}

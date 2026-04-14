@@ -6,11 +6,11 @@ const EVENTS = {
   "2026-04-02": [{ title: "Dept Meeting", color: "#6b7280" }],
   "2026-04-05": [{ title: "Mid-sem Exams Begin", color: "#ef4444" }],
   "2026-04-10": [{ title: "Mid-sem Exams End", color: "#ef4444" }],
-  "2026-04-14": [{ title: "Faculty Review Meeting", color: "#1a7a7a" }],
+  "2026-04-14": [{ title: "Faculty Review Meeting", color: "#4E545C" }],
   "2026-04-18": [{ title: "NAAC Submission Deadline", color: "#e8a435" }],
   "2026-04-22": [{ title: "Conference — Dr. Neha", color: "#2d8a4e" }],
   "2026-04-25": [{ title: "Board Meeting", color: "#7c3aed" }],
-  "2026-04-28": [{ title: "Summer Intern Allotment", color: "#1a7a7a" }],
+  "2026-04-28": [{ title: "Summer Intern Allotment", color: "#4E545C" }],
 };
 
 const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -55,7 +55,7 @@ const HodCalendar = () => {
           </button>
         </div>
 
-        <div className="grid grid-cols-7 bg-[#1a7a7a] text-white text-[10px] sm:text-sm font-semibold">
+        <div className="grid grid-cols-7 bg-[#4E545C] text-white text-[10px] sm:text-sm font-semibold">
           {DAYS.map((d) => (
             <div key={d} className="py-1.5 sm:py-2.5 text-center">{d}</div>
           ))}
@@ -69,7 +69,7 @@ const HodCalendar = () => {
                 {day && (
                   <>
                     <span className={`inline-flex items-center justify-center w-5 h-5 sm:w-6 sm:h-6 text-[10px] sm:text-xs font-medium ${
-                      isToday(day) ? "bg-[#1a7a7a] text-white rounded-full" : "text-gray-700"
+                      isToday(day) ? "bg-[#4E545C] text-white rounded-full" : "text-gray-700"
                     }`}>{day}</span>
                     {events.map((ev, j) => (
                       <div key={j} className="mt-1 px-1.5 py-0.5 text-[10px] sm:text-xs font-medium text-white truncate" style={{ backgroundColor: ev.color }}>

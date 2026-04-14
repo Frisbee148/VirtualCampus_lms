@@ -9,6 +9,8 @@ import {
   LogOut,
   ChevronRight,
   X,
+  CheckSquare,
+  FolderGit2
 } from "lucide-react";
 
 const FacultySidebar = ({ mobileOpen, onClose }) => {
@@ -35,11 +37,13 @@ const FacultySidebar = ({ mobileOpen, onClose }) => {
     },
     {
       id: "cif-completion",
+      icon: CheckSquare,
       label: "CIF Completion",
       path: "/faculty/cif-completion",
     },
     {
       id: "btp-projects",
+      icon: FolderGit2,
       label: "BTP Projects",
       path: "/faculty/btp",
     },
@@ -72,7 +76,7 @@ const FacultySidebar = ({ mobileOpen, onClose }) => {
       )}
 
       <aside
-        className={`fixed left-0 top-0 bottom-0 w-[240px] bg-[#0f1117] text-white flex flex-col z-[60] transition-transform duration-300 ease-in-out lg:translate-x-0 ${
+        className={`fixed left-0 top-0 bottom-0 w-[240px] bg-[#131518] text-white flex flex-col z-[60] transition-transform duration-300 ease-in-out lg:translate-x-0 ${
           mobileOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -124,7 +128,7 @@ const FacultySidebar = ({ mobileOpen, onClose }) => {
                 className={({ isActive }) =>
                   `w-full flex items-center gap-3 px-3 py-2.5 text-[13px] font-medium no-underline transition-all duration-200 ${
                     isActive
-                      ? "bg-black text-white shadow-md shadow-black/20"
+                      ? "bg-[#4E545C] text-white shadow-md shadow-[#4E545C]/20"
                       : "text-white/50 hover:text-white/80 hover:bg-white/[0.04]"
                   }`
                 }

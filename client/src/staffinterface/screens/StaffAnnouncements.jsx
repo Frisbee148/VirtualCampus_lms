@@ -7,8 +7,6 @@ import {
   Edit3,
   Trash2,
   X,
-  Users,
-  GraduationCap,
 } from "lucide-react";
 
 const announcements = [
@@ -43,7 +41,7 @@ const StaffAnnouncements = () => {
           </div>
           <button
             onClick={() => { setFormData({ title: "", body: "", audience: "all" }); setShowModal(true); }}
-            className="flex items-center gap-2 px-4 py-2 bg-[#0f1117] text-white text-xs font-medium hover:bg-[#1a1d27] transition-colors"
+            className="flex items-center gap-2 px-4 py-2 bg-[#131518] text-white text-xs font-medium hover:bg-[#1a1d27] transition-colors"
           >
             <Plus size={14} /> New Announcement
           </button>
@@ -60,7 +58,7 @@ const StaffAnnouncements = () => {
               key={t.key}
               onClick={() => setTab(t.key)}
               className={`px-3 py-1.5 text-xs font-medium transition-colors ${
-                tab === t.key ? "bg-[#0f1117] text-white" : "text-gray-500 hover:bg-gray-100"
+                tab === t.key ? "bg-[#131518] text-white" : "text-gray-500 hover:bg-gray-100"
               }`}
             >
               {t.label}
@@ -85,11 +83,11 @@ const StaffAnnouncements = () => {
                     <div className="flex items-center gap-2 mt-1.5">
                       {a.audience === "All Users" ? (
                         <span className="flex items-center gap-1 text-[10px] text-gray-400">
-                          <Users size={10} /> All Users
+                          All Users
                         </span>
                       ) : (
-                        <span className="flex items-center gap-1 text-[10px] text-blue-500">
-                          <GraduationCap size={10} /> {a.audience}
+                        <span className="flex items-center gap-1 text-[10px] text-[#4E545C]">
+                          {a.audience}
                         </span>
                       )}
                       <span className="text-[10px] text-gray-300">by {a.author}</span>
@@ -170,7 +168,7 @@ const StaffAnnouncements = () => {
                 <button onClick={() => setShowModal(false)} className="px-4 py-2 text-xs text-gray-600 hover:bg-gray-100 transition-colors">
                   Save as Draft
                 </button>
-                <button onClick={() => setShowModal(false)} className="flex items-center gap-1.5 px-4 py-2 text-xs bg-[#0f1117] text-white font-medium hover:bg-[#1a1d27] transition-colors">
+                <button onClick={() => setShowModal(false)} className="flex items-center gap-1.5 px-4 py-2 text-xs bg-[#131518] text-white font-medium hover:bg-[#1a1d27] transition-colors">
                   <Send size={12} /> Send Now
                 </button>
               </div>

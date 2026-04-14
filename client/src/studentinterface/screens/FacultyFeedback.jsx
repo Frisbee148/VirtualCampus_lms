@@ -32,7 +32,7 @@ const FacultyFeedback = () => {
         <div className="bg-white border border-gray-100 shadow-sm overflow-hidden">
           <table className="w-full">
             <thead>
-              <tr className="bg-black text-white">
+              <tr className="bg-[#4E545C] text-white">
                 <th className="py-2.5 sm:py-3.5 px-3 sm:px-5 text-left text-xs sm:text-sm font-semibold">Feedback Name</th>
                 <th className="py-2.5 sm:py-3.5 px-3 sm:px-5 text-left text-xs sm:text-sm font-semibold w-[80px] sm:w-auto">Link</th>
               </tr>

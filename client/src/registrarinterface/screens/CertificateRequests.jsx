@@ -94,8 +94,8 @@ const statusConfig = {
   },
   processing: {
     label: "Processing",
-    bg: "bg-blue-50",
-    text: "text-blue-600",
+    bg: "bg-zinc-100",
+    text: "text-zinc-600",
     icon: FileText,
   },
   completed: {
@@ -131,16 +131,12 @@ const CertificateRequests = () => {
             </p>
           </div>
           <div className="relative w-full sm:w-auto">
-            <Search
-              size={16}
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-            />
             <input
               type="text"
               placeholder="Search requests..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="pl-9 pr-4 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-[#059669] w-full sm:w-56 transition-colors"
+              className="px-3 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-[#4E545C] w-full sm:w-56 transition-colors"
             />
           </div>
         </div>
@@ -206,13 +202,13 @@ const CertificateRequests = () => {
                       {sc.label}
                     </span>
                     {req.status === "pending" && (
-                      <button className="px-3 py-1 text-xs font-medium bg-[#059669] text-white rounded-lg hover:bg-[#047857] transition-colors whitespace-nowrap">
+                      <button className="px-3 py-1 text-xs font-medium bg-[#4E545C] text-white rounded-lg hover:bg-[#828a91] transition-colors whitespace-nowrap">
                         Process
                       </button>
                     )}
                     {req.status === "completed" && (
                       <button
-                        className="p-1.5 text-gray-300 hover:text-[#059669] transition-colors"
+                        className="p-1.5 text-gray-300 hover:text-[#4E545C] transition-colors"
                         title="Download"
                       >
                         <Download size={15} />

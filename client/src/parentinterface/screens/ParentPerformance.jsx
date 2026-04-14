@@ -10,7 +10,7 @@ const ParentPerformance = () => {
       <div className="max-w-5xl">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-5 sm:mb-8 gap-3">
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Course History</h1>
-          <button className="px-4 sm:px-5 py-2 sm:py-2.5 bg-black text-white text-xs sm:text-sm font-semibold hover:bg-[#0e445b] transition-colors shadow-sm cursor-pointer self-start sm:self-auto">
+          <button className="px-4 sm:px-5 py-2 sm:py-2.5 bg-[#4E545C] text-white text-xs sm:text-sm font-semibold hover:bg-zinc-800 transition-colors shadow-sm cursor-pointer self-start sm:self-auto">
             Filter by Semester
           </button>
         </div>
@@ -19,7 +19,7 @@ const ParentPerformance = () => {
         <div className="hidden sm:block bg-white border border-gray-100 shadow-sm overflow-hidden mb-10">
           <table className="w-full">
             <thead>
-              <tr className="bg-black text-white">
+              <tr className="bg-[#4E545C] text-white">
                 <th className="py-3.5 px-5 text-left text-sm font-semibold">Course Name</th>
                 <th className="py-3.5 px-5 text-left text-sm font-semibold">Total Marks (out of 100)</th>
                 <th className="py-3.5 px-5 text-left text-sm font-semibold">Grade</th>
@@ -36,7 +36,7 @@ const ParentPerformance = () => {
               <tr className="hover:bg-gray-50/50 transition-colors">
                 <td className="py-4 px-5 text-sm font-medium text-gray-600">Course B</td>
                 <td className="py-4 px-5 text-sm text-gray-600">72</td>
-                <td className="py-4 px-5"><span className="px-2.5 py-1 bg-blue-50 text-blue-700 text-xs font-semibold border border-blue-200">B+</span></td>
+                <td className="py-4 px-5"><span className="px-2.5 py-1 bg-zinc-100 text-zinc-700 text-xs font-semibold border border-zinc-200">B+</span></td>
                 <td className="py-4 px-5 text-sm text-gray-500">Elective</td>
               </tr>
             </tbody>
@@ -47,7 +47,7 @@ const ParentPerformance = () => {
         <div className="sm:hidden space-y-3 mb-6">
           {[
             { name: 'Course A', marks: 85, grade: 'A', gradeColor: 'bg-emerald-50 text-emerald-700 border-emerald-200', type: 'Core' },
-            { name: 'Course B', marks: 72, grade: 'B+', gradeColor: 'bg-blue-50 text-blue-700 border-blue-200', type: 'Elective' },
+            { name: 'Course B', marks: 72, grade: 'B+', gradeColor: 'bg-zinc-100 text-zinc-700 border-zinc-200', type: 'Elective' },
           ].map((c, idx) => (
             <div key={idx} className="bg-white border border-gray-100 shadow-sm p-3">
               <div className="flex items-center justify-between mb-2">
@@ -95,7 +95,7 @@ const ParentPerformance = () => {
             </svg>
           </div>
           <div className="flex flex-wrap justify-center gap-4 sm:gap-8 mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-100">
-            <div className="flex items-center gap-2 text-[10px] sm:text-xs text-gray-500"><span className="w-3 h-0.5 bg-black"></span> SGPA</div>
+            <div className="flex items-center gap-2 text-[10px] sm:text-xs text-gray-500"><span className="w-3 h-0.5 bg-[#4E545C]"></span> SGPA</div>
             <div className="flex items-center gap-2 text-[10px] sm:text-xs text-gray-500"><span className="w-3 h-0.5 bg-[#ff7f0e]"></span> CGPA</div>
             <div className="flex items-center gap-2 text-[10px] sm:text-xs text-gray-500"><span className="w-3 h-0.5 bg-[#2ca02c]"></span> Class Avg</div>
           </div>

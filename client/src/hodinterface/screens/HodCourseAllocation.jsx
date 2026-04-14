@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import HodLayout from "../HodLayout";
-import { Search, X, Plus, ChevronDown } from "lucide-react";
+import { X, Plus, ChevronDown, ChevronRight } from "lucide-react";
 
 const initialCourses = [
   { id: 1, code: "CS102", name: "Programming Fundamentals", credits: 4, semester: 1, faculty: "Dr. Neha Gupta", students: 45, schedule: "MWF 9:00-10:00", type: "Core" },
@@ -65,13 +65,12 @@ const HodCourseAllocation = () => {
         {/* Search & Filters */}
         <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-4">
           <div className="relative flex-1">
-            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
             <input
               type="text"
               placeholder="Search by code, name, or faculty..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-9 pr-3 py-2.5 text-sm border border-gray-200 bg-white focus:outline-none focus:border-gray-400 transition-colors"
+              className="w-full px-3 py-2.5 text-sm border border-gray-200 bg-white focus:outline-none focus:border-gray-400 transition-colors"
             />
           </div>
           <div className="flex gap-2">
@@ -141,7 +140,7 @@ const HodCourseAllocation = () => {
                   onClick={() => setSelectedCourse(c)}
                   className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors cursor-pointer"
                 >
-                  <td className="px-4 py-3 font-medium text-[#1a7a7a]">{c.code}</td>
+                  <td className="px-4 py-3 font-medium text-[#4E545C]">{c.code}</td>
                   <td className="px-4 py-3 text-gray-800">{c.name}</td>
                   <td className="px-4 py-3 text-gray-600">{c.credits}</td>
                   <td className="px-4 py-3 text-gray-600">{c.semester}</td>
@@ -149,7 +148,7 @@ const HodCourseAllocation = () => {
                   <td className="px-4 py-3 text-gray-600">{c.students}</td>
                   <td className="px-4 py-3">
                     <span className={`px-2 py-0.5 text-[10px] font-medium rounded-full ${
-                      c.type === "Core" ? "bg-blue-50 text-blue-700" : "bg-purple-50 text-purple-700"
+                      c.type === "Core" ? "bg-blue-50 text-[#4E545C]" : "bg-purple-50 text-purple-700"
                     }`}>
                       {c.type}
                     </span>
@@ -177,7 +176,7 @@ const HodCourseAllocation = () => {
                   <p className="text-[10px] text-gray-400 mt-0.5">{c.faculty}</p>
                 </div>
                 <span className={`px-2 py-0.5 text-[10px] font-medium rounded-full flex-shrink-0 ${
-                  c.type === "Core" ? "bg-blue-50 text-blue-700" : "bg-purple-50 text-purple-700"
+                  c.type === "Core" ? "bg-blue-50 text-[#4E545C]" : "bg-purple-50 text-purple-700"
                 }`}>
                   {c.type}
                 </span>
@@ -226,7 +225,7 @@ const HodCourseAllocation = () => {
                     <h4 className="text-xs font-semibold text-gray-700">Assigned Faculty</h4>
                     <button
                       onClick={() => setShowAllocate(!showAllocate)}
-                      className="text-[10px] font-medium text-[#1a7a7a] hover:underline flex items-center gap-1"
+                      className="text-[10px] font-medium text-[#4E545C] hover:underline flex items-center gap-1"
                     >
                       <Plus size={12} /> Reassign
                     </button>
@@ -239,7 +238,7 @@ const HodCourseAllocation = () => {
                       <select
                         value={allocateFaculty}
                         onChange={(e) => setAllocateFaculty(e.target.value)}
-                        className="w-full px-3 py-2 text-sm border border-gray-200 bg-white focus:outline-none focus:border-[#1a7a7a]"
+                        className="w-full px-3 py-2 text-sm border border-gray-200 bg-white focus:outline-none focus:border-[#4E545C]"
                       >
                         <option value="">Select faculty...</option>
                         {facultyList.filter((f) => f !== selectedCourse.faculty).map((f) => (
@@ -249,7 +248,7 @@ const HodCourseAllocation = () => {
                       <button
                         onClick={handleReassign}
                         disabled={!allocateFaculty}
-                        className="w-full px-4 py-2 text-sm font-medium text-white bg-[#1a7a7a] hover:bg-[#15696a] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                        className="w-full px-4 py-2 text-sm font-medium text-white bg-[#4E545C] hover:bg-[#15696a] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
                       >
                         Confirm Reassignment
                       </button>

@@ -14,7 +14,7 @@ const FacultyCards = () => {
         {faculties.map((faculty) => (
           <div
             key={faculty.id}
-            className="bg-[#1a7a7a] text-white px-4 sm:px-8 py-3 text-xs sm:text-sm font-medium hover:bg-[#145e5e] transition-colors cursor-pointer min-w-[120px] sm:min-w-[160px] text-center"
+            className="bg-[#4E545C] text-white px-4 sm:px-8 py-3 text-xs sm:text-sm font-medium hover:bg-[#828a91] transition-colors cursor-pointer min-w-[120px] sm:min-w-[160px] text-center"
           >
             Faculty card
           </div>

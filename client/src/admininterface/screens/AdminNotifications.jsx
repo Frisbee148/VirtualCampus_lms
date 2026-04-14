@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import AdminLayout from "../AdminLayout";
+import { ArrowLeft, Check } from "lucide-react";
 
 const notifications = [
   {
@@ -45,15 +46,16 @@ const AdminNotifications = () => {
           <div className="flex items-center gap-2 sm:gap-3 min-w-0">
             <button
               onClick={() => navigate(-1)}
-              className="flex-shrink-0 px-2 py-1 text-xs sm:text-sm hover:bg-gray-100 text-gray-500 cursor-pointer transition-colors"
+              className="flex-shrink-0 p-1.5 sm:p-2 hover:bg-gray-100 text-gray-400 cursor-pointer transition-colors"
             >
-              Back
+              <ArrowLeft size={18} className="sm:w-5 sm:h-5" />
             </button>
             <h1 className="text-xl sm:text-3xl font-bold text-gray-900 truncate">
               Notifications
             </h1>
           </div>
-          <button className="flex-shrink-0 text-xs sm:text-sm text-black font-medium hover:underline cursor-pointer whitespace-nowrap">
+          <button className="flex-shrink-0 flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-black font-medium hover:underline cursor-pointer whitespace-nowrap">
+            <Check size={14} className="sm:w-4 sm:h-4" />
             <span className="hidden sm:inline">Mark all as read</span>
             <span className="sm:hidden">Read all</span>
           </button>
@@ -71,7 +73,7 @@ const AdminNotifications = () => {
                     {n.title}
                   </h3>
                   {n.unread && (
-                    <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-black flex-shrink-0"></span>
+                    <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#4E545C] flex-shrink-0"></span>
                   )}
                 </div>
                 <p className="text-[10px] sm:text-xs text-gray-400 mt-0.5 truncate">

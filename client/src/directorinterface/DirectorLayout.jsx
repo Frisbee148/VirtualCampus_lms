@@ -6,7 +6,7 @@ const DirectorLayout = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="non-student-ui role-monochrome min-h-screen bg-[#f8f9fa] flex relative">
+    <div className="min-h-screen bg-[#f8f9fa] flex relative">
       <DirectorSidebar
         mobileOpen={sidebarOpen}
         onClose={() => setSidebarOpen(false)}
