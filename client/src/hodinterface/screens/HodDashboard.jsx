@@ -3,10 +3,10 @@ import HodLayout from "../HodLayout";
 import { ChevronRight } from "lucide-react";
 
 const kpiCards = [
-  { label: "Total Faculty", value: "24", accent: "#242424", change: "+2 this sem" },
-  { label: "Active Courses", value: "38", accent: "#000000", change: "6 labs included" },
+  { label: "Total Faculty", value: "24", accent: "#4E545C", change: "+2 this sem" },
+  { label: "Active Courses", value: "38", accent: "#131518", change: "6 labs included" },
   { label: "Total Students", value: "486", accent: "#71717a", change: "4 batches" },
-  { label: "At Risk Students", value: "31", accent: "#242424", change: "6.4% of dept" },
+  { label: "At Risk Students", value: "31", accent: "#4E545C", change: "6.4% of dept" },
 ];
 
 const facultyOverview = [
@@ -172,10 +172,10 @@ const HodDashboard = () => {
             <h3 className="text-sm font-semibold text-gray-700 mb-4">Department Snapshot</h3>
             <div className="space-y-4">
               {[
-                { label: "Avg Dept CGPA", value: "7.6", color: "#242424" },
-                { label: "Avg Attendance", value: "84%", color: "#000000" },
+                { label: "Avg Dept CGPA", value: "7.6", color: "#4E545C" },
+                { label: "Avg Attendance", value: "84%", color: "#131518" },
                 { label: "Courses This Sem", value: "38", color: "#71717a" },
-                { label: "Pending Approvals", value: "4", color: "#242424" },
+                { label: "Pending Approvals", value: "4", color: "#4E545C" },
               ].map((s) => {
                 const Icon = s.icon;
                 return (

@@ -16,7 +16,7 @@ const FacultyBTPProjects = () => {
               the project when ready.
             </p>
           </div>
-          <div className="px-3 py-2 bg-[#242424] text-white text-xs sm:text-sm font-semibold shadow-sm self-start sm:self-auto">
+          <div className="px-3 py-2 bg-[#4E545C] text-white text-xs sm:text-sm font-semibold shadow-sm self-start sm:self-auto">
             Faculty Editable View
           </div>
         </div>

@@ -51,9 +51,9 @@ const LibraryOperatorIssue = () => {
             <p className="text-sm text-gray-500 mt-1">Issue a book to a user</p>
           </div>
           <div className="flex items-center gap-2">
-            <div className={`w-3 h-3 rounded-full ${step >= 1 ? "bg-[#242424]" : "bg-gray-200"}`} />
-            <div className={`w-3 h-3 rounded-full ${step >= 2 ? "bg-[#242424]" : "bg-gray-200"}`} />
-            <div className={`w-3 h-3 rounded-full ${step >= 3 ? "bg-[#242424]" : "bg-gray-200"}`} />
+            <div className={`w-3 h-3 rounded-full ${step >= 1 ? "bg-[#4E545C]" : "bg-gray-200"}`} />
+            <div className={`w-3 h-3 rounded-full ${step >= 2 ? "bg-[#4E545C]" : "bg-gray-200"}`} />
+            <div className={`w-3 h-3 rounded-full ${step >= 3 ? "bg-[#4E545C]" : "bg-gray-200"}`} />
           </div>
         </div>
 
@@ -71,7 +71,7 @@ const LibraryOperatorIssue = () => {
                   setStep(1);
                 }}
                 placeholder="Search by name or ID..."
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#242424]/20 focus:border-[#242424]"
+                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4E545C]/20 focus:border-[#4E545C]"
                 autoFocus
               />
             </div>
@@ -94,7 +94,7 @@ const LibraryOperatorIssue = () => {
                         {user.issued}/{user.max} books
                       </span>
                       {user.active ? (
-                        <span className="ml-2 text-[#242424]">Active</span>
+                        <span className="ml-2 text-[#4E545C]">Active</span>
                       ) : (
                         <span className="ml-2 text-red-500">Inactive</span>
                       )}
@@ -106,7 +106,7 @@ const LibraryOperatorIssue = () => {
             {selectedUser && (
               <div className="mt-4 p-3 bg-zinc-50 rounded-lg border border-zinc-200">
                 <div className="flex items-center gap-2">
-                  <CheckCircle size={16} className="text-[#242424]" />
+                  <CheckCircle size={16} className="text-[#4E545C]" />
                   <span className="font-medium text-gray-900">{selectedUser.name}</span>
                 </div>
                 <p className="text-xs text-gray-500 mt-1">{selectedUser.id}</p>
@@ -151,7 +151,7 @@ const LibraryOperatorIssue = () => {
                     <p className="text-xs text-gray-500">{book.author}</p>
                     <p className="text-xs mt-1">
                       {book.available > 0 ? (
-                        <span className="text-[#242424]">{book.available} available</span>
+                        <span className="text-[#4E545C]">{book.available} available</span>
                       ) : (
                         <span className="text-red-500">Not available</span>
                       )}
@@ -201,7 +201,7 @@ const LibraryOperatorIssue = () => {
                 disabled={!canIssue}
                 className={`w-full py-3 rounded-lg font-medium transition-all ${
                   canIssue
-                    ? "bg-[#242424] text-white hover:bg-rose-900"
+                    ? "bg-[#4E545C] text-white hover:bg-rose-900"
                     : "bg-gray-100 text-gray-400 cursor-not-allowed"
                 }`}
               >

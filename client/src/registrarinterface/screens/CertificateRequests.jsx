@@ -136,7 +136,7 @@ const CertificateRequests = () => {
               placeholder="Search requests..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="px-3 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-[#242424] w-full sm:w-56 transition-colors"
+              className="px-3 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-[#4E545C] w-full sm:w-56 transition-colors"
             />
           </div>
         </div>
@@ -202,13 +202,13 @@ const CertificateRequests = () => {
                       {sc.label}
                     </span>
                     {req.status === "pending" && (
-                      <button className="px-3 py-1 text-xs font-medium bg-[#242424] text-white rounded-lg hover:bg-[#434343] transition-colors whitespace-nowrap">
+                      <button className="px-3 py-1 text-xs font-medium bg-[#4E545C] text-white rounded-lg hover:bg-[#828a91] transition-colors whitespace-nowrap">
                         Process
                       </button>
                     )}
                     {req.status === "completed" && (
                       <button
-                        className="p-1.5 text-gray-300 hover:text-[#242424] transition-colors"
+                        className="p-1.5 text-gray-300 hover:text-[#4E545C] transition-colors"
                         title="Download"
                       >
                         <Download size={15} />

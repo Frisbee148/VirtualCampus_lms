@@ -145,7 +145,7 @@ const ExamManagement = () => {
               Schedule exams, manage hall tickets, and publish results
             </p>
           </div>
-          <button className="px-4 py-2 text-sm font-medium bg-[#242424] text-white rounded-lg hover:bg-[#434343] transition-colors w-full sm:w-auto">
+          <button className="px-4 py-2 text-sm font-medium bg-[#4E545C] text-white rounded-lg hover:bg-[#828a91] transition-colors w-full sm:w-auto">
             + Schedule Exam
           </button>
         </div>
@@ -186,8 +186,8 @@ const ExamManagement = () => {
                 className="bg-white rounded-xl border border-gray-100 p-5 hover:shadow-sm transition-shadow"
               >
                 <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-                  <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-[#242424]/10 flex flex-col items-center justify-center">
-                    <span className="text-[#242424] font-bold text-sm">
+                  <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-[#4E545C]/10 flex flex-col items-center justify-center">
+                    <span className="text-[#4E545C] font-bold text-sm">
                       {exam.code}
                     </span>
                   </div>

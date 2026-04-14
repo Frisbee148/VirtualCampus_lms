@@ -66,7 +66,7 @@ const BookManagement = () => {
           </div>
           <button
             onClick={() => setShowAddModal(true)}
-            className="flex items-center gap-2 px-4 py-2 text-sm font-medium bg-[#242424] text-white rounded-lg hover:bg-rose-900 transition-colors"
+            className="flex items-center gap-2 px-4 py-2 text-sm font-medium bg-[#4E545C] text-white rounded-lg hover:bg-rose-900 transition-colors"
           >
             Add Book
           </button>
@@ -80,13 +80,13 @@ const BookManagement = () => {
               placeholder="Search by title, author, ISBN..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="px-3 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-[#242424] w-full transition-colors"
+              className="px-3 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-[#4E545C] w-full transition-colors"
             />
           </div>
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="px-3 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-[#242424] transition-colors w-full sm:w-auto"
+            className="px-3 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-[#4E545C] transition-colors w-full sm:w-auto"
           >
             <option value="all">All Status</option>
             <option value="available">Available</option>
@@ -96,7 +96,7 @@ const BookManagement = () => {
           <select
             value={categoryFilter}
             onChange={(e) => setCategoryFilter(e.target.value)}
-            className="px-3 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-[#242424] transition-colors w-full sm:w-auto"
+            className="px-3 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-[#4E545C] transition-colors w-full sm:w-auto"
           >
             {categories.map((c) => (
               <option key={c} value={c}>
@@ -264,7 +264,7 @@ const BookManagement = () => {
               </div>
             </div>
             <div className="flex items-center gap-2 p-5 border-t border-gray-100">
-              <button className="px-4 py-2 text-sm font-medium bg-[#242424] text-white rounded-lg hover:bg-rose-900 transition-colors">
+              <button className="px-4 py-2 text-sm font-medium bg-[#4E545C] text-white rounded-lg hover:bg-rose-900 transition-colors">
                 Edit Book
               </button>
               <button className="px-4 py-2 text-sm font-medium text-red-600 bg-red-50 rounded-lg hover:bg-red-100 transition-colors">
@@ -292,7 +292,7 @@ const BookManagement = () => {
                   type="text"
                   value={newBook.title}
                   onChange={(e) => setNewBook({ ...newBook, title: e.target.value })}
-                  className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#242424] transition-colors"
+                  className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#4E545C] transition-colors"
                   autoFocus
                 />
               </div>
@@ -302,7 +302,7 @@ const BookManagement = () => {
                   type="text"
                   value={newBook.author}
                   onChange={(e) => setNewBook({ ...newBook, author: e.target.value })}
-                  className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#242424] transition-colors"
+                  className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#4E545C] transition-colors"
                 />
               </div>
               <div>
@@ -311,7 +311,7 @@ const BookManagement = () => {
                   type="text"
                   value={newBook.isbn}
                   onChange={(e) => setNewBook({ ...newBook, isbn: e.target.value })}
-                  className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#242424] transition-colors"
+                  className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#4E545C] transition-colors"
                 />
               </div>
               <div className="grid grid-cols-2 gap-4">
@@ -320,7 +320,7 @@ const BookManagement = () => {
                   <select
                     value={newBook.category}
                     onChange={(e) => setNewBook({ ...newBook, category: e.target.value })}
-                    className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#242424] transition-colors"
+                    className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#4E545C] transition-colors"
                   >
                     <option>Computer Science</option>
                     <option>Mathematics</option>
@@ -337,7 +337,7 @@ const BookManagement = () => {
                     min="1"
                     value={newBook.totalCopies}
                     onChange={(e) => setNewBook({ ...newBook, totalCopies: e.target.value })}
-                    className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#242424] transition-colors"
+                    className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-[#4E545C] transition-colors"
                   />
                 </div>
               </div>
@@ -349,7 +349,7 @@ const BookManagement = () => {
               >
                 Cancel
               </button>
-              <button className="px-4 py-2 text-sm font-medium bg-[#242424] text-white rounded-lg hover:bg-rose-900 transition-colors">
+              <button className="px-4 py-2 text-sm font-medium bg-[#4E545C] text-white rounded-lg hover:bg-rose-900 transition-colors">
                 Add Book
               </button>
             </div>

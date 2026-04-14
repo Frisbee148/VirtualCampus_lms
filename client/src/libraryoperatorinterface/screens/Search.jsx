@@ -60,7 +60,7 @@ const LibraryOperatorSearch = () => {
             onClick={() => setActiveTab("books")}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all ${
               activeTab === "books"
-                ? "bg-[#242424] text-white"
+                ? "bg-[#4E545C] text-white"
                 : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
             }`}
           >
@@ -70,7 +70,7 @@ const LibraryOperatorSearch = () => {
             onClick={() => setActiveTab("users")}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all ${
               activeTab === "users"
-                ? "bg-[#242424] text-white"
+                ? "bg-[#4E545C] text-white"
                 : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
             }`}
           >
@@ -103,7 +103,7 @@ const LibraryOperatorSearch = () => {
                           }`}>
                             {book.status === "available" ? `${book.available} available` : "Issued"}
                           </span>
-                          <button className="p-2 text-gray-400 hover:text-[#242424] transition-colors">
+                          <button className="p-2 text-gray-400 hover:text-[#4E545C] transition-colors">
                             <ArrowRight size={18} />
                           </button>
                         </div>
@@ -133,7 +133,7 @@ const LibraryOperatorSearch = () => {
                           <span className="text-sm text-gray-500">
                             {user.issued}/{user.max} books
                           </span>
-                          <button className="p-2 text-gray-400 hover:text-[#242424] transition-colors">
+                          <button className="p-2 text-gray-400 hover:text-[#4E545C] transition-colors">
                             <ArrowRight size={18} />
                           </button>
                         </div>

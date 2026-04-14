@@ -23,7 +23,7 @@ const CourseSyllabus = () => {
         <div className="bg-white border border-gray-100 shadow-sm overflow-hidden">
           <table className="w-full">
             <thead>
-              <tr className="bg-[#242424] text-white">
+              <tr className="bg-[#4E545C] text-white">
                 <th className="py-2.5 sm:py-3.5 px-3 sm:px-5 text-center text-xs sm:text-sm font-semibold w-1/4">Unit</th>
                 <th className="py-2.5 sm:py-3.5 px-3 sm:px-5 text-center text-xs sm:text-sm font-semibold w-1/2">Sub-unit</th>
                 <th className="py-2.5 sm:py-3.5 px-3 sm:px-5 text-center text-xs sm:text-sm font-semibold w-1/4">Done</th>
@@ -46,7 +46,7 @@ const CourseSyllabus = () => {
                           onClick={() => toggle(key)}
                           className={`w-6 h-6 sm:w-7 sm:h-7 border-2 flex items-center justify-center mx-auto cursor-pointer transition-all duration-200 ${
                             checked[key]
-                              ? 'bg-[#242424] border-black text-white shadow-sm'
+                              ? 'bg-[#4E545C] border-black text-white shadow-sm'
                               : 'border-gray-300 text-transparent hover:border-black/50'
                           }`}
                         >

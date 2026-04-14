@@ -164,13 +164,13 @@ const FacultyManagement = () => {
                 placeholder="Search faculty..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="px-4 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-[#242424] w-full sm:w-52 transition-colors"
+                className="px-4 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-[#4E545C] w-full sm:w-52 transition-colors"
               />
             </div>
             <select
               value={filterDept}
               onChange={(e) => setFilterDept(e.target.value)}
-              className="px-3 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-[#242424] transition-colors w-full sm:w-auto"
+              className="px-3 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-[#4E545C] transition-colors w-full sm:w-auto"
             >
               {departments.map((d) => (
                 <option key={d} value={d}>

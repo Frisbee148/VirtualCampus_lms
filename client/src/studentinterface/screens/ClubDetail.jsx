@@ -25,7 +25,7 @@ const ClubDetail = () => {
         <div className="bg-white border border-gray-200 overflow-hidden mb-6 sm:mb-10">
           <table className="w-full">
             <thead>
-              <tr className="bg-[#242424] text-white">
+              <tr className="bg-[#4E545C] text-white">
                 <th className="py-2.5 sm:py-3.5 px-3 sm:px-5 text-left text-xs sm:text-sm font-semibold">Event Name</th>
                 <th className="py-2.5 sm:py-3.5 px-3 sm:px-5 text-left text-xs sm:text-sm font-semibold">Date</th>
                 <th className="py-2.5 sm:py-3.5 px-3 sm:px-5 text-left text-xs sm:text-sm font-semibold">Links</th>

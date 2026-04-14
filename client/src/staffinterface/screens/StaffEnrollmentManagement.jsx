@@ -88,7 +88,7 @@ const StaffEnrollmentManagement = () => {
           <div className="flex items-center gap-2">
             <button
               onClick={() => setShowEnrollModal(true)}
-              className="flex items-center gap-2 px-4 py-2 bg-[#000000] text-white text-xs font-medium hover:bg-[#1a1d27] transition-colors"
+              className="flex items-center gap-2 px-4 py-2 bg-[#131518] text-white text-xs font-medium hover:bg-[#1a1d27] transition-colors"
             >
               Enroll User
             </button>
@@ -317,7 +317,7 @@ const StaffEnrollmentManagement = () => {
               </div>
               <div className="flex items-center justify-end gap-2 px-5 py-4 border-t border-gray-100">
                 <button onClick={() => setShowEnrollModal(false)} className="px-4 py-2 text-xs text-gray-600 hover:bg-gray-100 transition-colors">Cancel</button>
-                <button onClick={() => setShowEnrollModal(false)} className="px-4 py-2 text-xs bg-[#000000] text-white font-medium hover:bg-[#1a1d27] transition-colors">
+                <button onClick={() => setShowEnrollModal(false)} className="px-4 py-2 text-xs bg-[#131518] text-white font-medium hover:bg-[#1a1d27] transition-colors">
                   Enroll
                 </button>
               </div>

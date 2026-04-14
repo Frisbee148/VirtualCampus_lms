@@ -200,7 +200,7 @@ const HodFacultyManagement = () => {
                   <h4 className="text-xs font-semibold text-gray-700 mb-2">Assigned Courses</h4>
                   <div className="flex flex-wrap gap-2">
                     {selectedFaculty.courses.map((c) => (
-                      <span key={c} className="px-3 py-1 text-xs font-medium bg-[#242424]/10 text-[#242424] rounded-full">
+                      <span key={c} className="px-3 py-1 text-xs font-medium bg-[#4E545C]/10 text-[#4E545C] rounded-full">
                         {c}
                       </span>
                     ))}
@@ -211,7 +211,7 @@ const HodFacultyManagement = () => {
                   <h4 className="text-xs font-semibold text-gray-700 mb-2">Avg Class Attendance</h4>
                   <div className="w-full bg-gray-100 rounded-full h-2.5">
                     <div
-                      className="bg-[#242424] h-2.5 rounded-full transition-all"
+                      className="bg-[#4E545C] h-2.5 rounded-full transition-all"
                       style={{ width: selectedFaculty.avgAttendance }}
                     />
                   </div>

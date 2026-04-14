@@ -78,13 +78,13 @@ const AtRiskStudents = () => {
 
         {/* Filter row */}
         <div className="flex flex-wrap gap-2 mb-4 sm:mb-6">
-          <div className="bg-[#242424] text-white px-3 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-medium flex items-center">
+          <div className="bg-[#4E545C] text-white px-3 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-medium flex items-center">
             Filter by type
           </div>
           <div className="relative">
             <button
               onClick={() => setFilterOpen(!filterOpen)}
-              className="bg-[#242424] text-white px-3 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-medium flex items-center gap-2"
+              className="bg-[#4E545C] text-white px-3 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-medium flex items-center gap-2"
             >
               Type: {filterType}
               <ChevronDown size={14} className="text-[#90ee90]" />
@@ -98,8 +98,8 @@ const AtRiskStudents = () => {
                       setFilterType(type);
                       setFilterOpen(false);
                     }}
-                    className={`w-full text-left px-4 py-2 text-sm hover:bg-[#242424]/10 transition-colors ${
-                      filterType === type ? "bg-[#242424]/20 font-medium" : ""
+                    className={`w-full text-left px-4 py-2 text-sm hover:bg-[#4E545C]/10 transition-colors ${
+                      filterType === type ? "bg-[#4E545C]/20 font-medium" : ""
                     }`}
                   >
                     {type}
@@ -114,7 +114,7 @@ const AtRiskStudents = () => {
         <div className="hidden md:block overflow-x-auto">
           <table className="w-full border-collapse text-xs sm:text-sm">
             <thead>
-              <tr className="bg-[#242424] text-white">
+              <tr className="bg-[#4E545C] text-white">
                 <th className="text-left px-2 sm:px-4 py-2 sm:py-3 font-semibold min-w-[90px] sm:min-w-[140px]">
                   Name
                 </th>
@@ -147,7 +147,7 @@ const AtRiskStudents = () => {
                         setMessageTarget(student);
                         setMessageText("");
                       }}
-                      className="bg-[#242424] text-white px-3 py-1.5 text-xs font-medium hover:bg-[#15696a] transition-colors flex items-center gap-1.5"
+                      className="bg-[#4E545C] text-white px-3 py-1.5 text-xs font-medium hover:bg-[#15696a] transition-colors flex items-center gap-1.5"
                     >
                       Message
                     </button>
@@ -158,7 +158,7 @@ const AtRiskStudents = () => {
                         setFeedbackTarget(student);
                         setFeedbackText("");
                       }}
-                      className="border border-[#242424] text-[#242424] px-3 py-1.5 text-xs font-medium hover:bg-[#242424]/10 transition-colors"
+                      className="border border-[#4E545C] text-[#4E545C] px-3 py-1.5 text-xs font-medium hover:bg-[#4E545C]/10 transition-colors"
                     >
                       Feedback
                     </button>
@@ -169,7 +169,7 @@ const AtRiskStudents = () => {
                         type="checkbox"
                         checked={student.reviewed}
                         onChange={() => toggleReviewed(student.id)}
-                        className="w-4 h-4 accent-[#242424] cursor-pointer"
+                        className="w-4 h-4 accent-[#4E545C] cursor-pointer"
                       />
                       <span className="text-xs text-gray-500">
                         {student.reviewed ? "Reviewed" : "Pending"}
@@ -221,7 +221,7 @@ const AtRiskStudents = () => {
                   type="checkbox"
                   checked={student.reviewed}
                   onChange={() => toggleReviewed(student.id)}
-                  className="w-4 h-4 accent-[#242424] cursor-pointer"
+                  className="w-4 h-4 accent-[#4E545C] cursor-pointer"
                 />
                 <span className="text-xs text-gray-500">
                   {student.reviewed ? "Reviewed" : "Pending"}
@@ -234,7 +234,7 @@ const AtRiskStudents = () => {
                     setMessageTarget(student);
                     setMessageText("");
                   }}
-                  className="bg-[#242424] text-white px-3 py-1.5 text-xs font-medium hover:bg-[#15696a] transition-colors"
+                  className="bg-[#4E545C] text-white px-3 py-1.5 text-xs font-medium hover:bg-[#15696a] transition-colors"
                 >
                   Message
                 </button>
@@ -243,7 +243,7 @@ const AtRiskStudents = () => {
                     setFeedbackTarget(student);
                     setFeedbackText("");
                   }}
-                  className="border border-[#242424] text-[#242424] px-3 py-1.5 text-xs font-medium hover:bg-[#242424]/10 transition-colors"
+                  className="border border-[#4E545C] text-[#4E545C] px-3 py-1.5 text-xs font-medium hover:bg-[#4E545C]/10 transition-colors"
                 >
                   Feedback
                 </button>
@@ -261,7 +261,7 @@ const AtRiskStudents = () => {
 
       {/* Message Panel */}
       {messageTarget && (
-        <div className="fixed bottom-3 right-3 left-3 sm:left-auto sm:bottom-8 sm:right-8 sm:w-[320px] bg-[#242424] rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden">
+        <div className="fixed bottom-3 right-3 left-3 sm:left-auto sm:bottom-8 sm:right-8 sm:w-[320px] bg-[#4E545C] rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden">
           <div className="flex items-center justify-between px-4 py-3">
             <span className="text-white text-sm font-medium min-w-0 truncate pr-2">
               Message — {messageTarget.name}
@@ -273,7 +273,7 @@ const AtRiskStudents = () => {
               <X size={16} />
             </button>
           </div>
-          <div className="h-40 bg-[#242424]" />
+          <div className="h-40 bg-[#4E545C]" />
           <div className="bg-white p-3 flex flex-col sm:flex-row items-stretch sm:items-center gap-2 min-w-0">
             <input
               type="text"
@@ -281,7 +281,7 @@ const AtRiskStudents = () => {
               onChange={(e) => setMessageText(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
               placeholder="Message"
-              className="flex-1 min-w-0 border border-gray-300 px-3 py-2 text-sm outline-none focus:border-[#242424] transition-colors"
+              className="flex-1 min-w-0 border border-gray-300 px-3 py-2 text-sm outline-none focus:border-[#4E545C] transition-colors"
             />
             <div className="flex items-center gap-2 w-full sm:w-auto">
               <button
@@ -322,7 +322,7 @@ const AtRiskStudents = () => {
               onChange={(e) => setFeedbackText(e.target.value)}
               placeholder="Write your feedback..."
               rows={4}
-              className="w-full border border-gray-300 px-3 py-2 text-sm outline-none focus:border-[#242424] transition-colors resize-none"
+              className="w-full border border-gray-300 px-3 py-2 text-sm outline-none focus:border-[#4E545C] transition-colors resize-none"
             />
             <div className="flex justify-end gap-2 mt-4">
               <button
@@ -333,7 +333,7 @@ const AtRiskStudents = () => {
               </button>
               <button
                 onClick={handleSendFeedback}
-                className="bg-[#242424] text-white px-5 py-2 text-sm font-medium hover:bg-[#15696a] transition-colors"
+                className="bg-[#4E545C] text-white px-5 py-2 text-sm font-medium hover:bg-[#15696a] transition-colors"
               >
                 Submit
               </button>

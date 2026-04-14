@@ -3,13 +3,13 @@ import StudentLayout from "../StudentLayout";
 
 const badgeClassByValue = {
   Approved: "bg-emerald-50 text-emerald-700 border-emerald-200",
-  Submitted: "bg-blue-50 text-[#242424] border-blue-200",
+  Submitted: "bg-blue-50 text-[#4E545C] border-blue-200",
   Pending: "bg-amber-50 text-amber-700 border-amber-200",
   Rejected: "bg-rose-50 text-rose-700 border-rose-200",
   Closed: "bg-slate-100 text-slate-700 border-slate-200",
   Open: "bg-violet-50 text-violet-700 border-violet-200",
   Released: "bg-emerald-50 text-emerald-700 border-emerald-200",
-  Downloaded: "bg-blue-50 text-[#242424] border-blue-200",
+  Downloaded: "bg-blue-50 text-[#4E545C] border-blue-200",
   Paid: "bg-emerald-50 text-emerald-700 border-emerald-200",
   Unpaid: "bg-amber-50 text-amber-700 border-amber-200",
   Waived: "bg-indigo-50 text-indigo-700 border-indigo-200",
@@ -679,7 +679,7 @@ const StudentServiceScreen = ({ serviceKey, activeTab }) => {
           {config.subtitle}
         </p>
 
-        <div className="inline-block px-3 sm:px-5 py-1.5 sm:py-2 bg-[#242424] text-white text-xs sm:text-sm font-semibold mb-5 sm:mb-8 shadow-sm">
+        <div className="inline-block px-3 sm:px-5 py-1.5 sm:py-2 bg-[#4E545C] text-white text-xs sm:text-sm font-semibold mb-5 sm:mb-8 shadow-sm">
           {config.session}
         </div>
 
@@ -758,7 +758,7 @@ const StudentServiceScreen = ({ serviceKey, activeTab }) => {
               <h2 className="text-sm sm:text-base font-semibold text-gray-900">
                 Current Entries
               </h2>
-              <button className="px-3 py-1.5 bg-[#242424] text-white text-[11px] sm:text-xs font-medium hover:bg-[#434343] transition-colors cursor-pointer">
+              <button className="px-3 py-1.5 bg-[#4E545C] text-white text-[11px] sm:text-xs font-medium hover:bg-[#828a91] transition-colors cursor-pointer">
                 New Request
               </button>
             </div>

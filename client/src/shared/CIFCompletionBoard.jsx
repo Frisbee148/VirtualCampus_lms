@@ -127,7 +127,7 @@ const CIFCompletionBoard = ({
               <select
                 value={selectedCourseKey}
                 onChange={(e) => setSelectedCourseKey(e.target.value)}
-                className="w-full appearance-none border border-gray-200 bg-white px-3 py-3 pr-10 text-sm sm:text-base font-semibold text-gray-900 shadow-sm outline-none transition-colors focus:border-[#242424]"
+                className="w-full appearance-none border border-gray-200 bg-white px-3 py-3 pr-10 text-sm sm:text-base font-semibold text-gray-900 shadow-sm outline-none transition-colors focus:border-[#4E545C]"
               >
                 {CIF_COURSES.map((course) => (
                   <option key={course.key} value={course.key}>
@@ -299,7 +299,7 @@ const CIFCompletionBoard = ({
           <div className="px-4 sm:px-5 py-4 sm:py-5 space-y-4">
             <div className="h-2.5 bg-gray-100 overflow-hidden">
               <div
-                className="h-full bg-[#242424] transition-all duration-300"
+                className="h-full bg-[#4E545C] transition-all duration-300"
                 style={{ width: `${summary.percent}%` }}
               />
             </div>
@@ -321,7 +321,7 @@ const CIFCompletionBoard = ({
                     disabled={!hasUnsavedChanges}
                     className={`px-3 py-1.5 text-xs font-semibold transition-colors ${
                       hasUnsavedChanges
-                        ? "bg-[#242424] text-white hover:bg-[#145c5c] cursor-pointer"
+                        ? "bg-[#4E545C] text-white hover:bg-[#145c5c] cursor-pointer"
                         : "bg-gray-100 text-gray-400 cursor-not-allowed"
                     }`}
                   >
@@ -338,7 +338,7 @@ const CIFCompletionBoard = ({
             <div className="max-h-[560px] overflow-y-auto border border-gray-200">
               {currentCourse.sections.map((section) => (
                 <div key={section.id}>
-                  <div className="grid grid-cols-[minmax(0,1fr)_70px_80px] sm:grid-cols-[minmax(0,1fr)_90px_100px_120px] bg-[#000000] text-white text-[10px] sm:text-xs font-semibold">
+                  <div className="grid grid-cols-[minmax(0,1fr)_70px_80px] sm:grid-cols-[minmax(0,1fr)_90px_100px_120px] bg-[#131518] text-white text-[10px] sm:text-xs font-semibold">
                     <div className="px-3 sm:px-4 py-2 sm:py-2.5">
                       {section.unitTitle}
                     </div>
@@ -367,7 +367,7 @@ const CIFCompletionBoard = ({
                             checked={checked}
                             disabled={!editable}
                             onChange={() => toggleTopic(topic.id)}
-                            className="mt-1 h-4 w-4 cursor-pointer accent-[#242424] disabled:cursor-default"
+                            className="mt-1 h-4 w-4 cursor-pointer accent-[#4E545C] disabled:cursor-default"
                           />
                         </label>
                         <div className="px-2 sm:px-3 py-3 sm:py-3.5 min-w-0">

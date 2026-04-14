@@ -16,7 +16,7 @@ import {
 import { ChevronRight } from "lucide-react";
 
 const userStats = [
-  { label: "Total Students", value: "2,486", accent: "#242424" },
+  { label: "Total Students", value: "2,486", accent: "#4E545C" },
   { label: "Total Faculty", value: "187", accent: "#52525b" },
   { label: "Active Users", value: "2,541", accent: "#71717a" },
   { label: "Inactive Users", value: "132", accent: "#ef4444" },
@@ -29,7 +29,7 @@ const roleDistribution = [
   { name: "Admin", value: 12 },
 ];
 
-const ROLE_COLORS = ["#242424", "#52525b", "#71717a", "#0f1117"];
+const ROLE_COLORS = ["#4E545C", "#52525b", "#71717a", "#0f1117"];
 
 const growthData = [
   { term: "Fall '23", students: 1980, faculty: 165 },
@@ -133,7 +133,7 @@ const AOUserOverview = () => {
                 <YAxis tick={{ fontSize: 11, fill: "#94a3b8" }} />
                 <Tooltip contentStyle={{ borderRadius: "0", border: "1px solid #e5e7eb", fontSize: "13px" }} />
                 <Legend wrapperStyle={{ fontSize: "11px" }} />
-                <Bar dataKey="students" fill="#242424" fillOpacity={0.8} name="Students" />
+                <Bar dataKey="students" fill="#4E545C" fillOpacity={0.8} name="Students" />
                 <Bar dataKey="faculty" fill="#52525b" fillOpacity={0.8} name="Faculty" />
               </BarChart>
             </ResponsiveContainer>
@@ -183,7 +183,7 @@ const AOUserOverview = () => {
                   </div>
                   <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-[#242424] rounded-full"
+                      className="h-full bg-[#4E545C] rounded-full"
                       style={{ width: a.pct }}
                     ></div>
                   </div>

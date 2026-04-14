@@ -60,12 +60,12 @@ button {
   color: #000;
 }
 
-/* ERP Portal UI System Variables - Academic Maroon Theme */
+/* ERP Portal UI System Variables - Slate & Night Theme */
 :root {
-  --erp-primary: #242424; /* Twilight Rust */
-  --erp-primary-hover: #434343; /* Sandalwood */
-  --erp-sidebar: #000000; /* Warm Stone 900 */
-  --erp-sidebar-active: #242424; /* Twilight Rust */
+  --erp-primary: #4E545C; /* Dark Slate Grey */
+  --erp-primary-hover: #5D636B; /* Light Slate */
+  --erp-sidebar: #131518; /* Night Black */
+  --erp-sidebar-active: #4E545C; /* Dark Slate Grey */
   --erp-surface: #ffffff;
   --erp-background: #fafafa; /* Neutral light gray */
 }

@@ -39,7 +39,7 @@ const ParentDashboard = () => {
             className="w-14 h-14 rounded-full object-cover flex-shrink-0"
           />
           <div className="flex-1">
-            <p className="text-[10px] sm:text-xs font-semibold text-[#242424] uppercase tracking-wider mb-1">
+            <p className="text-[10px] sm:text-xs font-semibold text-[#4E545C] uppercase tracking-wider mb-1">
               Your Ward
             </p>
             <h1 className="text-xl sm:text-2xl font-bold text-gray-900">

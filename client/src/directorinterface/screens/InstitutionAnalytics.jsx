@@ -151,8 +151,8 @@ const InstitutionAnalytics = () => {
                     type="monotone"
                     dataKey="pg"
                     name="PG"
-                    stroke="#242424"
-                    fill="#242424"
+                    stroke="#4E545C"
+                    fill="#4E545C"
                     fillOpacity={0.1}
                     strokeWidth={2}
                   />
@@ -232,7 +232,7 @@ const InstitutionAnalytics = () => {
                     type="monotone"
                     dataKey="avgPackage"
                     name="Avg Package (LPA)"
-                    stroke="#242424"
+                    stroke="#4E545C"
                     strokeWidth={2}
                     dot={{ r: 4 }}
                   />
@@ -302,7 +302,7 @@ const InstitutionAnalytics = () => {
                     type="monotone"
                     dataKey="grants"
                     name="Grants"
-                    stroke="#242424"
+                    stroke="#4E545C"
                     strokeWidth={2}
                     dot={{ r: 4 }}
                   />
@@ -358,7 +358,7 @@ const InstitutionAnalytics = () => {
                   <Bar
                     dataKey="grants"
                     name="Grants"
-                    fill="#242424"
+                    fill="#4E545C"
                     stackId="a"
                   />
                   <Bar

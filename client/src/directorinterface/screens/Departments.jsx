@@ -21,7 +21,7 @@ const departmentsData = [
     faculty: 28,
     students: 640,
     programs: ["B.Tech", "M.Tech"],
-    color: "#242424",
+    color: "#4E545C",
   },
   {
     id: 3,

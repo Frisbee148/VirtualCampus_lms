@@ -3,6 +3,9 @@ const path = require('path');
 
 const srcDir = path.join(__dirname, 'src');
 
+const OLD_ACCENT = '#6F7782'; 
+const NEW_ACCENT = '#4E545C';
+
 function processDirectory(directory) {
   const files = fs.readdirSync(directory);
   
@@ -18,11 +21,7 @@ function processDirectory(directory) {
       let content = fs.readFileSync(fullPath, 'utf8');
       let originalContent = content;
       
-      // We need to swap #000000 (currently buttons/primary) with #242424 (currently sidebars/neutral)
-      // Using a temporary token to avoid double replacement
-      content = content.replace(/#000000/g, 'TEMP_SWAP_TOKEN');
-      content = content.replace(/#242424/g, '#000000');
-      content = content.replace(/TEMP_SWAP_TOKEN/g, '#242424');
+      content = content.replace(/#6F7782/gi, NEW_ACCENT);
       
       if (content !== originalContent) {
         fs.writeFileSync(fullPath, content, 'utf8');
@@ -33,4 +32,4 @@ function processDirectory(directory) {
 }
 
 processDirectory(srcDir);
-console.log("Greyscale Swap (Black Sidebar, Grey Buttons) complete.");
+console.log("Accent Update (#4E545C) complete.");

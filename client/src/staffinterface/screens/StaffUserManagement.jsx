@@ -81,7 +81,7 @@ const StaffUserManagement = () => {
           </div>
           <button
             onClick={openAdd}
-            className="flex items-center gap-2 px-4 py-2 bg-[#000000] text-white text-xs font-medium hover:bg-[#1a1d27] transition-colors"
+            className="flex items-center gap-2 px-4 py-2 bg-[#131518] text-white text-xs font-medium hover:bg-[#1a1d27] transition-colors"
           >
             Add User
           </button>
@@ -298,7 +298,7 @@ const StaffUserManagement = () => {
                 </button>
                 <button
                   onClick={() => setShowModal(false)}
-                  className="px-4 py-2 text-xs bg-[#000000] text-white font-medium hover:bg-[#1a1d27] transition-colors"
+                  className="px-4 py-2 text-xs bg-[#131518] text-white font-medium hover:bg-[#1a1d27] transition-colors"
                 >
                   {selectedUser ? "Save Changes" : "Add User"}
                 </button>

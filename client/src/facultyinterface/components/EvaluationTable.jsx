@@ -58,7 +58,7 @@ const EvaluationTable = ({ sections, onSectionsChange }) => {
       <div className="hidden md:block overflow-x-auto">
         <table className="w-full border-collapse text-xs sm:text-sm">
           <thead>
-            <tr className="bg-[#242424] text-white">
+            <tr className="bg-[#4E545C] text-white">
               <th className="text-left px-2 sm:px-4 py-2 sm:py-3 font-semibold">
                 Evaluation criteria
               </th>
@@ -133,7 +133,7 @@ const EvaluationTable = ({ sections, onSectionsChange }) => {
                   )}
                 </td>
                 <td className="px-2 sm:px-4 py-2 sm:py-3">
-                  <button className="text-[#242424] underline hover:text-[#434343] text-sm transition-colors">
+                  <button className="text-[#4E545C] underline hover:text-[#828a91] text-sm transition-colors">
                     Create hyperlink
                   </button>
                 </td>
@@ -142,7 +142,7 @@ const EvaluationTable = ({ sections, onSectionsChange }) => {
                     type="checkbox"
                     checked={section.completed}
                     onChange={() => toggleCompleted(section.id)}
-                    className="w-4 h-4 accent-[#242424] cursor-pointer"
+                    className="w-4 h-4 accent-[#4E545C] cursor-pointer"
                   />
                 </td>
               </tr>
@@ -228,7 +228,7 @@ const EvaluationTable = ({ sections, onSectionsChange }) => {
             </div>
 
             <div className="flex items-center justify-between">
-              <button className="text-[#242424] underline hover:text-[#434343] text-xs transition-colors">
+              <button className="text-[#4E545C] underline hover:text-[#828a91] text-xs transition-colors">
                 Create hyperlink
               </button>
               <label className="flex items-center gap-2 cursor-pointer">
@@ -236,7 +236,7 @@ const EvaluationTable = ({ sections, onSectionsChange }) => {
                   type="checkbox"
                   checked={section.completed}
                   onChange={() => toggleCompleted(section.id)}
-                  className="w-4 h-4 accent-[#242424] cursor-pointer"
+                  className="w-4 h-4 accent-[#4E545C] cursor-pointer"
                 />
                 <span className="text-xs text-gray-600">Completed</span>
               </label>
@@ -248,7 +248,7 @@ const EvaluationTable = ({ sections, onSectionsChange }) => {
       {/* Add section */}
       <button
         onClick={addSection}
-        className="flex items-center gap-1 mt-4 text-sm text-gray-700 hover:text-[#242424] transition-colors"
+        className="flex items-center gap-1 mt-4 text-sm text-gray-700 hover:text-[#4E545C] transition-colors"
       >
         Add section
       </button>

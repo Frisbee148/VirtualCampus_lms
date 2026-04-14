@@ -137,7 +137,7 @@ const BorrowReturn = () => {
                   setSelectedUser(null);
                   setSelectedIssued(null);
                 }}
-                className="px-3 py-2.5 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-[#242424] w-full transition-colors"
+                className="px-3 py-2.5 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-[#4E545C] w-full transition-colors"
                 autoFocus
               />
             </div>
@@ -211,7 +211,7 @@ const BorrowReturn = () => {
                         setBookSearch(e.target.value);
                         setSelectedBook(null);
                       }}
-                      className="px-3 py-2.5 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-[#242424] w-full transition-colors"
+                      className="px-3 py-2.5 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:border-[#4E545C] w-full transition-colors"
                     />
                   </div>
 
@@ -259,7 +259,7 @@ const BorrowReturn = () => {
                         onClick={() => setSelectedIssued(ib)}
                         className={`w-full text-left p-3 rounded-lg border transition-all ${
                           selectedIssued?.id === ib.id
-                            ? "border-[#242424] bg-rose-50/5"
+                            ? "border-[#4E545C] bg-rose-50/5"
                             : "border-gray-200 hover:border-gray-300 hover:bg-gray-50"
                         }`}
                       >
@@ -291,7 +291,7 @@ const BorrowReturn = () => {
                   disabled={!selectedBook}
                   className={`px-6 py-2.5 text-sm font-medium rounded-lg transition-colors ${
                     selectedBook
-                      ? "bg-[#242424] text-white hover:bg-rose-900"
+                      ? "bg-[#4E545C] text-white hover:bg-rose-900"
                       : "bg-gray-100 text-gray-400 cursor-not-allowed"
                   }`}
                 >
@@ -304,7 +304,7 @@ const BorrowReturn = () => {
                     disabled={!selectedIssued}
                     className={`px-6 py-2.5 text-sm font-medium rounded-lg transition-colors ${
                       selectedIssued
-                        ? "bg-[#242424] text-white hover:bg-rose-900"
+                        ? "bg-[#4E545C] text-white hover:bg-rose-900"
                         : "bg-gray-100 text-gray-400 cursor-not-allowed"
                     }`}
                   >
@@ -315,7 +315,7 @@ const BorrowReturn = () => {
                     disabled={!selectedIssued}
                     className={`px-6 py-2.5 text-sm font-medium rounded-lg transition-colors ${
                       selectedIssued
-                        ? "bg-[#242424] text-white hover:bg-rose-900"
+                        ? "bg-[#4E545C] text-white hover:bg-rose-900"
                         : "bg-gray-100 text-gray-400 cursor-not-allowed"
                     }`}
                   >

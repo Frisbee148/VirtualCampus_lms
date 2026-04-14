@@ -55,7 +55,7 @@ const LibraryOperatorReturn = () => {
         {returnedBook && (
           <div className="bg-zinc-50 border border-zinc-200 rounded-xl p-5">
             <div className="flex items-center gap-2 mb-3">
-              <CheckCircle size={20} className="text-[#242424]" />
+              <CheckCircle size={20} className="text-[#4E545C]" />
               <span className="font-semibold text-gray-900">Book Returned Successfully</span>
             </div>
             <div className="space-y-2 text-sm">
@@ -97,7 +97,7 @@ const LibraryOperatorReturn = () => {
                       </div>
                       <button
                         onClick={() => handleReturn(book)}
-                        className="px-4 py-2 bg-zinc-800 text-white text-sm rounded-lg hover:bg-[#242424] transition-colors"
+                        className="px-4 py-2 bg-zinc-800 text-white text-sm rounded-lg hover:bg-[#4E545C] transition-colors"
                       >
                         Confirm Return
                       </button>

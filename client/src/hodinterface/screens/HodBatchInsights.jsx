@@ -38,7 +38,7 @@ const riskDistribution = [
   { name: "Attendance", value: 14, color: "#e8a435" },
   { name: "CGPA", value: 9, color: "#ef4444" },
   { name: "Inactivity", value: 5, color: "#6b7280" },
-  { name: "Safe", value: 458, color: "#242424" },
+  { name: "Safe", value: 458, color: "#4E545C" },
 ];
 
 const HodBatchInsights = () => {
@@ -55,7 +55,7 @@ const HodBatchInsights = () => {
           <select
             value={batch}
             onChange={(e) => setBatch(e.target.value)}
-            className="bg-[#242424] text-white px-4 py-2 text-sm font-medium outline-none cursor-pointer"
+            className="bg-[#4E545C] text-white px-4 py-2 text-sm font-medium outline-none cursor-pointer"
           >
             <option value="2023">Batch 2023</option>
             <option value="2024">Batch 2024</option>
@@ -66,7 +66,7 @@ const HodBatchInsights = () => {
         {/* Stats */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 mb-6">
           {[
-            { label: "Total Students", value: "128", accent: "#242424" },
+            { label: "Total Students", value: "128", accent: "#4E545C" },
             { label: "At Risk", value: "12", accent: "#ef4444" },
             { label: "Avg CGPA", value: "7.6", accent: "#e8a435" },
             { label: "Avg Attendance", value: "84%", accent: "#2d8a4e" },
@@ -88,7 +88,7 @@ const HodBatchInsights = () => {
                 <XAxis dataKey="month" tick={{ fontSize: 12 }} />
                 <YAxis tick={{ fontSize: 12 }} />
                 <Tooltip />
-                <Bar dataKey="present" fill="#242424" radius={[3, 3, 0, 0]} />
+                <Bar dataKey="present" fill="#4E545C" radius={[3, 3, 0, 0]} />
                 <Bar dataKey="absent" fill="#e8a435" radius={[3, 3, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
@@ -102,7 +102,7 @@ const HodBatchInsights = () => {
                 <XAxis dataKey="range" tick={{ fontSize: 12 }} />
                 <YAxis tick={{ fontSize: 12 }} />
                 <Tooltip />
-                <Bar dataKey="count" fill="#242424" radius={[3, 3, 0, 0]} />
+                <Bar dataKey="count" fill="#4E545C" radius={[3, 3, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -115,7 +115,7 @@ const HodBatchInsights = () => {
                 <XAxis dataKey="sem" tick={{ fontSize: 12 }} />
                 <YAxis domain={[5, 10]} tick={{ fontSize: 12 }} />
                 <Tooltip />
-                <Line type="monotone" dataKey="avg" stroke="#242424" strokeWidth={2.5} dot={{ r: 4, fill: "#242424" }} />
+                <Line type="monotone" dataKey="avg" stroke="#4E545C" strokeWidth={2.5} dot={{ r: 4, fill: "#4E545C" }} />
               </LineChart>
             </ResponsiveContainer>
           </div>
