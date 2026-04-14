@@ -6,6 +6,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import "./App.css";
+import { SessionProvider } from "./context/SessionContext";
 
 // Auth
 import LoginPage from "./auth/LoginPage";
@@ -157,6 +158,7 @@ import {
 function App() {
   return (
     <Router>
+      <SessionProvider>
       <Routes>
         {/* Auth */}
         <Route path="/" element={<LoginPage />} />
@@ -425,6 +427,7 @@ function App() {
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+      </SessionProvider>
     </Router>
   );
 }

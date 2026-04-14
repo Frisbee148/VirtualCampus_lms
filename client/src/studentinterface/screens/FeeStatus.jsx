@@ -1,7 +1,9 @@
 import React from 'react';
 import StudentLayout from '../StudentLayout';
+import { useSession } from '../../context/SessionContext';
 
 const FeeStatus = () => {
+  const { selectedSession } = useSession();
   const feeBreakdown = [
     { item: 'Tuition Fee', amount: '1,50,000' },
     { item: 'Development Fee', amount: '25,000' },
@@ -13,11 +15,8 @@ const FeeStatus = () => {
     <StudentLayout activeTab="Fee status">
       <div className="max-w-4xl">
         <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Fee Status</h1>
-        <p className="text-xs sm:text-sm text-gray-400 mb-5 sm:mb-8">Semester 3 - 2024-25</p>
+        <p className="text-xs sm:text-sm text-gray-400 mb-5 sm:mb-8">{selectedSession.label}</p>
 
-        <div className="inline-block px-3 sm:px-5 py-1.5 sm:py-2 bg-[#4E545C] text-white text-xs sm:text-sm font-semibold mb-5 sm:mb-8">
-          Semester 3
-        </div>
 
         <div className="bg-white border border-gray-200 overflow-hidden mb-4 sm:mb-6">
           <div className="px-3 sm:px-5 py-3 sm:py-4 border-b border-gray-100">

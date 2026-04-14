@@ -1,43 +1,50 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import StudentLayout from "../StudentLayout";
-import { ChevronDown } from "lucide-react";
+import { useSession } from "../../context/SessionContext";
 
 const SEMESTER_RECORDS = [
   {
-    id: "sem1",
-    label: "Sem 1 (2024-25 I)",
+    id: "2023-24-I",
+    label: "Sem 1 (2023-24 I)",
     shortLabel: "Sem 1",
     credits: 21,
     sgpa: 8.12,
   },
   {
-    id: "sem2",
-    label: "Sem 2 (2024-25 II)",
+    id: "2023-24-II",
+    label: "Sem 2 (2023-24 II)",
     shortLabel: "Sem 2",
     credits: 22,
     sgpa: 8.35,
   },
   {
-    id: "sem3",
-    label: "Sem 3 (2025-26 I)",
+    id: "2024-25-I",
+    label: "Sem 3 (2024-25 I)",
     shortLabel: "Sem 3",
     credits: 20,
     sgpa: 8.18,
   },
   {
-    id: "sem4",
-    label: "Sem 4 (2025-26 II)",
+    id: "2024-25-II",
+    label: "Sem 4 (2024-25 II)",
     shortLabel: "Sem 4",
     credits: 21,
     sgpa: 8.63,
   },
-];
-
-const SESSION_OPTIONS = [
-  { id: "sem4", label: "Session 2025-26 II" },
-  { id: "sem3", label: "Session 2025-26 I" },
-  { id: "sem2", label: "Session 2024-25 II" },
-  { id: "sem1", label: "Session 2024-25 I" },
+  {
+    id: "2025-26-I",
+    label: "Sem 5 (2025-26 I)",
+    shortLabel: "Sem 5",
+    credits: 22,
+    sgpa: 8.45,
+  },
+  {
+    id: "2025-26-II",
+    label: "Sem 6 (2025-26 II)",
+    shortLabel: "Sem 6",
+    credits: 20,
+    sgpa: 8.71,
+  },
 ];
 
 const buildSemesterHistory = (records) => {
@@ -60,30 +67,11 @@ const buildSemesterHistory = (records) => {
 const SEMESTER_HISTORY = buildSemesterHistory(SEMESTER_RECORDS);
 
 const PerformanceCGPA = () => {
-  const semesterMenuRef = useRef(null);
-  const [semesterMenuOpen, setSemesterMenuOpen] = useState(false);
-  const [selectedSemesterId, setSelectedSemesterId] = useState("sem4");
-
-  useEffect(() => {
-    const handleDocumentClick = (event) => {
-      if (
-        semesterMenuRef.current &&
-        !semesterMenuRef.current.contains(event.target)
-      ) {
-        setSemesterMenuOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleDocumentClick);
-    return () => document.removeEventListener("mousedown", handleDocumentClick);
-  }, []);
+  const { selectedSessionId, selectedSession } = useSession();
 
   const activeSemester =
-    SEMESTER_HISTORY.find((semester) => semester.id === selectedSemesterId) ||
+    SEMESTER_HISTORY.find((semester) => semester.id === selectedSessionId) ||
     null;
-  const selectedSessionLabel =
-    SESSION_OPTIONS.find((session) => session.id === selectedSemesterId)
-      ?.label || "All Sessions";
 
   const visibleHistory = SEMESTER_HISTORY;
 
@@ -177,54 +165,11 @@ const PerformanceCGPA = () => {
               Semester Performance
             </h1>
             <p className="text-xs sm:text-sm text-gray-400">
-              Semester credits, SGPA, and CGPA trend.
+              Semester credits, SGPA, and CGPA trend —{" "}
+              <span className="font-semibold text-gray-600">
+                {selectedSession.label}
+              </span>
             </p>
-          </div>
-
-          <div
-            ref={semesterMenuRef}
-            className="relative self-start sm:self-auto"
-          >
-            <button
-              type="button"
-              onClick={() => setSemesterMenuOpen((current) => !current)}
-              aria-haspopup="menu"
-              aria-expanded={semesterMenuOpen}
-              className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 bg-[#4E545C] text-white text-xs sm:text-sm font-semibold shadow-sm hover:bg-[#828a91] transition-colors"
-            >
-              {selectedSessionLabel}
-              <ChevronDown
-                size={14}
-                className={`transition-transform ${semesterMenuOpen ? "rotate-180" : ""}`}
-              />
-            </button>
-
-            {semesterMenuOpen ? (
-              <div className="absolute right-0 mt-2 w-64 bg-white border border-gray-100 shadow-xl z-30 overflow-hidden">
-                <p className="px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-gray-400 border-b border-gray-100">
-                  Sessions
-                </p>
-                <div className="py-1">
-                  {SESSION_OPTIONS.map((session) => (
-                    <button
-                      key={session.id}
-                      type="button"
-                      onClick={() => {
-                        setSelectedSemesterId(session.id);
-                        setSemesterMenuOpen(false);
-                      }}
-                      className={`w-full text-left px-4 py-3 text-sm transition-colors hover:bg-gray-50 ${
-                        selectedSemesterId === session.id
-                          ? "bg-gray-50 font-semibold text-black"
-                          : "text-gray-600"
-                      }`}
-                    >
-                      {session.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            ) : null}
           </div>
         </div>
 
@@ -330,23 +275,24 @@ const PerformanceCGPA = () => {
                 const x = xScale(index);
                 const sgpaY = yScale(semester.sgpa);
                 const cgpaY = yScale(semester.cgpa);
+                const isActive = semester.id === selectedSessionId;
 
                 return (
                   <g key={semester.id}>
                     <rect
-                      x={x - 4}
-                      y={sgpaY - 4}
-                      width="8"
-                      height="8"
+                      x={x - (isActive ? 5 : 4)}
+                      y={sgpaY - (isActive ? 5 : 4)}
+                      width={isActive ? 10 : 8}
+                      height={isActive ? 10 : 8}
                       fill="#f97316"
                       stroke="white"
                       strokeWidth="2"
                     />
                     <rect
-                      x={x - 4}
-                      y={cgpaY - 4}
-                      width="8"
-                      height="8"
+                      x={x - (isActive ? 5 : 4)}
+                      y={cgpaY - (isActive ? 5 : 4)}
+                      width={isActive ? 10 : 8}
+                      height={isActive ? 10 : 8}
                       fill="#111827"
                       stroke="white"
                       strokeWidth="2"
@@ -355,7 +301,8 @@ const PerformanceCGPA = () => {
                       x={x}
                       y={chartHeight - 16}
                       fontSize="12"
-                      fill="#94a3b8"
+                      fill={isActive ? "#111827" : "#94a3b8"}
+                      fontWeight={isActive ? "bold" : "normal"}
                       textAnchor="middle"
                     >
                       {semester.shortLabel}

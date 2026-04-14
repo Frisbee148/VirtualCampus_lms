@@ -14,12 +14,18 @@ const CommunityClubs = () => {
   return (
     <StudentLayout activeTab="Community">
       <div className="max-w-5xl">
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Community</h1>
-        <p className="text-xs sm:text-sm text-gray-400 mb-5 sm:mb-8">Your clubs and organizations</p>
-
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 sm:gap-4 mb-5 sm:mb-8">
+          <div>
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Community</h1>
+            <p className="text-xs sm:text-sm text-gray-400">Your clubs and organizations</p>
+          </div>
+          <button className="px-3 sm:px-4 py-2 bg-[#4E545C] text-white text-[11px] sm:text-xs font-semibold shadow-sm hover:bg-[#62686f] transition-colors whitespace-nowrap">
+            Request Join
+          </button>
+        </div>
         <div className="bg-white border border-gray-200 overflow-hidden">
           {clubs.map((c, idx) => (
-            <div 
+            <div
               key={idx}
               onClick={() => navigate('/community/club')}
               className="flex items-center justify-between px-3 sm:px-5 py-3 sm:py-4 border-b border-gray-100 last:border-b-0 hover:bg-gray-50/50 transition-colors cursor-pointer group gap-2"
@@ -29,11 +35,10 @@ const CommunityClubs = () => {
                 <p className="text-[10px] sm:text-xs text-gray-400 mt-0.5">{c.members} members</p>
               </div>
               <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
-                <span className={`px-2 sm:px-3 py-0.5 sm:py-1 text-[10px] sm:text-xs font-semibold border ${
-                  c.role === 'Coordinator' 
-                    ? 'bg-amber-50 text-amber-700 border-amber-200' 
+                <span className={`px-2 sm:px-3 py-0.5 sm:py-1 text-[10px] sm:text-xs font-semibold border ${c.role === 'Coordinator'
+                    ? 'bg-amber-50 text-amber-700 border-amber-200'
                     : 'bg-gray-50 text-gray-500 border-gray-200'
-                }`}>{c.role}</span>
+                  }`}>{c.role}</span>
                 <ChevronRight size={14} className="text-gray-300 group-hover:text-gray-500 transition-colors sm:w-4 sm:h-4" />
               </div>
             </div>
