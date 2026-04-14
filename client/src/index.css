@@ -4,10 +4,13 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  border-radius: 0 !important;
 }
 
 body {
@@ -32,7 +35,7 @@ body {
 }
 ::-webkit-scrollbar-thumb {
   background: #c4c4c4;
-  border-radius: 3px;
+  border-radius: 0;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #999;
@@ -62,10 +65,10 @@ button {
 
 /* ERP Portal UI System Variables - Slate & Night Theme */
 :root {
-  --erp-primary: #4E545C; /* Dark Slate Grey */
-  --erp-primary-hover: #5D636B; /* Light Slate */
+  --erp-primary: #4e545c; /* Dark Slate Grey */
+  --erp-primary-hover: #5d636b; /* Light Slate */
   --erp-sidebar: #131518; /* Night Black */
-  --erp-sidebar-active: #4E545C; /* Dark Slate Grey */
+  --erp-sidebar-active: #4e545c; /* Dark Slate Grey */
   --erp-surface: #ffffff;
   --erp-background: #fafafa; /* Neutral light gray */
 }
