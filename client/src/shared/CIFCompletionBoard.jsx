@@ -108,9 +108,7 @@ const CIFCompletionBoard = ({
             <h2 className="text-lg sm:text-xl font-semibold text-gray-900 mt-1">
               Select the course CIF
             </h2>
-            <p className="text-[10px] sm:text-xs text-gray-400 mt-1">
-              Each course keeps its own checklist and completion percentage.
-            </p>
+
           </div>
           <div className="text-xs sm:text-sm text-gray-500 text-right">
             <p className="font-semibold text-gray-700">{roleLabel}</p>
@@ -155,9 +153,7 @@ const CIFCompletionBoard = ({
             <p className="text-sm sm:text-base font-semibold text-gray-900 mt-1">
               {currentCourse.code} - {currentCourse.title}
             </p>
-            <p className="text-[10px] sm:text-xs text-gray-400 mt-1">
-              Faculty can edit only this course CIF.
-            </p>
+
           </div>
         )}
       </section>
@@ -170,9 +166,7 @@ const CIFCompletionBoard = ({
           <p className="text-2xl sm:text-3xl font-bold text-gray-900 mt-1">
             {summary.percent}%
           </p>
-          <p className="text-[10px] sm:text-[11px] text-gray-400 mt-0.5">
-            Weighted by lecture hours
-          </p>
+
         </div>
         <div className="bg-white border border-gray-100 shadow-sm p-3 sm:p-4">
           <p className="text-[10px] sm:text-xs font-semibold text-gray-400 uppercase tracking-wider">
@@ -181,9 +175,7 @@ const CIFCompletionBoard = ({
           <p className="text-2xl sm:text-3xl font-bold text-gray-900 mt-1">
             {summary.completedTopics}/{summary.totalTopics}
           </p>
-          <p className="text-[10px] sm:text-[11px] text-gray-400 mt-0.5">
-            Faculty verified
-          </p>
+
         </div>
         <div className="bg-white border border-gray-100 shadow-sm p-3 sm:p-4">
           <p className="text-[10px] sm:text-xs font-semibold text-gray-400 uppercase tracking-wider">
@@ -192,9 +184,7 @@ const CIFCompletionBoard = ({
           <p className="text-2xl sm:text-3xl font-bold text-gray-900 mt-1">
             {summary.completedHours}
           </p>
-          <p className="text-[10px] sm:text-[11px] text-gray-400 mt-0.5">
-            of {summary.totalHours} total hours
-          </p>
+
         </div>
         <div className="bg-white border border-gray-100 shadow-sm p-3 sm:p-4">
           <p className="text-[10px] sm:text-xs font-semibold text-gray-400 uppercase tracking-wider">
@@ -203,9 +193,7 @@ const CIFCompletionBoard = ({
           <p className="text-sm sm:text-lg font-bold text-gray-900 mt-1 leading-tight">
             {currentCourse.code}
           </p>
-          <p className="text-[10px] sm:text-[11px] text-gray-400 mt-0.5">
-            {currentCourse.title}
-          </p>
+
         </div>
       </div>
 
@@ -216,9 +204,7 @@ const CIFCompletionBoard = ({
               <h2 className="text-base sm:text-lg font-semibold text-gray-900">
                 CIF PDF Preview
               </h2>
-              <p className="text-[10px] sm:text-xs text-gray-400 mt-1">
-                {currentCourse.title} topics sheet shown to the student
-              </p>
+
             </div>
             <div className="flex items-center gap-2 text-[10px] sm:text-xs font-semibold text-gray-500">
               PDF
@@ -286,10 +272,7 @@ const CIFCompletionBoard = ({
               <h2 className="text-base sm:text-lg font-semibold text-gray-900">
                 Digital CIF Checklist
               </h2>
-              <p className="text-[10px] sm:text-xs text-gray-400 mt-1">
-                Faculty checks topics for {currentCourse.title}, student sees
-                the completion percentage update
-              </p>
+
             </div>
             <div className="flex items-center gap-2 text-[10px] sm:text-xs font-semibold text-emerald-700">
               Live
@@ -313,9 +296,7 @@ const CIFCompletionBoard = ({
               </p>
               {editable ? (
                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-                  <p className="text-gray-400">
-                    Tick topics to update the student view.
-                  </p>
+
                   <button
                     onClick={handleSave}
                     disabled={!hasUnsavedChanges}
@@ -328,11 +309,7 @@ const CIFCompletionBoard = ({
                     {hasUnsavedChanges ? "Save Changes" : "Saved"}
                   </button>
                 </div>
-              ) : (
-                <p className="text-gray-400">
-                  Faculty update reflected automatically.
-                </p>
-              )}
+              ) : null}
             </div>
 
             <div className="max-h-[560px] overflow-y-auto border border-gray-200">
@@ -374,10 +351,7 @@ const CIFCompletionBoard = ({
                           <p className="text-gray-900 font-medium leading-snug">
                             {topic.label}
                           </p>
-                          <p className="text-[10px] sm:text-xs text-gray-400 mt-1">
-                            Added to {currentCourse.title} digital CIF for
-                            faculty verification.
-                          </p>
+
                         </div>
                         <div className="px-2 sm:px-3 py-3 sm:py-3.5 text-center border-l border-gray-200 text-gray-700 font-semibold">
                           {topic.hours}

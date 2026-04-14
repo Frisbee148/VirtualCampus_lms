@@ -1,5 +1,6 @@
 import React from "react";
 import StudentLayout from "../StudentLayout";
+import { useSession } from "../../context/SessionContext";
 
 const badgeClassByValue = {
   Approved: "bg-emerald-50 text-emerald-700 border-emerald-200",
@@ -651,6 +652,7 @@ const getBadgeClass = (value) => {
 };
 
 const StudentServiceScreen = ({ serviceKey, activeTab }) => {
+  const { selectedSession } = useSession();
   const config = serviceConfigs[serviceKey];
   const isStudentHistory = serviceKey === "studentHistory";
 
@@ -678,10 +680,6 @@ const StudentServiceScreen = ({ serviceKey, activeTab }) => {
         <p className="text-xs sm:text-sm text-gray-400 mb-5 sm:mb-8">
           {config.subtitle}
         </p>
-
-        <div className="inline-block px-3 sm:px-5 py-1.5 sm:py-2 bg-[#4E545C] text-white text-xs sm:text-sm font-semibold mb-5 sm:mb-8 shadow-sm">
-          {config.session}
-        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-5 sm:mb-8">
           {config.stats.map((item) => (

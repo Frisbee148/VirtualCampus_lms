@@ -2,9 +2,11 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import StudentLayout from "../StudentLayout";
 import { ChevronRight } from "lucide-react";
+import { useSession } from "../../context/SessionContext";
 
 const DashboardHome = () => {
   const navigate = useNavigate();
+  const { selectedSession } = useSession();
 
   const stats = [
     {
@@ -38,6 +40,9 @@ const DashboardHome = () => {
       <div className="max-w-6xl">
         <h1 className="text-xl sm:text-2xl font-light text-gray-800 mb-5 sm:mb-8">
           Hi, <span className="font-semibold">User</span>
+          <span className="block text-sm font-normal text-gray-400 mt-1">
+            {selectedSession.label}
+          </span>
         </h1>
 
         {/* Stat Cards */}

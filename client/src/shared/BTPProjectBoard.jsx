@@ -135,9 +135,7 @@ const BTPProjectBoard = ({ editable = false, roleLabel = "Student View" }) => {
           <p className="text-2xl sm:text-3xl font-bold text-gray-900 mt-1 capitalize">
             {btpState.status}
           </p>
-          <p className="text-[10px] sm:text-[11px] text-gray-400 mt-0.5">
-            Current BTP request state
-          </p>
+
         </div>
         <div className="bg-white border border-gray-100 shadow-sm p-3 sm:p-4">
           <p className="text-[10px] sm:text-xs font-semibold text-gray-400 uppercase tracking-wider">
@@ -146,9 +144,7 @@ const BTPProjectBoard = ({ editable = false, roleLabel = "Student View" }) => {
           <p className="text-2xl sm:text-3xl font-bold text-gray-900 mt-1">
             {progressPercent}%
           </p>
-          <p className="text-[10px] sm:text-[11px] text-gray-400 mt-0.5">
-            Based on faculty ticked steps
-          </p>
+
         </div>
         <div className="bg-white border border-gray-100 shadow-sm p-3 sm:p-4">
           <p className="text-[10px] sm:text-xs font-semibold text-gray-400 uppercase tracking-wider">
@@ -157,9 +153,7 @@ const BTPProjectBoard = ({ editable = false, roleLabel = "Student View" }) => {
           <p className="text-2xl sm:text-3xl font-bold text-gray-900 mt-1">
             {isApplicationLocked ? "Locked" : "Open"}
           </p>
-          <p className="text-[10px] sm:text-[11px] text-gray-400 mt-0.5">
-            No new request allowed when approved
-          </p>
+
         </div>
         <div className="bg-white border border-gray-100 shadow-sm p-3 sm:p-4">
           <p className="text-[10px] sm:text-xs font-semibold text-gray-400 uppercase tracking-wider">
@@ -168,9 +162,7 @@ const BTPProjectBoard = ({ editable = false, roleLabel = "Student View" }) => {
           <p className="text-base sm:text-xl font-bold text-gray-900 mt-1">
             {btpState.requestedProjectGuide || "-"}
           </p>
-          <p className="text-[10px] sm:text-[11px] text-gray-400 mt-0.5">
-            Faculty approver
-          </p>
+
         </div>
       </div>
 
@@ -181,9 +173,7 @@ const BTPProjectBoard = ({ editable = false, roleLabel = "Student View" }) => {
               <h2 className="text-base sm:text-lg font-semibold text-gray-900">
                 Project Requests
               </h2>
-              <p className="text-[10px] sm:text-xs text-gray-400 mt-1">
-                Student can request one project; faculty approval locks it.
-              </p>
+
             </div>
             <div
               className={`inline-flex items-center px-2.5 py-1.5 text-[10px] sm:text-xs font-semibold border ${stateBadge}`}
@@ -207,9 +197,7 @@ const BTPProjectBoard = ({ editable = false, roleLabel = "Student View" }) => {
                       <h3 className="text-sm sm:text-base font-semibold text-gray-900">
                         {project.title}
                       </h3>
-                      <p className="text-[10px] sm:text-xs text-gray-500 mt-1">
-                        {project.description}
-                      </p>
+
                     </div>
                     <span className="text-[10px] sm:text-xs font-semibold text-gray-500 whitespace-nowrap">
                       {project.domain}
@@ -262,9 +250,7 @@ const BTPProjectBoard = ({ editable = false, roleLabel = "Student View" }) => {
               <h2 className="text-base sm:text-lg font-semibold text-gray-900">
                 Current Request & Progress
               </h2>
-              <p className="text-[10px] sm:text-xs text-gray-400 mt-1">
-                Teacher progress details are shown here and updated live.
-              </p>
+
             </div>
             <div className="flex items-center gap-2 text-[10px] sm:text-xs font-semibold text-emerald-700">
               Live
@@ -369,9 +355,7 @@ const BTPProjectBoard = ({ editable = false, roleLabel = "Student View" }) => {
                           <p className="text-sm font-medium text-gray-900">
                             {step.label}
                           </p>
-                          <p className="text-[10px] sm:text-xs text-gray-400 mt-1">
-                            Shown to student after faculty approval.
-                          </p>
+
                         </div>
                         <span className="text-xs font-semibold text-gray-500 whitespace-nowrap mt-1">
                           {step.completed ? "Done" : "Open"}
