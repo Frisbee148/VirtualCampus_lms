@@ -1,45 +1,80 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import StudentLayout from "../StudentLayout";
 import { ChevronRight } from "lucide-react";
 import { useSession } from "../../context/SessionContext";
+import { fetchDashboard } from "../../auth/studentApi";
+
+const FALLBACK_STATS = [
+  {
+    label: "Courses",
+    value: "6",
+    sub: "Active this semester",
+    path: "/course/overview",
+  },
+  {
+    label: "CIF Completion",
+    value: "Course CIF",
+    sub: "PDF + digital checklist",
+    path: "/cif-completion",
+  },
+  {
+    label: "Performance",
+    value: "8.4",
+    sub: "Current CGPA",
+    path: "/performance",
+  },
+  {
+    label: "Attendance",
+    value: "86%",
+    sub: "Overall average",
+    path: "/course/attendance",
+  },
+];
 
 const DashboardHome = () => {
   const navigate = useNavigate();
-  const { selectedSession } = useSession();
+  const { selectedSessionId, selectedSession } = useSession();
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const stats = [
-    {
-      label: "Courses",
-      value: "6",
-      sub: "Active this semester",
-      onClick: () => navigate("/course/overview"),
-    },
-    {
-      label: "CIF Completion",
-      value: "Course CIF",
-      sub: "PDF + digital checklist",
-      onClick: () => navigate("/cif-completion"),
-    },
-    {
-      label: "Performance",
-      value: "8.4",
-      sub: "Current CGPA",
-      onClick: () => navigate("/performance"),
-    },
-    {
-      label: "Attendance",
-      value: "86%",
-      sub: "Overall average",
-      onClick: () => navigate("/course/attendance"),
-    },
-  ];
+  useEffect(() => {
+    setLoading(true);
+    fetchDashboard(selectedSessionId)
+      .then((res) => setData(res))
+      .catch(() => setData(null))
+      .finally(() => setLoading(false));
+  }, [selectedSessionId]);
+
+  const userName = data?.userName || data?.user?.name || "User";
+
+  const stats = data?.stats
+    ? data.stats.map((s) => ({
+        ...s,
+        onClick: s.path ? () => navigate(s.path) : undefined,
+      }))
+    : FALLBACK_STATS.map((s) => ({
+        ...s,
+        onClick: s.path ? () => navigate(s.path) : undefined,
+      }));
+
+  if (loading) {
+    return (
+      <StudentLayout activeTab="Performance Review">
+        <div className="max-w-6xl">
+          <div className="bg-gray-100 animate-pulse h-64 flex items-center justify-center">
+            <span className="text-sm text-gray-400">Loading...</span>
+          </div>
+        </div>
+      </StudentLayout>
+    );
+  }
 
   return (
     <StudentLayout activeTab="Performance Review">
       <div className="max-w-6xl">
         <h1 className="text-xl sm:text-2xl font-light text-gray-800 mb-5 sm:mb-8">
-          Hi, <span className="font-semibold">User</span>
+          Hi, <span className="font-semibold">{userName}</span>
           <span className="block text-sm font-normal text-gray-400 mt-1">
             {selectedSession.label}
           </span>

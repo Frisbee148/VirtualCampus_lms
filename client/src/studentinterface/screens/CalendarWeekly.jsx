@@ -9,9 +9,199 @@ import {
   saveStoredArray,
 } from "../utils/studentEventHelpers";
 import { Plus } from "lucide-react";
+import { fetchTimetable } from "../../auth/studentApi";
+import { useSession } from "../../context/SessionContext";
+
+const FALLBACK_EVENTS = [
+  {
+    day: 0,
+    start: 0,
+    dur: 3,
+    title: "UX 1 Assignment",
+    time: "8-11am",
+    color: "bg-indigo-400",
+  },
+  {
+    day: 0,
+    start: 3,
+    dur: 3,
+    title: "UX 2 Assignment",
+    time: "11am-2pm",
+    color: "bg-emerald-500",
+  },
+  {
+    day: 0,
+    start: 6,
+    dur: 2,
+    title: "Workout + Lunch",
+    time: "2-4pm",
+    color: "bg-red-500",
+  },
+  {
+    day: 0,
+    start: 8,
+    dur: 2,
+    title: "Booklab Assignment",
+    time: "4-6pm",
+    color: "bg-amber-500",
+  },
+  {
+    day: 1,
+    start: 0,
+    dur: 1,
+    title: "Messaging Matrix",
+    time: "8-9am",
+    color: "bg-red-500",
+  },
+  {
+    day: 1,
+    start: 1,
+    dur: 1,
+    title: "Marketing Workload",
+    time: "9-10am",
+    color: "bg-emerald-500",
+  },
+  {
+    day: 1,
+    start: 3,
+    dur: 2,
+    title: "Portfolio Dev",
+    time: "11am-12:30pm",
+    color: "bg-sky-500",
+  },
+  {
+    day: 1,
+    start: 5,
+    dur: 2,
+    title: "Call David",
+    time: "1-2:30pm",
+    color: "bg-orange-500",
+  },
+  {
+    day: 1,
+    start: 7,
+    dur: 3,
+    title: "Taylor House Call",
+    time: "3-6pm",
+    color: "bg-amber-400",
+  },
+  {
+    day: 2,
+    start: 0,
+    dur: 1,
+    title: "Workload Mgmt",
+    time: "8-9am",
+    color: "bg-purple-600",
+  },
+  {
+    day: 2,
+    start: 1,
+    dur: 2,
+    title: "Portfolio Due Reminder",
+    time: "9-11am",
+    color: "bg-orange-500",
+  },
+  {
+    day: 2,
+    start: 3,
+    dur: 1,
+    title: "Brand Design",
+    time: "11am-12pm",
+    color: "bg-emerald-500",
+  },
+  {
+    day: 2,
+    start: 4,
+    dur: 4,
+    title: "UX3 Project",
+    time: "12-4pm",
+    color: "bg-amber-400",
+  },
+  {
+    day: 2,
+    start: 8,
+    dur: 2,
+    title: "Booklab",
+    time: "4-6pm",
+    color: "bg-amber-500",
+  },
+  {
+    day: 3,
+    start: 0.5,
+    dur: 1,
+    title: "Get ready + Commute",
+    time: "8:30-9:30",
+    color: "bg-emerald-500",
+  },
+  {
+    day: 3,
+    start: 2,
+    dur: 2,
+    title: "Print + Prep Brand 4",
+    time: "10-12pm",
+    color: "bg-orange-500",
+  },
+  {
+    day: 3,
+    start: 5,
+    dur: 3,
+    title: "Brand Design 4",
+    time: "1-4pm",
+    color: "bg-amber-400",
+  },
+  {
+    day: 3,
+    start: 8,
+    dur: 2,
+    title: "Climb",
+    time: "4-6pm",
+    color: "bg-teal-600",
+  },
+  {
+    day: 4,
+    start: 0,
+    dur: 1.5,
+    title: "Leeds Content Dev",
+    time: "8-9:30",
+    color: "bg-red-500",
+  },
+  {
+    day: 4,
+    start: 1.5,
+    dur: 1,
+    title: "BBW",
+    time: "9:30-10:30",
+    color: "bg-teal-600",
+  },
+  {
+    day: 4,
+    start: 4,
+    dur: 2,
+    title: "Hold for Tracy",
+    time: "12-2pm",
+    color: "bg-orange-500",
+  },
+  {
+    day: 4,
+    start: 6,
+    dur: 2,
+    title: "CU Grad Pages",
+    time: "2-4pm",
+    color: "bg-sky-500",
+  },
+  {
+    day: 4,
+    start: 8,
+    dur: 2,
+    title: "Re:Studio",
+    time: "4-6pm",
+    color: "bg-stone-600",
+  },
+];
 
 const CalendarWeekly = () => {
   const navigate = useNavigate();
+  const { selectedSessionId } = useSession();
   const [showModal, setShowModal] = useState(false);
   const [customEvents, setCustomEvents] = useState(() =>
     loadStoredArray(WEEKLY_EVENTS_STORAGE_KEY),
@@ -25,10 +215,23 @@ const CalendarWeekly = () => {
     title: "",
     color: "#4E545C",
   });
+  const [apiEvents, setApiEvents] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     saveStoredArray(WEEKLY_EVENTS_STORAGE_KEY, customEvents);
   }, [customEvents]);
+
+  useEffect(() => {
+    setLoading(true);
+    fetchTimetable(selectedSessionId, "week")
+      .then((res) => {
+        const items = Array.isArray(res) ? res : res.events || res.schedule;
+        if (Array.isArray(items) && items.length > 0) setApiEvents(items);
+      })
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, [selectedSessionId]);
 
   const hours = [
     "8 AM",
@@ -45,192 +248,7 @@ const CalendarWeekly = () => {
   ];
   const days = ["Mon", "Tue", "Wed", "Thu", "Fri"];
 
-  const defaultEvents = [
-    {
-      day: 0,
-      start: 0,
-      dur: 3,
-      title: "UX 1 Assignment",
-      time: "8-11am",
-      color: "bg-indigo-400",
-    },
-    {
-      day: 0,
-      start: 3,
-      dur: 3,
-      title: "UX 2 Assignment",
-      time: "11am-2pm",
-      color: "bg-emerald-500",
-    },
-    {
-      day: 0,
-      start: 6,
-      dur: 2,
-      title: "Workout + Lunch",
-      time: "2-4pm",
-      color: "bg-red-500",
-    },
-    {
-      day: 0,
-      start: 8,
-      dur: 2,
-      title: "Booklab Assignment",
-      time: "4-6pm",
-      color: "bg-amber-500",
-    },
-    {
-      day: 1,
-      start: 0,
-      dur: 1,
-      title: "Messaging Matrix",
-      time: "8-9am",
-      color: "bg-red-500",
-    },
-    {
-      day: 1,
-      start: 1,
-      dur: 1,
-      title: "Marketing Workload",
-      time: "9-10am",
-      color: "bg-emerald-500",
-    },
-    {
-      day: 1,
-      start: 3,
-      dur: 2,
-      title: "Portfolio Dev",
-      time: "11am-12:30pm",
-      color: "bg-sky-500",
-    },
-    {
-      day: 1,
-      start: 5,
-      dur: 2,
-      title: "Call David",
-      time: "1-2:30pm",
-      color: "bg-orange-500",
-    },
-    {
-      day: 1,
-      start: 7,
-      dur: 3,
-      title: "Taylor House Call",
-      time: "3-6pm",
-      color: "bg-amber-400",
-    },
-    {
-      day: 2,
-      start: 0,
-      dur: 1,
-      title: "Workload Mgmt",
-      time: "8-9am",
-      color: "bg-purple-600",
-    },
-    {
-      day: 2,
-      start: 1,
-      dur: 2,
-      title: "Portfolio Due Reminder",
-      time: "9-11am",
-      color: "bg-orange-500",
-    },
-    {
-      day: 2,
-      start: 3,
-      dur: 1,
-      title: "Brand Design",
-      time: "11am-12pm",
-      color: "bg-emerald-500",
-    },
-    {
-      day: 2,
-      start: 4,
-      dur: 4,
-      title: "UX3 Project",
-      time: "12-4pm",
-      color: "bg-amber-400",
-    },
-    {
-      day: 2,
-      start: 8,
-      dur: 2,
-      title: "Booklab",
-      time: "4-6pm",
-      color: "bg-amber-500",
-    },
-    {
-      day: 3,
-      start: 0.5,
-      dur: 1,
-      title: "Get ready + Commute",
-      time: "8:30-9:30",
-      color: "bg-emerald-500",
-    },
-    {
-      day: 3,
-      start: 2,
-      dur: 2,
-      title: "Print + Prep Brand 4",
-      time: "10-12pm",
-      color: "bg-orange-500",
-    },
-    {
-      day: 3,
-      start: 5,
-      dur: 3,
-      title: "Brand Design 4",
-      time: "1-4pm",
-      color: "bg-amber-400",
-    },
-    {
-      day: 3,
-      start: 8,
-      dur: 2,
-      title: "Climb",
-      time: "4-6pm",
-      color: "bg-teal-600",
-    },
-    {
-      day: 4,
-      start: 0,
-      dur: 1.5,
-      title: "Leeds Content Dev",
-      time: "8-9:30",
-      color: "bg-red-500",
-    },
-    {
-      day: 4,
-      start: 1.5,
-      dur: 1,
-      title: "BBW",
-      time: "9:30-10:30",
-      color: "bg-teal-600",
-    },
-    {
-      day: 4,
-      start: 4,
-      dur: 2,
-      title: "Hold for Tracy",
-      time: "12-2pm",
-      color: "bg-orange-500",
-    },
-    {
-      day: 4,
-      start: 6,
-      dur: 2,
-      title: "CU Grad Pages",
-      time: "2-4pm",
-      color: "bg-sky-500",
-    },
-    {
-      day: 4,
-      start: 8,
-      dur: 2,
-      title: "Re:Studio",
-      time: "4-6pm",
-      color: "bg-stone-600",
-    },
-  ];
+  const defaultEvents = apiEvents || FALLBACK_EVENTS;
 
   const colorClassByValue = {
     "#4E545C": "bg-[#4E545C]",
@@ -250,7 +268,7 @@ const CalendarWeekly = () => {
     {},
   );
 
-  const cellH = 40; // smaller on mobile-friendly
+  const cellH = 40;
   const cellHSm = 56;
 
   const timeInputFromSlot = (slotValue) => {
@@ -340,6 +358,18 @@ const CalendarWeekly = () => {
     if (leftEvent.day !== rightEvent.day) return leftEvent.day - rightEvent.day;
     return leftEvent.start - rightEvent.start;
   });
+
+  if (loading) {
+    return (
+      <StudentLayout activeTab="Timetable">
+        <div className="max-w-6xl">
+          <div className="bg-gray-100 animate-pulse h-64 flex items-center justify-center">
+            <span className="text-sm text-gray-400">Loading...</span>
+          </div>
+        </div>
+      </StudentLayout>
+    );
+  }
 
   return (
     <StudentLayout activeTab="Timetable">

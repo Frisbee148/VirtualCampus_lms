@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import StudentLayout from '../StudentLayout';
 import { ExternalLink } from 'lucide-react';
+import { fetchCourses, fetchCourseOverview } from '../../auth/studentApi';
+import { useSession } from '../../context/SessionContext';
 
 export const CourseTabs = ({ active = 'overview' }) => {
   const navigate = useNavigate();
@@ -30,24 +32,65 @@ export const CourseTabs = ({ active = 'overview' }) => {
   );
 };
 
+const FALLBACK_ROWS = [
+  { criteria: 'Quiz 1', weight: 10, score: 8, avg: 7 },
+  { criteria: 'Midsem', weight: 30, score: 25, avg: 23 },
+];
+
 const CourseOverview = () => {
   const navigate = useNavigate();
+  const { selectedSessionId } = useSession();
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    fetchCourses(selectedSessionId)
+      .then((res) => {
+        const courses = Array.isArray(res) ? res : res.courses;
+        if (Array.isArray(courses) && courses.length > 0) {
+          return fetchCourseOverview(courses[0]._id || courses[0].id);
+        }
+        return null;
+      })
+      .then((overview) => setData(overview))
+      .catch(() => setData(null))
+      .finally(() => setLoading(false));
+  }, [selectedSessionId]);
+
+  const courseName = data?.courseName || 'ABC Course';
+  const courseType = data?.courseType || 'Elective';
+  const semester = data?.semester || 'Semester 3';
+  const totalWeightage = data?.totalWeightage ?? 100;
+  const rows = data?.evaluations || FALLBACK_ROWS;
+
+  if (loading) {
+    return (
+      <StudentLayout activeTab="Performance Review">
+        <div className="max-w-5xl">
+          <div className="bg-gray-100 animate-pulse h-64 flex items-center justify-center">
+            <span className="text-sm text-gray-400">Loading...</span>
+          </div>
+        </div>
+      </StudentLayout>
+    );
+  }
 
   return (
     <StudentLayout activeTab="Performance Review">
       <div className="max-w-5xl">
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">ABC Course</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">{courseName}</h1>
         
         <div className="flex flex-wrap gap-2 sm:gap-3 mb-5 sm:mb-8 mt-3 sm:mt-4">
-          <span className="px-3 sm:px-4 py-1 sm:py-1.5 bg-emerald-50 text-emerald-700 text-xs sm:text-sm font-semibold border border-emerald-200">Elective</span>
-          <span className="px-3 sm:px-4 py-1 sm:py-1.5 bg-blue-50 text-[#4E545C] text-xs sm:text-sm font-semibold border border-blue-200">Semester 3</span>
+          <span className="px-3 sm:px-4 py-1 sm:py-1.5 bg-emerald-50 text-emerald-700 text-xs sm:text-sm font-semibold border border-emerald-200">{courseType}</span>
+          <span className="px-3 sm:px-4 py-1 sm:py-1.5 bg-blue-50 text-[#4E545C] text-xs sm:text-sm font-semibold border border-blue-200">{semester}</span>
         </div>
 
         <CourseTabs active="overview" />
 
         <div className="mb-4 sm:mb-6">
           <span className="inline-block px-3 sm:px-5 py-1.5 sm:py-2 bg-orange-50 border border-orange-200 text-orange-700 text-xs sm:text-sm font-semibold">
-            Total Weightage: 100
+            Total Weightage: {totalWeightage}
           </span>
         </div>
 
@@ -64,38 +107,26 @@ const CourseOverview = () => {
               </tr>
             </thead>
             <tbody>
-              <tr className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors">
-                <td className="py-4 px-5 text-sm font-medium text-gray-900">Quiz 1</td>
-                <td className="py-4 px-5 text-sm text-gray-600">10</td>
-                <td className="py-4 px-5 text-sm font-semibold text-gray-900">8</td>
-                <td className="py-4 px-5">
-                  <button onClick={() => navigate('/feedback')} className="inline-flex items-center gap-1.5 text-sm text-black font-medium hover:underline cursor-pointer">
-                    <ExternalLink size={14} /> Open
-                  </button>
-                </td>
-                <td className="py-4 px-5 text-sm text-gray-500">7</td>
-              </tr>
-              <tr className="hover:bg-gray-50/50 transition-colors">
-                <td className="py-4 px-5 text-sm font-medium text-gray-900">Midsem</td>
-                <td className="py-4 px-5 text-sm text-gray-600">30</td>
-                <td className="py-4 px-5 text-sm font-semibold text-gray-900">25</td>
-                <td className="py-4 px-5">
-                  <button onClick={() => navigate('/feedback')} className="inline-flex items-center gap-1.5 text-sm text-black font-medium hover:underline cursor-pointer">
-                    <ExternalLink size={14} /> Open
-                  </button>
-                </td>
-                <td className="py-4 px-5 text-sm text-gray-500">23</td>
-              </tr>
+              {rows.map((row, idx) => (
+                <tr key={idx} className={`${idx < rows.length - 1 ? 'border-b border-gray-50' : ''} hover:bg-gray-50/50 transition-colors`}>
+                  <td className="py-4 px-5 text-sm font-medium text-gray-900">{row.criteria}</td>
+                  <td className="py-4 px-5 text-sm text-gray-600">{row.weight}</td>
+                  <td className="py-4 px-5 text-sm font-semibold text-gray-900">{row.score}</td>
+                  <td className="py-4 px-5">
+                    <button onClick={() => navigate('/feedback')} className="inline-flex items-center gap-1.5 text-sm text-black font-medium hover:underline cursor-pointer">
+                      <ExternalLink size={14} /> Open
+                    </button>
+                  </td>
+                  <td className="py-4 px-5 text-sm text-gray-500">{row.avg}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
 
         {/* Mobile card layout */}
         <div className="sm:hidden space-y-3">
-          {[
-            { criteria: 'Quiz 1', weight: 10, score: 8, avg: 7 },
-            { criteria: 'Midsem', weight: 30, score: 25, avg: 23 },
-          ].map((row, idx) => (
+          {rows.map((row, idx) => (
             <div key={idx} className="bg-white border border-gray-100 shadow-sm p-3">
               <div className="flex items-center justify-between mb-2">
                 <h3 className="text-sm font-semibold text-gray-900">{row.criteria}</h3>

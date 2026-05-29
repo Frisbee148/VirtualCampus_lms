@@ -1,7 +1,12 @@
+import { readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { pool } from "../config/db.js";
 import { findByUsername, createUser } from "../models/userModel.js";
 import { hashPassword } from "../utils/password.js";
 import { env } from "../config/env.js";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Demo mode: one shared account. Its credentials (env DEMO_USERNAME /
 // DEMO_PASSWORD) are the only ones that log in, and they work for every role
@@ -28,6 +33,12 @@ async function seed() {
     });
     console.log(`created demo account '${username}'`);
   }
+
+  // Seed student dashboard data
+  const studentSeed = readFileSync(join(__dirname, "student_seed.sql"), "utf8");
+  console.log("Applying student_seed.sql ...");
+  await pool.query(studentSeed);
+  console.log("Student seed data applied.");
 
   console.log(`\nLogin with:  username = ${username}   password = ${env.demoPassword}`);
   console.log("Works for ALL roles — just pick the role in the dropdown.");

@@ -1,22 +1,54 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import StudentLayout from '../StudentLayout';
 import { useSession } from '../../context/SessionContext';
+import { fetchFeeStatus } from '../../auth/studentApi';
 
 const FeeStatus = () => {
-  const { selectedSession } = useSession();
-  const feeBreakdown = [
-    { item: 'Tuition Fee', amount: '1,50,000' },
-    { item: 'Development Fee', amount: '25,000' },
-    { item: 'Lab Charges', amount: '15,000' },
-    { item: 'Library & Internet', amount: '10,000' },
-  ];
+  const { selectedSession, selectedSessionId } = useSession();
+  const [feeBreakdown, setFeeBreakdown] = useState([]);
+  const [payment, setPayment] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let cancelled = false;
+    setLoading(true);
+    fetchFeeStatus(selectedSessionId)
+      .then((data) => {
+        if (!cancelled) {
+          setFeeBreakdown(data.items || []);
+          setPayment(data.payment || null);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) { setFeeBreakdown([]); setPayment(null); }
+      })
+      .finally(() => { if (!cancelled) setLoading(false); });
+    return () => { cancelled = true; };
+  }, [selectedSessionId]);
+
+  if (loading) {
+    return (
+      <StudentLayout activeTab="Fee status">
+        <div className="max-w-4xl">
+          <div className="h-8 w-40 bg-gray-100 mb-4 animate-pulse" />
+          <div className="h-48 bg-gray-50 border border-gray-100 animate-pulse mb-4" />
+        </div>
+      </StudentLayout>
+    );
+  }
+
+  const totalAmount = payment ? payment.total_amount : feeBreakdown.reduce((s, f) => s + f.amount, 0);
+  const paidAmount = payment ? payment.paid_amount : 0;
+  const status = payment ? payment.status : 'Unpaid';
+  const pending = totalAmount - paidAmount;
+
+  const formatAmount = (v) => Number(v).toLocaleString('en-IN');
 
   return (
     <StudentLayout activeTab="Fee status">
       <div className="max-w-4xl">
         <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Fee Status</h1>
         <p className="text-xs sm:text-sm text-gray-400 mb-5 sm:mb-8">{selectedSession.label}</p>
-
 
         <div className="bg-white border border-gray-200 overflow-hidden mb-4 sm:mb-6">
           <div className="px-3 sm:px-5 py-3 sm:py-4 border-b border-gray-100">
@@ -26,26 +58,26 @@ const FeeStatus = () => {
             <tbody>
               {feeBreakdown.map((f, idx) => (
                 <tr key={idx} className="border-b border-gray-50 last:border-b-0 hover:bg-gray-50/50 transition-colors">
-                  <td className="py-3 sm:py-4 px-3 sm:px-5 text-xs sm:text-sm font-medium text-gray-700">{f.item}</td>
-                  <td className="py-3 sm:py-4 px-3 sm:px-5 text-xs sm:text-sm font-bold text-gray-900 text-right">{f.amount}</td>
+                  <td className="py-3 sm:py-4 px-3 sm:px-5 text-xs sm:text-sm font-medium text-gray-700">{f.item_name}</td>
+                  <td className="py-3 sm:py-4 px-3 sm:px-5 text-xs sm:text-sm font-bold text-gray-900 text-right">{formatAmount(f.amount)}</td>
                 </tr>
               ))}
               <tr className="bg-gray-50">
                 <td className="py-3 sm:py-4 px-3 sm:px-5 text-xs sm:text-sm font-bold text-gray-900">Total</td>
-                <td className="py-3 sm:py-4 px-3 sm:px-5 text-xs sm:text-sm font-bold text-gray-900 text-right">2,00,000</td>
+                <td className="py-3 sm:py-4 px-3 sm:px-5 text-xs sm:text-sm font-bold text-gray-900 text-right">{formatAmount(totalAmount)}</td>
               </tr>
             </tbody>
           </table>
         </div>
 
         <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-6">
-          <div className="bg-emerald-50 border border-emerald-200 p-3 sm:p-5">
-            <p className="text-[10px] sm:text-xs font-semibold text-emerald-600 uppercase tracking-wider">Fee Status</p>
-            <p className="text-base sm:text-lg font-bold text-emerald-700 mt-1">Paid</p>
+          <div className={`${status === 'Paid' ? 'bg-emerald-50 border-emerald-200' : 'bg-amber-50 border-amber-200'} border p-3 sm:p-5`}>
+            <p className={`text-[10px] sm:text-xs font-semibold ${status === 'Paid' ? 'text-emerald-600' : 'text-amber-600'} uppercase tracking-wider`}>Fee Status</p>
+            <p className={`text-base sm:text-lg font-bold ${status === 'Paid' ? 'text-emerald-700' : 'text-amber-700'} mt-1`}>{status}</p>
           </div>
           <div className="bg-amber-50 border border-amber-200 p-3 sm:p-5">
             <p className="text-[10px] sm:text-xs font-semibold text-amber-600 uppercase tracking-wider">Pending</p>
-            <p className="text-base sm:text-lg font-bold text-amber-700 mt-1">0</p>
+            <p className="text-base sm:text-lg font-bold text-amber-700 mt-1">{formatAmount(pending)}</p>
           </div>
         </div>
 

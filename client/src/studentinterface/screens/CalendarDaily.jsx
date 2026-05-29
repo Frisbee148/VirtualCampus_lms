@@ -10,9 +10,12 @@ import {
   timeLabelToMinutes,
 } from "../utils/studentEventHelpers";
 import { Plus } from "lucide-react";
+import { fetchTimetable } from "../../auth/studentApi";
+import { useSession } from "../../context/SessionContext";
 
 const CalendarDaily = () => {
   const navigate = useNavigate();
+  const { selectedSessionId } = useSession();
   const [showModal, setShowModal] = useState(false);
   const [customSchedule, setCustomSchedule] = useState(() =>
     loadStoredArray(DAILY_EVENTS_STORAGE_KEY),
@@ -20,12 +23,26 @@ const CalendarDaily = () => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [editEventIndex, setEditEventIndex] = useState(0);
   const [form, setForm] = useState({ time: "09:00", event: "", room: "" });
+  const [apiSchedule, setApiSchedule] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     saveStoredArray(DAILY_EVENTS_STORAGE_KEY, customSchedule);
   }, [customSchedule]);
 
-  const defaultSchedule = [
+  useEffect(() => {
+    setLoading(true);
+    const today = new Date().toLocaleDateString("en-US", { weekday: "long" }).toLowerCase();
+    fetchTimetable(selectedSessionId, today)
+      .then((res) => {
+        const items = Array.isArray(res) ? res : res.schedule;
+        if (Array.isArray(items) && items.length > 0) setApiSchedule(items);
+      })
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, [selectedSessionId]);
+
+  const defaultSchedule = apiSchedule || [
     { time: "9:00 AM", event: "Data Structures Lecture", room: "Room 201" },
     { time: "10:30 AM", event: "Operating Systems Lab", room: "Lab 3" },
     { time: "12:00 PM", event: "Lunch Break", room: "" },
@@ -109,6 +126,18 @@ const CalendarDaily = () => {
 
     setShowModal(false);
   };
+
+  if (loading) {
+    return (
+      <StudentLayout activeTab="Timetable">
+        <div className="max-w-5xl">
+          <div className="bg-gray-100 animate-pulse h-64 flex items-center justify-center">
+            <span className="text-sm text-gray-400">Loading...</span>
+          </div>
+        </div>
+      </StudentLayout>
+    );
+  }
 
   return (
     <StudentLayout activeTab="Timetable">

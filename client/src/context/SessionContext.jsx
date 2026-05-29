@@ -1,6 +1,7 @@
-import React, { createContext, useContext, useState, useMemo } from "react";
+import React, { createContext, useContext, useState, useMemo, useEffect } from "react";
+import { fetchSessions } from "../auth/studentApi";
 
-const SESSION_OPTIONS = [
+const FALLBACK_SESSION_OPTIONS = [
   { id: "2025-26-II", label: "Session 2025-26 II" },
   { id: "2025-26-I", label: "Session 2025-26 I" },
   { id: "2024-25-II", label: "Session 2024-25 II" },
@@ -12,20 +13,35 @@ const SESSION_OPTIONS = [
 const SessionContext = createContext(null);
 
 export const SessionProvider = ({ children }) => {
+  const [sessionOptions, setSessionOptions] = useState(FALLBACK_SESSION_OPTIONS);
   const [selectedSessionId, setSelectedSessionId] = useState(
-    SESSION_OPTIONS[0].id,
+    FALLBACK_SESSION_OPTIONS[0].id,
   );
+
+  useEffect(() => {
+    fetchSessions()
+      .then((data) => {
+        const list = Array.isArray(data) ? data : data.sessions;
+        if (Array.isArray(list) && list.length > 0) {
+          setSessionOptions(list);
+          setSelectedSessionId(list[0].id);
+        }
+      })
+      .catch(() => {
+        /* keep fallback */
+      });
+  }, []);
 
   const value = useMemo(
     () => ({
-      SESSION_OPTIONS,
+      SESSION_OPTIONS: sessionOptions,
       selectedSessionId,
       setSelectedSessionId,
       selectedSession:
-        SESSION_OPTIONS.find((s) => s.id === selectedSessionId) ||
-        SESSION_OPTIONS[0],
+        sessionOptions.find((s) => s.id === selectedSessionId) ||
+        sessionOptions[0],
     }),
-    [selectedSessionId],
+    [selectedSessionId, sessionOptions],
   );
 
   return (
@@ -41,5 +57,5 @@ export const useSession = () => {
   return context;
 };
 
-export { SESSION_OPTIONS };
+export { FALLBACK_SESSION_OPTIONS as SESSION_OPTIONS };
 export default SessionContext;

@@ -1,181 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import StudentLayout from "../StudentLayout";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { useSession } from "../../context/SessionContext";
-
-const SESSION_DATA = {
-  "2025-26-II": {
-    courses: [
-      {
-        name: "ABC Course",
-        total: 72,
-        avg: 64,
-        grade: "A",
-        exams: [
-          { name: "Quiz 1 (max: 10)", score: 9 },
-          { name: "Midsem (max: 30)", score: 27 },
-          { name: "Assignment (max: 20)", score: 16 },
-          { name: "Endsem (max: 40)", score: 20 },
-        ],
-      },
-      {
-        name: "DEF Course",
-        total: 81,
-        avg: 68,
-        grade: "AB",
-        exams: [
-          { name: "Quiz 1 (max: 15)", score: 13 },
-          { name: "Midsem (max: 35)", score: 30 },
-          { name: "Endsem (max: 50)", score: 38 },
-        ],
-      },
-    ],
-  },
-  "2025-26-I": {
-    courses: [
-      {
-        name: "ABC Course",
-        total: 65,
-        avg: 57,
-        grade: "B",
-        exams: [
-          { name: "Quiz 1 (max: 10)", score: 8 },
-          { name: "Midsem (max: 30)", score: 26 },
-          { name: "Assignment (max: 20)", score: 14 },
-          { name: "Endsem (max: 40)", score: 17 },
-        ],
-      },
-      {
-        name: "DEF Course",
-        total: 76,
-        avg: 63,
-        grade: "A",
-        exams: [
-          { name: "Quiz 1 (max: 15)", score: 12 },
-          { name: "Midsem (max: 35)", score: 28 },
-          { name: "Endsem (max: 50)", score: 36 },
-        ],
-      },
-    ],
-  },
-  "2024-25-II": {
-    courses: [
-      {
-        name: "ABC Course",
-        total: 56,
-        avg: 50,
-        grade: "B",
-        exams: [
-          { name: "Quiz 1 (max: 10)", score: 8 },
-          { name: "Midsem (max: 30)", score: 25 },
-          { name: "Assignment (max: 20)", score: 13 },
-          { name: "Endsem (max: 40)", score: 10 },
-        ],
-      },
-      {
-        name: "DEF Course",
-        total: 78,
-        avg: 65,
-        grade: "AB",
-        exams: [
-          { name: "Quiz 1 (max: 15)", score: 12 },
-          { name: "Midsem (max: 35)", score: 28 },
-          { name: "Endsem (max: 50)", score: 38 },
-        ],
-      },
-    ],
-  },
-  "2024-25-I": {
-    courses: [
-      {
-        name: "ABC Course",
-        total: 62,
-        avg: 54,
-        grade: "BC",
-        exams: [
-          { name: "Quiz 1 (max: 10)", score: 9 },
-          { name: "Midsem (max: 30)", score: 24 },
-          { name: "Assignment (max: 20)", score: 15 },
-          { name: "Endsem (max: 40)", score: 14 },
-        ],
-      },
-      {
-        name: "DEF Course",
-        total: 71,
-        avg: 60,
-        grade: "A",
-        exams: [
-          { name: "Quiz 1 (max: 15)", score: 11 },
-          { name: "Midsem (max: 35)", score: 26 },
-          { name: "Endsem (max: 50)", score: 34 },
-        ],
-      },
-    ],
-  },
-  "2023-24-II": {
-    courses: [
-      {
-        name: "ABC Course",
-        total: 68,
-        avg: 58,
-        grade: "A",
-        exams: [
-          { name: "Quiz 1 (max: 10)", score: 9 },
-          { name: "Midsem (max: 30)", score: 27 },
-          { name: "Assignment (max: 20)", score: 14 },
-          { name: "Endsem (max: 40)", score: 18 },
-        ],
-      },
-      {
-        name: "DEF Course",
-        total: 74,
-        avg: 62,
-        grade: "AB",
-        exams: [
-          { name: "Quiz 1 (max: 15)", score: 12 },
-          { name: "Midsem (max: 35)", score: 27 },
-          { name: "Endsem (max: 50)", score: 35 },
-        ],
-      },
-    ],
-  },
-  "2023-24-I": {
-    courses: [
-      {
-        name: "ABC Course",
-        total: 59,
-        avg: 51,
-        grade: "B",
-        exams: [
-          { name: "Quiz 1 (max: 10)", score: 7 },
-          { name: "Midsem (max: 30)", score: 24 },
-          { name: "Assignment (max: 20)", score: 14 },
-          { name: "Endsem (max: 40)", score: 14 },
-        ],
-      },
-      {
-        name: "DEF Course",
-        total: 69,
-        avg: 58,
-        grade: "CD",
-        exams: [
-          { name: "Quiz 1 (max: 15)", score: 10 },
-          { name: "Midsem (max: 35)", score: 25 },
-          { name: "Endsem (max: 50)", score: 34 },
-        ],
-      },
-    ],
-  },
-};
+import { fetchGrades } from "../../auth/studentApi";
 
 const GradesScreen = () => {
   const navigate = useNavigate();
   const { selectedSessionId, selectedSession } = useSession();
   const [expanded, setExpanded] = useState(null);
+  const [courses, setCourses] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const sessionData = SESSION_DATA[selectedSessionId];
-  const courses = sessionData ? sessionData.courses : [];
+  useEffect(() => {
+    let cancelled = false;
+    setLoading(true);
+    setExpanded(null);
+    fetchGrades(selectedSessionId)
+      .then((data) => {
+        if (!cancelled) setCourses(data.courses || []);
+      })
+      .catch(() => {
+        if (!cancelled) setCourses([]);
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+    return () => { cancelled = true; };
+  }, [selectedSessionId]);
+
+  if (loading) {
+    return (
+      <StudentLayout activeTab="Grades">
+        <div className="max-w-5xl">
+          <div className="h-8 w-48 bg-gray-100 mb-4 animate-pulse" />
+          <div className="space-y-3">
+            {[1,2].map(i => <div key={i} className="h-16 bg-gray-50 border border-gray-100 animate-pulse" />)}
+          </div>
+        </div>
+      </StudentLayout>
+    );
+  }
 
   return (
     <StudentLayout activeTab="Grades">
@@ -219,14 +84,14 @@ const GradesScreen = () => {
                     }}
                     className="justify-self-start inline-flex shrink-0 items-center rounded-none border border-gray-200 bg-white px-3 py-1 text-left text-xs sm:text-sm font-semibold text-black shadow-sm transition-colors hover:border-black hover:bg-[#4E545C] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-black/20 whitespace-nowrap"
                   >
-                    {c.name}
+                    {c.name || c.course_name}
                   </button>
                   <div className="flex flex-1 items-center justify-center gap-4 sm:gap-12 min-w-0">
                     <span className="text-[10px] sm:text-sm text-gray-500 whitespace-nowrap">
-                      Total: <b className="text-gray-900">{c.total}</b>
+                      Total: <b className="text-gray-900">{c.total_score ?? c.total}</b>
                     </span>
                     <span className="text-[10px] sm:text-sm text-gray-500 whitespace-nowrap">
-                      Avg: <b className="text-gray-900">{c.avg}</b>
+                      Avg: <b className="text-gray-900">{c.class_avg ?? c.avg}</b>
                     </span>
                   </div>
                   <div className="ml-auto flex items-center gap-2 sm:gap-3 flex-shrink-0">
@@ -242,7 +107,7 @@ const GradesScreen = () => {
                     </span>
                   </div>
                 </div>
-                {expanded === idx && (
+                {expanded === idx && c.exams && (
                   <div className="border-t border-gray-100 bg-gray-50/30">
                     <div className="grid grid-cols-1 sm:grid-cols-4 gap-0">
                       {c.exams.map((ex, i) => (
@@ -251,7 +116,7 @@ const GradesScreen = () => {
                           className="p-3 sm:p-4 border-b sm:border-b-0 sm:border-r border-gray-100 last:border-b-0 sm:last:border-r-0 flex items-center justify-between sm:block"
                         >
                           <p className="text-[10px] sm:text-[11px] text-gray-400 font-medium sm:mb-1 leading-snug">
-                            {ex.name}
+                            {ex.name} (max: {ex.max_score})
                           </p>
                           <p className="text-base sm:text-xl font-bold text-gray-900">
                             {ex.score}

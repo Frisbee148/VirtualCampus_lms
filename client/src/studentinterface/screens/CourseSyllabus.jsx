@@ -1,22 +1,71 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import StudentLayout from '../StudentLayout';
 import { CourseTabs } from './CourseOverview';
 import { Check } from 'lucide-react';
+import { fetchCourses, fetchCourseSyllabus, toggleSyllabusUnit } from '../../auth/studentApi';
+import { useSession } from '../../context/SessionContext';
+
+const FALLBACK_UNITS = [
+  { unit: '1', subs: ['1.1', '1.2'] },
+  { unit: '2', subs: ['2.1'] },
+  { unit: '3', subs: ['3.1'] },
+];
 
 const CourseSyllabus = () => {
+  const { selectedSessionId } = useSession();
   const [checked, setChecked] = useState({});
-  const toggle = (key) => setChecked(prev => ({ ...prev, [key]: !prev[key] }));
+  const [units, setUnits] = useState(FALLBACK_UNITS);
+  const [courseName, setCourseName] = useState('ABC Course');
+  const [courseId, setCourseId] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const units = [
-    { unit: '1', subs: ['1.1', '1.2'] },
-    { unit: '2', subs: ['2.1'] },
-    { unit: '3', subs: ['3.1'] },
-  ];
+  useEffect(() => {
+    setLoading(true);
+    fetchCourses(selectedSessionId)
+      .then((res) => {
+        const courses = Array.isArray(res) ? res : res.courses;
+        if (Array.isArray(courses) && courses.length > 0) {
+          const id = courses[0]._id || courses[0].id;
+          setCourseId(id);
+          setCourseName(courses[0].name || 'ABC Course');
+          return fetchCourseSyllabus(id);
+        }
+        return null;
+      })
+      .then((data) => {
+        if (data) {
+          const u = Array.isArray(data) ? data : data.units;
+          if (Array.isArray(u) && u.length > 0) setUnits(u);
+          if (data.checked) setChecked(data.checked);
+        }
+      })
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, [selectedSessionId]);
+
+  const toggle = (key) => {
+    setChecked(prev => ({ ...prev, [key]: !prev[key] }));
+    if (courseId) {
+      toggleSyllabusUnit(courseId, key).catch(() => {});
+    }
+  };
+
+  if (loading) {
+    return (
+      <StudentLayout activeTab="Performance Review">
+        <div className="max-w-5xl">
+          <div className="bg-gray-100 animate-pulse h-64 flex items-center justify-center">
+            <span className="text-sm text-gray-400">Loading...</span>
+          </div>
+        </div>
+      </StudentLayout>
+    );
+  }
 
   return (
     <StudentLayout activeTab="Performance Review">
       <div className="max-w-5xl">
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">ABC Course</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">{courseName}</h1>
         <p className="text-xs sm:text-sm text-gray-400 mb-4 sm:mb-6">Track syllabus completion</p>
         <CourseTabs active="overview" />
 

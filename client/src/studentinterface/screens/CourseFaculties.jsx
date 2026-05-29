@@ -1,17 +1,57 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import StudentLayout from '../StudentLayout';
 import { CourseTabs } from './CourseOverview';
+import { fetchCourses, fetchCourseFaculty } from '../../auth/studentApi';
+import { useSession } from '../../context/SessionContext';
+
+const FALLBACK_TEACHERS = [
+  { name: 'Dr. Teacher 1', branch: 'CSE', room: '202', email: 'teacher1@mail.com' },
+  { name: 'Dr. Teacher 2', branch: 'CSE', room: '203', email: 'teacher2@mail.com' }
+];
 
 const CourseFaculties = () => {
-  const teachers = [
-    { name: 'Dr. Teacher 1', branch: 'CSE', room: '202', email: 'teacher1@mail.com' },
-    { name: 'Dr. Teacher 2', branch: 'CSE', room: '203', email: 'teacher2@mail.com' }
-  ];
+  const { selectedSessionId } = useSession();
+  const [teachers, setTeachers] = useState(FALLBACK_TEACHERS);
+  const [courseName, setCourseName] = useState('ABC Course');
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    fetchCourses(selectedSessionId)
+      .then((res) => {
+        const courses = Array.isArray(res) ? res : res.courses;
+        if (Array.isArray(courses) && courses.length > 0) {
+          setCourseName(courses[0].name || 'ABC Course');
+          return fetchCourseFaculty(courses[0]._id || courses[0].id);
+        }
+        return null;
+      })
+      .then((data) => {
+        if (data) {
+          const list = Array.isArray(data) ? data : data.faculties;
+          if (Array.isArray(list) && list.length > 0) setTeachers(list);
+        }
+      })
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, [selectedSessionId]);
+
+  if (loading) {
+    return (
+      <StudentLayout activeTab="Performance Review">
+        <div className="max-w-5xl">
+          <div className="bg-gray-100 animate-pulse h-64 flex items-center justify-center">
+            <span className="text-sm text-gray-400">Loading...</span>
+          </div>
+        </div>
+      </StudentLayout>
+    );
+  }
 
   return (
     <StudentLayout activeTab="Performance Review">
       <div className="max-w-5xl">
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">ABC Course</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">{courseName}</h1>
         <p className="text-xs sm:text-sm text-gray-400 mb-4 sm:mb-6">Faculty members</p>
         <CourseTabs active="faculties" />
 

@@ -1,51 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import StudentLayout from "../StudentLayout";
 import { useSession } from "../../context/SessionContext";
-
-const SEMESTER_RECORDS = [
-  {
-    id: "2023-24-I",
-    label: "Sem 1 (2023-24 I)",
-    shortLabel: "Sem 1",
-    credits: 21,
-    sgpa: 8.12,
-  },
-  {
-    id: "2023-24-II",
-    label: "Sem 2 (2023-24 II)",
-    shortLabel: "Sem 2",
-    credits: 22,
-    sgpa: 8.35,
-  },
-  {
-    id: "2024-25-I",
-    label: "Sem 3 (2024-25 I)",
-    shortLabel: "Sem 3",
-    credits: 20,
-    sgpa: 8.18,
-  },
-  {
-    id: "2024-25-II",
-    label: "Sem 4 (2024-25 II)",
-    shortLabel: "Sem 4",
-    credits: 21,
-    sgpa: 8.63,
-  },
-  {
-    id: "2025-26-I",
-    label: "Sem 5 (2025-26 I)",
-    shortLabel: "Sem 5",
-    credits: 22,
-    sgpa: 8.45,
-  },
-  {
-    id: "2025-26-II",
-    label: "Sem 6 (2025-26 II)",
-    shortLabel: "Sem 6",
-    credits: 20,
-    sgpa: 8.71,
-  },
-];
+import { fetchPerformance } from "../../auth/studentApi";
 
 const buildSemesterHistory = (records) => {
   let totalCredits = 0;
@@ -64,29 +20,66 @@ const buildSemesterHistory = (records) => {
   });
 };
 
-const SEMESTER_HISTORY = buildSemesterHistory(SEMESTER_RECORDS);
-
 const PerformanceCGPA = () => {
   const { selectedSessionId, selectedSession } = useSession();
+  const [semesterHistory, setSemesterHistory] = useState([]);
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    let cancelled = false;
+    setLoading(true);
+    fetchPerformance()
+      .then((data) => {
+        if (!cancelled) {
+          const records = (data.performance || []).map((r) => ({
+            id: r.session_id,
+            label: r.label,
+            shortLabel: r.short_label,
+            credits: Number(r.credits),
+            sgpa: Number(r.sgpa),
+          }));
+          setSemesterHistory(buildSemesterHistory(records));
+        }
+      })
+      .catch(() => {
+        if (!cancelled) setSemesterHistory([]);
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+    return () => { cancelled = true; };
+  }, []);
+
+  if (loading) {
+    return (
+      <StudentLayout activeTab="Grades">
+        <div className="max-w-5xl">
+          <div className="h-8 w-64 bg-gray-100 mb-4 animate-pulse" />
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+            {[1,2,3].map(i => <div key={i} className="h-24 bg-gray-50 border border-gray-100 animate-pulse" />)}
+          </div>
+          <div className="h-80 bg-gray-50 border border-gray-100 animate-pulse" />
+        </div>
+      </StudentLayout>
+    );
+  }
+
+  const visibleHistory = semesterHistory;
   const activeSemester =
-    SEMESTER_HISTORY.find((semester) => semester.id === selectedSessionId) ||
-    null;
+    visibleHistory.find((semester) => semester.id === selectedSessionId) || null;
 
-  const visibleHistory = SEMESTER_HISTORY;
-
-  const totalCredits = SEMESTER_HISTORY.reduce(
+  const totalCredits = visibleHistory.reduce(
     (sum, semester) => sum + semester.credits,
     0,
   );
   const weightedCgpa =
     totalCredits > 0
-      ? SEMESTER_HISTORY.reduce(
+      ? visibleHistory.reduce(
           (sum, semester) => sum + semester.credits * semester.sgpa,
           0,
         ) / totalCredits
       : 0;
-  const latestCgpa = SEMESTER_HISTORY[SEMESTER_HISTORY.length - 1].cgpa;
+  const latestCgpa = visibleHistory.length > 0 ? visibleHistory[visibleHistory.length - 1].cgpa : 0;
 
   const summaryCards = activeSemester
     ? [
@@ -137,8 +130,8 @@ const PerformanceCGPA = () => {
     semester.sgpa,
     semester.cgpa,
   ]);
-  const rawMin = Math.min(...dataValues);
-  const rawMax = Math.max(...dataValues);
+  const rawMin = dataValues.length > 0 ? Math.min(...dataValues) : 0;
+  const rawMax = dataValues.length > 0 ? Math.max(...dataValues) : 10;
   const chartMin = rawMin === rawMax ? rawMin - 0.5 : rawMin - 0.2;
   const chartMax = rawMin === rawMax ? rawMax + 0.5 : rawMax + 0.2;
   const yScale = (value) =>
@@ -194,6 +187,7 @@ const PerformanceCGPA = () => {
           ))}
         </div>
 
+        {visibleHistory.length > 0 && (
         <div className="bg-white border border-gray-100 shadow-sm p-3 sm:p-6">
           <div className="flex items-center justify-between gap-3 mb-4 sm:mb-6">
             <h2 className="text-base sm:text-lg font-bold text-gray-900">
@@ -336,6 +330,7 @@ const PerformanceCGPA = () => {
             </svg>
           </div>
         </div>
+        )}
       </div>
     </StudentLayout>
   );
