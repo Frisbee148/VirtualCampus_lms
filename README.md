@@ -1,4 +1,4 @@
-# virtualCampus
+# VirtualCampus
 
 A college LMS web app for LNMIIT with 11 role-based interfaces (student,
 faculty, HOD, director, registrar, librarian, staff, parent/guardian, and
