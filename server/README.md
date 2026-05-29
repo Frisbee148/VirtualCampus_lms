@@ -1,7 +1,7 @@
 # virtualCampus — Backend
 
-Express + PostgreSQL API providing authentication and role/login-mode storage
-for the React client in `../client`.
+Express + PostgreSQL + Redis API providing authentication, caching,
+rate-limiting, and role/login-mode storage for the React client in `../client`.
 
 ## What it does
 
@@ -18,6 +18,7 @@ for the React client in `../client`.
 | Runtime   | Node.js (ESM)               |
 | Framework | Express 4                   |
 | Database  | PostgreSQL (`pg` pool)      |
+| Cache     | Redis (`ioredis`)           |
 | Auth      | JWT (`jsonwebtoken`)        |
 | Passwords | bcrypt (`bcryptjs`)         |
 
@@ -52,11 +53,12 @@ ignored (enter anything).
 Change the credentials in `.env` (`DEMO_USERNAME` / `DEMO_PASSWORD`) then re-run
 `npm run db:seed`.
 
-No local Postgres? Quick Docker instance:
+No local Postgres/Redis? Quick Docker instances:
 
 ```bash
 docker run --name vc-pg -e POSTGRES_PASSWORD=postgres \
   -e POSTGRES_DB=virtualcampus -p 5432:5432 -d postgres:16
+docker run --name vc-redis -p 6379:6379 -d redis:7-alpine
 ```
 
 ## Run
@@ -98,6 +100,24 @@ curl -s localhost:4000/api/auth/login \
   login, with `token_jti` for revocation and `expires_at` for expiry.
 
 See `src/db/schema.sql`.
+
+## Redis
+
+Redis is used for three things:
+
+| Feature            | Key pattern                | TTL   | Description |
+|--------------------|----------------------------|-------|-------------|
+| Session cache      | `session:active:{jti}`     | 5 min | Avoids a PG query on every authenticated request |
+| User cache         | `user:id:{uuid}`           | 10 min | Caches `findById` (used by `/api/auth/me`) |
+| Rate limiting      | `ratelimit:{ip}:{window}`  | varies | Fixed-window counters per IP |
+
+**Rate limits:**
+- Login: 10 attempts per 15 minutes per IP
+- General API: 100 requests per minute per IP
+
+Redis is **optional** — if it's unavailable the server falls back to
+PostgreSQL-only (no caching, no rate limiting). Set `REDIS_URL` in `.env`
+(defaults to `redis://localhost:6379`).
 
 ## Wiring the client
 

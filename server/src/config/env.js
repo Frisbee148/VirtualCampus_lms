@@ -29,6 +29,9 @@ export const env = {
   // The role is chosen in the login dropdown; these are the only creds that work.
   demoUsername: process.env.DEMO_USERNAME || "demo",
   demoPassword: process.env.DEMO_PASSWORD || "demo123",
+
+  // Redis
+  redisUrl: process.env.REDIS_URL || "redis://localhost:6379",
 };
 
 if (env.nodeEnv === "production" && env.jwtSecret === "change-me-to-a-long-random-secret") {

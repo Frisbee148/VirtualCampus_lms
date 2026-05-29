@@ -6,10 +6,11 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PG_CONTAINER="vc-pg"
+REDIS_CONTAINER="vc-redis"
 STOP_DB=false
 [[ "${1:-}" == "--stop-db" ]] && STOP_DB=true
 
-# --- 1. Postgres -----------------------------------------------------------
+# --- 1a. Postgres ----------------------------------------------------------
 if ! docker ps --format '{{.Names}}' | grep -qx "$PG_CONTAINER"; then
   if docker ps -a --format '{{.Names}}' | grep -qx "$PG_CONTAINER"; then
     echo "Starting existing Postgres container '$PG_CONTAINER'..."
@@ -31,6 +32,21 @@ until docker exec "$PG_CONTAINER" pg_isready -U postgres >/dev/null 2>&1; do
 done
 echo " ready."
 
+# --- 1b. Redis --------------------------------------------------------------
+if ! docker ps --format '{{.Names}}' | grep -qx "$REDIS_CONTAINER"; then
+  if docker ps -a --format '{{.Names}}' | grep -qx "$REDIS_CONTAINER"; then
+    echo "Starting existing Redis container '$REDIS_CONTAINER'..."
+    docker start "$REDIS_CONTAINER" >/dev/null
+  else
+    echo "Creating Redis container '$REDIS_CONTAINER'..."
+    docker run --name "$REDIS_CONTAINER" \
+      -p 6379:6379 -d redis:7-alpine >/dev/null
+  fi
+else
+  echo "Redis container '$REDIS_CONTAINER' already running."
+fi
+echo "Redis ready."
+
 # --- cleanup ---------------------------------------------------------------
 PIDS=()
 cleanup() {
@@ -43,6 +59,8 @@ cleanup() {
   if $STOP_DB; then
     echo "Stopping Postgres container..."
     docker stop "$PG_CONTAINER" >/dev/null || true
+    echo "Stopping Redis container..."
+    docker stop "$REDIS_CONTAINER" >/dev/null || true
   fi
   echo "Done."
 }

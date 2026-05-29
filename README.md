@@ -2,21 +2,21 @@
 
 A college LMS web app for LNMIIT with 11 role-based interfaces (student,
 faculty, HOD, director, registrar, librarian, staff, parent/guardian, and
-admin roles). React frontend + Express/PostgreSQL backend.
+admin roles). React frontend + Express/PostgreSQL/Redis backend.
 
 ## Structure
 
 ```
 virtualCampus/
 ├── client/        React + Vite frontend (11 role interfaces)
-├── server/        Express + PostgreSQL backend (auth + login-mode storage)
+├── server/        Express + PostgreSQL + Redis backend (auth, caching, rate-limiting)
 ├── dev.sh         Start Postgres + backend + frontend together
 └── README.md
 ```
 
 ## Quick start
 
-Requires **Node.js** and **Docker** (for PostgreSQL).
+Requires **Node.js** and **Docker** (for PostgreSQL and Redis).
 
 ### First time
 
@@ -40,6 +40,7 @@ The `db:seed` step needs Postgres running. `./dev.sh` starts it for you, or:
 ```bash
 docker run --name vc-pg -e POSTGRES_PASSWORD=postgres \
   -e POSTGRES_DB=virtualcampus -p 5432:5432 -d postgres:16
+docker run --name vc-redis -p 6379:6379 -d redis:7-alpine
 ```
 
 ### Run everything
@@ -48,7 +49,7 @@ docker run --name vc-pg -e POSTGRES_PASSWORD=postgres \
 ./dev.sh
 ```
 
-Starts **Postgres → backend (:4000) → frontend (:5173)**.
+Starts **Postgres → Redis → backend (:4000) → frontend (:5173)**.
 Press **Ctrl-C** to stop backend + frontend (Postgres container stays up;
 use `./dev.sh --stop-db` to stop it too).
 
@@ -82,6 +83,7 @@ them in `server/.env` (`DEMO_USERNAME` / `DEMO_PASSWORD`) then re-run
 | Frontend | React 19, Vite, React Router, Tailwind, Recharts |
 | Backend  | Node.js (ESM), Express 4                       |
 | Database | PostgreSQL (`pg`)                              |
+| Cache    | Redis (`ioredis`) — sessions, users, rate-limiting |
 | Auth     | JWT (`jsonwebtoken`) + bcrypt (`bcryptjs`)     |
 
 Backend details and full API reference: [`server/README.md`](server/README.md).
@@ -93,3 +95,4 @@ Backend details and full API reference: [`server/README.md`](server/README.md).
 | Frontend | http://localhost:5173   |
 | Backend  | http://localhost:4000   |
 | Postgres | localhost:5432          |
+| Redis    | localhost:6379          |
