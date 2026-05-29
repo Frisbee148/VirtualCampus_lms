@@ -1,29 +1,36 @@
 import { pool } from "../config/db.js";
-import { createUser, findByUsername } from "../models/userModel.js";
+import { findByUsername, createUser } from "../models/userModel.js";
 import { hashPassword } from "../utils/password.js";
-import { ROLES } from "../utils/roles.js";
+import { env } from "../config/env.js";
 
-// Creates one demo account per role. Username = role, password = "password123".
+// Demo mode: one shared account. Its credentials (env DEMO_USERNAME /
+// DEMO_PASSWORD) are the only ones that log in, and they work for every role
+// (the role is chosen in the login dropdown). We upsert the password hash so
+// changing DEMO_PASSWORD in .env + re-seeding takes effect.
 async function seed() {
-  const password = "password123";
-  const passwordHash = await hashPassword(password);
+  const username = env.demoUsername;
+  const passwordHash = await hashPassword(env.demoPassword);
 
-  for (const role of ROLES) {
-    const username = role;
-    if (await findByUsername(username)) {
-      console.log(`skip   ${username} (exists)`);
-      continue;
-    }
+  const existing = await findByUsername(username);
+  if (existing) {
+    await pool.query("UPDATE users SET password_hash = $1 WHERE id = $2", [
+      passwordHash,
+      existing.id,
+    ]);
+    console.log(`updated demo account '${username}'`);
+  } else {
     await createUser({
       username,
       email: `${username}@example.edu`,
-      fullName: `Demo ${role}`,
+      fullName: "Demo User",
       passwordHash,
-      role,
+      role: "student", // placeholder; login mode comes from the dropdown
     });
-    console.log(`create ${username} / ${password}  (role: ${role})`);
+    console.log(`created demo account '${username}'`);
   }
-  console.log("\nSeed complete. Login with any username above, password 'password123'.");
+
+  console.log(`\nLogin with:  username = ${username}   password = ${env.demoPassword}`);
+  console.log("Works for ALL roles — just pick the role in the dropdown.");
 }
 
 seed()

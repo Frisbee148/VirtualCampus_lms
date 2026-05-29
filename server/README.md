@@ -34,8 +34,23 @@ Create the database (one-time), then apply the schema and demo data:
 ```bash
 createdb virtualcampus       # or via your PG host / Docker
 npm run db:migrate           # applies src/db/schema.sql
-npm run db:seed              # creates one demo user per role (password: password123)
+npm run db:seed              # creates the single demo login (see below)
 ```
+
+### Demo login (one credential, all roles)
+
+```
+username:  demo
+password:  demo123
+```
+
+This is the **only** credential that works, and it works for **every role** —
+pick the role in the login dropdown and you land in that interface. The chosen
+role is recorded as the login mode in `login_sessions`. The CAPTCHA field is
+ignored (enter anything).
+
+Change the credentials in `.env` (`DEMO_USERNAME` / `DEMO_PASSWORD`) then re-run
+`npm run db:seed`.
 
 No local Postgres? Quick Docker instance:
 
@@ -73,7 +88,7 @@ Send the token as `Authorization: Bearer <token>`.
 # login (after seeding)
 curl -s localhost:4000/api/auth/login \
   -H 'content-type: application/json' \
-  -d '{"username":"admin","password":"password123","role":"admin"}'
+  -d '{"username":"demo","password":"demo123","role":"admin"}'
 ```
 
 ## Schema

@@ -24,6 +24,11 @@ export const env = {
   jwtSecret: process.env.JWT_SECRET || "change-me-to-a-long-random-secret",
   jwtExpiresIn: process.env.JWT_EXPIRES_IN || "7d",
   bcryptRounds: Number(process.env.BCRYPT_ROUNDS) || 10,
+
+  // Demo mode: a single shared credential that can log in as ANY role.
+  // The role is chosen in the login dropdown; these are the only creds that work.
+  demoUsername: process.env.DEMO_USERNAME || "demo",
+  demoPassword: process.env.DEMO_PASSWORD || "demo123",
 };
 
 if (env.nodeEnv === "production" && env.jwtSecret === "change-me-to-a-long-random-secret") {

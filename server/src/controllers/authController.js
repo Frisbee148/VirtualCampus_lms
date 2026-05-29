@@ -4,9 +4,10 @@ import {
   revokeSession,
   listSessionsForUser,
 } from "../models/sessionModel.js";
-import { hashPassword, verifyPassword } from "../utils/password.js";
+import { hashPassword } from "../utils/password.js";
 import { signToken } from "../utils/jwt.js";
 import { isValidRole } from "../utils/roles.js";
+import { env } from "../config/env.js";
 import { HttpError, asyncHandler } from "../middleware/error.js";
 
 // POST /api/auth/register
@@ -29,28 +30,35 @@ export const register = asyncHandler(async (req, res) => {
   res.status(201).json({ user });
 });
 
-// POST /api/auth/login  — records the mode (role) the user logged in as.
+// POST /api/auth/login
+// Demo mode: a single shared credential (env DEMO_USERNAME / DEMO_PASSWORD) is
+// the ONLY accepted login. The role is whatever the client picked in the
+// dropdown — the same account can log in as any role. The chosen mode is
+// recorded in login_sessions.
 export const login = asyncHandler(async (req, res) => {
   const { username, password, role } = req.body || {};
   if (!username || !password) {
     throw new HttpError(400, "username and password are required");
   }
 
-  const user = await findByUsername(username);
-  if (!user || !(await verifyPassword(password, user.password_hash))) {
+  // Only the configured demo credentials are valid.
+  if (username !== env.demoUsername || password !== env.demoPassword) {
     throw new HttpError(401, "Invalid credentials");
   }
-  if (user.status !== "active") {
-    throw new HttpError(403, "Account is not active");
+
+  // Role picked at login becomes the login mode; defaults to student.
+  const loginMode = role || "student";
+  if (!isValidRole(loginMode)) {
+    throw new HttpError(400, `Invalid role: ${loginMode}`);
   }
 
-  // The login mode the client requested must match the account's role.
-  const loginMode = role || user.role;
-  if (loginMode !== user.role) {
-    throw new HttpError(403, `Account is not authorized for mode '${loginMode}'`);
+  // The demo account row backs every session (FK on login_sessions).
+  const user = await findByUsername(env.demoUsername);
+  if (!user) {
+    throw new HttpError(500, "Demo account missing — run `npm run db:seed`.");
   }
 
-  const { token, jti, expiresAt } = signToken({ userId: user.id, role: user.role });
+  const { token, jti, expiresAt } = signToken({ userId: user.id, role: loginMode });
 
   await createSession({
     userId: user.id,
@@ -69,7 +77,7 @@ export const login = asyncHandler(async (req, res) => {
       username: user.username,
       email: user.email,
       fullName: user.full_name,
-      role: user.role,
+      role: loginMode,
     },
     loginMode,
   });
