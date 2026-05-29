@@ -86,6 +86,8 @@ const RegistrarProfile = () => {
 
   const handleSignOutAllDevices = () => {
     localStorage.removeItem("rememberedUsername");
+    localStorage.removeItem("vc_token");
+    localStorage.removeItem("vc_user");
     sessionStorage.clear();
     navigate("/", { replace: true });
   };

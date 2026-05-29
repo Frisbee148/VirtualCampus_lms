@@ -145,6 +145,8 @@ const FacultySidebar = ({ mobileOpen, onClose }) => {
           <button
             onClick={() => {
               localStorage.removeItem("rememberedUsername");
+              localStorage.removeItem("vc_token");
+              localStorage.removeItem("vc_user");
               sessionStorage.clear();
               navigate("/", { replace: true });
               if (onClose) onClose();

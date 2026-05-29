@@ -10,7 +10,23 @@ import {
   resolveFacultyCourseKey,
   setStoredFacultyCourseKey,
 } from "../shared/cifCompletionData";
+import { login as apiLogin } from "./authApi";
 import "./LoginPage.css";
+
+// Where each role lands after login.
+const ROLE_ROUTES = {
+  student: "/dashboard",
+  faculty: "/faculty/my-courses",
+  guardian: "/parent/dashboard",
+  director: "/director/dashboard",
+  registrar: "/registrar/dashboard",
+  admin: "/admin/dashboard",
+  "admin-officer": "/ao/dashboard",
+  librarian: "/librarian/dashboard",
+  "library-operator": "/library-operator/dashboard",
+  hod: "/hod/dashboard",
+  staff: "/staff/dashboard",
+};
 
 const ROLES = [
   { value: "student", label: "Student" },
@@ -60,6 +76,7 @@ const LoginPage = () => {
   });
   const [errorMsg, setErrorMsg] = useState("");
   const [shake, setShake] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   /* ---- refs ---- */
   const cursorRef = useRef(null);
@@ -111,51 +128,58 @@ const LoginPage = () => {
   }, []);
 
   /* ---- Login handler ---- */
-  const handleLogin = useCallback(() => {
+  const triggerShake = useCallback(() => {
+    setShake(true);
+    setTimeout(() => setShake(false), 400);
+  }, []);
+
+  const handleLogin = useCallback(async () => {
     setErrorMsg("");
     if (!selectedRole) {
       setErrorMsg("Please select a role.");
-      setShake(true);
-      setTimeout(() => setShake(false), 400);
+      triggerShake();
+      return;
+    }
+    if (!username || !password) {
+      setErrorMsg("Please enter username and password.");
+      triggerShake();
       return;
     }
 
-    // Persist remember-me preference
-    if (rememberMe && username) {
-      localStorage.setItem("rememberedUsername", username);
-    } else {
-      localStorage.removeItem("rememberedUsername");
-    }
+    setLoading(true);
+    try {
+      // Authenticate against the backend; the role is validated server-side
+      // and the login mode is recorded in the database.
+      const { user } = await apiLogin({
+        username,
+        password,
+        role: selectedRole,
+      });
 
-    // Navigate based on role
-    if (selectedRole === "student") {
-      navigate("/dashboard");
-    } else if (selectedRole === "faculty") {
-      setStoredFacultyCourseKey(resolveFacultyCourseKey(username));
-      navigate("/faculty/my-courses");
-    } else if (selectedRole === "guardian") {
-      navigate("/parent/dashboard");
-    } else if (selectedRole === "director") {
-      navigate("/director/dashboard");
-    } else if (selectedRole === "registrar") {
-      navigate("/registrar/dashboard");
-    } else if (selectedRole === "admin") {
-      navigate("/admin/dashboard");
-    } else if (selectedRole === "admin-officer") {
-      navigate("/ao/dashboard");
-    } else if (selectedRole === "librarian") {
-      navigate("/librarian/dashboard");
-    } else if (selectedRole === "library-operator") {
-      navigate("/library-operator/dashboard");
-    } else if (selectedRole === "hod") {
-      navigate("/hod/dashboard");
-    } else if (selectedRole === "staff") {
-      navigate("/staff/dashboard");
-    } else {
-      // For other roles, extend later
-      alert(`Logging in as ${selectedRole}...`);
+      // Persist remember-me preference
+      if (rememberMe && username) {
+        localStorage.setItem("rememberedUsername", username);
+      } else {
+        localStorage.removeItem("rememberedUsername");
+      }
+
+      if (user.role === "faculty") {
+        setStoredFacultyCourseKey(resolveFacultyCourseKey(username));
+      }
+
+      const route = ROLE_ROUTES[user.role];
+      if (route) {
+        navigate(route);
+      } else {
+        setErrorMsg(`No interface configured for role '${user.role}'.`);
+      }
+    } catch (err) {
+      setErrorMsg(err.message || "Login failed.");
+      triggerShake();
+    } finally {
+      setLoading(false);
     }
-  }, [selectedRole, username, rememberMe, navigate]);
+  }, [selectedRole, username, password, rememberMe, navigate, triggerShake]);
 
   /* ---- Forgot password ---- */
   const handleForgotPassword = (e) => {
@@ -365,8 +389,9 @@ const LoginPage = () => {
             className="lp-submit-btn"
             onClick={handleLogin}
             id="login-submit"
+            disabled={loading}
           >
-            Login
+            {loading ? "Logging in..." : "Login"}
           </button>
         </div>
       </div>
