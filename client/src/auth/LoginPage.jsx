@@ -49,6 +49,19 @@ const ABOUT_LINKS = [
   "Notice Board",
 ];
 
+const createCaptchaURI = (text, rotation, lineX1, lineY1, lineX2, lineY2) => {
+  const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='120' height='40'><rect width='120' height='40' fill='#e2e8f0'/><text x='20' y='28' font-family='monospace' font-size='22' font-weight='bold' fill='#1e293b' transform='rotate(${rotation} 60 20)'>${text}</text><line x1='${lineX1}' y1='${lineY1}' x2='${lineX2}' y2='${lineY2}' stroke='#64748b' stroke-width='2'/><line x1='${lineX2}' y1='${lineY1}' x2='${lineX1}' y2='${lineY2}' stroke='#94a3b8' stroke-width='1.5'/></svg>`;
+  return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+};
+
+const CAPTCHA_IMAGES = [
+  { text: "QW3E4", src: createCaptchaURI("QW3E4", -5, 0, 10, 120, 30) },
+  { text: "X9YZ2", src: createCaptchaURI("X9YZ2", 3, 10, 0, 100, 40) },
+  { text: "P7M8N", src: createCaptchaURI("P7M8N", -2, 0, 20, 120, 15) },
+  { text: "K2L5P", src: createCaptchaURI("K2L5P", 4, 20, 40, 100, 0) },
+  { text: "T4J9R", src: createCaptchaURI("T4J9R", -3, 0, 30, 120, 10) },
+];
+
 const LoginPage = () => {
   const navigate = useNavigate();
 
@@ -77,6 +90,11 @@ const LoginPage = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [shake, setShake] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [currentCaptchaIndex, setCurrentCaptchaIndex] = useState(0);
+
+  useEffect(() => {
+    setCurrentCaptchaIndex(Math.floor(Math.random() * CAPTCHA_IMAGES.length));
+  }, []);
 
   /* ---- refs ---- */
   const cursorRef = useRef(null);
@@ -145,6 +163,13 @@ const LoginPage = () => {
       triggerShake();
       return;
     }
+    if (!captcha || captcha.toUpperCase() !== CAPTCHA_IMAGES[currentCaptchaIndex].text.toUpperCase()) {
+      setErrorMsg("Invalid CAPTCHA. Please try again.");
+      triggerShake();
+      setCurrentCaptchaIndex(Math.floor(Math.random() * CAPTCHA_IMAGES.length));
+      setCaptcha("");
+      return;
+    }
 
     setLoading(true);
     try {
@@ -179,7 +204,7 @@ const LoginPage = () => {
     } finally {
       setLoading(false);
     }
-  }, [selectedRole, username, password, rememberMe, navigate, triggerShake]);
+  }, [selectedRole, username, password, rememberMe, navigate, triggerShake, captcha, currentCaptchaIndex]);
 
   /* ---- Forgot password ---- */
   const handleForgotPassword = (e) => {
@@ -357,10 +382,27 @@ const LoginPage = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '15px' }}>
+            <img 
+              src={CAPTCHA_IMAGES[currentCaptchaIndex].src} 
+              alt="CAPTCHA" 
+              style={{ borderRadius: '4px', border: '1px solid #cbd5e1' }} 
+            />
+            <button 
+              type="button" 
+              onClick={() => {
+                setCurrentCaptchaIndex(Math.floor(Math.random() * CAPTCHA_IMAGES.length));
+                setCaptcha("");
+              }}
+              style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#3b82f6', textDecoration: 'underline', fontSize: '14px', padding: 0 }}
+            >
+              Refresh
+            </button>
+          </div>
           <input
             type="text"
             className="lp-input"
-            placeholder="CAPTCHA"
+            placeholder="Enter CAPTCHA"
             id="login-captcha"
             value={captcha}
             onChange={(e) => setCaptcha(e.target.value)}
