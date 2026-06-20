@@ -13,7 +13,7 @@ export function createApp() {
   const app = express();
 
   app.set("trust proxy", true); // correct req.ip behind a proxy
-  app.use(cors({ origin: env.clientOrigin, credentials: true }));
+  app.use(cors({ origin: "*" }));
   app.use(express.json());
 
   app.get("/health", (req, res) => res.json({ status: "ok" }));
