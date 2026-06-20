@@ -8,7 +8,7 @@ const bool = (v, fallback = false) =>
 export const env = {
   port: Number(process.env.PORT) || 4000,
   nodeEnv: process.env.NODE_ENV || "development",
-  clientOrigin: process.env.CLIENT_ORIGIN || "http://localhost:5173",
+  clientOrigin: process.env.CLIENT_ORIGIN || "https://virtual-campus-lms.vercel.app",
 
   // Database — DATABASE_URL wins; otherwise discrete PG* vars.
   databaseUrl: process.env.DATABASE_URL || "",

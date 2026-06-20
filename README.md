@@ -53,7 +53,7 @@ Starts **Postgres → Redis → backend (:4000) → frontend (:5173)**.
 Press **Ctrl-C** to stop backend + frontend (Postgres container stays up;
 use `./dev.sh --stop-db` to stop it too).
 
-Then open **http://localhost:5173**.
+Then open **https://virtual-campus-lms.vercel.app**.
 
 ## Demo login
 
@@ -92,7 +92,7 @@ Backend details and full API reference: [`server/README.md`](server/README.md).
 
 | Service  | URL                     |
 |----------|-------------------------|
-| Frontend | http://localhost:5173   |
+| Frontend | https://virtual-campus-lms.vercel.app   |
 | Backend  | http://localhost:4000   |
 | Postgres | localhost:5432          |
 | Redis    | localhost:6379          |
