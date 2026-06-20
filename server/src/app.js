@@ -17,6 +17,12 @@ export function createApp() {
   app.use(express.json());
 
   app.get("/health", (req, res) => res.json({ status: "ok" }));
+  app.get("/", (req, res) => {
+    res.json({
+      status: "ok",
+      message: "VirtualCampus API is running"
+    });
+  });
   app.get("/api/roles", (req, res) => res.json({ roles: ROLES }));
 
   app.use("/api/auth", authRoutes);
