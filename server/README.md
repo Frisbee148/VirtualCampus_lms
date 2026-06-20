@@ -68,7 +68,7 @@ npm run dev    # auto-reload (node --watch)
 npm start      # production
 ```
 
-Server: `http://localhost:4000`.
+Server: `https://virtualcampus-lms.onrender.com`.
 
 ## API
 
@@ -88,7 +88,7 @@ Send the token as `Authorization: Bearer <token>`.
 
 ```bash
 # login (after seeding)
-curl -s localhost:4000/api/auth/login \
+curl -s https://virtualcampus-lms.onrender.com/api/auth/login \
   -H 'content-type: application/json' \
   -d '{"username":"demo","password":"demo123","role":"admin"}'
 ```
@@ -121,7 +121,7 @@ PostgreSQL-only (no caching, no rate limiting). Set `REDIS_URL` in `.env`
 
 ## Wiring the client
 
-Point the client at this API (e.g. `VITE_API_URL=http://localhost:4000`) and
+Point the client at this API (e.g. `VITE_API_URL=https://virtualcampus-lms.onrender.com`) and
 replace the client-side navigation in `client/src/auth/LoginPage.jsx` with a
 `POST /api/auth/login` call, storing the returned token. The `role` returned
 drives which interface to route to.

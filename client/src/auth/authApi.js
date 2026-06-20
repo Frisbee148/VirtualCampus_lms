@@ -1,7 +1,7 @@
 // Thin client for the virtualCampus backend auth API.
 // Base URL comes from VITE_API_URL (see client/.env), defaults to local server.
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000";
+const API_URL = import.meta.env.VITE_API_URL || "https://virtualcampus-lms.onrender.com";
 
 const TOKEN_KEY = "vc_token";
 const USER_KEY = "vc_user";

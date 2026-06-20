@@ -93,6 +93,6 @@ Backend details and full API reference: [`server/README.md`](server/README.md).
 | Service  | URL                     |
 |----------|-------------------------|
 | Frontend | https://virtual-campus-lms.vercel.app   |
-| Backend  | http://localhost:4000   |
+| Backend  | https://virtualcampus-lms.onrender.com   |
 | Postgres | localhost:5432          |
 | Redis    | localhost:6379          |
